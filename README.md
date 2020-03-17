@@ -1,10 +1,8 @@
-# hive-io
-
-> hive-io
+# Hive on!
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ yarn install
 

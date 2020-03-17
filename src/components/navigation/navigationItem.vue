@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link class="navigation-item" :to="{ name: to }">
+  <nuxt-link class="navigation-item" :to="to">
     {{ name }}
   </nuxt-link>
 </template>

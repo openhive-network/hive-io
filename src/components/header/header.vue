@@ -50,9 +50,9 @@ export default {
 @media (max-width: 600px) {
   .header {
     &__navigation {
-      display: none;
+      display: none !important;
       &Mobile {
-        display: initial;
+        display: initial !important;
       }
     }
 

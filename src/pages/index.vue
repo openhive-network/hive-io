@@ -139,7 +139,7 @@ export default defineComponent({
       justify-content: space-between;
       width: 100%;
       align-items: center;
-      max-width: 900px;
+      max-width: 840px;
       padding: 40px;
     }
   }
@@ -241,8 +241,8 @@ export default defineComponent({
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 280px;
-        height: 280px;
+        width: 290px;
+        height: 290px;
         position: relative;
       }
     }

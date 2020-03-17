@@ -1,0 +1,56 @@
+html,
+body {
+  margin: 0;
+  background-color: #f0f0f8;
+  color: black;
+  height: 100%;
+}
+
+html,
+body,
+button {
+  font-family: 'Work Sans', Helvetica, Arial, sans-serif !important;
+}
+
+#__nuxt {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // overflow: auto;
+}
+
+a {
+  text-decoration: none;
+  color: initial;
+}
+
+h1 {
+  font-size: 4.2rem;
+  margin: 0 0 10px 0;
+}
+
+h2 {
+  font-size: 2.8rem;
+  margin: 0 0 8px 0;
+}
+
+h3 {
+  font-size: 2rem;
+  margin: 0 0 8px 0;
+}
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 3.4rem;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "files": ["./src/index.d.ts", "./src/vue-shim.d.ts"],
+  "include": ["src"],
+  "compilerOptions": {
+    // "rootDir": "./src",
+    // esnext target doesn't seem to support some features for now.
+    "target": "es2018",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["esnext", "esnext.asynciterable", "dom"],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "paths": {
+      "~/*": ["src/*"],
+      "@/*": ["src/*"]
+    },
+    "types": [
+      "@types/node",
+      "@nuxtjs/axios",
+      "@nuxt/types",
+      "vue/types/vue",
+      "nuxt-i18n"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "node_modules/**",
+    "**/node_modules/**",
+    "tests",
+    "__tests__",
+    "dist",
+    "**/dist/**",
+    "**/*.spec.ts",
+    "**/*.d.ts",
+    "*.d.ts",
+    "**/*.test.ts"
+  ]
+}

@@ -132,7 +132,7 @@ export default defineComponent({
     padding: 15px 25px;
     border-radius: 5px;
     margin: 0 25px;
-    max-width: 800px;
+    max-width: 750px;
   }
 
   h2 {

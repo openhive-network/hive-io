@@ -21,7 +21,7 @@ export default defineComponent({
   setup() {
     const items = ref([
       {
-        to: 'about/',
+        to: 'about',
         name: 'About'
       }
       /* {

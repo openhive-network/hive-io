@@ -19,25 +19,6 @@ export default {
     description: env.appData.slogan,
     theme_color: '#188269',
   }, */
-  /*
-
-  <title>Hive - The Blockchain for Web 3.0</title>
-<meta name="title" content="Hive - The Blockchain for Web 3.0">
-<meta name="description" content="Hive, a DPoS powered blockchain. Fast. Scalable. Powerful.">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://hive.io/preview/index.html">
-<meta property="og:title" content="Hive - The Blockchain for Web 3.0">
-<meta property="og:description" content="Hive, a DPoS powered blockchain. Fast. Scalable. Powerful.">
-<meta property="og:image" content="">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://hive.io/preview/index.html">
-<meta property="twitter:title" content="Hive - The Blockchain for Web 3.0">
-<meta property="twitter:description" content="Hive, a DPoS powered blockchain. Fast. Scalable. Powerful.">
-<meta property="twitter:image" content=""> */
   pwa: {
     meta: {
       charset: 'utf-8',

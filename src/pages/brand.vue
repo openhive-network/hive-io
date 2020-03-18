@@ -48,7 +48,7 @@ export default defineComponent({
         cmyk: '19.51 / 9.76 / 0 / 83.92'
       },
       {
-        name: 'Hive WhiteGrey',
+        name: 'Hive White',
         hex: '#f0f0f8',
         rgb: '240 / 240 / 248',
         cmyk: '3.23 / 3.23 / 0 / 2.75'

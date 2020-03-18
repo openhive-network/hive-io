@@ -127,12 +127,12 @@ export default defineComponent({
   &__colors {
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: space-around;
     background: #f9f9ff;
     padding: 15px 25px;
     border-radius: 5px;
     margin: 0 25px;
-    max-width: 800px;
+    max-width: 750px;
   }
 
   h2 {

@@ -18,6 +18,7 @@ build:
     - ls -l
     - yarn config set cache-folder .yarn
     - yarn install
+    - yarn generate
     - echo "BUILD SUCCESSFULLY"
 
   artifacts:

@@ -47,6 +47,7 @@ export default defineComponent({
   display: flex;
   flex-flow: row;
   margin: 25px;
+  min-width: 270px;
   &__circle {
     width: 50px;
     height: 50px;

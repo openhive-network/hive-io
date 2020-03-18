@@ -47,11 +47,23 @@ export default defineComponent({
         rgb: '33 / 37 / 41',
         cmyk: '19.51 / 9.76 / 0 / 83.92'
       },
+      /* {
+        name: 'Hive White',
+        hex: '#ffffff',
+        rgb: '255 / 255 / 255',
+        cmyk: '0 / 0 / 0 / 0'
+      }, */
       {
-        name: 'Hive Grey',
+        name: 'Hive LightGrey',
         hex: '#f0f0f8',
         rgb: '240 / 240 / 248',
         cmyk: '3.23 / 3.23 / 0 / 2.75'
+      },
+      {
+        name: 'Hive Grey',
+        hex: '#e7e7f1',
+        rgb: '231 / 231 / 241',
+        cmyk: '4.15 / 4.15 / 0 / 5.49'
       }
     ])
 
@@ -120,7 +132,7 @@ export default defineComponent({
     padding: 15px 25px;
     border-radius: 5px;
     margin: 0 25px;
-    max-width: 1000px;
+    max-width: 800px;
   }
 
   h2 {

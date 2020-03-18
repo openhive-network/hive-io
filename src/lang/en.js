@@ -17,7 +17,7 @@ export default {
     featureFast: 'Fast',
     featureFastText: 'Transactions take less than 3 seconds',
     featureScalable: 'Scalable',
-    featureScalableText: 'Future proof resource & storage system.',
+    featureScalableText: 'Future proof resource-bandwidth & storage system.',
     featurePowerful: 'Powerful',
     featurePowerfulText:
       'Battle-tested for 4 years by hundreds of apps, communities & projects around the world.'

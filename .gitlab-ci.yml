@@ -2,8 +2,8 @@ image: node:latest
 
 stages:
   - build
-  - deploystaging
-  - deploymaster
+  - deploy_staging
+  - deploy_master
 
 cache:
   untracked: true
@@ -31,8 +31,8 @@ build:
   # only:
   #   - develop
 
-deploystaging:
-  stage: deploystaging
+deploy_staging:
+  stage: deploy_staging
   image: python:3.5
   dependencies:
     - build
@@ -51,8 +51,8 @@ deploystaging:
   only:
     - develop
 
-deploymaster:
-  stage: deploymaster
+deploy_master:
+  stage: deploy_master
   image: python:3.5
   dependencies:
     - build

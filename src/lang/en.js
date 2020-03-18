@@ -8,7 +8,7 @@ export default {
       'Hive wallets are available for Windows, MacOS, Linux, iOS, Android & Web.',
     dafTitle: 'DHF',
     dafText:
-      'The development of Hive and its ecosystem is sustained via the DHF; Decentralized Hive Fund.'
+      'The development of Hive and its ecosystem is sustained via the DHF; Decentralised Hive Fund.'
   },
   about: {
     title: 'Developed for Web',

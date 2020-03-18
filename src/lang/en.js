@@ -31,5 +31,10 @@ export default {
     title: 'Choose your Wallet',
     text:
       'Hive wallets are available for Windows, MacOS, Linux, iOS, Android & Web.'
+  },
+  brand: {
+    title: 'Brand Guidelines',
+    text:
+      'The branding of Hive is created by the community, for the community. For graphical representation of Hive, the correct & newest assets shall be used.'
   }
 }

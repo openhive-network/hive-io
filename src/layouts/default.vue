@@ -1,8 +1,8 @@
 <template>
   <div class="layout layout--default">
-    <Header class="layout__header" />
+    <Header class="layout__header" :items="headerNavigation" />
     <nuxt class="layout__main" />
-    <Footer class="layout__footer" />
+    <Footer class="layout__footer" :items="footerNavigation" />
   </div>
 </template>
 
@@ -11,7 +11,8 @@ import {
   defineComponent,
   computed,
   watch,
-  onMounted
+  onMounted,
+  ref
 } from '@vue/composition-api'
 import Header from '~/components/header/header.vue'
 import Footer from '~/components/footer/footer.vue'
@@ -20,6 +21,32 @@ export default defineComponent({
   components: { Header, Footer },
   props: {},
   setup(_props, { root }) {
+    const headerNavigation = ref([
+      {
+        to: 'about',
+        name: 'About'
+      }
+      /* {
+        to: 'eco',
+        name: 'Ecosystem'
+      },
+      {
+        to: 'wallets',
+        name: 'Wallets'
+      } */
+      /* {
+        to: 'developer',
+        name: 'Developer'
+      } */
+    ])
+
+    const footerNavigation = ref([
+      {
+        to: 'brand',
+        name: 'Brand'
+      }
+    ])
+
     const preventScroll = computed(() => root.$accessor.preventScroll)
     onMounted(() => {
       watch(
@@ -39,7 +66,9 @@ export default defineComponent({
     // watch()
 
     return {
-      preventScroll
+      preventScroll,
+      headerNavigation,
+      footerNavigation
     }
   }
 })

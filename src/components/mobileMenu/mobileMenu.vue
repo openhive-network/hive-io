@@ -12,6 +12,7 @@
 
       <Navigation
         class="mobile-menu__navigation"
+        :items="items"
         @clicked="$accessor.setIsMobileActive(false)"
       />
     </div>
@@ -23,7 +24,13 @@ import { defineComponent, computed } from '@vue/composition-api'
 import Navigation from '~/components/navigation/navigation.vue'
 export default defineComponent({
   components: { Navigation },
-  props: {},
+  props: {
+    items: {
+      type: Array,
+      default: () => [] as any[]
+    },
+    dark: Boolean
+  },
 
   setup(_props, { root }) {
     const isMobileActive = computed(() => root.$accessor.isMobileActive)
@@ -35,18 +42,8 @@ export default defineComponent({
 })
 </script>
 
+TODO: Add browser prefixes
 <style lang="scss">
-/*
- * Made by Erik Terwan
- * 24th of November 2015
- * MIT License
- *
- *
- * If you are thinking of using this in
- * production code, beware of the browser
- * prefixes.
- */
-
 .mobile-menu {
   &__toggle {
     display: block;
@@ -67,8 +64,8 @@ export default defineComponent({
 
       cursor: pointer;
 
-      opacity: 0; /* hide this */
-      z-index: 2; /* and place it over the hamburger */
+      opacity: 0;
+      z-index: 2;
 
       -webkit-touch-callout: none;
     }

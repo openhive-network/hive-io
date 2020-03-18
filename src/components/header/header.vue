@@ -5,23 +5,30 @@
         <Logo class="header__logo" />
       </nuxt-link>
 
-      <Navigation class="header__navigation" />
-      <MobileMenu class="header__navigationMobile" />
+      <Navigation class="header__navigation" :items="items" />
+      <MobileMenu class="header__navigationMobile" :items="items" />
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@vue/composition-api'
 import Logo from '~/components/logo/logo.vue'
 import MobileMenu from '~/components/mobileMenu/mobileMenu.vue'
 import Navigation from '~/components/navigation/navigation.vue'
-export default {
-  components: {
-    Logo,
-    Navigation,
-    MobileMenu
+export default defineComponent({
+  components: { Logo, MobileMenu, Navigation },
+  props: {
+    items: {
+      type: Array,
+      default: () => [] as any[]
+    }
+  },
+
+  setup() {
+    return {}
   }
-}
+})
 </script>
 
 <style lang="scss">

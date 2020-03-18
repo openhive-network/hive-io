@@ -48,7 +48,7 @@ export default defineComponent({
         cmyk: '19.51 / 9.76 / 0 / 83.92'
       },
       {
-        name: 'Hive White',
+        name: 'Hive Grey',
         hex: '#f0f0f8',
         rgb: '240 / 240 / 248',
         cmyk: '3.23 / 3.23 / 0 / 2.75'
@@ -120,6 +120,7 @@ export default defineComponent({
     padding: 15px 25px;
     border-radius: 5px;
     margin: 0 25px;
+    max-width: 1000px;
   }
 
   h2 {

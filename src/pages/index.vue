@@ -151,7 +151,7 @@ export default defineComponent({
     &__logo {
       height: 150px;
       margin-left: -55px;
-      margin-top: -130px;
+      margin-top: -180px;
     }
 
     &__left {
@@ -159,6 +159,7 @@ export default defineComponent({
       display: flex;
       flex-flow: column;
       justify-content: center;
+      margin-top: -50px;
     }
   }
 

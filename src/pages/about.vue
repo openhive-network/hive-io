@@ -10,7 +10,7 @@
           {{ $t(`about.title`) }} 3<span style="color: #e31337;">.</span>0
         </h1>
         <p class="about__text">{{ $t('about.text') }}</p>
-        <h2 style="opacity: 0.5; margin-top:80px;">Why choose Hive?</h2>
+        <h2 style="opacity: 0.5; margin-top:120px;">Why choose Hive?</h2>
       </div>
 
       <div class="about__feature">
@@ -82,7 +82,7 @@ export default defineComponent({
     flex-flow: column;
     align-items: center;
     justify-content: center;
-    padding: 120px 0 40px 0;
+    padding: 80px 0 40px 0;
     max-width: 820px;
     text-align: center;
     margin-top: -15px;

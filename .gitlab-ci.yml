@@ -2,6 +2,7 @@ image: node:latest
 
 stages:
   - build
+  - deploy
 
 cache:
   untracked: true
@@ -20,11 +21,30 @@ build:
     - yarn install
     - yarn generate
     - echo "BUILD SUCCESSFULLY"
-
   artifacts:
     paths:
       - dist/
     expire_in: 20 mins
+  environment:
+    name: development
+  only:
+    - develop
+
+deploy:
+  stage: deploy
+  image: python:3.5
+  dependencies:
+    - build
+  script:
+    - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID       // same variable we declared in gitlab CI settings
+    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    - export S3_BUCKET_NAME=$S3_BUCKET_NAME_STAGING
+    #- export DISTRIBUTION_ID=$DISTRIBUTION_ID
+    - pip install awscli --upgrade --user
+    - export PATH=~/.local/bin:$PATH
+    - aws s3 sync --acl public-read --delete dist $S3_BUCKET_NAME
+    #- aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
+    - echo "DEPLOYED SUCCESSFULLY"
   environment:
     name: development
   only:

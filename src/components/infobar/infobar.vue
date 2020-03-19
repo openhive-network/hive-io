@@ -1,5 +1,10 @@
 <template>
-  <div class="infobar" :class="{ 'infobar--active': isReady }" @click="go()">
+  <div
+    v-if="state.setInterval"
+    class="infobar"
+    :class="{ 'infobar--active': isReady }"
+    @click="go()"
+  >
     <div v-if="!isReady" class="infobar__countdown">
       <div class="infobar__countdown__preText">Launch in</div>
       <div class="infobar__countdown__numbers">
@@ -20,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div v-else>#HiveIsAlive!</div>
+    <div v-if="state.setInterval && isReady">#HiveIsAlive!</div>
   </div>
 </template>
 
@@ -29,7 +34,8 @@ import {
   defineComponent,
   reactive,
   onBeforeUnmount,
-  computed
+  computed,
+  onMounted
 } from '@vue/composition-api'
 import moment from 'moment'
 
@@ -39,10 +45,11 @@ export default defineComponent({
   setup() {
     const state = reactive({
       d: '00',
-      h: '00',
+      h: '01',
       m: '00',
       s: '00',
-      interval: null as any
+      interval: null as any,
+      setInterval: false
     })
 
     const setCountdown = () => {
@@ -57,10 +64,10 @@ export default defineComponent({
         return
       }
       const countdown = moment(then - now)
-      const d = countdown.format('DD')
-      const h = countdown.format('HH')
-      const m = countdown.format('mm')
-      const s = countdown.format('ss')
+      const d = countdown.utc().format('DD')
+      const h = countdown.utc().format('HH')
+      const m = countdown.utc().format('mm')
+      const s = countdown.utc().format('ss')
 
       state.d = `0${String(Number(d) - 1)}`
       state.h = h
@@ -68,17 +75,24 @@ export default defineComponent({
       state.s = s
     }
 
-    setCountdown()
-    state.interval = setInterval(() => {
+    onMounted(() => {
       setCountdown()
-    }, 1000)
+      state.interval = setInterval(() => {
+        state.setInterval = true
+        setCountdown()
+      }, 1000)
+    })
 
     onBeforeUnmount(() => {
       clearInterval(state.interval)
     })
 
+    const countdown = computed(() => {
+      return `${state.d}:${state.h}:${state.m}:${state.s}`
+    })
+
     const isReady = computed(() => {
-      return `${state.d}:${state.h}:${state.m}:${state.s}` === '00:00:00:00'
+      return countdown.value === '00:00:00:00'
     })
 
     const go = () => {
@@ -86,7 +100,7 @@ export default defineComponent({
       window.open('https://hive.blog', '_blank')
     }
 
-    return { state, isReady, go }
+    return { state, isReady, countdown, go }
   }
 })
 </script>

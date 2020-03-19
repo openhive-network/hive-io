@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div v-else>#HiveIsAlive!</div>
+    <div v-if="state.setInterval && isReady">#HiveIsAlive!</div>
   </div>
 </template>
 
@@ -64,10 +64,10 @@ export default defineComponent({
         return
       }
       const countdown = moment(then - now)
-      const d = countdown.format('DD')
-      const h = countdown.format('HH')
-      const m = countdown.format('mm')
-      const s = countdown.format('ss')
+      const d = countdown.utc().format('DD')
+      const h = countdown.utc().format('HH')
+      const m = countdown.utc().format('mm')
+      const s = countdown.utc().format('ss')
 
       state.d = `0${String(Number(d) - 1)}`
       state.h = h

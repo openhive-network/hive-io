@@ -29,7 +29,8 @@ import {
   defineComponent,
   reactive,
   onBeforeUnmount,
-  computed
+  computed,
+  onMounted
 } from '@vue/composition-api'
 import moment from 'moment'
 
@@ -68,10 +69,12 @@ export default defineComponent({
       state.s = s
     }
 
-    setCountdown()
-    state.interval = setInterval(() => {
+    onMounted(() => {
       setCountdown()
-    }, 1000)
+      state.interval = setInterval(() => {
+        setCountdown()
+      }, 1000)
+    })
 
     onBeforeUnmount(() => {
       clearInterval(state.interval)

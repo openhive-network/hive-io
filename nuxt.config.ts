@@ -56,9 +56,10 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/composition-api',
+    '@/plugins/composition-api',
     '@/plugins/element-ui',
-    { src: '@/plugins/tippy', ssr: false }
+    { src: '@/plugins/tippy', ssr: false },
+    '@/plugins/fontawesome'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -100,6 +101,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend() {}
   }
 }

@@ -4,9 +4,9 @@
       v-for="(item, index) in items"
       :key="index"
       class="navigation__item"
-      :class="{ 'navigation__item--dark': dark }"
       :to="item.to"
       :name="item.name"
+      :dark="dark"
       @click.native="$emit('clicked')"
     />
   </div>
@@ -38,8 +38,10 @@ export default defineComponent({
     margin: 0 5px;
     padding: 5px 10px;
     &--dark {
-      color: white;
-      font-weight: 500;
+      .navigation-item__link {
+        color: white;
+        font-weight: 500;
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Context } from '@nuxt/types'
+// import { Context } from '@nuxt/types'
 import {
   getterTree,
   getAccessorType,
@@ -33,7 +33,7 @@ export const mutations = mutationTree(state, {
 export const actions = actionTree(
   { state, getters, mutations },
   {
-    async nuxtServerInit(ctx, { req, app }: Context) {}
+    // async nuxtServerInit(ctx, { req, app }: Context) {}
   }
 )
 

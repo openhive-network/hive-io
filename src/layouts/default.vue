@@ -1,6 +1,7 @@
 <template>
   <div class="layout layout--default">
     <Header class="layout__header" :items="headerNavigation" />
+    <Infobar v-if="$route.name === 'index'" />
     <nuxt class="layout__main" />
     <Footer class="layout__footer" :items="footerNavigation" />
   </div>
@@ -14,11 +15,12 @@ import {
   onMounted,
   ref
 } from '@vue/composition-api'
+import Infobar from '~/components/infobar/infobar.vue'
 import Header from '~/components/header/header.vue'
 import Footer from '~/components/footer/footer.vue'
 
 export default defineComponent({
-  components: { Header, Footer },
+  components: { Header, Footer, Infobar },
   props: {},
   setup(_props, { root }) {
     const headerNavigation = ref([
@@ -41,10 +43,35 @@ export default defineComponent({
     ])
 
     const footerNavigation = ref([
-      {
-        to: 'brand',
-        name: 'Brand'
-      }
+      [
+        /* {
+          to: 'about',
+          name: 'About'
+        }, */
+
+        {
+          to: 'brand',
+          name: 'Brand'
+        }
+        /* {
+          to: 'contributors',
+          name: 'Contributors'
+        } */
+      ]
+      /* [
+        {
+          to: 'developers',
+          name: 'Developers'
+        },
+        {
+          to: 'https://developers.hive.io',
+          name: 'Documentation'
+        },
+        {
+          to: 'https://gitlab.com',
+          name: 'Repository'
+        }
+      ] */
     ])
 
     const preventScroll = computed(() => root.$accessor.preventScroll)

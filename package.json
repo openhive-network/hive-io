@@ -24,6 +24,9 @@
     }
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-brands-svg-icons": "^5.12.1",
+    "@fortawesome/vue-fontawesome": "^0.1.9",
     "@nuxt/typescript-runtime": "^0.4.0",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
@@ -31,6 +34,7 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "@vue/composition-api": "^0.4.0",
     "element-ui": "^2.4.11",
+    "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "nuxt-i18n": "^6.6.0",

@@ -2,7 +2,12 @@
   <div class="footer">
     <div class="footer__inner">
       <Logo class="footer__logo" :dark="true" />
-      <Navigation class="footer__navigation" :items="items" :dark="true" />
+      <FooterNavigation
+        v-for="(subItems, index) in items"
+        :key="index"
+        :items="subItems"
+        class="footer__navigation"
+      />
     </div>
   </div>
 </template>
@@ -10,9 +15,9 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import Logo from '~/components/logo/logo.vue'
-import Navigation from '~/components/navigation/navigation.vue'
+import FooterNavigation from '~/components/footer/footerNavigation.vue'
 export default defineComponent({
-  components: { Logo, Navigation },
+  components: { Logo, FooterNavigation },
   props: {
     items: {
       type: Array,

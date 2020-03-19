@@ -1,7 +1,22 @@
 <template>
-  <nuxt-link class="navigation-item" :to="{ name: to }">
-    {{ name }}
-  </nuxt-link>
+  <div class="navigation-item">
+    <a
+      v-if="to && to.includes('https://')"
+      class="navigation-item__link"
+      :class="{ 'navigation-item__link--dark': dark }"
+      :href="to"
+      target="_blank"
+      >{{ name }}</a
+    >
+    <nuxt-link
+      v-else
+      class="navigation-item__link"
+      :class="{ 'navigation-item__link--dark': dark }"
+      :to="{ name: to }"
+    >
+      {{ name }}
+    </nuxt-link>
+  </div>
 </template>
 
 <script lang="ts">
@@ -15,17 +30,24 @@ export default defineComponent({
     },
     name: {
       type: String
-    }
+    },
+    dark: Boolean
   }
 })
 </script>
 
 <style lang="scss">
 .navigation-item {
-  transition: all ease-in 0.1s;
-  &:hover,
-  &.nuxt-link-active {
-    color: $primary-color-100;
+  &__link {
+    transition: all ease-in 0.1s;
+
+    &--dark {
+      color: white;
+    }
+    &:hover,
+    &.nuxt-link-active {
+      color: $primary-color-100;
+    }
   }
 }
 </style>

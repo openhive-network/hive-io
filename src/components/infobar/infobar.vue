@@ -1,5 +1,10 @@
 <template>
-  <div class="infobar" :class="{ 'infobar--active': isReady }" @click="go()">
+  <div
+    v-if="state.setInterval"
+    class="infobar"
+    :class="{ 'infobar--active': isReady }"
+    @click="go()"
+  >
     <div v-if="!isReady" class="infobar__countdown">
       <div class="infobar__countdown__preText">Launch in</div>
       <div class="infobar__countdown__numbers">
@@ -40,10 +45,11 @@ export default defineComponent({
   setup() {
     const state = reactive({
       d: '00',
-      h: '00',
+      h: '01',
       m: '00',
       s: '00',
-      interval: null as any
+      interval: null as any,
+      setInterval: false
     })
 
     const setCountdown = () => {
@@ -72,6 +78,7 @@ export default defineComponent({
     onMounted(() => {
       setCountdown()
       state.interval = setInterval(() => {
+        state.setInterval = true
         setCountdown()
       }, 1000)
     })
@@ -80,8 +87,12 @@ export default defineComponent({
       clearInterval(state.interval)
     })
 
+    const countdown = computed(() => {
+      return `${state.d}:${state.h}:${state.m}:${state.s}`
+    })
+
     const isReady = computed(() => {
-      return `${state.d}:${state.h}:${state.m}:${state.s}` === '00:00:00:00'
+      return countdown.value === '00:00:00:00'
     })
 
     const go = () => {
@@ -89,7 +100,7 @@ export default defineComponent({
       window.open('https://hive.blog', '_blank')
     }
 
-    return { state, isReady, go }
+    return { state, isReady, countdown, go }
   }
 })
 </script>

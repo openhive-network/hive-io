@@ -151,4 +151,10 @@ export default defineComponent({
     }
   }
 }
+
+@media (max-width: 800px) {
+  .infobar {
+    top: 110px;
+  }
+}
 </style>

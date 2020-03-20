@@ -102,6 +102,10 @@ export default defineComponent({
         {
           to: 'https://hiveprojects.io',
           name: 'Hive Projects'
+        },
+        {
+          to: 'https://hivekings.com/witnesses',
+          name: 'Hive Governance'
         }
       ],
       [

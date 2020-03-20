@@ -31,11 +31,10 @@
           <el-button
             class="root__learnMore"
             type="primary"
-            :disabled="true"
             @click="$router.push('/eco')"
-            >More Details Soon</el-button
           >
-          <!-- Dive In -->
+            {{ $t('home.ecoButton') }}</el-button
+          >
         </div>
         <img
           class="root__eco__image"
@@ -60,11 +59,11 @@
           <el-button
             class="root__learnMore"
             type="primary"
-            :disabled="true"
             @click="$router.push('/wallets')"
-            >More Details Soon</el-button
           >
-          <!-- Choose Wallet -->
+            {{ $t('home.walletsButton') }}</el-button
+          >
+          <!--  -->
         </div>
         <div class="root__wallets__image-container">
           <img class="root__wallets__image" src="~/assets/images/vault.svg" />
@@ -83,9 +82,9 @@
           <el-button
             class="root__learnMore"
             type="primary"
-            :disabled="true"
-            @click="$router.push('/daf')"
-            >More Details Soon</el-button
+            @click="go('https://peakd.com/proposals')"
+          >
+            {{ $t('home.dafButton') }}</el-button
           >
           <!-- Learn more -->
         </div>
@@ -117,11 +116,15 @@ export default defineComponent({
       return 0
     }
 
+    const go = (link) => {
+      window.open(link, '_blank')
+    }
+
     onMounted(() => {
       state.minHeight = calcHeight()
     })
 
-    return { state }
+    return { state, go }
   }
 })
 </script>
@@ -192,7 +195,7 @@ export default defineComponent({
 
   &__eco {
     &__image {
-      height: 200px;
+      width: 300px;
     }
   }
 
@@ -242,8 +245,8 @@ export default defineComponent({
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 290px;
-        height: 290px;
+        width: 280px;
+        height: 280px;
         position: relative;
       }
     }
@@ -292,6 +295,20 @@ export default defineComponent({
       &__logo {
         display: none;
       }
+    }
+
+    &__eco__image,
+    &__wallets__image-container,
+    &__dao__image {
+      width: 200px;
+    }
+
+    &__wallets__image {
+      width: 100px;
+    }
+
+    &__wallets__image-container {
+      height: 200px;
     }
   }
 }

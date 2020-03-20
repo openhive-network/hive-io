@@ -1,16 +1,35 @@
 <template>
-  <a :href="item.website" target="_blank" class="app">
-    <div class="app__inner">
-      <div class="app__image"></div>
+  <div class="app">
+    <a :href="item.website" target="_blank" class="app__inner">
+      <div class="app__image">
+        <img :src="getImage(item.image)" />
+      </div>
+    </a>
+    <div class="app__icons">
+      <Icon
+        v-for="os in item.os"
+        :key="os.name"
+        class="app__icon"
+        :icon="os.icon"
+        :tooltip="os.name"
+        :height="20"
+        :width="20"
+      />
     </div>
-    <div class="app__name">{{ item.name }}</div>
-  </a>
+    <a :href="item.website" target="_blank" class="app__name">{{
+      item.name
+    }}</a>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import Icon from '~/components/icon/icon.vue'
 import {} from '../../types'
 export default defineComponent({
+  components: {
+    Icon
+  },
   props: {
     item: {
       type: Object,
@@ -18,8 +37,15 @@ export default defineComponent({
     }
   },
 
-  setup() {
-    return {}
+  setup(_props) {
+    const getImage = (image) => {
+      try {
+        return require(`~/assets/images/apps/${image}`)
+      } catch (error) {
+        return ''
+      }
+    }
+    return { getImage }
   }
 })
 </script>
@@ -37,11 +63,40 @@ export default defineComponent({
     background: #e2e2ec;
     height: 100px;
     width: 100px;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 10px;
     transition: transform 0.5s;
     &:hover {
       transform: translateY(-10%);
+    }
+  }
+
+  &__icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__icon {
+    margin: 4px;
+  }
+
+  &__name {
+    margin-top: 2px;
+    font-size: 1.1rem;
+    transition: all ease-in 0.1s;
+    &:hover {
+      color: $primary-color-100;
+    }
+  }
+
+  &__image {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    img {
+      height: 100%;
+      width: 100%;
     }
   }
 }

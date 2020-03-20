@@ -110,7 +110,7 @@ export default defineComponent({
   position: absolute;
   right: 0;
   left: 0;
-  top: 80px;
+  top: 100px;
   width: fit-content;
   margin: 0 auto;
   background: $secondary-color-100;

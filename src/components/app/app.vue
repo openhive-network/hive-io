@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app" :class="`app--${item.name}`">
     <a :href="item.website" target="_blank" class="app__inner">
       <div class="app__image">
         <img :src="getImage(item.image)" />
@@ -59,6 +59,9 @@ export default defineComponent({
   margin: 25px 50px;
 
   &__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 15%;
     background: #e2e2ec;
     height: 100px;
@@ -97,6 +100,12 @@ export default defineComponent({
     img {
       height: 100%;
       width: 100%;
+    }
+  }
+
+  &--Engrave {
+    .app_image {
+      height: initial;
     }
   }
 }

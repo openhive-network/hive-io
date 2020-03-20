@@ -3,7 +3,22 @@
     <Header class="layout__header" :items="headerNavigation" />
     <Infobar v-if="$route.name === 'index'" />
     <nuxt class="layout__main" />
-    <Footer class="layout__footer" :items="footerNavigation" />
+    <div class="layout__socials">
+      <SocialIcon
+        v-for="{ icon, link } in socials"
+        :key="icon"
+        class="layout__socials__social"
+        :icon="['fab', icon]"
+        :link="link"
+        :height="40"
+        :width="40"
+      />
+    </div>
+    <Footer
+      class="layout__footer"
+      :items="footerNavigation"
+      :socials="socials"
+    />
   </div>
 </template>
 
@@ -18,60 +33,126 @@ import {
 import Infobar from '~/components/infobar/infobar.vue'
 import Header from '~/components/header/header.vue'
 import Footer from '~/components/footer/footer.vue'
+import SocialIcon from '~/components/icon/icon.vue'
 
 export default defineComponent({
-  components: { Header, Footer, Infobar },
+  components: { Header, Footer, Infobar, SocialIcon },
   props: {},
   setup(_props, { root }) {
     const headerNavigation = ref([
       {
         to: 'about',
         name: 'About'
-      }
-      /* {
+      },
+      {
         to: 'eco',
         name: 'Ecosystem'
       },
       {
         to: 'wallets',
         name: 'Wallets'
-      } */
-      /* {
-        to: 'developer',
+      },
+      {
+        to: 'https://developers.hive.io',
         name: 'Developer'
-      } */
+      },
+      {
+        to: 'https://signup.hive.io',
+        name: 'Join',
+        isButton: true
+      }
     ])
 
     const footerNavigation = ref([
       [
-        /* {
+        {
           to: 'about',
           name: 'About'
-        }, */
-
+        },
+        {
+          to: 'https://hive.blog/@hiveio',
+          name: 'Blog'
+        },
         {
           to: 'brand',
-          name: 'Brand'
+          name: 'Brand Assets'
+        },
+        {
+          to: 'https://signup.hive.io',
+          name: 'Join'
         }
         /* {
           to: 'contributors',
           name: 'Contributors'
         } */
-      ]
-      /* [
+      ],
+      [
         {
-          to: 'developers',
-          name: 'Developers'
+          to: 'eco',
+          name: 'Ecosystem'
+        },
+        {
+          to: 'https://hiveblocks.com',
+          name: 'Blockexplorer'
+        },
+        /* {
+          to: 'https://hivedapps.com',
+          name: 'dApps Statistics'
+        }, */
+        {
+          to: 'https://hiveprojects.io',
+          name: 'Hive Projects'
+        }
+      ],
+      [
+        {
+          to: 'wallets',
+          name: 'Wallets'
+        }
+      ],
+      [
+        {
+          to: 'developer',
+          name: 'Developer'
         },
         {
           to: 'https://developers.hive.io',
           name: 'Documentation'
         },
         {
-          to: 'https://gitlab.com',
-          name: 'Repository'
+          to: 'https://github.com/openhive-network/hive',
+          name: 'GitHub'
         }
-      ] */
+      ]
+    ])
+
+    const socials = ref([
+      {
+        icon: 'hive',
+        link: 'https://hive.blog/@hiveio'
+      },
+      {
+        icon: 'github',
+        link: 'https://github.com/openhive-network/hive'
+      },
+      /* {
+        icon: 'gitlab',
+        link: 'https://gitlab.com/hive-blockchain'
+      }, */
+      {
+        icon: 'twitter',
+        link: 'https://twitter.com/hiveblocks'
+      },
+      {
+        icon: 'medium',
+        link: 'https://medium.com/@hiveblocks'
+      },
+      {
+        icon: 'telegram',
+        link: 'https://t.me/hiveblockchain'
+      },
+      { icon: 'reddit', link: 'https://reddit.com/r/hiveblocks' },
+      { icon: 'discord', link: 'https://discord.gg/xHKUjeC' }
     ])
 
     const preventScroll = computed(() => root.$accessor.preventScroll)
@@ -95,7 +176,8 @@ export default defineComponent({
     return {
       preventScroll,
       headerNavigation,
-      footerNavigation
+      footerNavigation,
+      socials
     }
   }
 })
@@ -118,6 +200,29 @@ export default defineComponent({
     flex-flow: column;
     flex: 1;
     justify-content: flex-start;
+  }
+
+  &__socials {
+    padding: 20px 20px;
+    background: #212529f0;
+    width: calc(100% - 40px);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    &__social {
+      margin: 20px;
+
+      path {
+        fill: white;
+        transition: all ease-in 0.1s;
+      }
+
+      &:hover {
+        path {
+          fill: $color-0;
+        }
+      }
+    }
   }
 }
 </style>

@@ -1,31 +1,84 @@
 import { IWallet, IEcoItem } from '~/types/index'
 
+/**
+ * 
+ * (
+          typeof item.website !== 'string' ? item.website : []
+        )
+ */
+const os = {
+  web: {
+    icon: ['fas', 'globe'],
+    name: 'Web'
+  },
+  windows: {
+    icon: ['fab', 'windows'],
+    name: 'Windows'
+  },
+  macos: {
+    icon: ['fab', 'apple'],
+    name: 'macOS'
+  },
+  ios: {
+    icon: ['fab', 'app-store-ios'],
+    name: 'iOS'
+  },
+  linux: {
+    icon: ['fab', 'linux'],
+    name: 'Linux'
+  },
+  android: {
+    icon: ['fab', 'android'],
+    name: 'Android'
+  },
+  firefox: {
+    icon: ['fab', 'firefox'],
+    name: 'Firefox'
+  },
+  safari: {
+    icon: ['fab', 'safari'],
+    name: 'Safari'
+  },
+  chrome: {
+    icon: ['fab', 'chrome'],
+    name: 'Chrome'
+  },
+  extension: {
+    icon: ['fas', 'puzzle-piece'],
+    name: 'Extension'
+  }
+}
+
 export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'splinterlands',
     name: 'Splinterlands',
     description: '',
+    image: 'splinterlands.png',
     website: 'https://splinterlands.io',
     type: 'game'
   },
-  /* {
+  {
     id: 'threespeak',
     name: '3Speak',
     description: '',
-    website: 'https://3speak.online/',
+    image: 'threespeak.svg',
+    website: 'https://3speak.online',
     type: 'app'
-  }, */
+  },
   {
-    id: 'steempeak',
-    name: 'SteemPeak',
+    id: 'peakd',
+    name: 'Peakd',
     description: '',
-    website: 'https://stempeak.com',
+    image: 'peakd.svg',
+    website: 'https://peakd.com',
     type: 'app'
   },
   {
     id: 'esteem',
     name: 'Esteem',
     description: '',
+    image: 'esteem.svg',
     website: 'https://esteem.app',
     type: 'app'
   },
@@ -33,6 +86,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'steempress',
     name: 'SteemPress',
     description: '',
+    image: 'steempress.svg',
     website: 'https://www.steempress.io',
     type: 'app'
   },
@@ -40,6 +94,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'actifit',
     name: 'Actifit',
     description: '',
+    image: 'actifit.png',
     website: 'https://actifit.io',
     type: 'app'
   },
@@ -47,6 +102,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'engrave',
     name: 'Engrave',
     description: '',
+    image: 'engrave.png',
     website: 'https://dblog.org',
     type: 'app'
   },
@@ -54,7 +110,8 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'hivestem',
     name: 'hiveSTEM',
     description: '',
-    website: 'https://steemstem.io',
+    image: 'hivestem.svg',
+    website: 'https://stem.openhive.network',
     type: 'app'
   }
 ]
@@ -69,41 +126,51 @@ export const BLOCKEXPLORERS = [
 
 export const WALLETS: IWallet[] = [
   {
-    id: 'keychain',
-    name: 'Keychain',
-    os: ['web'],
-    website: {
-      firefox: 'tbd',
-      chrome: 'tbd'
-    },
-    type: 'extension'
-  },
-  {
     id: 'vessel',
     name: 'Vessel',
-    os: ['windows', 'osx', 'linux'],
-    website: '',
+    image: 'vessel.png',
+    os: [os.windows, os.macos, os.linux],
+    website: 'https://github.com/netuoso/vessel/releases',
     type: 'wallet'
   },
+  /* {
+    id: 'hivewallet',
+    name: 'HiveWallet',
+    image: 'hivewallet.png',
+    os: [os.ios, os.android],
+    website: 'https://hivewallet.app',
+    type: 'wallet'
+  }, */
   {
     id: 'esteem',
-    name: 'esteem',
-    os: ['windows', 'osx', 'linux', 'ios', 'android'],
+    name: 'Esteem',
+    image: 'esteem.svg',
+    os: [os.windows, os.macos, os.linux, os.ios, os.android],
     website: 'https://esteem.app',
     type: 'wallet'
   },
   {
-    id: 'steemwallet',
-    name: 'SteemWallet',
-    os: ['ios', 'android'],
-    website: '',
+    id: 'keychain',
+    name: 'Keychain',
+    image: 'keychain.svg',
+    os: [os.extension, os.firefox, os.chrome],
+    website: 'https://github.com/stoodkev/hive-keychain',
     type: 'wallet'
   },
   {
-    id: 'steempeak',
-    name: 'Steempeak',
-    os: ['web'],
-    website: '',
+    id: 'hivesigner',
+    name: 'HiveSigner',
+    image: 'hivesigner.svg',
+    os: [os.web, os.windows, os.macos, os.linux, os.extension],
+    website: 'https://hivesigner.com',
+    type: 'wallet'
+  },
+  {
+    id: 'peakd',
+    name: 'Peakd',
+    image: 'peakd.svg',
+    os: [os.web],
+    website: 'https://peakd.com',
     type: 'wallet'
   }
 ]

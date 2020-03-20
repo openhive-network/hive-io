@@ -59,7 +59,8 @@ export default {
     '@/plugins/composition-api',
     '@/plugins/element-ui',
     { src: '@/plugins/tippy', ssr: false },
-    '@/plugins/fontawesome'
+    '@/plugins/fontawesome',
+    { src: '@/plugins/tippy', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules

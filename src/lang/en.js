@@ -3,12 +3,15 @@ export default {
     ecoTitle: 'Hive Ecosystem',
     ecoText:
       'Hive has a thriving ecosystem of apps, communities & individuals, leveraging the Hive blockchain & decentralised structure.',
+    ecoButton: 'Dive In',
     walletsTitle: 'Wallets',
     walletsText:
       'Hive wallets are available for Windows, MacOS, Linux, iOS, Android & Web.',
+    walletsButton: 'Choose Wallet',
     dafTitle: 'DHF',
     dafText:
-      'The development of Hive and its ecosystem is sustained via the DHF; Decentralised Hive Fund.'
+      'The development of Hive and its ecosystem is sustained via the DHF; Decentralised Hive Fund.',
+    dafButton: 'Learn more'
   },
   about: {
     title: 'Developed for Web',
@@ -33,8 +36,9 @@ export default {
       'Hive wallets are available for Windows, MacOS, Linux, iOS, Android & Web.'
   },
   brand: {
-    title: 'Brand Guidelines',
+    title: 'Brand Assets',
     text:
       'The branding of Hive is created by the community, for the community. For graphical representation of Hive, the correct & newest assets shall be used.'
-  }
+  },
+  moreDetails: 'More Details Soon'
 }

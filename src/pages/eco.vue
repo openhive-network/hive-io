@@ -66,7 +66,7 @@ export default defineComponent({
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    max-width: 900px;
+    max-width: 1000px;
   }
 }
 

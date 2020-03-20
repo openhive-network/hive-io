@@ -55,6 +55,11 @@ export default defineComponent({
       {
         to: 'https://developers.hive.io',
         name: 'Developer'
+      },
+      {
+        to: 'https://signup.hive.io',
+        name: 'Join',
+        isButton: true
       }
     ])
 
@@ -71,6 +76,10 @@ export default defineComponent({
         {
           to: 'brand',
           name: 'Brand Assets'
+        },
+        {
+          to: 'https://signup.hive.io',
+          name: 'Join'
         }
         /* {
           to: 'contributors',

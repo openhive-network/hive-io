@@ -6,9 +6,9 @@
     >
       <input type="checkbox" @click="onClick" />
 
-      <span></span>
-      <span></span>
-      <span></span>
+      <span class="boink"></span>
+      <span class="boink"></span>
+      <span class="boink"></span>
 
       <Navigation
         class="mobile-menu__navigation"
@@ -71,7 +71,7 @@ TODO: Add browser prefixes
     }
 
     &--active {
-      span {
+      .boink {
         opacity: 1;
         transform: rotate(45deg) translate(-2px, -1px);
         background: $secondary-color-100;
@@ -91,7 +91,7 @@ TODO: Add browser prefixes
       }
     }
 
-    span {
+    .boink {
       display: block;
       width: 33px;
       height: 4px;

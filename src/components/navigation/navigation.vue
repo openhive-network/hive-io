@@ -6,6 +6,7 @@
       class="navigation__item"
       :to="item.to"
       :name="item.name"
+      :is-button="item.isButton"
       :dark="dark"
       @click.native="$emit('clicked')"
     />
@@ -34,6 +35,7 @@ export default defineComponent({
 <style lang="scss">
 .navigation {
   display: flex;
+  align-items: center;
   &__item {
     margin: 0 5px;
     padding: 5px 10px;

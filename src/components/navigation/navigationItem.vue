@@ -1,7 +1,14 @@
 <template>
   <div class="navigation-item">
+    <el-button
+      v-if="isButton"
+      class="navigation-item__button"
+      type="primary"
+      @click="go(to)"
+      >{{ name }}</el-button
+    >
     <a
-      v-if="to && to.includes('https://')"
+      v-if="!isButton && to && to.includes('https://')"
       class="navigation-item__link"
       :class="{ 'navigation-item__link--dark': dark }"
       :href="to"
@@ -9,7 +16,7 @@
       >{{ name }}</a
     >
     <nuxt-link
-      v-else
+      v-if="!isButton && to && !to.includes('https://')"
       class="navigation-item__link"
       :class="{ 'navigation-item__link--dark': dark }"
       :to="{ name: to }"
@@ -31,7 +38,13 @@ export default defineComponent({
     name: {
       type: String
     },
+    isButton: Boolean,
     dark: Boolean
+  },
+  methods: {
+    go(to) {
+      window.open(to, '_blank')
+    }
   }
 })
 </script>
@@ -48,6 +61,10 @@ export default defineComponent({
     &.nuxt-link-active {
       color: $primary-color-100;
     }
+  }
+
+  &__button {
+    min-width: 100px;
   }
 }
 </style>

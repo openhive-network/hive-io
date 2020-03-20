@@ -133,14 +133,14 @@ export const WALLETS: IWallet[] = [
     website: 'https://github.com/netuoso/vessel/releases',
     type: 'wallet'
   },
-  {
+  /* {
     id: 'hivewallet',
     name: 'HiveWallet',
     image: 'hivewallet.png',
     os: [os.ios, os.android],
     website: 'https://hivewallet.app',
     type: 'wallet'
-  },
+  }, */
   {
     id: 'esteem',
     name: 'Esteem',
@@ -162,7 +162,7 @@ export const WALLETS: IWallet[] = [
     name: 'HiveSigner',
     image: 'hivesigner.svg',
     os: [os.web, os.windows, os.macos, os.linux, os.extension],
-    website: 'https://https://hivesigner.com',
+    website: 'https://hivesigner.com',
     type: 'wallet'
   },
   {

@@ -104,7 +104,7 @@ export default defineComponent({
   }
 
   &--Engrave {
-    .app_image {
+    .app__image {
       height: initial;
     }
   }

@@ -2,6 +2,9 @@ import i18n from './src/plugins/i18n.config'
 
 require('dotenv').config()
 const isDev = process.env.NODE_ENV !== 'production'
+const env = {
+  GA_ID: process.env.GA_ID || 'UA-000000-1'
+}
 export default {
   modern: !isDev,
   mode: 'universal',
@@ -83,7 +86,13 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/style-resources',
-    ['nuxt-i18n', i18n]
+    ['nuxt-i18n', i18n],
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: env.GA_ID
+      }
+    ]
   ],
   /*
    ** Axios module configuration

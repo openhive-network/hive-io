@@ -113,6 +113,22 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'hivestem.svg',
     website: 'https://stem.openhive.network',
     type: 'app'
+  },
+  {
+    id: 'brosino',
+    name: 'BROsino',
+    description: '',
+    image: 'brosino.png',
+    website: 'https://brosgn.net',
+    type: 'app'
+  },
+  {
+    id: 'bropoker',
+    name: 'BRO Poker',
+    description: '',
+    image: 'bropoker.png',
+    website: 'https://brosinopoker.com',
+    type: 'app'
   }
 ]
 

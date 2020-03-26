@@ -1,7 +1,7 @@
 <template>
   <div class="layout layout--default">
     <Header class="layout__header" :items="headerNavigation" />
-    <Infobar v-if="$route.name === 'index'" />
+    <Infobar v-if="false" />
     <nuxt class="layout__main" />
     <div class="layout__socials">
       <SocialIcon
@@ -95,10 +95,10 @@ export default defineComponent({
           to: 'https://hiveblocks.com',
           name: 'Blockexplorer'
         },
-        /* {
+        {
           to: 'https://hivedapps.com',
           name: 'dApps Statistics'
-        }, */
+        },
         {
           to: 'https://hiveprojects.io',
           name: 'Projects'
@@ -126,6 +126,10 @@ export default defineComponent({
         {
           to: 'https://github.com/openhive-network/hive',
           name: 'GitHub'
+        },
+        {
+          to: 'https://gitlab.syncad.com/hive',
+          name: 'GitLab'
         }
       ]
     ])
@@ -139,10 +143,10 @@ export default defineComponent({
         icon: 'github',
         link: 'https://github.com/openhive-network/hive'
       },
-      /* {
+      {
         icon: 'gitlab',
-        link: 'https://gitlab.com/hive-blockchain'
-      }, */
+        link: 'https://gitlab.syncad.com/hive'
+      },
       {
         icon: 'twitter',
         link: 'https://twitter.com/hiveblocks'

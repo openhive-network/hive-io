@@ -51,12 +51,12 @@ const os = {
 
 export const ECOSYSTEM: IEcoItem[] = [
   {
-    id: 'splinterlands',
-    name: 'Splinterlands',
+    id: 'peakd',
+    name: 'Peakd',
     description: '',
-    image: 'splinterlands.png',
-    website: 'https://splinterlands.io',
-    type: 'game'
+    image: 'peakd.svg',
+    website: 'https://peakd.com',
+    type: 'app'
   },
   {
     id: 'threespeak',
@@ -67,12 +67,12 @@ export const ECOSYSTEM: IEcoItem[] = [
     type: 'app'
   },
   {
-    id: 'peakd',
-    name: 'Peakd',
+    id: 'splinterlands',
+    name: 'Splinterlands',
     description: '',
-    image: 'peakd.svg',
-    website: 'https://peakd.com',
-    type: 'app'
+    image: 'splinterlands.png',
+    website: 'https://splinterlands.io',
+    type: 'game'
   },
   {
     id: 'esteem',
@@ -96,6 +96,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'actifit.png',
     website: 'https://actifit.io',
+    type: 'app'
+  },
+  {
+    id: 'dlease',
+    name: 'DLease',
+    description: '',
+    image: 'dlease.png',
+    website: 'https://dlease.io',
     type: 'app'
   },
   {

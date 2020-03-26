@@ -108,5 +108,15 @@ export default defineComponent({
       height: initial;
     }
   }
+
+  &--DLease {
+    .app__image {
+      display: flex;
+      justify-content: center;
+      img {
+        width: initial;
+      }
+    }
+  }
 }
 </style>

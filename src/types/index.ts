@@ -5,6 +5,8 @@ export interface IWallet {
   image: string
   type: Type
   website: { firefox?: string; chrome?: string; safari?: string } | string
+  github?: string
+  gitlab?: string
 }
 
 export interface IEcoItem {

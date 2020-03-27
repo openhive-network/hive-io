@@ -157,14 +157,14 @@ export const WALLETS: IWallet[] = [
     website: 'https://github.com/netuoso/vessel/releases',
     type: 'wallet'
   },
-  /* {
+  {
     id: 'hivewallet',
-    name: 'HiveWallet',
+    name: 'HiveWallet.App',
     image: 'hivewallet.png',
     os: [os.ios, os.android],
     website: 'https://hivewallet.app',
     type: 'wallet'
-  }, */
+  },
   {
     id: 'esteem',
     name: 'Esteem',
@@ -195,6 +195,14 @@ export const WALLETS: IWallet[] = [
     image: 'peakd.svg',
     os: [os.web],
     website: 'https://peakd.com',
+    type: 'wallet'
+  },
+  {
+    id: 'wallethiveblog',
+    name: 'Hive.Blog',
+    image: 'blackhive.png',
+    os: [os.web],
+    website: 'https://wallet.hive.blog',
     type: 'wallet'
   }
 ]

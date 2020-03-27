@@ -159,7 +159,7 @@ export const WALLETS: IWallet[] = [
   },
   {
     id: 'hivewallet',
-    name: 'HiveWallet.App',
+    name: 'HiveWallet',
     image: 'hivewallet.png',
     os: [os.ios, os.android],
     website: 'https://hivewallet.app',

@@ -65,6 +65,7 @@ export default defineComponent({
   &__apps {
     display: flex;
     flex-flow: row wrap;
+    align-items: flex-start;
     justify-content: center;
     max-width: 900px;
   }
@@ -73,6 +74,12 @@ export default defineComponent({
 @media (max-width: 700px) {
   .wallets__first {
     margin-top: 100px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wallets__first {
+    margin-top: 20px;
   }
 }
 </style>

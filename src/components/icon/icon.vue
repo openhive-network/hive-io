@@ -9,12 +9,13 @@
     :href="link"
     target="_blank"
     class="icon"
-    :style="{ height: `${height}px`, width: `${width}px` }"
+    :style="{ height: `${height}px` }"
   >
     <fa-icon
       class="icon__icon"
+      full-width
       :icon="icon"
-      :style="{ height: `${height}px`, width: `${width}px` }"
+      :style="{ height: `${height}px` }"
     />
   </a>
 </template>

@@ -75,4 +75,10 @@ export default defineComponent({
     margin-top: 100px;
   }
 }
+
+@media (max-width: 600px) {
+  .eco__first {
+    margin-top: 20px;
+  }
+}
 </style>

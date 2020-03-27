@@ -43,6 +43,10 @@ const os = {
     icon: ['fab', 'chrome'],
     name: 'Chrome'
   },
+  brave: {
+    icon: ['fab', 'brave'],
+    name: 'Brave'
+  },
   extension: {
     icon: ['fas', 'puzzle-piece'],
     name: 'Extension'
@@ -155,7 +159,8 @@ export const WALLETS: IWallet[] = [
     image: 'vessel.png',
     os: [os.windows, os.macos, os.linux],
     website: 'https://github.com/netuoso/vessel/releases',
-    type: 'wallet'
+    type: 'wallet',
+    github: 'https://github.com/netuoso/vessel'
   },
   {
     id: 'hivewallet',
@@ -171,23 +176,26 @@ export const WALLETS: IWallet[] = [
     image: 'esteem.svg',
     os: [os.windows, os.macos, os.linux, os.ios, os.android],
     website: 'https://esteem.app',
-    type: 'wallet'
+    type: 'wallet',
+    github: 'https://github.com/esteemapp'
   },
   {
     id: 'keychain',
     name: 'Keychain',
     image: 'keychain.svg',
-    os: [os.extension, os.firefox, os.chrome],
+    os: [os.brave, os.chrome, os.firefox],
     website: 'https://github.com/stoodkev/hive-keychain',
-    type: 'wallet'
+    type: 'wallet',
+    github: 'https://github.com/stoodkev/hive-keychain'
   },
   {
     id: 'hivesigner',
     name: 'HiveSigner',
     image: 'hivesigner.svg',
-    os: [os.web, os.windows, os.macos, os.linux, os.extension],
+    os: [os.web, os.windows, os.macos, os.linux, os.brave, os.chrome],
     website: 'https://hivesigner.com',
-    type: 'wallet'
+    type: 'wallet',
+    github: 'https://github.com/ledgerconnect/hivesigner'
   },
   {
     id: 'peakd',

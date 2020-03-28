@@ -98,10 +98,12 @@ export default {
       'nuxt-compress',
       {
         gzip: {
+          test: /\.(js|css|html|svg)$/,
           cache: true
         },
         brotli: {
-          threshold: 10240
+          test: /\.(js|css|html|svg)$/,
+          threshold: 0
         }
       }
     ]

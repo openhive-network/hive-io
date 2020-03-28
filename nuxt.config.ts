@@ -26,6 +26,8 @@ export default {
     meta: {
       charset: 'utf-8',
       name: 'Hive - The Blockchain for Web 3.0',
+      ogTitle: 'Hive - The Blockchain for Web 3.0',
+      ogSiteName: 'Hive - The Blockchain for Web 3.0',
       description: 'Hive, a DPoS powered blockchain. Fast. Scalable. Powerful.',
       ogType: 'website',
       ogUrl: 'https://hive.io',

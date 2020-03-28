@@ -35,7 +35,6 @@
         :icon="os.icon"
         :tooltip="os.name"
         :height="18"
-        :width="20"
       />
     </div>
     <a

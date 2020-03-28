@@ -92,6 +92,18 @@ export default {
       {
         id: env.GA_ID
       }
+    ],
+    // Gzip/Brotli Compression
+    [
+      'nuxt-compress',
+      {
+        gzip: {
+          cache: true
+        },
+        brotli: {
+          threshold: 10240
+        }
+      }
     ]
   ],
   /*

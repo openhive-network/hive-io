@@ -102,7 +102,7 @@ export default defineComponent({
   props: {},
   setup() {
     const state = reactive({
-      minHeight: 725
+      minHeight: 712
     })
 
     const calcHeight = () => {
@@ -163,6 +163,7 @@ export default defineComponent({
       flex-flow: column;
       justify-content: center;
       margin-top: -50px;
+      min-width: 433px;
     }
   }
 
@@ -294,6 +295,10 @@ export default defineComponent({
     &__home {
       &__logo {
         display: none;
+      }
+
+      &__left {
+        min-width: initial;
       }
     }
 

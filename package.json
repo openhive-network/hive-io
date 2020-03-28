@@ -39,6 +39,7 @@
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
+    "nuxt-compress": "^1.1.0",
     "nuxt-i18n": "^6.6.0",
     "nuxt-typed-vuex": "^0.1.17",
     "sass-loader": "^8.0.2",

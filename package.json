@@ -8,6 +8,7 @@
     "dev": "nuxt-ts",
     "build:classic": "nuxt-ts build",
     "build": "nuxt-ts build --modern=server",
+    "analyze": "nuxt-ts build --analyze",
     "generate": "nuxt-ts generate",
     "start:classic": "nuxt-ts start",
     "start": "nuxt-ts start --modern=server",

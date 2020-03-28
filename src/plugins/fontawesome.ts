@@ -11,7 +11,23 @@ import {
   faGlobe as fasGlobe,
   faExternalLinkAlt as fasExternalLinkAlt
 } from '@fortawesome/free-solid-svg-icons'
-import { fab } from '@fortawesome/free-brands-svg-icons'
+import {
+  faTwitter as fabTwitter,
+  faGitlab as fabGitlab,
+  faGithub as fabGithub,
+  faMedium as fabMedium,
+  faChrome as fabChrome,
+  faSafari as fabSafari,
+  faFirefox as fabFirefox,
+  faTelegram as fabTelegram,
+  faDiscord as fabDiscord,
+  faReddit as fabReddit,
+  faAndroid as fabAndroid,
+  faLinux as fabLinux,
+  faAppStoreIos as fabAppStoreIos,
+  faWindows as fabWindows,
+  faApple as fabApple
+} from '@fortawesome/free-brands-svg-icons'
 
 dom.watch()
 
@@ -70,7 +86,21 @@ const fabSteemit: any = {
 } */
 
 library.add(
-  fab,
+  fabTwitter,
+  fabGitlab,
+  fabGithub,
+  fabMedium,
+  fabChrome,
+  fabSafari,
+  fabFirefox,
+  fabTelegram,
+  fabDiscord,
+  fabReddit,
+  fabAndroid,
+  fabLinux,
+  fabAppStoreIos,
+  fabWindows,
+  fabApple,
   fabHive,
   fabBrave,
   fasPuzzlePiece,

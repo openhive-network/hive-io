@@ -1,7 +1,7 @@
 <template>
   <div class="brand">
     <div class="brand__inner">
-      <div class="brand__first" :style="`min-height:${state.minHeight}px;`">
+      <div class="brand__first">
         <img class="brand__titleImage" src="~/assets/images/branding.svg" />
         <h1 class="brand__title">
           {{ $t(`brand.title`) }}
@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, onMounted } from '@vue/composition-api'
+import { defineComponent, ref } from '@vue/composition-api'
 import Logo from '~/components/logo/logo.vue'
 import Color from '~/components/color/color.vue'
 
@@ -30,10 +30,6 @@ export default defineComponent({
   components: { Logo, Color },
   props: {},
   setup() {
-    const state = reactive({
-      minHeight: 725
-    })
-
     const colors = ref([
       {
         name: 'Hive Red',
@@ -67,22 +63,7 @@ export default defineComponent({
       }
     ])
 
-    const calcHeight = () => {
-      if (window) {
-        const header = window.document.getElementById('header')
-        const headerHeight = header ? Number(header.offsetHeight) : 0
-        return (
-          window.document.documentElement.offsetHeight - headerHeight - 80 - 100
-        )
-      }
-      return 0
-    }
-
-    onMounted(() => {
-      state.minHeight = calcHeight()
-    })
-
-    return { state, colors }
+    return { colors }
   }
 })
 </script>
@@ -108,6 +89,7 @@ export default defineComponent({
     max-width: 820px;
     text-align: center;
     margin-top: -35px;
+    min-height: calc(100vh - 90px - 60px);
   }
 
   &__titleImage {

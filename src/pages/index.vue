@@ -1,9 +1,6 @@
 <template>
   <div class="root">
-    <div
-      class="root__home root__container"
-      :style="`min-height:${state.minHeight}px;`"
-    >
+    <div class="root__home root__container">
       <div class="root__home__left">
         <h1 v-if="false" class="root__headTitle">Fast. Scalable. Powerful.</h1>
         <h1 class="root__headTitle">Fast.</h1>
@@ -102,7 +99,7 @@ export default defineComponent({
   props: {},
   setup() {
     const state = reactive({
-      minHeight: 712
+      minHeight: 0
     })
 
     const calcHeight = () => {
@@ -131,6 +128,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .root {
+  height: 100%;
   &__container {
     display: flex;
     flex: 1;
@@ -150,6 +148,7 @@ export default defineComponent({
   &__home {
     align-items: center;
     padding: 20px 20px 40px 20px;
+    min-height: calc(100vh - 90px - 60px); /* 100vh - header - padding */
 
     &__logo {
       height: 150px;

@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="about__inner">
-      <div class="about__first" :style="`min-height:${state.minHeight}px;`">
+      <div class="about__first">
         <img
           class="about__titleImage"
           src="~/assets/images/progressiveApp.svg"
@@ -34,33 +34,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, onMounted } from '@vue/composition-api'
+import { defineComponent } from '@vue/composition-api'
 import Logo from '~/components/logo/logo.vue'
 
 export default defineComponent({
   components: { Logo },
   props: {},
   setup() {
-    const state = reactive({
-      minHeight: 725
-    })
-
-    const calcHeight = () => {
-      if (window) {
-        const header = window.document.getElementById('header')
-        const headerHeight = header ? Number(header.offsetHeight) : 0
-        return (
-          window.document.documentElement.offsetHeight - headerHeight - 80 - 40
-        )
-      }
-      return 0
-    }
-
-    onMounted(() => {
-      state.minHeight = calcHeight()
-    })
-
-    return { state }
+    return {}
   }
 })
 </script>
@@ -86,6 +67,7 @@ export default defineComponent({
     max-width: 820px;
     text-align: center;
     margin-top: -15px;
+    min-height: calc(100vh - 200px); /* 100vh - header - padding */
   }
 
   &__titleImage {
@@ -102,7 +84,8 @@ export default defineComponent({
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 400;
   }
 
   &__feature {
@@ -114,6 +97,7 @@ export default defineComponent({
     &__text {
       width: fit-content;
       border-bottom: 10px solid #e31236;
+      margin-bottom: 12px;
     }
   }
 }

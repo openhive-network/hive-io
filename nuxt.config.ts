@@ -39,11 +39,11 @@ export default {
   loading: false,
   head: {
     link: [
-      {
+      /* {
         rel: 'stylesheet',
         href:
           'https://fonts.googleapis.com/css?family=Work+Sans:400,500,700,800,900&display=swap'
-      },
+      }, */
       { rel: 'icon', type: 'image/x-icon', href: '/favicons/favicon.ico' }
     ]
   },

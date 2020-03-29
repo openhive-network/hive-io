@@ -7,7 +7,7 @@ stages:
 
 cache:
   untracked: true
-  key: "$CI_PROJECT_ID"
+  key: '$CI_PROJECT_ID'
   paths:
     - node_modules/
     - _site/vendor/
@@ -63,7 +63,7 @@ deploy_master:
     - export DISTRIBUTION_ID=$DISTRIBUTION_ID
     - pip install awscli --upgrade --user
     - export PATH=~/.local/bin:$PATH
-    - aws s3 sync --acl public-read --cache-control max-age=86400,public --delete dist $S3_BUCKET_NAME_PRODUCTION
+    - aws s3 sync --acl public-read --cache-control max-age=2592000,public --delete dist $S3_BUCKET_NAME_PRODUCTION
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
     - echo "DEPLOYED SUCCESSFULLY TO PRODUCTION"
   environment:

@@ -12,7 +12,7 @@
           class="root__learnMore"
           type="primary"
           @click="$router.push('/about')"
-          >Learn More</el-button
+          >Learn more</el-button
         >
       </div>
       <Logo class="root__home__logo" :full="false" />

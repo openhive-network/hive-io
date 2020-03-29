@@ -3,11 +3,11 @@ export default {
     ecoTitle: 'Hive Ecosystem',
     ecoText:
       'Hive has a thriving ecosystem of apps, communities & individuals, leveraging the Hive blockchain & decentralised structure.',
-    ecoButton: 'Dive In',
+    ecoButton: 'Dive in',
     walletsTitle: 'Wallets',
     walletsText:
       'Hive wallets are available for Windows, MacOS, Linux, iOS, Android & Web.',
-    walletsButton: 'Choose Wallet',
+    walletsButton: 'Choose wallet',
     dafTitle: 'DHF',
     dafText:
       'The development of Hive and its ecosystem is sustained via the DHF; Decentralised Hive Fund.',

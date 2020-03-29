@@ -95,7 +95,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, onMounted } from '@vue/composition-api'
+import { defineComponent, reactive, onBeforeMount } from '@vue/composition-api'
 import Logo from '~/components/logo/logo.vue'
 export default defineComponent({
   components: { Logo },
@@ -120,7 +120,7 @@ export default defineComponent({
       window.open(link, '_blank')
     }
 
-    onMounted(() => {
+    onBeforeMount(() => {
       state.minHeight = calcHeight()
     })
 

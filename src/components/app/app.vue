@@ -157,12 +157,16 @@ export default defineComponent({
     img {
       height: 100%;
       width: 100%;
+      border-radius: 15%;
     }
   }
 
   &--Engrave {
     .app__image {
       height: initial;
+      img {
+        border-radius: 0;
+      }
     }
   }
 

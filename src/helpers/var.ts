@@ -87,6 +87,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     type: 'app'
   },
   {
+    id: 'stemsocial',
+    name: 'STEMsocial',
+    description: '',
+    image: 'stemsocial.png',
+    website: 'https://stem.openhive.network',
+    type: 'app'
+  },
+  {
     id: 'steempress',
     name: 'SteemPress',
     description: '',
@@ -118,14 +126,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://dblog.org',
     type: 'app'
   },
-  {
-    id: 'hivestem',
-    name: 'hiveSTEM',
-    description: '',
-    image: 'hivestem.svg',
-    website: 'https://stem.openhive.network',
-    type: 'app'
-  },
+
   {
     id: 'brosino',
     name: 'BROsino',

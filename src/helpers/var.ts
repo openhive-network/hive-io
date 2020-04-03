@@ -1,7 +1,7 @@
 import { IWallet, IEcoItem } from '~/types/index'
 
 /**
- * 
+ *
  * (
           typeof item.website !== 'string' ? item.website : []
         )
@@ -169,7 +169,8 @@ export const WALLETS: IWallet[] = [
     image: 'hivewallet.png',
     os: [os.ios, os.android],
     website: 'https://hivewallet.app',
-    type: 'wallet'
+    type: 'wallet',
+    github: 'https://github.com/roelandp/hivewallet'
   },
   {
     id: 'esteem',

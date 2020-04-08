@@ -159,7 +159,7 @@ export default defineComponent({
         icon: 'telegram',
         link: 'https://t.me/hiveblockchain'
       },
-      { icon: 'reddit', link: 'https://reddit.com/r/hiveblocks' },
+      { icon: 'reddit', link: 'https://reddit.com/r/hivenetwork' },
       { icon: 'discord', link: 'https://discord.gg/xHKUjeC' }
     ])
 

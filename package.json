@@ -48,6 +48,7 @@
     "vue-tippy": "^4.4.0"
   },
   "devDependencies": {
+    "@babel/compat-data": "^7.9.0",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@nuxt/typescript-build": "^0.6.0",

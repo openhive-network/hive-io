@@ -39,6 +39,7 @@ export default {
   },
   loading: false,
   head: {
+    // titleTemplate: '%s - Nuxt.js', <= for testing
     link: [
       /* {
         rel: 'stylesheet',
@@ -65,8 +66,7 @@ export default {
     '@/plugins/composition-api',
     '@/plugins/element-ui',
     { src: '@/plugins/tippy', ssr: false },
-    '@/plugins/fontawesome',
-    { src: '@/plugins/tippy', ssr: false }
+    '@/plugins/fontawesome'
   ],
   /*
    ** Nuxt.js dev-modules

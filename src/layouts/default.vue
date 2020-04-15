@@ -160,7 +160,15 @@ export default defineComponent({
         link: 'https://t.me/hiveblockchain'
       },
       { icon: 'reddit', link: 'https://reddit.com/r/hivenetwork' },
-      { icon: 'discord', link: 'https://discord.gg/xHKUjeC' }
+      { icon: 'discord', link: 'https://discord.gg/xHKUjeC' },
+      {
+        icon: 'facebook',
+        link: 'https://www.facebook.com/hiveblocks/'
+      },
+      {
+        icon: 'quora',
+        link: 'https://www.quora.com/q/otycmrjbbhahuqae'
+      }
     ])
 
     const preventScroll = computed(() => root.$accessor.preventScroll)

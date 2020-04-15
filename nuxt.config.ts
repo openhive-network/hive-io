@@ -39,6 +39,7 @@ export default {
   },
   loading: false,
   head: {
+    // titleTemplate: '%s - Nuxt.js', <= for testing
     link: [
       /* {
         rel: 'stylesheet',

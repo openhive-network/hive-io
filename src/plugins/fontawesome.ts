@@ -13,6 +13,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faTwitter as fabTwitter,
+  faFacebook as fabFacebook,
+  faQuora as fabQuora,
   faGitlab as fabGitlab,
   faGithub as fabGithub,
   faMedium as fabMedium,
@@ -86,6 +88,8 @@ const fabSteemit: any = {
 } */
 
 library.add(
+  fabFacebook,
+  fabQuora,
   fabTwitter,
   fabGitlab,
   fabGithub,

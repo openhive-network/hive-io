@@ -55,6 +55,14 @@ const os = {
 
 export const ECOSYSTEM: IEcoItem[] = [
   {
+    id: 'hiveblog',
+    name: 'Hive.Blog',
+    description: '',
+    image: 'blackhive.png',
+    website: 'https://hive.blog',
+    type: 'app'
+  },
+  {
     id: 'peakd',
     name: 'Peakd',
     description: '',

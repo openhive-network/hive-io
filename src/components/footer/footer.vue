@@ -73,6 +73,11 @@ export default defineComponent({
   .footer {
     &__inner {
       flex-flow: column;
+      align-items: center;
+    }
+
+    &__logo {
+      margin-bottom: 15px;
     }
 
     &__navigationContainer {

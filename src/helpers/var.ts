@@ -172,6 +172,16 @@ export const WALLETS: IWallet[] = [
     github: 'https://github.com/netuoso/vessel'
   },
   {
+    id: 'keychain',
+    name: 'Keychain',
+    image: 'keychain.svg',
+    os: [os.brave, os.chrome, os.firefox],
+    website:
+      'https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep',
+    type: 'wallet',
+    github: 'https://github.com/stoodkev/hive-keychain'
+  },
+  {
     id: 'hivewallet',
     name: 'HiveWallet',
     image: 'hivewallet.png',
@@ -188,15 +198,6 @@ export const WALLETS: IWallet[] = [
     website: 'https://esteem.app',
     type: 'wallet',
     github: 'https://github.com/esteemapp'
-  },
-  {
-    id: 'keychain',
-    name: 'Keychain',
-    image: 'keychain.svg',
-    os: [os.brave, os.chrome, os.firefox],
-    website: 'https://github.com/stoodkev/hive-keychain',
-    type: 'wallet',
-    github: 'https://github.com/stoodkev/hive-keychain'
   },
   {
     id: 'hivesigner',

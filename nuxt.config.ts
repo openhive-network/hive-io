@@ -25,6 +25,7 @@ export default {
   pwa: {
     meta: {
       charset: 'utf-8',
+      author: 'Hive - The Blockchain & Cryptocurrency for Web 3.0',
       name: 'Hive - The Blockchain & Cryptocurrency for Web 3.0',
       ogTitle: 'Hive - The Blockchain & Cryptocurrency for Web 3.0',
       ogSiteName: 'Hive - The Blockchain & Cryptocurrency for Web 3.0',

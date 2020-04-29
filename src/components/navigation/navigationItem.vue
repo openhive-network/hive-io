@@ -13,11 +13,13 @@
       :class="{ 'navigation-item__link--dark': dark }"
       :href="to"
       target="_blank"
+      rel="nofollow noopener noreferrer"
       >{{ name }}</a
     >
     <nuxt-link
       v-if="!isButton && to && !to.includes('https://')"
       class="navigation-item__link"
+      rel="nofollow noopener noreferrer"
       :class="{ 'navigation-item__link--dark': dark }"
       :to="{ name: to }"
     >

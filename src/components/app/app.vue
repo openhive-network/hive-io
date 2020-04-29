@@ -3,6 +3,7 @@
     <a
       :href="item.website"
       target="_blank"
+      rel="nofollow noopener noreferrer"
       class="app__inner"
       :class="{ 'app__inner--hover': hover }"
       @mouseenter="hover = true"
@@ -16,6 +17,7 @@
     <a
       :href="item.website"
       target="_blank"
+      rel="nofollow noopener noreferrer"
       class="app__name"
       :class="{ 'app__name--hover': hover }"
       @mouseenter="hover = true"
@@ -41,6 +43,7 @@
       v-if="item.github || item.gitlab"
       :href="item.github || item.gitlab"
       target="_blank"
+      rel="nofollow noopener noreferrer"
       class="app__git"
       >{{ item.github ? 'Github' : 'Gitlab'
       }}<fa-icon

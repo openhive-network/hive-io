@@ -8,6 +8,7 @@
     }"
     :href="link"
     target="_blank"
+    rel="nofollow noopener noreferrer"
     class="icon"
     :style="{ height: `${height}px` }"
   >

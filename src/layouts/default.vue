@@ -79,11 +79,15 @@ export default defineComponent({
         },
         {
           to: 'https://signup.hive.io',
-          name: 'Join'
+          name: 'Create Account'
+        },
+        {
+          to: 'https://hive.wiki',
+          name: 'Wiki'
         },
         {
           to: 'mailto:info@hive.io',
-          name: 'Contact '
+          name: 'Contact'
         }
         /* {
           to: 'contributors',

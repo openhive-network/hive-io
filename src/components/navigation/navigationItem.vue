@@ -8,7 +8,9 @@
       >{{ name }}</el-button
     >
     <a
-      v-if="!isButton && to && to.includes('https://')"
+      v-if="
+        !isButton && to && (to.includes('https://') || to.includes('mailto'))
+      "
       class="navigation-item__link"
       :class="{ 'navigation-item__link--dark': dark }"
       :href="to"
@@ -17,7 +19,9 @@
       >{{ name }}</a
     >
     <nuxt-link
-      v-if="!isButton && to && !to.includes('https://')"
+      v-if="
+        !isButton && to && !to.includes('https://') && !to.includes('mailto')
+      "
       class="navigation-item__link"
       rel="nofollow noopener noreferrer"
       :class="{ 'navigation-item__link--dark': dark }"

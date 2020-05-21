@@ -80,6 +80,10 @@ export default defineComponent({
         {
           to: 'https://signup.hive.io',
           name: 'Join'
+        },
+        {
+          to: 'mailto:info@hive.io',
+          name: 'Contact '
         }
         /* {
           to: 'contributors',

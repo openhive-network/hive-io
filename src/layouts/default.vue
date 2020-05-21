@@ -132,7 +132,7 @@ export default defineComponent({
           name: 'GitHub'
         },
         {
-          to: 'https://gitlab.syncad.com/hive',
+          to: 'https://gitlab.hive.io',
           name: 'GitLab'
         }
       ]
@@ -149,7 +149,7 @@ export default defineComponent({
       },
       {
         icon: 'gitlab',
-        link: 'https://gitlab.syncad.com/hive'
+        link: 'https://gitlab.hive.io'
       },
       {
         icon: 'twitter',

@@ -230,7 +230,7 @@ export const EXCHANGES = [
   {
     id: 'binance',
     name: 'Binance',
-    website: 'https://www.binance.com/en/trade/HIVE_BTC',
+    website: 'https://www.binance.com/en/trade/HIVE_USDT',
     image: 'binance.svg'
   },
   /* {
@@ -242,13 +242,13 @@ export const EXCHANGES = [
   {
     id: 'bittrex',
     name: 'Bittrex',
-    website: 'https://global.bittrex.com/Market/Index?MarketName=BTC-HIVE',
+    website: 'https://global.bittrex.com/Market/Index?MarketName=USD-HIVE',
     image: 'bittrex.svg'
   },
   {
     id: 'coindcx',
     name: 'CoinDCX',
-    website: 'https://coindcx.com/trade/HIVEBTC',
+    website: 'https://coindcx.com/trade/HIVEUSDT',
     image: 'coindcx.svg'
   },
   {

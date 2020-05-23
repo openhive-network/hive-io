@@ -206,10 +206,6 @@ jcacnejopjdphbnjgfaaobbfafkihpep`,
       {
         icon: 'quora',
         link: 'https://www.quora.com/q/otycmrjbbhahuqae'
-      },
-      {
-        icon: 'linkedin',
-        link: 'https://www.linkedin.com/company/hive-blockchain/'
       }
     ])
 

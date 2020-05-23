@@ -300,6 +300,12 @@ export const EXCHANGES = [
     image: 'probit_white.png'
   },
   {
+    id: 'sequoir',
+    name: 'Sequoir',
+    website: 'https://app.sequoir.com/assets/hive',
+    image: 'sequoir.svg'
+  },
+  {
     id: 'upbit',
     name: 'UPbit',
     website: 'https://upbit.com/exchange?code=CRIX.UPBIT.BTC-HIVE',

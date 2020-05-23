@@ -121,35 +121,6 @@ export default defineComponent({
         {
           to: 'wallets',
           name: 'Wallets'
-        },
-        {
-          to: 'https://wallet.hive.blog/',
-          name: 'Hive.blog'
-        },
-        {
-          to: 'https://peakd.com/',
-          name: 'Peakd'
-        },
-        {
-          to: 'https://github.com/netuoso/vessel/releases',
-          name: 'Vessel'
-        },
-        {
-          to: `https://chrome.google.com/webstore/detail/hive-keychain/
-jcacnejopjdphbnjgfaaobbfafkihpep`,
-          name: 'Keychain'
-        },
-        {
-          to: 'https://hivewallet.app/',
-          name: 'HiveWallet'
-        },
-        {
-          to: 'https://esteem.app/',
-          name: 'Esteem'
-        },
-        {
-          to: 'https://hivesigner.com/',
-          name: 'HiveSigner'
         }
       ],
       [

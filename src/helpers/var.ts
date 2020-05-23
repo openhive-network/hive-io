@@ -282,6 +282,12 @@ export const EXCHANGES = [
     image: 'huobi.svg'
   },
   {
+    id: 'ionomy',
+    name: 'Ionomy',
+    website: 'https://ionomy.com/en/markets/btc-hive',
+    image: 'ionomy.png'
+  },
+  {
     id: 'mxc',
     name: 'MXC',
     website: 'https://www.mxc.com/trade/easy#HIVE_USDT',

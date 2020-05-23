@@ -230,6 +230,7 @@ export default defineComponent({
       &-huobi {
         margin-top: 5px;
       }
+
       img {
         height: 25px;
         transition: opacity ease-in 0.1s;
@@ -245,29 +246,6 @@ export default defineComponent({
           opacity: 1;
         }
       }
-    }
-  }
-
-  @keyframes toColor {
-    0% {
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
-    }
-    25% {
-      -webkit-filter: grayscale(75%);
-      filter: grayscale(75%);
-    }
-    50% {
-      -webkit-filter: grayscale(50%);
-      filter: grayscale(50%);
-    }
-    75% {
-      -webkit-filter: grayscale(25%);
-      filter: grayscale(25%);
-    }
-    100% {
-      -webkit-filter: grayscale(0%);
-      filter: grayscale(0%);
     }
   }
 

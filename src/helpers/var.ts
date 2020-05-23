@@ -240,6 +240,12 @@ export const EXCHANGES = [
     image: 'blocktrades.svg'
   }, */
   {
+    id: 'bitsonic',
+    name: 'BITSONIC',
+    website: 'https://bitsonic.co.kr/front/en/exchange/hive-usdt',
+    image: 'bitsonic.svg'
+  },
+  {
     id: 'bittrex',
     name: 'Bittrex',
     website: 'https://global.bittrex.com/Market/Index?MarketName=USD-HIVE',

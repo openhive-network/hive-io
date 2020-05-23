@@ -70,20 +70,25 @@ export default defineComponent({
           name: 'About'
         },
         {
-          to: 'https://hive.blog/@hiveio',
-          name: 'Blog'
+          to: 'https://signup.hive.io',
+          name: 'Create Account'
         },
         {
           to: 'brand',
           name: 'Brand Assets'
         },
         {
-          to: 'https://signup.hive.io',
-          name: 'Join'
+          to: 'https://hive.blog/@hiveio',
+          name: 'Blog'
+        },
+
+        {
+          to: 'https://hive.wiki',
+          name: 'Wiki'
         },
         {
           to: 'mailto:info@hive.io',
-          name: 'Contact '
+          name: 'Contact'
         }
         /* {
           to: 'contributors',

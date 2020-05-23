@@ -40,6 +40,25 @@
       </div>
     </div>
 
+    <div class="root__exchanges-container">
+      <div class="root__exchanges__title">
+        Listed Exchanges
+      </div>
+      <div class="root__exchanges">
+        <a
+          v-for="exchange in EXCHANGES"
+          :key="exchange.id"
+          class="root__exchanges__exchange"
+          :class="`root__exchanges__exchange-${exchange.id}`"
+          :href="exchange.website"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+        >
+          <img :src="getImage(exchange.image)" />
+        </a>
+      </div>
+    </div>
+
     <div v-if="false" class="root__tech root__container">
       <div class="root__tech__inner root__container__inner">
         <h2 class="root__tech__title">Fast. Scalable. Powerful.</h2>
@@ -93,6 +112,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, onBeforeMount } from '@vue/composition-api'
+import { EXCHANGES } from '../helpers/var'
 import Logo from '~/components/logo/logo.vue'
 export default defineComponent({
   components: { Logo },
@@ -121,7 +141,15 @@ export default defineComponent({
       state.minHeight = calcHeight()
     })
 
-    return { state, go }
+    const getImage = (image) => {
+      try {
+        return require(`~/assets/images/exchanges/${image}`)
+      } catch (error) {
+        return ''
+      }
+    }
+
+    return { state, go, EXCHANGES, getImage }
   }
 })
 </script>
@@ -148,7 +176,7 @@ export default defineComponent({
   &__home {
     align-items: center;
     padding: 20px 20px 40px 20px;
-    min-height: calc(100vh - 90px - 60px); /* 100vh - header - padding */
+    min-height: calc(100vh - 90px - 60px); /* 100vh - header - padding  */
 
     &__logo {
       height: 150px;
@@ -163,6 +191,61 @@ export default defineComponent({
       justify-content: center;
       margin-top: -50px;
       min-width: 433px;
+    }
+  }
+
+  &__exchanges {
+    &-container {
+      display: flex;
+      flex-flow: column;
+      width: calc(100% - 80px);
+      margin: 0 auto;
+      // margin-top: 25px;
+      background: #320109;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 40px 50px 40px;
+    }
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 900px;
+    justify-content: space-evenly;
+    align-items: center;
+
+    &__title {
+      color: white;
+      font-weight: 500;
+      margin-bottom: 20px;
+      font-size: 16px;
+      opacity: 1;
+      padding-bottom: 2px;
+      cursor: default;
+      border-bottom: 1px solid rgb(224, 224, 224);
+    }
+
+    &__exchange {
+      padding: 8px 15px;
+      margin: 10px 15px;
+
+      &-huobi {
+        margin-top: 5px;
+      }
+
+      img {
+        height: 25px;
+        transition: opacity ease-in 0.1s;
+        opacity: 0.88;
+      }
+
+      &-upbit img {
+        height: 24px;
+      }
+
+      &:hover {
+        img {
+          opacity: 1;
+        }
+      }
     }
   }
 

@@ -225,3 +225,78 @@ export const WALLETS: IWallet[] = [
     type: 'wallet'
   }
 ]
+
+export const EXCHANGES = [
+  {
+    id: 'binance',
+    name: 'Binance',
+    website: 'https://www.binance.com/en/trade/HIVE_BTC',
+    image: 'binance.svg'
+  },
+  /* {
+    id: 'blocktrades',
+    name: 'Blocktrades',
+    website: 'https://www.blocktrades.us/en/trade?output_coin_type=hive',
+    image: 'blocktrades.svg'
+  }, */
+  {
+    id: 'bittrex',
+    name: 'Bittrex',
+    website: 'https://global.bittrex.com/Market/Index?MarketName=BTC-HIVE',
+    image: 'bittrex.svg'
+  },
+  {
+    id: 'coindcx',
+    name: 'CoinDCX',
+    website: 'https://coindcx.com/trade/HIVEBTC',
+    image: 'coindcx.svg'
+  },
+  {
+    id: 'gateio',
+    name: 'gate.io',
+    website: 'https://www.gate.io/trade/HIVE_USDT',
+    image: 'gateio.svg'
+  },
+  {
+    id: 'hbtc',
+    name: 'HBTC',
+    website: 'https://www.hbtc.com/exchange/HIVE1/USDT',
+    image: 'hbtc.png'
+  },
+  {
+    id: 'hotbit',
+    name: 'HOTBIT',
+    website: 'https://www.hotbit.io/exchange?symbol=HIVE_USDT',
+    image: 'hotbit.png'
+  },
+  {
+    id: 'huobi',
+    name: 'Huobi',
+    website: 'https://www.huobi.com/en-us/exchange/hive_usdt/',
+    image: 'huobi.svg'
+  },
+  {
+    id: 'mxc',
+    name: 'MXC',
+    website: 'https://www.mxc.com/trade/easy#HIVE_USDT',
+    image: 'mxc.png'
+  },
+  {
+    id: 'probit',
+    name: 'ProBit',
+    website: 'https://www.probit.com/app/exchange/HIVE-USDT',
+    image: 'probit_white.png'
+  },
+  {
+    id: 'upbit',
+    name: 'UPbit',
+    website: 'https://upbit.com/exchange?code=CRIX.UPBIT.BTC-HIVE',
+    image: 'upbit.svg'
+  },
+  {
+    id: 'wazirx',
+    name: 'WazirX',
+    website: 'https://wazirx.com/exchange/HIVE-USDT',
+    image: 'wazirx.png'
+  }
+]

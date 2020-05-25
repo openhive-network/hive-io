@@ -258,6 +258,12 @@ export const EXCHANGES = [
     image: 'coindcx.svg'
   },
   {
+    id: 'cryptex24',
+    name: 'Cryptex24',
+    website: 'https://www.cryptex24.io/trade/HIVE&USDT',
+    image: 'cryptex24.svg'
+  },
+  {
     id: 'gateio',
     name: 'gate.io',
     website: 'https://www.gate.io/trade/HIVE_USDT',

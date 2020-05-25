@@ -208,7 +208,7 @@ export default defineComponent({
     }
     display: flex;
     flex-flow: row wrap;
-    max-width: 900px;
+    max-width: 1000px;
     justify-content: space-evenly;
     align-items: center;
 
@@ -350,6 +350,14 @@ export default defineComponent({
 
 @media (max-width: 700px) {
   .root {
+    &__exchanges {
+      &__exchange {
+        img {
+          height: 14px;
+        }
+      }
+    }
+
     &__container {
       &__inner {
         flex-flow: column-reverse wrap;

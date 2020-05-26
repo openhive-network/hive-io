@@ -208,7 +208,7 @@ export default defineComponent({
     }
     display: flex;
     flex-flow: row wrap;
-    max-width: 1000px;
+    max-width: 1100px;
     justify-content: space-evenly;
     align-items: center;
 

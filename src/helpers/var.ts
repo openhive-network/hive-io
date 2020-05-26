@@ -276,6 +276,12 @@ export const EXCHANGES = [
     image: 'hbtc.png'
   },
   {
+    id: 'hiveengine',
+    name: 'Hive Engine',
+    website: 'https://hive-engine.com/?p=market&t=SWAP.HIVE',
+    image: 'hive-engine.png'
+  },
+  {
     id: 'hotbit',
     name: 'HOTBIT',
     website: 'https://www.hotbit.io/exchange?symbol=HIVE_USDT',
@@ -310,6 +316,18 @@ export const EXCHANGES = [
     name: 'Sequoir',
     website: 'https://app.sequoir.com/assets/hive',
     image: 'sequoir.svg'
+  },
+  {
+    id: 'steemengine',
+    name: 'Steem Engine',
+    website: 'https://steem-engine.com/?p=market&t=HIVEP',
+    image: 'steem-engine.svg'
+  },
+  {
+    id: 'swapspace',
+    name: 'SwapSpace',
+    website: 'https://swapspace.co/?from=btc&to=hive&amount=0.1',
+    image: 'swapspace.svg'
   },
   {
     id: 'upbit',

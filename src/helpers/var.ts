@@ -312,6 +312,12 @@ export const EXCHANGES = [
     image: 'sequoir.svg'
   },
   {
+    id: 'swapspace',
+    name: 'SwapSpace',
+    website: 'https://swapspace.co/?from=btc&to=hive&amount=0.1',
+    image: 'swapspace.svg'
+  },
+  {
     id: 'upbit',
     name: 'UPbit',
     website: 'https://upbit.com/exchange?code=CRIX.UPBIT.BTC-HIVE',

@@ -241,6 +241,10 @@ export default defineComponent({
         height: 24px;
       }
 
+      &-swapzone img {
+        height: 35px;
+      }
+
       &:hover {
         img {
           opacity: 1;

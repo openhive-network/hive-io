@@ -330,6 +330,12 @@ export const EXCHANGES = [
     image: 'swapspace.svg'
   },
   {
+    id: 'swapzone',
+    name: 'Swapzone',
+    website: 'https://swapzone.io/?to=hive',
+    image: 'swapzone.svg'
+  },
+  {
     id: 'upbit',
     name: 'UPbit',
     website: 'https://upbit.com/exchange?code=CRIX.UPBIT.BTC-HIVE',

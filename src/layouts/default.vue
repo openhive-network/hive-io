@@ -161,6 +161,10 @@ export default defineComponent({
         link: 'https://twitter.com/hiveblocks'
       },
       {
+        icon: 'youtube',
+        link: 'https://www.youtube.com/channel/UCwM89V7NzVIHizgWT3GxhwA'
+      },
+      {
         icon: 'medium',
         link: 'https://medium.com/@hiveblocks'
       },

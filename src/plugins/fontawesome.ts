@@ -12,6 +12,7 @@ import {
   faExternalLinkAlt as fasExternalLinkAlt
 } from '@fortawesome/free-solid-svg-icons'
 import {
+  faYoutube as fabYoutube,
   faTwitter as fabTwitter,
   faFacebook as fabFacebook,
   faQuora as fabQuora,
@@ -88,6 +89,7 @@ const fabSteemit: any = {
 } */
 
 library.add(
+  fabYoutube,
   fabFacebook,
   fabQuora,
   fabTwitter,

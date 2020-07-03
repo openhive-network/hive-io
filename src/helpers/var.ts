@@ -242,12 +242,12 @@ export const EXCHANGES = [
     website: 'https://www.binance.com/en/trade/HIVE_USDT',
     image: 'binance.svg'
   },
-  /* {
+  {
     id: 'blocktrades',
     name: 'Blocktrades',
     website: 'https://www.blocktrades.us/en/trade?output_coin_type=hive',
     image: 'blocktrades.svg'
-  }, */
+  },
   {
     id: 'bitsonic',
     name: 'BITSONIC',

@@ -209,6 +209,15 @@ export const WALLETS: IWallet[] = [
     github: 'https://github.com/ledgerconnect/hivesigner'
   },
   {
+    id: 'actifit',
+    name: 'Actifit',
+    image: 'actifit.png',
+    os: [os.web],
+    website: 'https://actifit.io/wallet',
+    type: 'wallet',
+    github: 'https://github.com/actifit/actifit-landingpage'
+  },
+  {
     id: 'peakd',
     name: 'Peakd',
     image: 'peakd.svg',

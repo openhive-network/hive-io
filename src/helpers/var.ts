@@ -87,11 +87,11 @@ export const ECOSYSTEM: IEcoItem[] = [
     type: 'game'
   },
   {
-    id: 'esteem',
-    name: 'Esteem',
+    id: 'ecency',
+    name: 'Ecency',
     description: '',
-    image: 'esteem.svg',
-    website: 'https://esteem.app',
+    image: 'ecency.svg',
+    website: 'https://ecency.com',
     type: 'app'
   },
   {
@@ -191,13 +191,13 @@ export const WALLETS: IWallet[] = [
     github: 'https://github.com/roelandp/hivewallet'
   },
   {
-    id: 'esteem',
-    name: 'Esteem',
-    image: 'esteem.svg',
+    id: 'ecency',
+    name: 'Ecency',
+    image: 'ecency.svg',
     os: [os.windows, os.macos, os.linux, os.ios, os.android],
-    website: 'https://esteem.app',
+    website: 'https://ecency.com',
     type: 'wallet',
-    github: 'https://github.com/esteemapp'
+    github: 'https://github.com/ecency'
   },
   {
     id: 'hivesigner',

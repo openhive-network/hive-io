@@ -6,7 +6,12 @@
     @click="go()"
   >
     <div v-if="!isReady" class="infobar__countdown">
-      <div class="infobar__countdown__preText">HF24 "Eclipse" in</div>
+      <div class="infobar__countdown__preText">
+        HF24<span class="infobar__countdown__preText--desktopOnly">
+          "Eclipse"</span
+        >
+        in
+      </div>
       <div class="infobar__countdown__numbers">
         <div class="infobar__countdown__d">
           {{ state.d }}
@@ -160,9 +165,12 @@ export default defineComponent({
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 600px) {
   .infobar {
-    top: 80px;
+    top: 100px;
+  }
+  .infobar__countdown__preText--desktopOnly {
+    display: none !important;
   }
 }
 </style>

@@ -182,7 +182,7 @@ export default defineComponent({
 
   &__home {
     align-items: center;
-    padding: 40px 20px 40px 20px;
+    padding: 60px 20px 0px 20px;
     min-height: calc(
       100vh - 90px - 60px - 80px
     ); /* 100vh - header - padding  */

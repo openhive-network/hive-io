@@ -6,7 +6,7 @@
     @click="go()"
   >
     <div v-if="!isReady" class="infobar__countdown">
-      <div class="infobar__countdown__preText">Launch in</div>
+      <div class="infobar__countdown__preText">HF24 "Eclipse" in</div>
       <div class="infobar__countdown__numbers">
         <div class="infobar__countdown__d">
           {{ state.d }}
@@ -44,7 +44,7 @@ export default defineComponent({
 
   setup() {
     const state = reactive({
-      d: '00',
+      d: '0',
       h: '01',
       m: '00',
       s: '00',
@@ -53,7 +53,7 @@ export default defineComponent({
     })
 
     const setCountdown = () => {
-      const then = moment.utc('2020-03-20T14:00:00+0000').valueOf()
+      const then = moment.utc('2020-09-08T14:00:00+00:00').valueOf()
       const now = moment.utc().valueOf()
       if (then - now < 0) {
         clearInterval(state.interval)
@@ -69,7 +69,7 @@ export default defineComponent({
       const m = countdown.utc().format('mm')
       const s = countdown.utc().format('ss')
 
-      state.d = `0${String(Number(d) - 1)}`
+      state.d = `${Number(d) - 1 < 10 ? '0' : ''}${String(Number(d) - 1)}`
       state.h = h
       state.m = m
       state.s = s
@@ -96,8 +96,16 @@ export default defineComponent({
     })
 
     const go = () => {
-      if (!isReady.value) return
-      window.open('https://hive.blog', '_blank')
+      window.open(
+        'https://peakd.com/hiveblockchain/@hiveio/tentative-hardfork-date-hive-hf24-information',
+        '_blank'
+      )
+      /* if (!isReady.value) {
+
+      } else {
+
+      }
+      window.open('https://hive.blog', '_blank') */
     }
 
     return { state, isReady, countdown, go }
@@ -110,10 +118,10 @@ export default defineComponent({
   position: absolute;
   right: 0;
   left: 0;
-  top: 100px;
+  top: 120px;
   width: fit-content;
   margin: 0 auto;
-  background: $secondary-color-100;
+  background: $primary-color-100;
   color: white;
   border-radius: 4px;
   padding: 15px 30px;
@@ -121,7 +129,7 @@ export default defineComponent({
   text-align: center;
   font-size: 1.5rem;
   font-weight: 600;
-  cursor: default;
+  cursor: pointer; // default;
 
   &--active {
     background: $primary-color-100;

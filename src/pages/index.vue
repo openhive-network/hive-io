@@ -18,6 +18,27 @@
       <Logo class="root__home__logo" :full="false" />
     </div>
 
+    <scrollindicator style="margin: 0 auto 0px auto; margin-bottom: 40px;" />
+
+    <div class="root__exchanges-container">
+      <div class="root__exchanges__title">
+        Listed Exchanges
+      </div>
+      <div class="root__exchanges">
+        <a
+          v-for="exchange in EXCHANGES"
+          :key="exchange.id"
+          class="root__exchanges__exchange"
+          :class="`root__exchanges__exchange-${exchange.id}`"
+          :href="exchange.website"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+        >
+          <img :src="getImage(exchange.image)" />
+        </a>
+      </div>
+    </div>
+
     <div class="root__eco root__container">
       <div class="root__eco__inner root__container__inner">
         <div class="root__eco__left">
@@ -37,25 +58,6 @@
           class="root__eco__image"
           src="~/assets/images/progressiveApp.svg"
         />
-      </div>
-    </div>
-
-    <div class="root__exchanges-container">
-      <div class="root__exchanges__title">
-        Listed Exchanges
-      </div>
-      <div class="root__exchanges">
-        <a
-          v-for="exchange in EXCHANGES"
-          :key="exchange.id"
-          class="root__exchanges__exchange"
-          :class="`root__exchanges__exchange-${exchange.id}`"
-          :href="exchange.website"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-        >
-          <img :src="getImage(exchange.image)" />
-        </a>
       </div>
     </div>
 
@@ -114,8 +116,9 @@
 import { defineComponent, reactive, onBeforeMount } from '@vue/composition-api'
 import { EXCHANGES } from '../helpers/var'
 import Logo from '~/components/logo/logo.vue'
+import scrollindicator from '~/components/scrollindicator.vue'
 export default defineComponent({
-  components: { Logo },
+  components: { Logo, scrollindicator },
   props: {},
   setup() {
     const state = reactive({
@@ -127,7 +130,11 @@ export default defineComponent({
         const header = window.document.getElementById('header')
         const headerHeight = header ? Number(header.offsetHeight) : 0
         return (
-          window.document.documentElement.offsetHeight - headerHeight - 20 - 40
+          window.document.documentElement.offsetHeight -
+          headerHeight -
+          20 -
+          40 -
+          80
         )
       }
       return 0
@@ -175,8 +182,10 @@ export default defineComponent({
 
   &__home {
     align-items: center;
-    padding: 20px 20px 40px 20px;
-    min-height: calc(100vh - 90px - 60px); /* 100vh - header - padding  */
+    padding: 60px 20px 0px 20px;
+    min-height: calc(
+      100vh - 90px - 60px - 80px
+    ); /* 100vh - header - padding  */
 
     &__logo {
       height: 150px;

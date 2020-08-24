@@ -28,7 +28,10 @@ export default {
   eco: {
     title: 'Hive Ecosystem',
     text:
-      'Hive has a thriving ecosystem of apps, communities & individuals, leveraging the Hive blockchain & decentralised structure.'
+      'Hive has a thriving ecosystem of apps, communities & individuals, leveraging the Hive blockchain & decentralised structure.',
+    subTitle: 'Interested in statistics?',
+    subText:
+      'Thousands of people across dozends of dApps are using Hive every day.'
   },
   wallets: {
     title: 'Choose your Wallet',

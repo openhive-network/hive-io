@@ -10,21 +10,33 @@
       <div class="eco__apps">
         <App v-for="eco in ECOSYSTEM" :key="eco.id" :item="eco" />
       </div>
+      <h1 class="eco__subTitle">{{ $t(`eco.subTitle`) }}</h1>
+      <p class="eco__subText">
+        {{ $t(`eco.subText`) }}
+      </p>
+      <div class="eco__statistics">
+        <StatWebsite
+          v-for="site in STATISTIC_WEBSITES"
+          :key="site.id"
+          :item="site"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { ECOSYSTEM } from '../helpers/var'
+import { ECOSYSTEM, STATISTIC_WEBSITES } from '../helpers/var'
 import Logo from '~/components/logo/logo.vue'
 import App from '~/components/app/app.vue'
+import StatWebsite from '~/components/statWebsite/statWebsite.vue'
 
 export default defineComponent({
-  components: { Logo, App },
+  components: { Logo, App, StatWebsite },
   props: {},
   setup() {
-    return { ECOSYSTEM }
+    return { ECOSYSTEM, STATISTIC_WEBSITES }
   }
 })
 </script>
@@ -54,8 +66,8 @@ export default defineComponent({
     max-width: 820px;
   }
 
-  h2 {
-    font-size: 3.8rem;
+  h1 {
+    text-align: center;
   }
 
   h3 {
@@ -67,6 +79,17 @@ export default defineComponent({
     flex-flow: row wrap;
     justify-content: center;
     max-width: 1000px;
+  }
+
+  &__subTitle {
+    margin: 60px 0 15px 0;
+  }
+
+  &__statistics {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    max-width: 800px;
   }
 }
 

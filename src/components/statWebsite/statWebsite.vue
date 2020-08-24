@@ -1,15 +1,15 @@
 <template>
-  <div class="app" :class="`app--${item.name}`">
+  <div class="statWebsite" :class="`statWebsite--${item.id}`">
     <a
       :href="item.website"
       target="_blank"
       rel="nofollow noopener noreferrer"
-      class="app__inner"
-      :class="{ 'app__inner--hover': hover }"
+      class="statWebsite__inner"
+      :class="{ 'statWebsite__inner--hover': hover }"
       @mouseenter="hover = true"
       @mouseleave="hover = false"
     >
-      <div class="app__image">
+      <div class="statWebsite__image">
         <img :src="getImage(item.image)" />
       </div>
     </a>
@@ -18,36 +18,26 @@
       :href="item.website"
       target="_blank"
       rel="nofollow noopener noreferrer"
-      class="app__name"
-      :class="{ 'app__name--hover': hover }"
+      class="statWebsite__name"
+      :class="{ 'statWebsite__name--hover': hover }"
       @mouseenter="hover = true"
       @mouseleave="hover = false"
       >{{ item.name
       }}<fa-icon
-        class="app__name__icon"
+        class="statWebsite__name__icon"
         :icon="['fas', 'external-link-alt']"
       ></fa-icon
     ></a>
 
-    <div class="app__icons">
-      <Icon
-        v-for="os in item.os"
-        :key="os.name"
-        class="app__icon"
-        :icon="os.icon"
-        :tooltip="os.name"
-        :height="18"
-      />
-    </div>
     <a
       v-if="item.github || item.gitlab"
       :href="item.github || item.gitlab"
       target="_blank"
       rel="nofollow noopener noreferrer"
-      class="app__git"
+      class="statWebsite__git"
       >{{ item.github ? 'Github' : 'Gitlab'
       }}<fa-icon
-        class="app__git__icon"
+        class="statWebsite__git__icon"
         :icon="['fas', 'external-link-alt']"
       ></fa-icon
     ></a>
@@ -73,7 +63,7 @@ export default defineComponent({
     const hover = ref(false)
     const getImage = (image) => {
       try {
-        return require(`~/assets/images/apps/${image}`)
+        return require(`~/assets/images/websites/${image}`)
       } catch (error) {
         return ''
       }
@@ -84,7 +74,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.app {
+.statWebsite {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -95,13 +85,14 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 15%;
+    border-radius: 10px;
     background: #e2e2ec;
-    height: 110px;
-    width: 110px;
+    height: 60px;
+    width: 250px;
     padding: 12px;
     margin-bottom: 8px;
     transition: transform 0.5s;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.03);
     &:hover,
     &--hover {
       transform: translateY(-10%);
@@ -155,43 +146,40 @@ export default defineComponent({
 
   &__image {
     display: flex;
+    justify-self: center;
     height: 100%;
     width: 100%;
+    max-height: 40px;
     img {
       height: 100%;
       width: 100%;
-      border-radius: 15%;
+      object-fit: contain;
     }
   }
 
-  &--Engrave {
-    .app__image {
-      height: initial;
-      img {
-        border-radius: 0;
-      }
+  &--dapp-review,
+  &--stateofthedapps {
+    .statWebsite__inner {
+      background: #2e3135;
     }
   }
 
-  &--DLease {
-    .app__image {
-      display: flex;
-      justify-content: center;
-      img {
-        width: initial;
-      }
+  &--dapp-com,
+  &--hivedapps-com {
+    .statWebsite__inner {
+      background: white;
     }
   }
 }
 
 @media (max-width: 525px) {
-  .app {
+  .statWebsite {
     margin: 20px 20px 40px 20px;
   }
 }
 
 @media (max-width: 425px) {
-  .app {
+  .statWebsite {
     margin: 15px 15px 30px 15px;
   }
 }

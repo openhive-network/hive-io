@@ -1,3 +1,4 @@
+import { Configuration, IgnorePlugin } from 'webpack'
 import i18n from './src/plugins/i18n.config'
 
 require('dotenv').config()
@@ -129,6 +130,13 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend() {}
+    extend(config: Configuration, { isClient }) {
+      if (!isDev && isClient) {
+        config.optimization.minimize = true
+        config.optimization.splitChunks = {}
+
+        config.plugins.push(new IgnorePlugin(/^\.\/locale$/, /moment$/))
+      }
+    }
   }
 }

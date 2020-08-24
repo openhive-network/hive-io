@@ -104,14 +104,14 @@ export default defineComponent({
           to: 'https://hiveblocks.com',
           name: 'Blockexplorer'
         },
-        {
-          to: 'https://hivedapps.com',
+        /* {
+          to: 'eco',
           name: 'dApps Statistics'
         },
         {
-          to: 'https://hiveprojects.io',
+          to: 'eco',
           name: 'Projects'
-        },
+        }, */
         {
           to: 'https://hivekings.com/witnesses',
           name: 'Governance'

@@ -10,7 +10,7 @@
       <div class="eco__apps">
         <App v-for="eco in ECOSYSTEM" :key="eco.id" :item="eco" />
       </div>
-      <h2 class="eco__subTitle">{{ $t(`eco.subTitle`) }}</h2>
+      <h1 class="eco__subTitle">{{ $t(`eco.subTitle`) }}</h1>
       <p class="eco__subText">
         {{ $t(`eco.subText`) }}
       </p>
@@ -66,8 +66,8 @@ export default defineComponent({
     max-width: 820px;
   }
 
-  h2 {
-    font-size: 3.8rem;
+  h1 {
+    text-align: center;
   }
 
   h3 {
@@ -102,16 +102,6 @@ export default defineComponent({
 @media (max-width: 600px) {
   .eco__first {
     margin-top: 20px;
-  }
-
-  .eco {
-    h2 {
-      font-size: 3rem;
-    }
-
-    h3 {
-      font-size: 1.3rem;
-    }
   }
 }
 </style>

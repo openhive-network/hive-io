@@ -132,10 +132,14 @@ export default {
      */
     extend(config: Configuration, { isClient }) {
       if (!isDev && isClient) {
-        config.optimization.minimize = true
-        config.optimization.splitChunks = {}
+        if (config.optimization) {
+          config.optimization.minimize = true
+          config.optimization.splitChunks = {}
+        }
 
-        config.plugins.push(new IgnorePlugin(/^\.\/locale$/, /moment$/))
+        if (config.plugins) {
+          config.plugins.push(new IgnorePlugin(/^\.\/locale$/, /moment$/))
+        }
       }
     }
   }

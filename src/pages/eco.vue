@@ -90,6 +90,7 @@ export default defineComponent({
     flex-flow: row wrap;
     justify-content: space-evenly;
     max-width: 800px;
+    margin-top: 20px;
   }
 }
 

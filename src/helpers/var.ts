@@ -55,12 +55,12 @@ const os = {
 
 export const ECOSYSTEM: IEcoItem[] = [
   {
-    id: 'splinterlands',
-    name: 'Splinterlands',
+    id: 'hiveblog',
+    name: 'Hive.Blog',
     description: '',
-    image: 'splinterlands.png',
-    website: 'https://splinterlands.com',
-    type: 'game'
+    image: 'blackhive.png',
+    website: 'https://hive.blog',
+    type: 'app'
   },
   {
     id: 'peakd',
@@ -68,14 +68,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'peakd.svg',
     website: 'https://peakd.com',
-    type: 'app'
-  },
-  {
-    id: 'hiveblog',
-    name: 'Hive.Blog',
-    description: '',
-    image: 'blackhive.png',
-    website: 'https://hive.blog',
     type: 'app'
   },
   {
@@ -87,11 +79,11 @@ export const ECOSYSTEM: IEcoItem[] = [
     type: 'app'
   },
   {
-    id: 'cryptobrewmaster',
-    name: 'Brewmaster',
+    id: 'splinterlands',
+    name: 'Splinterlands',
     description: '',
-    image: 'cryptobrewmaster.png',
-    website: 'https://www.cryptobrewmaster.io/',
+    image: 'splinterlands.png',
+    website: 'https://splinterlands.io',
     type: 'game'
   },
   {
@@ -157,6 +149,30 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'bropoker.png',
     website: 'https://brosinopoker.com',
+    type: 'app'
+  },
+  {
+    id: 'leofinance',
+    name: 'LeoFinance',
+    description: '',
+    image: 'leofinance.png',
+    website: 'https://leofinance.io',
+    type: 'app'
+  },
+  {
+    id: 'stemgeeks',
+    name: 'STEMGeeks',
+    description: '',
+    image: 'stemgeeks.png',
+    website: 'https://stemgeeks.net',
+    type: 'app'
+  },
+  {
+    id: 'dcity',
+    name: 'dCity',
+    description: '',
+    image: 'dcity.png',
+    website: 'https://dcity.io',
     type: 'app'
   }
 ]
@@ -363,33 +379,5 @@ export const EXCHANGES = [
     name: 'WazirX',
     website: 'https://wazirx.com/exchange/HIVE-USDT',
     image: 'wazirx.png'
-  }
-]
-
-export const STATISTIC_WEBSITES = [
-  {
-    id: 'dapp-com',
-    name: 'Dapp.com',
-    website: 'https://dapp.com/dapps/hive',
-    image: 'dapp-com.png'
-  },
-  {
-    id: 'stateofthedapps',
-    name: 'State of the Dapps',
-    website: 'https://stateofthedapps.com/rankings',
-    image: 'stateofthedapps.svg'
-  },
-
-  {
-    id: 'dapp-review',
-    name: 'Dapp Review',
-    website: 'https://dapp.review/explore/hive',
-    image: 'dapp-review.svg'
-  },
-  {
-    id: 'hivedapps-com',
-    name: 'HiveDapps',
-    website: 'https://hivedapps.com',
-    image: 'hivedapps-com.svg'
   }
 ]

@@ -58,7 +58,7 @@ export default defineComponent({
     })
 
     const setCountdown = () => {
-      const then = moment.utc('2020-09-08T14:00:00+00:00').valueOf()
+      const then = moment.utc('2020-10-06T14:00:00+00:00').valueOf()
       const now = moment.utc().valueOf()
       if (then - now < 0) {
         clearInterval(state.interval)

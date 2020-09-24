@@ -102,7 +102,7 @@ export default defineComponent({
 
     const go = () => {
       window.open(
-        'https://peakd.com/hiveblockchain/@hiveio/tentative-hardfork-date-hive-hf24-information',
+        'https://peakd.com/hiveblockchain/@hiveio/final-hive-hf24-date-set-october-6-2020',
         '_blank'
       )
       /* if (!isReady.value) {

@@ -104,13 +104,13 @@ export default defineComponent({
           to: 'https://hiveblocks.com',
           name: 'Blockexplorer'
         },
+        {
+          to: 'https://hiveprojects.io',
+          name: 'Projects'
+        },
         /* {
           to: 'eco',
           name: 'dApps Statistics'
-        },
-        {
-          to: 'eco',
-          name: 'Projects'
         }, */
         {
           to: 'https://hivekings.com/witnesses',
@@ -131,6 +131,10 @@ export default defineComponent({
         {
           to: 'https://developers.hive.io',
           name: 'Documentation'
+        },
+        {
+          to: 'https://hive.io/whitepaper.pdf',
+          name: 'Whitepaper'
         },
         {
           to: 'https://github.com/openhive-network/hive',

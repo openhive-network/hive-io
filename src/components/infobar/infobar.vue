@@ -5,7 +5,7 @@
     :class="{ 'infobar--active': isReady }"
     @click="go()"
   >
-    <div v-if="!isReady" class="infobar__countdown">
+    <div v-if="false && !isReady" class="infobar__countdown">
       <div class="infobar__countdown__preText">
         HF24<span class="infobar__countdown__preText--desktopOnly">
           "Eclipse"</span
@@ -30,7 +30,8 @@
         </div>
       </div>
     </div>
-    <div v-if="state.setInterval && isReady">#HiveIsAlive!</div>
+    <div v-if="false && state.setInterval && isReady">#HiveIsAlive!</div>
+    <div>HF24 "Eclipse" coming soon!</div>
   </div>
 </template>
 
@@ -101,10 +102,11 @@ export default defineComponent({
     })
 
     const go = () => {
-      window.open(
-        'https://peakd.com/hiveblockchain/@hiveio/final-hive-hf24-date-set-october-6-2020',
-        '_blank'
-      )
+      /* const annLink =
+        'https://peakd.com/hiveblockchain/@hiveio/final-hive-hf24-date-set-october-6-2020' */
+      const delayLink =
+        'https://peakd.com/hive-139531/@blocktrades/update-on-hardfork-24-work-by-blocktrades-team'
+      window.open(delayLink, '_blank')
       /* if (!isReady.value) {
 
       } else {

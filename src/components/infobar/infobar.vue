@@ -102,11 +102,9 @@ export default defineComponent({
     })
 
     const go = () => {
-      /* const annLink =
-        'https://peakd.com/hiveblockchain/@hiveio/final-hive-hf24-date-set-october-6-2020' */
-      const delayLink =
-        'https://peakd.com/hive-139531/@blocktrades/update-on-hardfork-24-work-by-blocktrades-team'
-      window.open(delayLink, '_blank')
+      const link =
+        'https://peakd.com/hiveblockchain/@hiveio/has-the-eclipse-happened-explaining-how-hive-hardforks-work-and-activating-hf24-on-october-14th'
+      window.open(link, '_blank')
       /* if (!isReady.value) {
 
       } else {

@@ -5,7 +5,7 @@
     :class="{ 'infobar--active': isReady }"
     @click="go()"
   >
-    <div v-if="false && !isReady" class="infobar__countdown">
+    <div v-if="!isReady" class="infobar__countdown">
       <div class="infobar__countdown__preText">
         HF24<span class="infobar__countdown__preText--desktopOnly">
           "Eclipse"</span
@@ -30,8 +30,8 @@
         </div>
       </div>
     </div>
-    <div v-if="false && state.setInterval && isReady">#HiveIsAlive!</div>
-    <div>HF24 "Eclipse" coming soon!</div>
+    <div v-if="state.setInterval && isReady">#HiveIsAlive!</div>
+    <div v-if="false">HF24 "Eclipse" coming soon!</div>
   </div>
 </template>
 
@@ -59,7 +59,7 @@ export default defineComponent({
     })
 
     const setCountdown = () => {
-      const then = moment.utc('2020-10-06T14:00:00+00:00').valueOf()
+      const then = moment.utc('2020-10-14T14:00:00+00:00').valueOf()
       const now = moment.utc().valueOf()
       if (then - now < 0) {
         clearInterval(state.interval)

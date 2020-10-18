@@ -144,20 +144,20 @@ export const ECOSYSTEM: IEcoItem[] = [
   },
 
   {
-    id: 'brosino',
-    name: 'BROsino',
+    id: 'fullalt',
+    name: 'FullAlt',
     description: '',
-    image: 'brosino.png',
-    website: 'https://brosgn.net',
+    image: 'fullalt.png',
+    website: 'https://www.fullalt.com',
     type: 'app'
   },
   {
-    id: 'bropoker',
-    name: 'BRO Poker',
+    id: 'lucksacks',
+    name: 'Lucksacks Poker',
     description: '',
-    image: 'bropoker.png',
-    website: 'https://brosinopoker.com',
-    type: 'app'
+    image: 'lucksacks.png',
+    website: 'https://lucksacks.com',
+    type: 'game'
   }
 ]
 

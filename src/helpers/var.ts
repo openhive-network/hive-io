@@ -103,6 +103,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     type: 'app'
   },
   {
+    id: 'rabona',
+    name: 'Rabona',
+    description: '',
+    image: 'rabona.png',
+    website: 'https://rabona.io',
+    type: 'app'
+  },
+  {
     id: 'stemsocial',
     name: 'STEMsocial',
     description: '',

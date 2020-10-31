@@ -119,11 +119,11 @@ export const ECOSYSTEM: IEcoItem[] = [
     type: 'app'
   },
   {
-    id: 'steempress',
-    name: 'SteemPress',
+    id: 'exxp',
+    name: 'Exxp',
     description: '',
-    image: 'steempress.svg',
-    website: 'https://www.steempress.io',
+    image: 'exxp.svg',
+    website: 'https://exxp.io',
     type: 'app'
   },
   {

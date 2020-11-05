@@ -111,6 +111,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     type: 'app'
   },
   {
+    id: 'dbuzz',
+    name: 'D.Buzz',
+    description: '',
+    image: 'dbuzz.png',
+    website: 'https://d.buzz',
+    type: 'app'
+  },
+  {
     id: 'stemsocial',
     name: 'STEMsocial',
     description: '',

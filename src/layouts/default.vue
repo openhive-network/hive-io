@@ -1,7 +1,7 @@
 <template>
   <div class="layout layout--default">
     <Header class="layout__header" :items="headerNavigation" />
-    <Infobar v-if="$route.name === 'index'" />
+    <Infobar v-if="false && $route.name === 'index'" />
     <nuxt class="layout__main" />
     <div class="layout__socials">
       <SocialIcon
@@ -82,10 +82,10 @@ export default defineComponent({
           name: 'Blog'
         },
 
-        {
+        /* {
           to: 'https://hive.wiki',
           name: 'Wiki'
-        },
+        }, */
         {
           to: 'mailto:info@hive.io',
           name: 'Contact'
@@ -190,7 +190,7 @@ export default defineComponent({
       },
       {
         icon: 'quora',
-        link: 'https://www.quora.com/q/otycmrjbbhahuqae'
+        link: 'https://www.quora.com/q/hive'
       }
     ])
 

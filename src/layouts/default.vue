@@ -190,7 +190,7 @@ export default defineComponent({
       },
       {
         icon: 'quora',
-        link: 'https://www.quora.com/q/otycmrjbbhahuqae'
+        link: 'https://www.quora.com/q/hive'
       }
     ])
 

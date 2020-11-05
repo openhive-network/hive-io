@@ -166,6 +166,30 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'lucksacks.png',
     website: 'https://lucksacks.com',
     type: 'game'
+  },
+  {
+    id: 'leofinance',
+    name: 'LeoFinance',
+    description: '',
+    image: 'leofinance.png',
+    website: 'https://leofinance.io',
+    type: 'app'
+  },
+  {
+    id: 'stemgeeks',
+    name: 'STEMGeeks',
+    description: '',
+    image: 'stemgeeks.png',
+    website: 'https://stemgeeks.net',
+    type: 'app'
+  },
+  {
+    id: 'dcity',
+    name: 'dCity',
+    description: '',
+    image: 'dcity.png',
+    website: 'https://dcity.io',
+    type: 'app'
   }
 ]
 

@@ -198,6 +198,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'dcity.png',
     website: 'https://dcity.io',
     type: 'app'
+  },
+  {
+    id: 'nftshowroom',
+    name: 'NFT Showroom',
+    description: '',
+    image: 'nftshowroom.png',
+    website: 'https://nftshowroom.com',
+    type: 'app'
   }
 ]
 

@@ -7,8 +7,8 @@
   >
     <div v-if="!isReady" class="infobar__countdown">
       <div class="infobar__countdown__preText">
-        HF24<span class="infobar__countdown__preText--desktopOnly">
-          "Eclipse"</span
+        AltSpaceVR<span class="infobar__countdown__preText--desktopOnly">
+          HiveFest</span
         >
         in
       </div>
@@ -30,8 +30,8 @@
         </div>
       </div>
     </div>
-    <div v-if="state.setInterval && isReady">#HiveIsAlive!</div>
-    <div v-if="false">HF24 "Eclipse" coming soon!</div>
+    <div v-if="state.setInterval && isReady">HiveFest is on!</div>
+    <div v-if="false">HiveFest is fast approaching!</div>
   </div>
 </template>
 
@@ -59,7 +59,7 @@ export default defineComponent({
     })
 
     const setCountdown = () => {
-      const then = moment.utc('2020-10-14T14:00:00+00:00').valueOf()
+      const then = moment.utc('2020-12-18T12:00:00+00:00').valueOf()
       const now = moment.utc().valueOf()
       if (then - now < 0) {
         clearInterval(state.interval)
@@ -103,14 +103,14 @@ export default defineComponent({
 
     const go = () => {
       const link =
-        'https://peakd.com/hiveblockchain/@hiveio/has-the-eclipse-happened-explaining-how-hive-hardforks-work-and-activating-hf24-on-october-14th'
+        'https://hivefe.st'
       window.open(link, '_blank')
       /* if (!isReady.value) {
 
       } else {
 
       }
-      window.open('https://hive.blog', '_blank') */
+      window.open('https://hivefe.st', '_blank') */
     }
 
     return { state, isReady, countdown, go }

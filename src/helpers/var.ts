@@ -198,6 +198,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'dcity.png',
     website: 'https://dcity.io',
     type: 'app'
+  },
+  {
+    id: 'nftshowroom',
+    name: 'NFT Showroom',
+    description: '',
+    image: 'nftshowroom.png',
+    website: 'https://nftshowroom.com',
+    type: 'app'
   }
 ]
 
@@ -403,6 +411,12 @@ export const EXCHANGES = [
     name: 'WazirX',
     website: 'https://wazirx.com/exchange/HIVE-USDT',
     image: 'wazirx.png'
+  },
+  {
+    id: 'beaxy',
+    name: 'Beaxy',
+    website: 'https://exchange.beaxy.com/?pair=HIVEBTC',
+    image: 'beaxy.png'
   }
 ]
 

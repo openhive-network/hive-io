@@ -21,9 +21,9 @@
     <scrollindicator style="margin: 0 auto 0px auto; margin-bottom: 40px;" />
 
     <div class="root__exchanges-container">
-      <div class="root__exchanges__title">
+      <h2 class="root__exchanges__title">
         Listed Exchanges
-      </div>
+      </h2>
       <div class="root__exchanges">
         <a
           v-for="exchange in EXCHANGES"
@@ -223,13 +223,11 @@ export default defineComponent({
 
     &__title {
       color: white;
-      font-weight: 500;
+      font-weight: bold;
       margin-bottom: 20px;
-      font-size: 16px;
       opacity: 1;
       padding-bottom: 2px;
       cursor: default;
-      border-bottom: 1px solid rgb(224, 224, 224);
     }
 
     &__exchange {

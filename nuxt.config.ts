@@ -26,12 +26,12 @@ export default {
   pwa: {
     meta: {
       charset: 'utf-8',
-      author: 'Hive - The Ecosystem & Cryptocurrency for Web 3.0',
-      name: 'Hive - The Ecosystem & Cryptocurrency for Web 3.0',
-      ogTitle: 'Hive - The Ecosystem & Cryptocurrency for Web 3.0',
-      ogSiteName: 'Hive - The Ecosystem & Cryptocurrency for Web 3.0',
+      author: 'Hive - The Blockchain & Cryptocurrency for Web 3.0',
+      name: 'Hive - The Blockchain & Cryptocurrency for Web 3.0',
+      ogTitle: 'Hive - The Blockchain & Cryptocurrency for Web 3.0',
+      ogSiteName: 'Hive - The Blockchain & Cryptocurrency for Web 3.0',
       description:
-        'Hive is a DPoS-powered blockchain & cryptocurrency. Fast. Scalable. Powerful. Hive has a thriving ecosystem of dapps, communities & individuals.',
+        'Hive is a DPoS powered blockchain & cryptocurrency. Fast. Scalable. Powerful. Hive has a thriving ecosystem of dapps, communities & individuals.',
       ogType: 'website',
       ogUrl: 'https://hive.io',
       ogHost: 'https://hive.io',

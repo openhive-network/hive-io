@@ -30,7 +30,7 @@ export default {
       'Hive has a thriving ecosystem of apps, communities & individuals, leveraging the Hive decentralised structure & blockchain.',
     subTitle: 'Interested in statistics?',
     subText:
-      'Thousands of people across myriad dApps are using Hive every day.'
+        'Thousands of people across numerous dApps are using Hive every day.'
   },
   wallets: {
     title: 'Choose your Wallet',

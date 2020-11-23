@@ -4,20 +4,20 @@ import {
   getterTree,
   getAccessorType,
   mutationTree,
-  actionTree
+  actionTree,
 } from 'nuxt-typed-vuex'
 
 // Import all your submodules
-// import * as module from './module'
+// import * as scheduleModule from '../../schedule'
 
 export const state = () => ({
   test: '',
   preventScroll: false,
-  isMobileActive: false
+  isMobileActive: false,
 })
 
 export const getters = getterTree(state, {
-  text: (state) => state.test
+  text: (state) => state.test,
 })
 
 export const mutations = mutationTree(state, {
@@ -27,14 +27,14 @@ export const mutations = mutationTree(state, {
   },
   setPreventScroll: (state, preventScroll) => {
     state.preventScroll = preventScroll
-  }
+  },
 })
 
 export const actions = actionTree(
-  { state, getters, mutations },
+  {state, getters, mutations},
   {
     // async nuxtServerInit(ctx, { req, app }: Context) {}
-  }
+  },
 )
 
 // This compiles to nothing and only serves to return the correct type of the accessor
@@ -46,5 +46,6 @@ export const accessorType = getAccessorType({
   modules: {
     // The key (submodule) needs to match the Nuxt namespace (e.g. ~/store/submodule.ts)
     // module
-  }
+    // schedule: scheduleModule
+  },
 })

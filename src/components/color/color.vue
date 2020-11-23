@@ -20,25 +20,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import {defineComponent} from '@vue/composition-api'
 export default defineComponent({
   props: {
     color: {
       type: Object,
       default: () => {
-        return { name: '', hex: '', rgb: '', cmyk: '' } as {
+        return {name: '', hex: '', rgb: '', cmyk: ''} as {
           name: string
           hex: string
           rgb: string
           cmyk: string
         }
-      }
-    }
+      },
+    },
   },
 
   setup() {
     return {}
-  }
+  },
 })
 </script>
 

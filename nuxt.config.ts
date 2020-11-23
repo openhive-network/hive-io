@@ -1,10 +1,10 @@
-import { Configuration, IgnorePlugin } from 'webpack'
+import {Configuration, IgnorePlugin} from 'webpack'
 import i18n from './src/plugins/i18n.config'
 
 require('dotenv').config()
 const isDev = process.env.NODE_ENV !== 'production'
 const env = {
-  GA_ID: process.env.GA_ID || 'UA-000000-1'
+  GA_ID: process.env.GA_ID || 'UA-000000-1',
 }
 export default {
   modern: !isDev,
@@ -15,7 +15,7 @@ export default {
    ** Headers of the page
    */
   server: {
-    host: '0.0.0.0'
+    host: '0.0.0.0',
   },
   /* manifest: {
     name: env.appData.name,
@@ -36,8 +36,8 @@ export default {
       ogUrl: 'https://hive.io',
       ogHost: 'https://hive.io',
       ogImage: '/opengraph.png',
-      twitterCard: 'summary_large_image'
-    }
+      twitterCard: 'summary_large_image',
+    },
   },
   loading: false,
   head: {
@@ -48,18 +48,18 @@ export default {
         href:
           'https://fonts.googleapis.com/css?family=Work+Sans:400,500,700,800,900&display=swap'
       }, */
-      { rel: 'icon', type: 'image/x-icon', href: '/favicons/favicon.ico' }
-    ]
+      {rel: 'icon', type: 'image/x-icon', href: '/favicons/favicon.ico'},
+    ],
   },
   /*
    ** Global CSS
    */
   css: [
     'element-ui/lib/theme-chalk/index.css',
-    { src: '@assets/css/main.scss', lang: 'scss' }
+    {src: '@assets/css/main.scss', lang: 'scss'},
   ],
   styleResources: {
-    scss: ['./assets/css/variables.scss']
+    scss: ['./assets/css/variables.scss'],
   },
   /*
    ** Plugins to load before mounting the App
@@ -67,8 +67,8 @@ export default {
   plugins: [
     '@/plugins/composition-api',
     '@/plugins/element-ui',
-    { src: '@/plugins/tippy', ssr: false },
-    '@/plugins/fontawesome'
+    {src: '@/plugins/tippy', ssr: false},
+    '@/plugins/fontawesome',
   ],
   /*
    ** Nuxt.js dev-modules
@@ -79,7 +79,7 @@ export default {
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    'nuxt-typed-vuex'
+    'nuxt-typed-vuex',
   ],
   /*
    ** Nuxt.js modules
@@ -95,8 +95,8 @@ export default {
     [
       '@nuxtjs/google-analytics',
       {
-        id: env.GA_ID
-      }
+        id: env.GA_ID,
+      },
     ],
     // Gzip/Brotli Compression
     [
@@ -104,14 +104,14 @@ export default {
       {
         gzip: {
           test: /\.(js|css|html|svg)$/,
-          cache: true
+          cache: true,
         },
         brotli: {
           test: /\.(js|css|html|svg)$/,
-          threshold: 0
-        }
-      }
-    ]
+          threshold: 0,
+        },
+      },
+    ],
   ],
   /*
    ** Axios module configuration
@@ -119,8 +119,8 @@ export default {
    */
   axios: {
     debug: isDev,
-    retry: { retries: 3 },
-    withCredentials: true
+    retry: {retries: 3},
+    withCredentials: true,
   },
   /*
    ** Build configuration
@@ -130,7 +130,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config: Configuration, { isClient }) {
+    extend(config: Configuration, {isClient}) {
       if (!isDev && isClient) {
         if (config.optimization) {
           config.optimization.minimize = true
@@ -141,6 +141,6 @@ export default {
           config.plugins.push(new IgnorePlugin(/^\.\/locale$/, /moment$/))
         }
       }
-    }
-  }
+    },
+  },
 }

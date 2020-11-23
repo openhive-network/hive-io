@@ -18,12 +18,10 @@
       <Logo class="root__home__logo" :full="false" />
     </div>
 
-    <scrollindicator style="margin: 0 auto 0px auto; margin-bottom: 40px;" />
+    <scrollindicator style="margin: 0 auto 0px auto; margin-bottom: 40px" />
 
     <div class="root__exchanges-container">
-      <div class="root__exchanges__title">
-        Listed Exchanges
-      </div>
+      <div class="root__exchanges__title">Listed Exchanges</div>
       <div class="root__exchanges">
         <a
           v-for="exchange in EXCHANGES"
@@ -113,16 +111,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, onBeforeMount } from '@vue/composition-api'
-import { EXCHANGES } from '../helpers/var'
+import {defineComponent, reactive, onBeforeMount} from '@vue/composition-api'
+import {EXCHANGES} from '../helpers/var'
 import Logo from '~/components/logo/logo.vue'
 import scrollindicator from '~/components/scrollindicator.vue'
 export default defineComponent({
-  components: { Logo, scrollindicator },
+  components: {Logo, scrollindicator},
   props: {},
   setup() {
     const state = reactive({
-      minHeight: 0
+      minHeight: 0,
     })
 
     const calcHeight = () => {
@@ -156,8 +154,8 @@ export default defineComponent({
       }
     }
 
-    return { state, go, EXCHANGES, getImage }
-  }
+    return {state, go, EXCHANGES, getImage}
+  },
 })
 </script>
 

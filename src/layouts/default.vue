@@ -1,11 +1,11 @@
 <template>
   <div class="layout layout--default">
     <Header class="layout__header" :items="headerNavigation" />
-    <Infobar v-if="false && $route.name === 'index'" />
+    <Infobar v-if="$route.name === 'index'" />
     <nuxt class="layout__main" />
     <div class="layout__socials">
       <SocialIcon
-        v-for="{ icon, link } in socials"
+        v-for="{icon, link} in socials"
         :key="icon"
         class="layout__socials__social"
         :icon="['fab', icon]"
@@ -28,7 +28,7 @@ import {
   computed,
   watch,
   onMounted,
-  ref
+  ref,
 } from '@vue/composition-api'
 import Infobar from '~/components/infobar/infobar.vue'
 import Header from '~/components/header/header.vue'
@@ -36,50 +36,50 @@ import Footer from '~/components/footer/footer.vue'
 import SocialIcon from '~/components/icon/icon.vue'
 
 export default defineComponent({
-  components: { Header, Footer, Infobar, SocialIcon },
+  components: {Header, Footer, Infobar, SocialIcon},
   props: {},
-  setup(_props, { root }) {
+  setup(_props, {root}) {
     const headerNavigation = ref([
       {
         to: 'about',
-        name: 'About'
+        name: 'About',
       },
       {
         to: 'eco',
-        name: 'Ecosystem'
+        name: 'Ecosystem',
       },
       {
         to: 'wallets',
-        name: 'Wallets'
+        name: 'Wallets',
       },
       {
         to: 'https://developers.hive.io',
-        name: 'Developer'
+        name: 'Developer',
       },
       {
         to: 'https://signup.hive.io',
         name: 'Join',
-        isButton: true
-      }
+        isButton: true,
+      },
     ])
 
     const footerNavigation = ref([
       [
         {
           to: 'about',
-          name: 'About'
+          name: 'About',
         },
         {
           to: 'https://signup.hive.io',
-          name: 'Create Account'
+          name: 'Create Account',
         },
         {
           to: 'brand',
-          name: 'Brand Assets'
+          name: 'Brand Assets',
         },
         {
           to: 'https://hive.blog/@hiveio',
-          name: 'Blog'
+          name: 'Blog',
         },
 
         /* {
@@ -88,8 +88,8 @@ export default defineComponent({
         }, */
         {
           to: 'mailto:info@hive.io',
-          name: 'Contact'
-        }
+          name: 'Contact',
+        },
         /* {
           to: 'contributors',
           name: 'Contributors'
@@ -98,15 +98,15 @@ export default defineComponent({
       [
         {
           to: 'eco',
-          name: 'Ecosystem'
+          name: 'Ecosystem',
         },
         {
           to: 'https://hiveblocks.com',
-          name: 'Blockexplorer'
+          name: 'Blockexplorer',
         },
         {
           to: 'https://hiveprojects.io',
-          name: 'Projects'
+          name: 'Projects',
         },
         /* {
           to: 'eco',
@@ -114,84 +114,84 @@ export default defineComponent({
         }, */
         {
           to: 'https://hivekings.com/witnesses',
-          name: 'Governance'
-        }
+          name: 'Governance',
+        },
       ],
       [
         {
           to: 'wallets',
-          name: 'Wallets'
-        }
+          name: 'Wallets',
+        },
       ],
       [
         {
           to: 'developer',
-          name: 'Developer'
+          name: 'Developer',
         },
         {
           to: 'https://developers.hive.io',
-          name: 'Documentation'
+          name: 'Documentation',
         },
         {
           to: 'https://hive.io/whitepaper.pdf',
-          name: 'Whitepaper'
+          name: 'Whitepaper',
         },
         {
           to: 'https://github.com/openhive-network/hive',
-          name: 'GitHub'
+          name: 'GitHub',
         },
         {
           to: 'https://gitlab.hive.io',
-          name: 'GitLab'
-        }
-      ]
+          name: 'GitLab',
+        },
+      ],
     ])
 
     const socials = ref([
       {
         icon: 'hive',
-        link: 'https://hive.blog/@hiveio'
+        link: 'https://hive.blog/@hiveio',
       },
       {
         icon: 'github',
-        link: 'https://github.com/openhive-network/hive'
+        link: 'https://github.com/openhive-network/hive',
       },
       {
         icon: 'gitlab',
-        link: 'https://gitlab.hive.io'
+        link: 'https://gitlab.hive.io',
       },
       {
         icon: 'twitter',
-        link: 'https://twitter.com/hiveblocks'
+        link: 'https://twitter.com/hiveblocks',
       },
       {
         icon: 'youtube',
-        link: 'https://www.youtube.com/channel/UCwM89V7NzVIHizgWT3GxhwA'
+        link: 'https://www.youtube.com/channel/UCwM89V7NzVIHizgWT3GxhwA',
       },
       {
         icon: 'medium',
-        link: 'https://medium.com/@hiveblocks'
+        link: 'https://medium.com/@hiveblocks',
       },
       {
         icon: 'telegram',
-        link: 'https://t.me/hiveblockchain'
+        link: 'https://t.me/hiveblockchain',
       },
       {
-        icon: 'reddit', 
-        link: 'https://reddit.com/r/hivenetwork' 
+        icon: 'reddit',
+        link: 'https://reddit.com/r/hivenetwork',
       },
       {
-        icon: 'discord', 
-        link: 'https://myhive.li/discord' 
+        icon: 'discord',
+        link: 'https://myhive.li/discord',
       },
       {
         icon: 'facebook',
-        link: 'https://www.facebook.com/hiveblocks/'
+        link: 'https://www.facebook.com/hiveblocks/',
       },
       {
         icon: 'quora',
-        link: 'https://www.quora.com/q/hive'
-      }
+        link: 'https://www.quora.com/q/hive',
+      },
     ])
 
     const preventScroll = computed(() => root.$accessor.preventScroll)
@@ -206,7 +206,7 @@ export default defineComponent({
               document.body.style.overflow = 'auto'
             }
           }
-        }
+        },
       )
     })
 
@@ -216,9 +216,9 @@ export default defineComponent({
       preventScroll,
       headerNavigation,
       footerNavigation,
-      socials
+      socials,
     }
-  }
+  },
 })
 </script>
 

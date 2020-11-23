@@ -1,4 +1,4 @@
 export default {
   welcome: 'Wilkommen',
-  test: 'de'
+  test: 'de',
 }

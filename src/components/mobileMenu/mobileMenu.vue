@@ -2,7 +2,7 @@
   <div class="mobile-menu">
     <div
       class="mobile-menu__toggle"
-      :class="{ 'mobile-menu__toggle--active': isMobileActive }"
+      :class="{'mobile-menu__toggle--active': isMobileActive}"
     >
       <input type="checkbox" @click="onClick" />
 
@@ -20,25 +20,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from '@vue/composition-api'
+import {defineComponent, computed} from '@vue/composition-api'
 import Navigation from '~/components/navigation/navigation.vue'
 export default defineComponent({
-  components: { Navigation },
+  components: {Navigation},
   props: {
     items: {
       type: Array,
-      default: () => [] as any[]
+      default: () => [] as any[],
     },
-    dark: Boolean
+    dark: Boolean,
   },
 
-  setup(_props, { root }) {
+  setup(_props, {root}) {
     const isMobileActive = computed(() => root.$accessor.isMobileActive)
     const onClick = () => {
       root.$accessor.setIsMobileActive(!isMobileActive.value)
     }
-    return { onClick, isMobileActive }
-  }
+    return {onClick, isMobileActive}
+  },
 })
 </script>
 

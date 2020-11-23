@@ -13,7 +13,7 @@
           >
         </a>
       </div>
-      <h2 style="opacity: 0.5; margin-bottom: 20px;">Colors</h2>
+      <h2 style="opacity: 0.5; margin-bottom: 20px">Colors</h2>
       <div class="brand__colors">
         <Color v-for="(color, index) in colors" :key="index" :color="color" />
       </div>
@@ -22,12 +22,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
+import {defineComponent, ref} from '@vue/composition-api'
 import Logo from '~/components/logo/logo.vue'
 import Color from '~/components/color/color.vue'
 
 export default defineComponent({
-  components: { Logo, Color },
+  components: {Logo, Color},
   props: {},
   setup() {
     const colors = ref([
@@ -35,13 +35,13 @@ export default defineComponent({
         name: 'Hive Red',
         hex: '#E31337',
         rgb: '227 / 19/ 55',
-        cmyk: '0 / 91.63 / 75.77 / 10.98'
+        cmyk: '0 / 91.63 / 75.77 / 10.98',
       },
       {
         name: 'Hive Black',
         hex: '#212529',
         rgb: '33 / 37 / 41',
-        cmyk: '19.51 / 9.76 / 0 / 83.92'
+        cmyk: '19.51 / 9.76 / 0 / 83.92',
       },
       /* {
         name: 'Hive White',
@@ -53,18 +53,18 @@ export default defineComponent({
         name: 'Hive LightGrey',
         hex: '#f0f0f8',
         rgb: '240 / 240 / 248',
-        cmyk: '3.23 / 3.23 / 0 / 2.75'
+        cmyk: '3.23 / 3.23 / 0 / 2.75',
       },
       {
         name: 'Hive Grey',
         hex: '#e7e7f1',
         rgb: '231 / 231 / 241',
-        cmyk: '4.15 / 4.15 / 0 / 5.49'
-      }
+        cmyk: '4.15 / 4.15 / 0 / 5.49',
+      },
     ])
 
-    return { colors }
-  }
+    return {colors}
+  },
 })
 </script>
 

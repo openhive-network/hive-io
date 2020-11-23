@@ -7,10 +7,10 @@
           src="~/assets/images/progressiveApp.svg"
         />
         <h1 class="about__title">
-          {{ $t(`about.title`) }} 3<span style="color: #e31337;">.</span>0
+          {{ $t(`about.title`) }} 3<span style="color: #e31337">.</span>0
         </h1>
         <p class="about__text">{{ $t('about.text') }}</p>
-        <h2 style="opacity: 0.5; margin-top:120px;">Why choose Hive?</h2>
+        <h2 style="opacity: 0.5; margin-top: 120px">Why choose Hive?</h2>
       </div>
 
       <div class="about__feature">
@@ -34,15 +34,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, onMounted } from '@vue/composition-api'
+import {defineComponent, reactive, onMounted} from '@vue/composition-api'
 import Logo from '~/components/logo/logo.vue'
 
 export default defineComponent({
-  components: { Logo },
+  components: {Logo},
   props: {},
   setup() {
     const state = reactive({
-      minHeight: 725
+      minHeight: 725,
     })
 
     const calcHeight = () => {
@@ -60,8 +60,8 @@ export default defineComponent({
       state.minHeight = calcHeight()
     })
 
-    return { state }
-  }
+    return {state}
+  },
 })
 </script>
 

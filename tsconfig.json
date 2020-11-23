@@ -1,6 +1,6 @@
 {
   "files": ["./src/index.d.ts", "./src/vue-shim.d.ts"],
-  "include": ["src"],
+  "include": ["src", "toDO/schedule.ts"],
   "compilerOptions": {
     // "rootDir": "./src",
     // esnext target doesn't seem to support some features for now.

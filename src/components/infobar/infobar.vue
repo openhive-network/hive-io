@@ -30,8 +30,6 @@
         </div>
       </div>
     </div>
-    <div v-if="state.setInterval && isReady">HiveFest is on!</div>
-    <div v-if="false">HiveFest is fast approaching!</div>
   </div>
 </template>
 

@@ -12,7 +12,7 @@
         !isButton && to && (to.includes('https://') || to.includes('mailto'))
       "
       class="navigation-item__link"
-      :class="{ 'navigation-item__link--dark': dark }"
+      :class="{'navigation-item__link--dark': dark}"
       :href="to"
       target="_blank"
       rel="nofollow noopener noreferrer"
@@ -24,8 +24,8 @@
       "
       class="navigation-item__link"
       rel="nofollow noopener noreferrer"
-      :class="{ 'navigation-item__link--dark': dark }"
-      :to="{ name: to }"
+      :class="{'navigation-item__link--dark': dark}"
+      :to="{name: to}"
     >
       {{ name }}
     </nuxt-link>
@@ -33,25 +33,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import {defineComponent} from '@vue/composition-api'
 import NavigationItem from '~/components/navigation/navigationItem.vue'
 export default defineComponent({
-  components: { NavigationItem },
+  components: {NavigationItem},
   props: {
     to: {
-      type: String
+      type: String,
     },
     name: {
-      type: String
+      type: String,
     },
     isButton: Boolean,
-    dark: Boolean
+    dark: Boolean,
   },
   methods: {
     go(to) {
       window.open(to, '_blank')
-    }
-  }
+    },
+  },
 })
 </script>
 

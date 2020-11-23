@@ -9,7 +9,7 @@ export default {
     fallbackLocale: 'en',
     messages: {
       en,
-      de
-    }
-  }
+      de,
+    },
+  },
 }

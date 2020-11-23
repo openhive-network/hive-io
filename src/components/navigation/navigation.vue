@@ -14,21 +14,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import {defineComponent} from '@vue/composition-api'
 import NavigationItem from '~/components/navigation/navigationItem.vue'
 export default defineComponent({
-  components: { NavigationItem },
+  components: {NavigationItem},
   props: {
     items: {
       type: Array,
-      default: () => [] as any[]
+      default: () => [] as any[],
     },
-    dark: Boolean
+    dark: Boolean,
   },
 
   setup() {
     return {}
-  }
+  },
 })
 </script>
 

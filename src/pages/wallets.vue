@@ -15,17 +15,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
-import { WALLETS } from '../helpers/var'
+import {defineComponent} from '@vue/composition-api'
+import {WALLETS} from '../helpers/var'
 import Logo from '~/components/logo/logo.vue'
 import App from '~/components/app/app.vue'
 
 export default defineComponent({
-  components: { Logo, App },
+  components: {Logo, App},
   props: {},
   setup() {
-    return { WALLETS }
-  }
+    return {WALLETS}
+  },
 })
 </script>
 

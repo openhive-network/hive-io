@@ -4,7 +4,7 @@ export interface IWallet {
   os: any[]
   image: string
   type: Type
-  website: { firefox?: string; chrome?: string; safari?: string } | string
+  website: {firefox?: string; chrome?: string; safari?: string} | string
   github?: string
   gitlab?: string
 }

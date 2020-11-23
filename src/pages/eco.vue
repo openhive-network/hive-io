@@ -26,18 +26,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
-import { ECOSYSTEM, STATISTIC_WEBSITES } from '../helpers/var'
+import {defineComponent} from '@vue/composition-api'
+import {ECOSYSTEM, STATISTIC_WEBSITES} from '../helpers/var'
 import Logo from '~/components/logo/logo.vue'
 import App from '~/components/app/app.vue'
 import StatWebsite from '~/components/statWebsite/statWebsite.vue'
 
 export default defineComponent({
-  components: { Logo, App, StatWebsite },
+  components: {Logo, App, StatWebsite},
   props: {},
   setup() {
-    return { ECOSYSTEM, STATISTIC_WEBSITES }
-  }
+    return {ECOSYSTEM, STATISTIC_WEBSITES}
+  },
 })
 </script>
 

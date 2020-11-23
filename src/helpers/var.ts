@@ -1,4 +1,4 @@
-import { IWallet, IEcoItem } from '~/types/index'
+import {IWallet, IEcoItem} from '~/types/index'
 
 /**
  *
@@ -9,48 +9,48 @@ import { IWallet, IEcoItem } from '~/types/index'
 const os = {
   web: {
     icon: ['fas', 'globe'],
-    name: 'Web'
+    name: 'Web',
   },
   windows: {
     icon: ['fab', 'windows'],
-    name: 'Windows'
+    name: 'Windows',
   },
   macos: {
     icon: ['fab', 'apple'],
-    name: 'macOS'
+    name: 'macOS',
   },
   ios: {
     icon: ['fab', 'app-store-ios'],
-    name: 'iOS'
+    name: 'iOS',
   },
   linux: {
     icon: ['fab', 'linux'],
-    name: 'Linux'
+    name: 'Linux',
   },
   android: {
     icon: ['fab', 'android'],
-    name: 'Android'
+    name: 'Android',
   },
   firefox: {
     icon: ['fab', 'firefox'],
-    name: 'Firefox'
+    name: 'Firefox',
   },
   safari: {
     icon: ['fab', 'safari'],
-    name: 'Safari'
+    name: 'Safari',
   },
   chrome: {
     icon: ['fab', 'chrome'],
-    name: 'Chrome'
+    name: 'Chrome',
   },
   brave: {
     icon: ['fab', 'brave'],
-    name: 'Brave'
+    name: 'Brave',
   },
   extension: {
     icon: ['fas', 'puzzle-piece'],
-    name: 'Extension'
-  }
+    name: 'Extension',
+  },
 }
 
 export const ECOSYSTEM: IEcoItem[] = [
@@ -60,7 +60,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'splinterlands.png',
     website: 'https://splinterlands.com',
-    type: 'game'
+    type: 'game',
   },
   {
     id: 'peakd',
@@ -68,7 +68,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'peakd.svg',
     website: 'https://peakd.com',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'hiveblog',
@@ -76,7 +76,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'blackhive.png',
     website: 'https://hive.blog',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'threespeak',
@@ -84,7 +84,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'threespeak.svg',
     website: 'https://3speak.online',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'cryptobrewmaster',
@@ -92,7 +92,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'cryptobrewmaster.png',
     website: 'https://www.cryptobrewmaster.io/',
-    type: 'game'
+    type: 'game',
   },
   {
     id: 'ecency',
@@ -100,7 +100,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'ecency.svg',
     website: 'https://ecency.com',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'rabona',
@@ -108,7 +108,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'rabona.png',
     website: 'https://rabona.io',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'dbuzz',
@@ -116,7 +116,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'dbuzz.png',
     website: 'https://d.buzz',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'stemsocial',
@@ -124,7 +124,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'stemsocial.png',
     website: 'https://stem.openhive.network',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'exxp',
@@ -132,7 +132,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'exxp.svg',
     website: 'https://exxp.io',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'actifit',
@@ -140,7 +140,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'actifit.png',
     website: 'https://actifit.io',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'dlease',
@@ -148,7 +148,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'dlease.png',
     website: 'https://dlease.io',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'engrave',
@@ -156,7 +156,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'engrave.png',
     website: 'https://dblog.org',
-    type: 'app'
+    type: 'app',
   },
 
   {
@@ -165,7 +165,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'fullalt.png',
     website: 'https://www.fullalt.com',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'lucksacks',
@@ -173,7 +173,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'lucksacks.png',
     website: 'https://lucksacks.com',
-    type: 'game'
+    type: 'game',
   },
   {
     id: 'leofinance',
@@ -181,7 +181,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'leofinance.png',
     website: 'https://leofinance.io',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'stemgeeks',
@@ -189,7 +189,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'stemgeeks.png',
     website: 'https://stemgeeks.net',
-    type: 'app'
+    type: 'app',
   },
   {
     id: 'dcity',
@@ -197,16 +197,16 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: '',
     image: 'dcity.png',
     website: 'https://dcity.io',
-    type: 'app'
-  }
+    type: 'app',
+  },
 ]
 
 export const BLOCKEXPLORERS = [
   {
     id: 'hiveblocks',
     name: 'HiveBlocks',
-    website: 'https://hiveblocks.com'
-  }
+    website: 'https://hiveblocks.com',
+  },
 ]
 
 export const WALLETS: IWallet[] = [
@@ -217,7 +217,7 @@ export const WALLETS: IWallet[] = [
     os: [os.windows, os.macos, os.linux],
     website: 'https://github.com/netuoso/vessel/releases',
     type: 'wallet',
-    github: 'https://github.com/netuoso/vessel'
+    github: 'https://github.com/netuoso/vessel',
   },
   {
     id: 'keychain',
@@ -227,7 +227,7 @@ export const WALLETS: IWallet[] = [
     website:
       'https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep',
     type: 'wallet',
-    github: 'https://github.com/stoodkev/hive-keychain'
+    github: 'https://github.com/stoodkev/hive-keychain',
   },
   {
     id: 'hivewallet',
@@ -236,7 +236,7 @@ export const WALLETS: IWallet[] = [
     os: [os.ios, os.android],
     website: 'https://hivewallet.app',
     type: 'wallet',
-    github: 'https://github.com/roelandp/hivewallet'
+    github: 'https://github.com/roelandp/hivewallet',
   },
   {
     id: 'ecency',
@@ -245,7 +245,7 @@ export const WALLETS: IWallet[] = [
     os: [os.windows, os.macos, os.linux, os.ios, os.android],
     website: 'https://ecency.com',
     type: 'wallet',
-    github: 'https://github.com/ecency'
+    github: 'https://github.com/ecency',
   },
   {
     id: 'hivesigner',
@@ -254,7 +254,7 @@ export const WALLETS: IWallet[] = [
     os: [os.web, os.windows, os.macos, os.linux, os.brave, os.chrome],
     website: 'https://hivesigner.com',
     type: 'wallet',
-    github: 'https://github.com/ledgerconnect/hivesigner'
+    github: 'https://github.com/ledgerconnect/hivesigner',
   },
   {
     id: 'actifit',
@@ -263,7 +263,7 @@ export const WALLETS: IWallet[] = [
     os: [os.web],
     website: 'https://actifit.io/wallet',
     type: 'wallet',
-    github: 'https://github.com/actifit/actifit-landingpage'
+    github: 'https://github.com/actifit/actifit-landingpage',
   },
   {
     id: 'peakd',
@@ -271,7 +271,7 @@ export const WALLETS: IWallet[] = [
     image: 'peakd.svg',
     os: [os.web],
     website: 'https://peakd.com',
-    type: 'wallet'
+    type: 'wallet',
   },
   {
     id: 'wallethiveblog',
@@ -279,8 +279,8 @@ export const WALLETS: IWallet[] = [
     image: 'blackhive.png',
     os: [os.web],
     website: 'https://wallet.hive.blog',
-    type: 'wallet'
-  }
+    type: 'wallet',
+  },
 ]
 
 export const EXCHANGES = [
@@ -288,122 +288,128 @@ export const EXCHANGES = [
     id: 'binance',
     name: 'Binance',
     website: 'https://www.binance.com/en/trade/HIVE_USDT',
-    image: 'binance.svg'
+    image: 'binance.svg',
   },
   {
     id: 'blocktrades',
     name: 'Blocktrades',
     website: 'https://www.blocktrades.us/en/trade?output_coin_type=hive',
-    image: 'blocktrades.svg'
+    image: 'blocktrades.svg',
+  },
+  {
+    id: 'beaxy',
+    name: 'Beaxy',
+    website: 'https://exchange.beaxy.com/?pair=HIVEBTC',
+    image: 'beaxy.png',
   },
   {
     id: 'bitsonic',
     name: 'BITSONIC',
     website: 'https://bitsonic.co.kr/front/en/exchange/hive-usdt',
-    image: 'bitsonic.svg'
+    image: 'bitsonic.svg',
   },
   {
     id: 'bittrex',
     name: 'Bittrex',
     website: 'https://global.bittrex.com/Market/Index?MarketName=USD-HIVE',
-    image: 'bittrex.svg'
+    image: 'bittrex.svg',
   },
   {
     id: 'coindcx',
     name: 'CoinDCX',
     website: 'https://coindcx.com/trade/HIVEUSDT',
-    image: 'coindcx.svg'
+    image: 'coindcx.svg',
   },
   {
     id: 'cryptex24',
     name: 'Cryptex24',
     website: 'https://www.cryptex24.io/trade/HIVE&USDT',
-    image: 'cryptex24.svg'
+    image: 'cryptex24.svg',
   },
   {
     id: 'gateio',
     name: 'gate.io',
     website: 'https://www.gate.io/trade/HIVE_USDT',
-    image: 'gateio.svg'
+    image: 'gateio.svg',
   },
   {
     id: 'hbtc',
     name: 'HBTC',
     website: 'https://www.hbtc.com/exchange/HIVE1/USDT',
-    image: 'hbtc.png'
+    image: 'hbtc.png',
   },
   {
     id: 'hiveengine',
     name: 'Hive Engine',
     website: 'https://hive-engine.com/?p=market&t=SWAP.HIVE',
-    image: 'hive-engine.png'
+    image: 'hive-engine.png',
   },
   {
     id: 'hotbit',
     name: 'HOTBIT',
     website: 'https://www.hotbit.io/exchange?symbol=HIVE_USDT',
-    image: 'hotbit.png'
+    image: 'hotbit.png',
   },
   {
     id: 'huobi',
     name: 'Huobi',
     website: 'https://www.huobi.com/en-us/exchange/hive_usdt/',
-    image: 'huobi.svg'
+    image: 'huobi.svg',
   },
   {
     id: 'ionomy',
     name: 'Ionomy',
     website: 'https://ionomy.com/en/markets/btc-hive',
-    image: 'ionomy.png'
+    image: 'ionomy.png',
   },
   {
     id: 'mxc',
     name: 'MXC',
     website: 'https://www.mxc.com/trade/easy#HIVE_USDT',
-    image: 'mxc.png'
+    image: 'mxc.png',
   },
   {
     id: 'probit',
     name: 'ProBit',
     website: 'https://www.probit.com/app/exchange/HIVE-USDT',
-    image: 'probit_white.png'
+    image: 'probit_white.png',
   },
   {
     id: 'sequoir',
     name: 'Sequoir',
     website: 'https://app.sequoir.com/assets/hive',
-    image: 'sequoir.svg'
+    image: 'sequoir.svg',
   },
   {
     id: 'steemengine',
     name: 'Steem Engine',
     website: 'https://steem-engine.com/?p=market&t=HIVEP',
-    image: 'steem-engine.svg'
+    image: 'steem-engine.svg',
   },
   {
     id: 'swapspace',
     name: 'SwapSpace',
     website: 'https://swapspace.co/?from=btc&to=hive&amount=0.1',
-    image: 'swapspace.svg'
+    image: 'swapspace.svg',
   },
   {
     id: 'swapzone',
     name: 'Swapzone',
     website: 'https://swapzone.io/?to=hive',
-    image: 'swapzone.svg'
+    image: 'swapzone.svg',
   },
   {
     id: 'upbit',
     name: 'UPbit',
     website: 'https://upbit.com/exchange?code=CRIX.UPBIT.BTC-HIVE',
-    image: 'upbit.svg'
+    image: 'upbit.svg',
   },
   {
     id: 'wazirx',
     name: 'WazirX',
     website: 'https://wazirx.com/exchange/HIVE-USDT',
-    image: 'wazirx.png'
-  }
+    image: 'wazirx.png',
+  },
 ]
 
 export const STATISTIC_WEBSITES = [
@@ -411,25 +417,25 @@ export const STATISTIC_WEBSITES = [
     id: 'dapp-com',
     name: 'Dapp.com',
     website: 'https://dapp.com/dapps/hive',
-    image: 'dapp-com.png'
+    image: 'dapp-com.png',
   },
   {
     id: 'stateofthedapps',
     name: 'State of the Dapps',
     website: 'https://stateofthedapps.com/rankings',
-    image: 'stateofthedapps.svg'
+    image: 'stateofthedapps.svg',
   },
 
   {
     id: 'dapp-review',
     name: 'Dapp Review',
     website: 'https://dapp.review/explore/hive',
-    image: 'dapp-review.svg'
+    image: 'dapp-review.svg',
   },
   {
     id: 'hivedapps-com',
     name: 'HiveDapps',
     website: 'https://hivedapps.com',
-    image: 'hivedapps-com.svg'
-  }
+    image: 'hivedapps-com.svg',
+  },
 ]

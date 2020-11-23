@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueTippy, { TippyComponent } from 'vue-tippy'
+import VueTippy, {TippyComponent} from 'vue-tippy'
 
 // Add additional themes.
 /* import 'tippy.js/themes/light.css'
@@ -12,9 +12,9 @@ Vue.use(VueTippy, {
   popperOptions: {
     modifiers: {
       preventOverflow: {
-        enabled: true
-      }
-    }
-  }
+        enabled: true,
+      },
+    },
+  },
 })
 Vue.component('tippy', TippyComponent)

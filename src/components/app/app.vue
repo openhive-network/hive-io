@@ -5,7 +5,7 @@
       target="_blank"
       rel="nofollow noopener noreferrer"
       class="app__inner"
-      :class="{ 'app__inner--hover': hover }"
+      :class="{'app__inner--hover': hover}"
       @mouseenter="hover = true"
       @mouseleave="hover = false"
     >
@@ -19,7 +19,7 @@
       target="_blank"
       rel="nofollow noopener noreferrer"
       class="app__name"
-      :class="{ 'app__name--hover': hover }"
+      :class="{'app__name--hover': hover}"
       @mouseenter="hover = true"
       @mouseleave="hover = false"
       >{{ item.name
@@ -55,18 +55,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
+import {defineComponent, ref} from '@vue/composition-api'
 import Icon from '~/components/icon/icon.vue'
 import {} from '../../types'
 export default defineComponent({
   components: {
-    Icon
+    Icon,
   },
   props: {
     item: {
       type: Object,
-      default: true
-    }
+      default: true,
+    },
   },
 
   setup(_props) {
@@ -78,8 +78,8 @@ export default defineComponent({
         return ''
       }
     }
-    return { getImage, hover }
-  }
+    return {getImage, hover}
+  },
 })
 </script>
 

@@ -7,7 +7,7 @@
   >
     <div v-if="!isReady" class="infobar__countdown">
       <div class="infobar__countdown__preText">
-        AltSpaceVR<span class="infobar__countdown__preText--desktopOnly">
+        <span class="infobar__countdown__preText--desktopOnly">
           HiveFest</span
         >
         in

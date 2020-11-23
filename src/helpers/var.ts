@@ -292,6 +292,12 @@ export const WALLETS: IWallet[] = [
 ]
 
 export const EXCHANGES = [
+    {
+    id: 'beaxy',
+    name: 'Beaxy',
+    website: 'https://exchange.beaxy.com/?pair=HIVEBTC',
+    image: 'beaxy.png'
+  },
   {
     id: 'binance',
     name: 'Binance',
@@ -411,12 +417,6 @@ export const EXCHANGES = [
     name: 'WazirX',
     website: 'https://wazirx.com/exchange/HIVE-USDT',
     image: 'wazirx.png'
-  },
-  {
-    id: 'beaxy',
-    name: 'Beaxy',
-    website: 'https://exchange.beaxy.com/?pair=HIVEBTC',
-    image: 'beaxy.png'
   }
 ]
 

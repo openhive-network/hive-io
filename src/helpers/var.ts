@@ -292,12 +292,6 @@ export const WALLETS: IWallet[] = [
 ]
 
 export const EXCHANGES = [
-    {
-    id: 'beaxy',
-    name: 'Beaxy',
-    website: 'https://exchange.beaxy.com/?pair=HIVEBTC',
-    image: 'beaxy.png'
-  },
   {
     id: 'binance',
     name: 'Binance',
@@ -309,6 +303,12 @@ export const EXCHANGES = [
     name: 'Blocktrades',
     website: 'https://www.blocktrades.us/en/trade?output_coin_type=hive',
     image: 'blocktrades.svg'
+  },
+  {
+    id: 'beaxy',
+    name: 'Beaxy',
+    website: 'https://exchange.beaxy.com/?pair=HIVEBTC',
+    image: 'beaxy.png'
   },
   {
     id: 'bitsonic',

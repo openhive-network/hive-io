@@ -15,22 +15,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import {defineComponent} from '@vue/composition-api'
 import Logo from '~/components/logo/logo.vue'
 import FooterNavigation from '~/components/footer/footerNavigation.vue'
 
 export default defineComponent({
-  components: { Logo, FooterNavigation },
+  components: {Logo, FooterNavigation},
   props: {
     items: {
       type: Array,
-      default: () => [] as any[]
-    }
+      default: () => [] as any[],
+    },
   },
 
   setup() {
     return {}
-  }
+  },
 })
 </script>
 

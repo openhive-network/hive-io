@@ -26,22 +26,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import {defineComponent} from '@vue/composition-api'
 export default defineComponent({
   props: {
     full: {
       type: Boolean,
-      default: true
+      default: true,
     },
     dark: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   setup() {
     return {}
-  }
+  },
 })
 </script>
 

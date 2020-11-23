@@ -4,46 +4,46 @@
       placement: 'bottom',
       arrow: true,
       content: tooltip,
-      trigger: tooltip ? 'mouseenter focus' : 'manual'
+      trigger: tooltip ? 'mouseenter focus' : 'manual',
     }"
     :href="link"
     target="_blank"
     rel="nofollow noopener noreferrer"
     class="icon"
-    :style="{ height: `${height}px` }"
+    :style="{height: `${height}px`}"
   >
     <fa-icon
       class="icon__icon"
       full-width
       :icon="icon"
-      :style="{ height: `${height}px` }"
+      :style="{height: `${height}px`}"
     />
   </a>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import {defineComponent} from '@vue/composition-api'
 export default defineComponent({
   props: {
     icon: {
       type: Array,
-      default: () => [] as any[]
+      default: () => [] as any[],
     },
     link: String,
     height: {
       type: Number,
-      default: 30
+      default: 30,
     },
     width: {
       type: Number,
-      default: 30
+      default: 30,
     },
-    tooltip: String
+    tooltip: String,
   },
 
   setup() {
     return {}
-  }
+  },
 })
 </script>
 

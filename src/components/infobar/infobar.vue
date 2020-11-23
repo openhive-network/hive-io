@@ -2,14 +2,12 @@
   <div
     v-if="state.setInterval"
     class="infobar"
-    :class="{ 'infobar--active': isReady }"
+    :class="{'infobar--active': isReady}"
     @click="go()"
   >
     <div v-if="!isReady" class="infobar__countdown">
       <div class="infobar__countdown__preText">
-        HF24<span class="infobar__countdown__preText--desktopOnly">
-          "Eclipse"</span
-        >
+        <span class="infobar__countdown__preText--desktopOnly"> HiveFest</span>
         in
       </div>
       <div class="infobar__countdown__numbers">
@@ -30,8 +28,6 @@
         </div>
       </div>
     </div>
-    <div v-if="state.setInterval && isReady">#HiveIsAlive!</div>
-    <div v-if="false">HF24 "Eclipse" coming soon!</div>
   </div>
 </template>
 
@@ -41,7 +37,7 @@ import {
   reactive,
   onBeforeUnmount,
   computed,
-  onMounted
+  onMounted,
 } from '@vue/composition-api'
 import moment from 'moment'
 
@@ -55,7 +51,7 @@ export default defineComponent({
       m: '00',
       s: '00',
       interval: null as any,
-      setInterval: false
+      setInterval: false,
     })
 
     const setCountdown = () => {
@@ -113,8 +109,8 @@ export default defineComponent({
       window.open('https://hive.blog', '_blank') */
     }
 
-    return { state, isReady, countdown, go }
-  }
+    return {state, isReady, countdown, go}
+  },
 })
 </script>
 

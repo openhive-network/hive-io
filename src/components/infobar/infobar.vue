@@ -28,6 +28,7 @@
         </div>
       </div>
     </div>
+    <div v-if="state.setInterval && isReady">HiveFest is here!</div>
   </div>
 </template>
 
@@ -55,7 +56,7 @@ export default defineComponent({
     })
 
     const setCountdown = () => {
-      const then = moment.utc('2020-10-14T14:00:00+00:00').valueOf()
+      const then = moment.utc('2020-12-18T12:00:00+00:00').valueOf()
       const now = moment.utc().valueOf()
       if (then - now < 0) {
         clearInterval(state.interval)
@@ -98,8 +99,7 @@ export default defineComponent({
     })
 
     const go = () => {
-      const link =
-        'https://peakd.com/hiveblockchain/@hiveio/has-the-eclipse-happened-explaining-how-hive-hardforks-work-and-activating-hf24-on-october-14th'
+      const link = 'https://https://hivefe.st/'
       window.open(link, '_blank')
       /* if (!isReady.value) {
 

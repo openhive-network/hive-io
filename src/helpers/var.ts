@@ -1,10 +1,192 @@
 import {IWallet, IEcoItem} from '~/types/index'
 
+export const INFOBAR = {
+  show: true,
+  date: '2020-12-18T12:00:00+00:00',
+  url: 'https://hivefe.st',
+  // If empty, only url is used
+  urlReady: '',
+  // Should timer be hidden when date is reached?
+  hideWhenReady: false,
+  // Shown when timer is NOT reacher
+  title: 'HiveFest in',
+  // titleDesktopOnly is displayed BEFORE the title ONLY on desktop and hidden on mobile
+  titleDesktopOnly: '',
+
+  // Shown when date is reached
+  titleReady: 'HiveFest is happening!',
+
+  // Show when route is active
+  routes: ['index'],
+}
+
 /**
- *
- * (
-          typeof item.website !== 'string' ? item.website : []
-        )
+ * Header Navigation
+ */
+export const NAVIGATION_HEADER = [
+  {
+    to: 'about',
+    name: 'About',
+  },
+  {
+    to: 'eco',
+    name: 'Ecosystem',
+  },
+  {
+    to: 'wallets',
+    name: 'Wallets',
+  },
+  {
+    to: 'https://developers.hive.io',
+    name: 'Developer',
+  },
+  {
+    to: 'https://signup.hive.io',
+    name: 'Join',
+    isButton: true,
+  },
+]
+
+/**
+ * Footer Navigation
+ * Each array is a group
+ */
+export const NAVIGATION_FOOTER = [
+  [
+    {
+      to: 'about',
+      name: 'About',
+    },
+    {
+      to: 'https://signup.hive.io',
+      name: 'Create Account',
+    },
+    {
+      to: 'brand',
+      name: 'Brand Assets',
+    },
+    {
+      to: 'https://hive.blog/@hiveio',
+      name: 'Blog',
+    },
+
+    /* {
+      to: 'https://hive.wiki',
+      name: 'Wiki'
+    }, */
+    {
+      to: 'mailto:info@hive.io',
+      name: 'Contact',
+    },
+    /* {
+      to: 'contributors',
+      name: 'Contributors'
+    } */
+  ],
+  [
+    {
+      to: 'eco',
+      name: 'Ecosystem',
+    },
+    {
+      to: 'https://hiveblocks.com',
+      name: 'Blockexplorer',
+    },
+    {
+      to: 'https://hiveprojects.io',
+      name: 'Projects',
+    },
+    /* {
+      to: 'eco',
+      name: 'dApps Statistics'
+    }, */
+    {
+      to: 'https://hivekings.com/witnesses',
+      name: 'Governance',
+    },
+  ],
+  [
+    {
+      to: 'wallets',
+      name: 'Wallets',
+    },
+  ],
+  [
+    {
+      to: 'developer',
+      name: 'Developer',
+    },
+    {
+      to: 'https://developers.hive.io',
+      name: 'Documentation',
+    },
+    {
+      to: 'https://hive.io/whitepaper.pdf',
+      name: 'Whitepaper',
+    },
+    {
+      to: 'https://github.com/openhive-network/hive',
+      name: 'GitHub',
+    },
+    {
+      to: 'https://gitlab.hive.io',
+      name: 'GitLab',
+    },
+  ],
+]
+
+/**
+ * Social Media Profiles of Hive
+ */
+export const SOCIAL_MEDIAS = [
+  {
+    icon: 'hive',
+    link: 'https://hive.blog/@hiveio',
+  },
+  {
+    icon: 'github',
+    link: 'https://github.com/openhive-network/hive',
+  },
+  {
+    icon: 'gitlab',
+    link: 'https://gitlab.hive.io',
+  },
+  {
+    icon: 'twitter',
+    link: 'https://twitter.com/hiveblocks',
+  },
+  {
+    icon: 'youtube',
+    link: 'https://www.youtube.com/channel/UCwM89V7NzVIHizgWT3GxhwA',
+  },
+  {
+    icon: 'medium',
+    link: 'https://medium.com/@hiveblocks',
+  },
+  {
+    icon: 'telegram',
+    link: 'https://t.me/hiveblockchain',
+  },
+  {
+    icon: 'reddit',
+    link: 'https://reddit.com/r/hivenetwork',
+  },
+  {
+    icon: 'discord',
+    link: 'https://myhive.li/discord',
+  },
+  {
+    icon: 'facebook',
+    link: 'https://www.facebook.com/hiveblocks/',
+  },
+  {
+    icon: 'quora',
+    link: 'https://www.quora.com/q/hive',
+  },
+]
+
+/**
+ * Different OS Platforms
  */
 const os = {
   web: {
@@ -53,6 +235,9 @@ const os = {
   },
 }
 
+/**
+ * Hive Ecosystem
+ */
 export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'splinterlands',
@@ -201,6 +386,9 @@ export const ECOSYSTEM: IEcoItem[] = [
   },
 ]
 
+/**
+ * Hive Blockchain Explorers
+ */
 export const BLOCKEXPLORERS = [
   {
     id: 'hiveblocks',
@@ -209,6 +397,9 @@ export const BLOCKEXPLORERS = [
   },
 ]
 
+/**
+ * Hive Wallets
+ */
 export const WALLETS: IWallet[] = [
   {
     id: 'vessel',
@@ -283,6 +474,9 @@ export const WALLETS: IWallet[] = [
   },
 ]
 
+/**
+ * Exchanges where Hive is listed on
+ */
 export const EXCHANGES = [
   {
     id: 'binance',
@@ -412,6 +606,9 @@ export const EXCHANGES = [
   },
 ]
 
+/**
+ * Dapp Statistic Websites where Hive is listed on (is randomized each visit)
+ */
 export const STATISTIC_WEBSITES = [
   {
     id: 'dapp-com',

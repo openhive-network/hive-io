@@ -99,7 +99,7 @@ export default defineComponent({
     })
 
     const go = () => {
-      const link = 'https://https://hivefe.st/'
+      const link = 'https://hivefe.st/'
       window.open(link, '_blank')
       /* if (!isReady.value) {
 

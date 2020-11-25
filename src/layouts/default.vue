@@ -1,7 +1,7 @@
 <template>
   <div class="layout layout--default">
     <Header class="layout__header" :items="headerNavigation" />
-    <Infobar v-if="$route.name === 'index'" />
+    <Infobar v-if="showInfobar" />
     <nuxt class="layout__main" />
     <div class="layout__socials">
       <SocialIcon
@@ -30,6 +30,13 @@ import {
   onMounted,
   ref,
 } from '@vue/composition-api'
+
+import {
+  NAVIGATION_HEADER,
+  NAVIGATION_FOOTER,
+  SOCIAL_MEDIAS,
+  INFOBAR,
+} from '../helpers/var'
 import Infobar from '~/components/infobar/infobar.vue'
 import Header from '~/components/header/header.vue'
 import Footer from '~/components/footer/footer.vue'
@@ -39,162 +46,19 @@ export default defineComponent({
   components: {Header, Footer, Infobar, SocialIcon},
   props: {},
   setup(_props, {root}) {
-    const headerNavigation = ref([
-      {
-        to: 'about',
-        name: 'About',
-      },
-      {
-        to: 'eco',
-        name: 'Ecosystem',
-      },
-      {
-        to: 'wallets',
-        name: 'Wallets',
-      },
-      {
-        to: 'https://developers.hive.io',
-        name: 'Developer',
-      },
-      {
-        to: 'https://signup.hive.io',
-        name: 'Join',
-        isButton: true,
-      },
-    ])
-
-    const footerNavigation = ref([
-      [
-        {
-          to: 'about',
-          name: 'About',
-        },
-        {
-          to: 'https://signup.hive.io',
-          name: 'Create Account',
-        },
-        {
-          to: 'brand',
-          name: 'Brand Assets',
-        },
-        {
-          to: 'https://hive.blog/@hiveio',
-          name: 'Blog',
-        },
-
-        /* {
-          to: 'https://hive.wiki',
-          name: 'Wiki'
-        }, */
-        {
-          to: 'mailto:info@hive.io',
-          name: 'Contact',
-        },
-        /* {
-          to: 'contributors',
-          name: 'Contributors'
-        } */
-      ],
-      [
-        {
-          to: 'eco',
-          name: 'Ecosystem',
-        },
-        {
-          to: 'https://hiveblocks.com',
-          name: 'Blockexplorer',
-        },
-        {
-          to: 'https://hiveprojects.io',
-          name: 'Projects',
-        },
-        /* {
-          to: 'eco',
-          name: 'dApps Statistics'
-        }, */
-        {
-          to: 'https://hivekings.com/witnesses',
-          name: 'Governance',
-        },
-      ],
-      [
-        {
-          to: 'wallets',
-          name: 'Wallets',
-        },
-      ],
-      [
-        {
-          to: 'developer',
-          name: 'Developer',
-        },
-        {
-          to: 'https://developers.hive.io',
-          name: 'Documentation',
-        },
-        {
-          to: 'https://hive.io/whitepaper.pdf',
-          name: 'Whitepaper',
-        },
-        {
-          to: 'https://github.com/openhive-network/hive',
-          name: 'GitHub',
-        },
-        {
-          to: 'https://gitlab.hive.io',
-          name: 'GitLab',
-        },
-      ],
-    ])
-
-    const socials = ref([
-      {
-        icon: 'hive',
-        link: 'https://hive.blog/@hiveio',
-      },
-      {
-        icon: 'github',
-        link: 'https://github.com/openhive-network/hive',
-      },
-      {
-        icon: 'gitlab',
-        link: 'https://gitlab.hive.io',
-      },
-      {
-        icon: 'twitter',
-        link: 'https://twitter.com/hiveblocks',
-      },
-      {
-        icon: 'youtube',
-        link: 'https://www.youtube.com/channel/UCwM89V7NzVIHizgWT3GxhwA',
-      },
-      {
-        icon: 'medium',
-        link: 'https://medium.com/@hiveblocks',
-      },
-      {
-        icon: 'telegram',
-        link: 'https://t.me/hiveblockchain',
-      },
-      {
-        icon: 'reddit',
-        link: 'https://reddit.com/r/hivenetwork',
-      },
-      {
-        icon: 'discord',
-        link: 'https://myhive.li/discord',
-      },
-      {
-        icon: 'facebook',
-        link: 'https://www.facebook.com/hiveblocks/',
-      },
-      {
-        icon: 'quora',
-        link: 'https://www.quora.com/q/hive',
-      },
-    ])
+    const headerNavigation = ref(NAVIGATION_HEADER)
+    const footerNavigation = ref(NAVIGATION_FOOTER)
+    const socials = ref(SOCIAL_MEDIAS)
+    const infobar = ref(INFOBAR)
 
     const preventScroll = computed(() => root.$accessor.preventScroll)
+    const showInfobar = computed(
+      () =>
+        INFOBAR.show &&
+        INFOBAR.routes.includes(String(root.$route.name)) &&
+        root.$route.name,
+    )
+
     onMounted(() => {
       watch(
         () => preventScroll,
@@ -217,6 +81,8 @@ export default defineComponent({
       headerNavigation,
       footerNavigation,
       socials,
+      infobar,
+      showInfobar,
     }
   },
 })

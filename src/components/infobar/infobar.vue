@@ -1,14 +1,20 @@
 <template>
   <div
-    v-if="state.setInterval"
+    v-if="
+      state.setInterval && (!isReady || (isReady && !infobar.hideWhenReady))
+    "
     class="infobar"
     :class="{'infobar--active': isReady}"
     @click="go()"
   >
     <div v-if="!isReady" class="infobar__countdown">
       <div class="infobar__countdown__preText">
-        <span class="infobar__countdown__preText--desktopOnly"> HiveFest</span>
-        in
+        <span
+          v-if="infobar.titleDesktopOnly"
+          class="infobar__countdown__preText--desktopOnly"
+          >{{ infobar.titleDesktopOnly }}</span
+        >
+        {{ infobar.title }}
       </div>
       <div class="infobar__countdown__numbers">
         <div class="infobar__countdown__d">
@@ -28,7 +34,9 @@
         </div>
       </div>
     </div>
-    <div v-if="state.setInterval && isReady">HiveFest is here!</div>
+    <div v-if="state.setInterval && isReady">
+      {{ infobar.titleReady }}
+    </div>
   </div>
 </template>
 
@@ -38,9 +46,11 @@ import {
   reactive,
   onBeforeUnmount,
   computed,
+  ref,
   onMounted,
 } from '@vue/composition-api'
 import moment from 'moment'
+import {INFOBAR} from '../../helpers/var'
 
 export default defineComponent({
   props: {},
@@ -55,8 +65,10 @@ export default defineComponent({
       setInterval: false,
     })
 
+    const infobar = ref(INFOBAR)
+
     const setCountdown = () => {
-      const then = moment.utc('2020-12-18T12:00:00+00:00').valueOf()
+      const then = moment.utc(INFOBAR.date).valueOf()
       const now = moment.utc().valueOf()
       if (then - now < 0) {
         clearInterval(state.interval)
@@ -99,17 +111,14 @@ export default defineComponent({
     })
 
     const go = () => {
-      const link = 'https://hivefe.st/'
-      window.open(link, '_blank')
-      /* if (!isReady.value) {
-
+      if (INFOBAR.urlReady && isReady.value) {
+        window.open(INFOBAR.urlReady, '_blank')
       } else {
-
+        window.open(INFOBAR.url, '_blank')
       }
-      window.open('https://hive.blog', '_blank') */
     }
 
-    return {state, isReady, countdown, go}
+    return {state, isReady, countdown, go, infobar}
   },
 })
 </script>

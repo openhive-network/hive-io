@@ -2,7 +2,7 @@ import {IWallet, IEcoItem} from '~/types/index'
 
 export const INFOBAR = {
   show: true,
-  date: '2020-12-18T12:00:00+00:00',
+  date: '2020-12-18T15:30:00+00:00',
   url: 'https://hivefe.st',
   // If empty, only url is used
   urlReady: '',
@@ -89,21 +89,25 @@ export const NAVIGATION_FOOTER = [
       name: 'Ecosystem',
     },
     {
+      to: 'https://hive.ausbit.dev/hbd',
+      name: 'Hive Dollar (HBD)',
+    },
+    {
       to: 'https://hiveblocks.com',
-      name: 'Blockexplorer',
+      name: 'Block Explorer',
     },
     {
       to: 'https://hiveprojects.io',
       name: 'Projects',
     },
-    /* {
-      to: 'eco',
-      name: 'dApps Statistics'
-    }, */
     {
       to: 'https://hivekings.com/witnesses',
       name: 'Governance',
     },
+    /* {
+      to: 'eco',
+      name: 'dApps Statistics'
+    }, */
   ],
   [
     {

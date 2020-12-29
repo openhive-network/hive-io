@@ -1,7 +1,7 @@
 import {IWallet, IEcoItem} from '~/types/index'
 
 export const INFOBAR = {
-  show: true,
+  show: false,
   date: '2020-12-18T15:30:00+00:00',
   url: 'https://hivefe.st',
   // If empty, only url is used

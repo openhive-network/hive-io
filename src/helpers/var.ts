@@ -272,7 +272,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     name: '3Speak',
     description: '',
     image: 'threespeak.svg',
-    website: 'https://3speak.online',
+    website: 'https://3speak.co',
     type: 'app',
   },
   {

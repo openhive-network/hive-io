@@ -420,6 +420,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://www.vimm.tv/',
     type: 'app',
   },
+  {
+    id: 'dlux',
+    name: 'DLux',
+    description: '',
+    image: 'dlux.png',
+    website: 'https://www.dlux.io/',
+    type: 'app',
+  },
 ]
 
 /**

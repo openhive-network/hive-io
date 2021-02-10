@@ -396,6 +396,30 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://nftshowroom.com',
     type: 'app',
   },
+  {
+    id: 'risingstar',
+    name: 'Rising Star',
+    description: '',
+    image: 'risingstar.png',
+    website: 'https://www.risingstargame.com/',
+    type: 'game',
+  },
+  {
+    id: 'nftmart',
+    name: 'NFTMart',
+    description: '',
+    image: 'nftmart.png',
+    website: 'https://www.nftm.art/',
+    type: 'app',
+  },
+  {
+    id: 'vimm',
+    name: 'Vimm',
+    description: '',
+    image: 'vimm.png',
+    website: 'https://www.vimm.tv/',
+    type: 'app',
+  },
 ]
 
 /**

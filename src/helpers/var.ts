@@ -308,6 +308,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     type: 'app',
   },
   {
+    id: 'travelfeed',
+    name: 'TravelFeed',
+    description: '',
+    image: 'travelfeed.png',
+    website: 'https://travelfeed.io',
+    type: 'app',
+  },
+  {
     id: 'stemsocial',
     name: 'STEMsocial',
     description: '',

@@ -424,7 +424,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'dlux',
     name: 'DLux',
     description: '',
-    image: 'dlux.png',
+    image: 'dlux.svg',
     website: 'https://www.dlux.io/',
     type: 'app',
   },

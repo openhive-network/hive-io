@@ -1,4 +1,4 @@
-import {IWallet, IEcoItem} from '~/types/index'
+import { IWallet, IEcoItem } from '~/types/index'
 
 export const INFOBAR = {
   show: false,
@@ -463,16 +463,6 @@ export const WALLETS: IWallet[] = [
     github: 'https://github.com/netuoso/vessel',
   },
   {
-    id: 'keychain',
-    name: 'Keychain',
-    image: 'keychain.svg',
-    os: [os.brave, os.chrome, os.firefox],
-    website:
-      'https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep',
-    type: 'wallet',
-    github: 'https://github.com/stoodkev/hive-keychain',
-  },
-  {
     id: 'hivewallet',
     name: 'HiveWallet',
     image: 'hivewallet.png',
@@ -491,13 +481,22 @@ export const WALLETS: IWallet[] = [
     github: 'https://github.com/ecency',
   },
   {
-    id: 'hivesigner',
-    name: 'HiveSigner',
-    image: 'hivesigner.svg',
-    os: [os.web, os.windows, os.macos, os.linux, os.brave, os.chrome],
-    website: 'https://hivesigner.com',
+    id: 'keychain',
+    name: 'Keychain',
+    image: 'keychain.svg',
+    os: [os.brave, os.chrome, os.firefox],
+    website:
+      'https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep',
     type: 'wallet',
-    github: 'https://github.com/ledgerconnect/hivesigner',
+    github: 'https://github.com/stoodkev/hive-keychain',
+  },
+  {
+    id: 'leofinance',
+    name: 'LeoFinance',
+    image: 'leofinance.png',
+    os: [os.web],
+    website: 'https://leofinance.io',
+    type: 'wallet',
   },
   {
     id: 'actifit',

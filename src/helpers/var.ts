@@ -484,9 +484,9 @@ export const WALLETS: IWallet[] = [
     id: 'keychain',
     name: 'Keychain',
     image: 'keychain.svg',
-    os: [os.brave, os.chrome, os.firefox],
+    os: [os.brave, os.chrome, os.firefox, os.ios, os.android],
     website:
-      'https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep',
+      'https://hive-keychain.com',
     type: 'wallet',
     github: 'https://github.com/stoodkev/hive-keychain',
   },

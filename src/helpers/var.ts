@@ -315,14 +315,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://travelfeed.io',
     type: 'app',
   },
-  {
-    id: 'stemsocial',
-    name: 'STEMsocial',
-    description: '',
-    image: 'stemsocial.png',
-    website: 'https://stem.openhive.network',
-    type: 'app',
-  },
+  // {
+  //   id: 'stemsocial',
+  //   name: 'STEMsocial',
+  //   description: '',
+  //   image: 'stemsocial.png',
+  //   website: 'https://stem.openhive.network',
+  //   type: 'app',
+  // },
   {
     id: 'exxp',
     name: 'Exxp',

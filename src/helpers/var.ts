@@ -1,4 +1,4 @@
-import {IWallet, IEcoItem} from '~/types/index'
+import { IWallet, IEcoItem } from '~/types/index'
 
 export const INFOBAR = {
   show: false,
@@ -272,7 +272,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     name: '3Speak',
     description: '',
     image: 'threespeak.svg',
-    website: 'https://3speak.online',
+    website: 'https://3speak.co',
     type: 'app',
   },
   {
@@ -308,13 +308,21 @@ export const ECOSYSTEM: IEcoItem[] = [
     type: 'app',
   },
   {
-    id: 'stemsocial',
-    name: 'STEMsocial',
+    id: 'travelfeed',
+    name: 'TravelFeed',
     description: '',
-    image: 'stemsocial.png',
-    website: 'https://stem.openhive.network',
+    image: 'travelfeed.png',
+    website: 'https://travelfeed.io',
     type: 'app',
   },
+  // {
+  //   id: 'stemsocial',
+  //   name: 'STEMsocial',
+  //   description: '',
+  //   image: 'stemsocial.png',
+  //   website: 'https://stem.openhive.network',
+  //   type: 'app',
+  // },
   {
     id: 'exxp',
     name: 'Exxp',
@@ -388,6 +396,46 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://dcity.io',
     type: 'app',
   },
+  {
+    id: 'nftshowroom',
+    name: 'NFTShowroom',
+    description: '',
+    image: 'nftshowroom.png',
+    website: 'https://nftshowroom.com',
+    type: 'app',
+  },
+  {
+    id: 'risingstar',
+    name: 'Rising Star',
+    description: '',
+    image: 'risingstar.png',
+    website: 'https://www.risingstargame.com/',
+    type: 'game',
+  },
+  {
+    id: 'nftmart',
+    name: 'NFTMart',
+    description: '',
+    image: 'nftmart.png',
+    website: 'https://www.nftm.art/',
+    type: 'app',
+  },
+  {
+    id: 'vimm',
+    name: 'Vimm',
+    description: '',
+    image: 'vimm.png',
+    website: 'https://www.vimm.tv/',
+    type: 'app',
+  },
+  {
+    id: 'dlux',
+    name: 'DLux',
+    description: '',
+    image: 'dlux.svg',
+    website: 'https://www.dlux.io/',
+    type: 'app',
+  },
 ]
 
 /**
@@ -415,16 +463,6 @@ export const WALLETS: IWallet[] = [
     github: 'https://github.com/netuoso/vessel',
   },
   {
-    id: 'keychain',
-    name: 'Keychain',
-    image: 'keychain.svg',
-    os: [os.brave, os.chrome, os.firefox],
-    website:
-      'https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep',
-    type: 'wallet',
-    github: 'https://github.com/stoodkev/hive-keychain',
-  },
-  {
     id: 'hivewallet',
     name: 'HiveWallet',
     image: 'hivewallet.png',
@@ -443,13 +481,22 @@ export const WALLETS: IWallet[] = [
     github: 'https://github.com/ecency',
   },
   {
-    id: 'hivesigner',
-    name: 'HiveSigner',
-    image: 'hivesigner.svg',
-    os: [os.web, os.windows, os.macos, os.linux, os.brave, os.chrome],
-    website: 'https://hivesigner.com',
+    id: 'keychain',
+    name: 'Keychain',
+    image: 'keychain.svg',
+    os: [os.brave, os.chrome, os.firefox, os.ios, os.android],
+    website:
+      'https://hive-keychain.com',
     type: 'wallet',
-    github: 'https://github.com/ledgerconnect/hivesigner',
+    github: 'https://github.com/stoodkev/hive-keychain',
+  },
+  {
+    id: 'leofinance',
+    name: 'LeoFinance',
+    image: 'leofinance.png',
+    os: [os.web],
+    website: 'https://leofinance.io',
+    type: 'wallet',
   },
   {
     id: 'actifit',

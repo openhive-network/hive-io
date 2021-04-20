@@ -5,6 +5,7 @@ require('dotenv').config()
 const isDev = process.env.NODE_ENV !== 'production'
 const env = {
   GA_ID: process.env.GA_ID || 'UA-000000-1',
+  GTM_ID: process.env.GTM_ID || 'GTM-0000000',
 }
 export default {
   modern: !isDev,
@@ -112,6 +113,7 @@ export default {
         },
       },
     ],
+    '@nuxtjs/gtm',
   ],
   /*
    ** Axios module configuration
@@ -121,6 +123,9 @@ export default {
     debug: isDev,
     retry: {retries: 3},
     withCredentials: true,
+  },
+  gtm: {
+    id: env.GTM_ID,
   },
   /*
    ** Build configuration

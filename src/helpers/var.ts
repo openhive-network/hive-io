@@ -315,6 +315,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://travelfeed.io',
     type: 'app',
   },
+  {
+    id: 'truvvl',
+    name: 'truvvl',
+    description: '',
+    image: 'truvvl.svg',
+    website: 'https://truvvl.com',
+    type: 'app',
+  },
   // {
   //   id: 'stemsocial',
   //   name: 'STEMsocial',

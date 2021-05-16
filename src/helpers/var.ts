@@ -636,7 +636,7 @@ export const EXCHANGES = [
   {
     id: 'steemengine',
     name: 'Steem Engine',
-    website: 'https://steem-engine.com/?p=market&t=HIVEP',
+    website: 'https://steem-engine.net/?p=market&t=HIVEP',
     image: 'steem-engine.svg',
   },
   {

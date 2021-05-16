@@ -22,7 +22,7 @@ export default {
     featureScalableText: 'Future proof resource-bandwidth & storage system.',
     featurePowerful: 'Powerful',
     featurePowerfulText:
-      'Battle-tested for 4 years by hundreds of apps, communities & projects around the world.',
+      'Battle-tested for 5 years by hundreds of apps, communities & projects around the world.',
   },
   eco: {
     title: 'Hive Ecosystem',

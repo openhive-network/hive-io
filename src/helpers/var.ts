@@ -1,4 +1,4 @@
-import { IWallet, IEcoItem } from '~/types/index'
+import {IWallet, IEcoItem} from '~/types/index'
 
 export const INFOBAR = {
   show: false,
@@ -493,8 +493,7 @@ export const WALLETS: IWallet[] = [
     name: 'Keychain',
     image: 'keychain.svg',
     os: [os.brave, os.chrome, os.firefox, os.ios, os.android],
-    website:
-      'https://hive-keychain.com',
+    website: 'https://hive-keychain.com',
     type: 'wallet',
     github: 'https://github.com/stoodkev/hive-keychain',
   },
@@ -681,7 +680,6 @@ export const STATISTIC_WEBSITES = [
     website: 'https://stateofthedapps.com/rankings',
     image: 'stateofthedapps.svg',
   },
-
   {
     id: 'dapp-review',
     name: 'Dapp Review',

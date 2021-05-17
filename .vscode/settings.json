@@ -20,5 +20,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "prettier.packageManager": "yarn"
+  "prettier.packageManager": "yarn",
+  "prettier.trailingComma": "all"
 }

@@ -1,5 +1,7 @@
 export default {
   home: {
+    description:
+      "Full decentralization. There is no company behind Hive. It is developed and managed by the community members. The most noticable features of Hive are native social media functionality and native stable coin with built-in DEX. Along with fast and free transactions, it's one of the unique blockchain projects out there. Hive is a community fork of steem blockchain. Battle tested for 5 years.",
     ecoTitle: 'Hive Ecosystem',
     ecoText:
       'Hive has a thriving ecosystem of apps, communities & individuals, leveraging the Hive blockchain & decentralised structure.',
@@ -15,7 +17,8 @@ export default {
   },
   about: {
     title: 'Developed for Web',
-    text: `Hive is an innovative and forward-looking decentralized blockchain and ecosystem, designed to scale with widespread adoption of the currency and platforms in mind. By combining the lightning-fast processing times and fee-less transactions, Hive is positioned to become one of the leading Web 3.0 blockchains used by people around the world.`,
+    text:
+      'Hive is an innovative and forward-looking decentralized blockchain and ecosystem, designed to scale with widespread adoption of the currency and platforms in mind. By combining the lightning-fast processing times and fee-less transactions, Hive is positioned to become one of the leading Web 3.0 blockchains used by people around the world.',
     featureFast: 'Fast',
     featureFastText: 'Transactions take less than 3 seconds',
     featureScalable: 'Scalable',

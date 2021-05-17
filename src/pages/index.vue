@@ -7,6 +7,14 @@
         <h1 class="root__headTitle">Scalable.</h1>
         <h1 class="root__headTitle">Powerful.</h1>
         <h3 class="root__subtitle">The Blockchain for Web 3.0</h3>
+        <div class="root__description">
+          Full decentralization. There is no company behind Hive. It is
+          developed and managed by the community members. The most noticable
+          features of Hive are native social media functionality and native
+          stable coin with built-in DEX. Along with fast and free transactions,
+          it's one of the unique blockchain projects out there. Hive is a
+          community fork of steem blockchain. Battle tested for 5 years.
+        </div>
 
         <el-button
           class="root__learnMore"
@@ -22,6 +30,9 @@
 
     <div class="root__exchanges-container">
       <div class="root__exchanges__title">Listed Exchanges</div>
+      <div class="root__exchanges__description">
+        Hive is widely available at the top exchanges!
+      </div>
       <div class="root__exchanges">
         <a
           v-for="exchange in EXCHANGES"
@@ -186,9 +197,9 @@ export default defineComponent({
     ); /* 100vh - header - padding  */
 
     &__logo {
-      height: 150px;
-      margin-left: -55px;
-      margin-top: -180px;
+      height: 190px;
+      margin-left: -280px;
+      margin-top: -320px;
     }
 
     &__left {
@@ -199,6 +210,14 @@ export default defineComponent({
       margin-top: -50px;
       min-width: 433px;
     }
+  }
+
+  &__description {
+    max-width: 633px;
+    margin-left: 2px;
+    margin-bottom: 8px;
+    font-weight: 400;
+    font-size: 17px;
   }
 
   &__exchanges {
@@ -221,13 +240,19 @@ export default defineComponent({
 
     &__title {
       color: white;
-      font-weight: 500;
-      margin-bottom: 20px;
-      font-size: 16px;
+      font-weight: 550;
+      margin-top: -20px;
+      margin-bottom: 15px;
+      font-size: 30px;
       opacity: 1;
       padding-bottom: 2px;
       cursor: default;
       border-bottom: 1px solid rgb(224, 224, 224);
+    }
+
+    &__description {
+      color: white;
+      margin-bottom: 15px;
     }
 
     &__exchange {
@@ -348,11 +373,12 @@ export default defineComponent({
   }
 
   h1 {
-    font-size: 3.8rem;
+    font-size: 3.3rem;
   }
 
   &__subtitle {
-    margin-top: 10px !important;
+    margin-top: 30px !important;
+    font-size: 1.6rem;
   }
 }
 

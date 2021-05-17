@@ -8,12 +8,7 @@
         <h1 class="root__headTitle">Powerful.</h1>
         <h3 class="root__subtitle">The Blockchain for Web 3.0</h3>
         <div class="root__description">
-          Full decentralization. There is no company behind Hive. It is
-          developed and managed by the community members. The most noticable
-          features of Hive are native social media functionality and native
-          stable coin with built-in DEX. Along with fast and free transactions,
-          it's one of the unique blockchain projects out there. Hive is a
-          community fork of steem blockchain. Battle tested for 5 years.
+          {{ $t('home.description') }}
         </div>
 
         <el-button

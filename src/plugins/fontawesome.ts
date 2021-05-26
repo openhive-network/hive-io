@@ -7,6 +7,7 @@ import Vue from 'vue'
 
 import {config, library, dom} from '@fortawesome/fontawesome-svg-core'
 import {
+  faTimes as fasTimes,
   faChevronDown as fasChevronDown,
   faPuzzlePiece as fasPuzzlePiece,
   faGlobe as fasGlobe,
@@ -101,6 +102,7 @@ library.add(
   fasGlobe,
   fasExternalLinkAlt,
   fasChevronDown,
+  fasTimes,
 )
 
 Vue.component('fa-icon', FontAwesomeIcon)

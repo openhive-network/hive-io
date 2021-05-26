@@ -45,17 +45,13 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from '@vue/composition-api'
-import Icon from '~/components/icon/icon.vue'
-import {} from '../../types'
+import {defineComponent, ref} from '@nuxtjs/composition-api'
+
 export default defineComponent({
-  components: {
-    Icon,
-  },
   props: {
     item: {
       type: Object,
-      default: true,
+      default: () => {},
     },
   },
 

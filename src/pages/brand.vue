@@ -22,12 +22,9 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from '@vue/composition-api'
-import Logo from '~/components/logo/logo.vue'
-import Color from '~/components/color/color.vue'
+import {defineComponent, ref} from '@nuxtjs/composition-api'
 
 export default defineComponent({
-  components: {Logo, Color},
   props: {},
   setup() {
     const colors = ref([

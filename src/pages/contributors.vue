@@ -34,11 +34,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, onMounted} from '@vue/composition-api'
-import Logo from '~/components/logo/logo.vue'
+import {defineComponent, reactive, onMounted} from '@nuxtjs/composition-api'
 
 export default defineComponent({
-  components: {Logo},
+  components: {},
   props: {},
   setup() {
     const state = reactive({

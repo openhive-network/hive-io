@@ -48,7 +48,7 @@ import {
   computed,
   ref,
   onMounted,
-} from '@vue/composition-api'
+} from '@nuxtjs/composition-api'
 import moment from 'moment'
 import {INFOBAR} from '../../helpers/var'
 

@@ -1,9 +1,10 @@
 export default {
-  home: {
+  root: {
+    learnMore: 'Learn More',
     ecoTitle: 'Hive Ecosystem',
     ecoText:
       'Hive has a thriving ecosystem of apps, communities & individuals, leveraging the Hive blockchain & decentralised structure.',
-    ecoButton: 'Dive in',
+    ecoButton: 'Explore',
     walletsTitle: 'Wallets',
     walletsText:
       'Hive wallets are available for Windows, MacOS, Linux, iOS, Android & Web.',
@@ -12,6 +13,11 @@ export default {
     dafText:
       'The development of Hive and its ecosystem is sustained via the DHF; Decentralised Hive Fund.',
     dafButton: 'Learn more',
+    exchanges: {
+      title: 'Listed Exchanges',
+      subtitle:
+        'Hive is available at the top exchanges for secure transactions',
+    },
   },
   about: {
     title: 'Developed for Web',

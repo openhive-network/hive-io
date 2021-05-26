@@ -76,6 +76,7 @@ export default {
   generate: {
     // choose to suit your project
     interval: 1000,
+    fallback: 'index.html',
   },
   /*
    ** Nuxt.js dev-modules

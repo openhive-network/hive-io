@@ -94,6 +94,7 @@ import {defineComponent, reactive, onBeforeMount} from '@nuxtjs/composition-api'
 import {EXCHANGES} from '../helpers/var'
 import scrollindicator from '~/components/scrollindicator.vue'
 export default defineComponent({
+  name: 'Index',
   components: {scrollindicator},
   props: {},
   setup() {

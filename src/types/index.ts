@@ -20,6 +20,26 @@ export interface IEcoItem extends IBaseApp {
   featured?: boolean // Is the app one of the top 50/100 performing web3 apps worldwide?
 }
 
+export interface IContributor {
+  id: string
+  name: string
+  image?: string
+  social: {
+    linkedin?: string
+    twitter?: string
+    hive: string
+  }
+  labels: ContributorLabel[]
+  inactive?: boolean
+}
+
+export const enum ContributorLabel {
+  coreDeveloper = 'Core Developer',
+  developer = 'Developer',
+  blockProducer = 'Witness',
+  marketing = 'Marketing',
+}
+
 export type OS =
   | 'windows'
   | 'osx'

@@ -19,6 +19,7 @@ import {defineComponent} from '@nuxtjs/composition-api'
 import {WALLETS} from '../helpers/var'
 
 export default defineComponent({
+  name: 'Wallets',
   props: {},
   setup() {
     return {WALLETS}

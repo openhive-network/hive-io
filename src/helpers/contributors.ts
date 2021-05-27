@@ -222,6 +222,7 @@ export const CONTRIBUTORS: IContributor[] = [
     name: 'Lord Butterfly',
     social: {
       hive: 'lordbutterfly',
+      twitter: 'lordbutterfly',
     },
     labels: [ContributorLabel.marketing],
   },
@@ -232,6 +233,15 @@ export const CONTRIBUTORS: IContributor[] = [
       hive: 'smooth',
     },
     labels: [ContributorLabel.blockProducer],
+  },
+  {
+    id: 'blockanarchist',
+    name: 'Blockanarchist',
+    social: {
+      hive: 'blockanarchist1',
+      twitter: 'blockanarchist',
+    },
+    labels: [ContributorLabel.developer],
   },
 ]
 

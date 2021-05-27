@@ -16,7 +16,7 @@
       >{{ contributor.name }}</a
     >
     <div class="contributors-contributor__label dotdotdot">
-      {{ contributor.labels.join(' & ') }}
+      {{ contributor.labels.join(' & ').replace('Core Developer', 'Core Dev') }}
     </div>
     <div class="contributors-contributor__socials">
       <a
@@ -101,7 +101,7 @@ export default defineComponent({
   }
 
   &__label {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: #787885;
     text-align: center;
   }

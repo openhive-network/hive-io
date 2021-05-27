@@ -38,13 +38,13 @@ export const createRouter = () => {
         path: '/eco',
         component: Eco,
         name: 'eco',
-        meta: { keepPosition: true, thresholdPosition: 600 }
+        meta: { keepPosition: true, thresholdPosition: 800 }
       },
       {
         path: '/eco/:app',
         component: Eco,
         name: 'eco-app',
-        meta: { keepPosition: true, thresholdPosition: 600 }
+        meta: { keepPosition: true, thresholdPosition: 800 }
       },
       {
         path: '/wallets',

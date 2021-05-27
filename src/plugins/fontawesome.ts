@@ -33,6 +33,7 @@ import {
   faAppStoreIos as fabAppStoreIos,
   faWindows as fabWindows,
   faApple as fabApple,
+  faLinkedin as fabLinkedin,
 } from '@fortawesome/free-brands-svg-icons'
 
 dom.watch()
@@ -77,6 +78,7 @@ const fabSteemit: any = {
 } */
 
 library.add(
+  fabLinkedin,
   fabHive,
   fabYoutube,
   fabFacebook,

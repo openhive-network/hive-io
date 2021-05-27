@@ -1,8 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 // import { Context } from '@nuxt/types'
 import {getterTree, getAccessorType, mutationTree, actionTree} from 'typed-vuex'
-import {IEcoItem} from '~/types'
+import {IContributor, IEcoItem} from '~/types'
 import {ECOSYSTEM} from '~/helpers/ecosystem'
+import {shuffleArray} from '~/helpers/util'
+import {CONTRIBUTORS} from '~/helpers/var'
 
 // Import all your submodules
 // import * as scheduleModule from '../../schedule'
@@ -14,6 +16,9 @@ export const state = () => ({
   activeEco: {} as IEcoItem,
   globalAppsData: null,
   statsAppsData: [] as any[],
+  shuffledContributors: [] as IContributor[],
+  contributors: [] as IContributor[],
+  contributorLabels: [] as any[],
 })
 
 export const getters = getterTree(state, {
@@ -53,12 +58,26 @@ export const mutations = mutationTree(state, {
   setStatsAppsData: (state, data) => {
     state.statsAppsData = data
   },
+  setShuffledContributors: (state, shuffledContributors) => {
+    state.shuffledContributors = shuffledContributors
+  },
+  setContributors: (state, contributors) => {
+    state.contributors = contributors
+  },
+  setContributorLabels: (state, labels) => {
+    state.contributorLabels = labels
+  },
 })
 
 export const actions = actionTree(
   {state, getters, mutations},
   {
-    // async nuxtServerInit({commit}, {req, app}: any) {},
+    async nuxtServerInit({commit}, {req, app}: any) {
+      await commit(
+        'setShuffledContributors',
+        shuffleArray(CONTRIBUTORS.filter((e) => !e.inactive)),
+      )
+    },
     nuxtClientInit({commit}) {
       this.$axios
         .get('https://hivedapps.com/api/global')

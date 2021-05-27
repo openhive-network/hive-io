@@ -68,6 +68,7 @@ import {routerPush} from '~/helpers/util'
 import EcoDetailed from '~/components/app/ecoDetailed.vue'
 
 export default defineComponent({
+  name: 'Eco',
   components: {EcoDetailed},
   props: {},
   setup(_prop, {root}) {

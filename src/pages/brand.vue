@@ -25,6 +25,7 @@
 import {defineComponent, ref} from '@nuxtjs/composition-api'
 
 export default defineComponent({
+  name: 'Brand',
   props: {},
   setup() {
     const colors = ref([

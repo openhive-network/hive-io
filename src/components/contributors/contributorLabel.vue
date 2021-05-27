@@ -42,8 +42,9 @@ export default defineComponent({
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .contributor-label {
+    width: calc(50% - 42px);
     &--withCount {
       font-size: 0.8rem;
     }

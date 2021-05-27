@@ -3,8 +3,8 @@
     <h1>Contributors</h1>
     <div class="contributors__subtitle">
       We're a decentralized project, running on more than
-      {{ $accessor.shuffledContributors.length }} people contributing regularly
-      to Hive
+      {{ CONTRIBUTORS.length }} people contributing regularly to the Hive
+      Ecosystem
     </div>
     <div class="contributors__labels">
       <ContributorsContributorLabel
@@ -93,6 +93,7 @@ export default defineComponent({
     return {
       filteredContributors: filteredContributors as IContributor[],
       contributorLabels,
+      CONTRIBUTORS,
     }
   },
   methods: {

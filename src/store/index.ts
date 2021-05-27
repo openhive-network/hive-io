@@ -72,13 +72,14 @@ export const mutations = mutationTree(state, {
 export const actions = actionTree(
   {state, getters, mutations},
   {
-    async nuxtServerInit({commit}, {req, app}: any) {
-      await commit(
+    // async nuxtServerInit({commit}, {req, app}: any) {
+
+    // },
+    nuxtClientInit({commit}) {
+      commit(
         'setShuffledContributors',
         shuffleArray(CONTRIBUTORS.filter((e) => !e.inactive)),
       )
-    },
-    nuxtClientInit({commit}) {
       this.$axios
         .get('https://hivedapps.com/api/global')
         .then((result) => {

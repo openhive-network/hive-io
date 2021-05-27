@@ -74,8 +74,10 @@ export default defineComponent({
   background: #e2e2ec;
   border-radius: 5px;
   &__image {
-    height: 180px;
-    width: 180px;
+    max-height: 180px;
+    max-width: 180px;
+    height: 100%;
+    width: 100%;
     object-fit: contain;
     border-radius: 10px;
   }
@@ -116,6 +118,27 @@ export default defineComponent({
     margin: 5px 6px;
     opacity: 1;
     color: #787885;
+  }
+}
+
+@media (max-width: 768px) {
+  .contributors-contributor {
+    &__image {
+      max-height: 160px;
+      max-width: 160px;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .contributors-contributor {
+    flex: 1;
+    &__image {
+      max-height: 100%;
+      max-width: 100%;
+      min-width: 150px;
+      min-height: 150px;
+    }
   }
 }
 </style>

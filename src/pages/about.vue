@@ -11,24 +11,29 @@
         </h1>
         <p class="about__text">{{ $t('about.text') }}</p>
         <!-- <h2 style="opacity: 0.5; margin-top: 120px">Why choose Hive?</h2> -->
-      </div>
+        <div>
+          <div class="about__feature">
+            <h2 class="about__feature__text">{{ $t('about.featureFast') }}.</h2>
+            <h3>{{ $t('about.featureFastText') }}</h3>
+          </div>
 
-      <!-- <div class="about__feature">
-        <h2 class="about__feature__text">{{ $t('about.featureFast') }}.</h2>
-        <h3>{{ $t('about.featureFastText') }}</h3>
-      </div>
+          <div class="about__feature">
+            <h2 class="about__feature__text">
+              {{ $t('about.featureScalable') }}.
+            </h2>
+            <h3>{{ $t('about.featureScalableText') }}</h3>
+          </div>
 
-      <div class="about__feature">
-        <h2 class="about__feature__text">{{ $t('about.featureScalable') }}.</h2>
-        <h3>{{ $t('about.featureScalableText') }}</h3>
+          <div class="about__feature">
+            <h2 class="about__feature__text">
+              {{ $t('about.featurePowerful') }}.
+            </h2>
+            <h3>
+              {{ $t('about.featurePowerfulText') }}
+            </h3>
+          </div>
+        </div>
       </div>
-
-      <div class="about__feature">
-        <h2 class="about__feature__text">{{ $t('about.featurePowerful') }}.</h2>
-        <h3>
-          {{ $t('about.featurePowerfulText') }}
-        </h3>
-      </div> -->
 
       <Contributors />
     </div>
@@ -88,6 +93,7 @@ export default defineComponent({
   h3 {
     font-size: 1.2rem;
     font-weight: 400;
+    text-align: left;
   }
 
   &__feature {

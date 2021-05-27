@@ -36,7 +36,7 @@ export interface IContributor {
 export const enum ContributorLabel {
   coreDeveloper = 'Core Developer',
   developer = 'Developer',
-  blockProducer = 'Witness',
+  blockProducer = 'Block Producer',
   marketing = 'Marketing',
 }
 

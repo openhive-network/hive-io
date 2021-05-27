@@ -15,8 +15,8 @@
       rel="nofollow noopener noreferrer"
       >{{ contributor.name }}</a
     >
-    <div class="contributors-contributor__label">
-      {{ contributor.labels.join(' & ') }}
+    <div class="contributors-contributor__label dotdotdot">
+      {{ contributor.labels.join(' & ').replace('Core Developer', 'Core Dev') }}
     </div>
     <div class="contributors-contributor__socials">
       <a
@@ -74,8 +74,10 @@ export default defineComponent({
   background: #e2e2ec;
   border-radius: 5px;
   &__image {
-    max-height: 180px;
-    max-width: 180px;
+    min-height: 190px;
+    min-width: 190px;
+    max-height: 190px;
+    max-width: 190px;
     height: 100%;
     width: 100%;
     object-fit: contain;

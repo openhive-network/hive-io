@@ -74,7 +74,8 @@ export default {
     {src: '@/plugins/vue-modal', ssr: true},
   ],
   generate: {
-    // choose to suit your project
+    routes: ['/'],
+    // Has to be there due to Nuxt Composition API & Typescript
     interval: 1000,
     fallback: 'index.html',
   },

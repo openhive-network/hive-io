@@ -112,7 +112,7 @@ export default defineComponent({
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  max-width: 1000px;
+  max-width: 1200px;
   width: 100%;
 
   &__subtitle {

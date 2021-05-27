@@ -15,7 +15,7 @@
       rel="nofollow noopener noreferrer"
       >{{ contributor.name }}</a
     >
-    <div class="contributors-contributor__label">
+    <div class="contributors-contributor__label dotdotdot">
       {{ contributor.labels.join(' & ') }}
     </div>
     <div class="contributors-contributor__socials">
@@ -74,8 +74,10 @@ export default defineComponent({
   background: #e2e2ec;
   border-radius: 5px;
   &__image {
-    max-height: 180px;
-    max-width: 180px;
+    min-height: 190px;
+    min-width: 190px;
+    max-height: 190px;
+    max-width: 190px;
     height: 100%;
     width: 100%;
     object-fit: contain;
@@ -99,7 +101,7 @@ export default defineComponent({
   }
 
   &__label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: #787885;
     text-align: center;
   }

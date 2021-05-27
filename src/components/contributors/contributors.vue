@@ -148,7 +148,7 @@ export default defineComponent({
   }
 
   &__contributor {
-    margin: 15px;
+    margin: 10px;
   }
 }
 </style>

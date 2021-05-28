@@ -12,7 +12,7 @@
           class="root__learnMore"
           type="primary"
           @click="$router.push('/about')"
-          >Learn more</el-button
+          >{{ $t('root.learnMore') }}</el-button
         >
       </div>
       <Logo class="root__home__logo" :full="false" />
@@ -20,8 +20,58 @@
 
     <scrollindicator style="margin: 0 auto 0px auto; margin-bottom: 40px" />
 
+    <RootEco />
+
+    <div class="root__wallets root__container">
+      <div class="root__wallets__inner root__container__inner">
+        <div class="root__wallets__left">
+          <h2 class="root__wallets__title">{{ $t('root.walletsTitle') }}</h2>
+          <p class="root__wallets__description">
+            {{ $t('root.walletsText') }}
+          </p>
+          <el-button
+            class="root__learnMore"
+            type="primary"
+            @click="$router.push('/wallets')"
+          >
+            {{ $t('root.walletsButton') }}</el-button
+          >
+          <!--  -->
+        </div>
+        <div class="root__wallets__image-container">
+          <img class="root__wallets__image" src="~/assets/images/vault.svg" />
+          <div class="root__wallets__image-background"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="root__dao root__container">
+      <div class="root__dao__inner root__container__inner">
+        <div class="root__dao__left">
+          <h2 class="root__dao__title">{{ $t('root.dafTitle') }}</h2>
+          <p class="root__dao__description">
+            {{ $t('root.dafText') }}
+          </p>
+          <el-button
+            class="root__learnMore"
+            type="primary"
+            @click="go('https://peakd.com/proposals')"
+          >
+            {{ $t('root.dafButton') }}</el-button
+          >
+          <!-- Learn more -->
+        </div>
+        <img class="root__dao__image" src="~/assets/images/distribution.svg" />
+      </div>
+    </div>
+
     <div class="root__exchanges-container">
-      <div class="root__exchanges__title">Listed Exchanges</div>
+      <div class="root__exchanges__title">
+        {{ $t('root.exchanges.title') }}
+      </div>
+      <div class="root__exchanges__subtitle">
+        {{ $t('root.exchanges.subtitle') }}
+      </div>
       <div class="root__exchanges">
         <a
           v-for="exchange in EXCHANGES"
@@ -36,87 +86,16 @@
         </a>
       </div>
     </div>
-
-    <div class="root__eco root__container">
-      <div class="root__eco__inner root__container__inner">
-        <div class="root__eco__left">
-          <h2 class="root__eco__title">{{ $t('home.ecoTitle') }}</h2>
-          <p class="root__eco__description">
-            {{ $t('home.ecoText') }}
-          </p>
-          <el-button
-            class="root__learnMore"
-            type="primary"
-            @click="$router.push('/eco')"
-          >
-            {{ $t('home.ecoButton') }}</el-button
-          >
-        </div>
-        <img
-          class="root__eco__image"
-          src="~/assets/images/progressiveApp.svg"
-        />
-      </div>
-    </div>
-
-    <div v-if="false" class="root__tech root__container">
-      <div class="root__tech__inner root__container__inner">
-        <h2 class="root__tech__title">Fast. Scalable. Powerful.</h2>
-      </div>
-    </div>
-
-    <div class="root__wallets root__container">
-      <div class="root__wallets__inner root__container__inner">
-        <div class="root__wallets__left">
-          <h2 class="root__wallets__title">{{ $t('home.walletsTitle') }}</h2>
-          <p class="root__wallets__description">
-            {{ $t('home.walletsText') }}
-          </p>
-          <el-button
-            class="root__learnMore"
-            type="primary"
-            @click="$router.push('/wallets')"
-          >
-            {{ $t('home.walletsButton') }}</el-button
-          >
-          <!--  -->
-        </div>
-        <div class="root__wallets__image-container">
-          <img class="root__wallets__image" src="~/assets/images/vault.svg" />
-          <div class="root__wallets__image-background"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="root__dao root__container">
-      <div class="root__dao__inner root__container__inner">
-        <div class="root__dao__left">
-          <h2 class="root__dao__title">{{ $t('home.dafTitle') }}</h2>
-          <p class="root__dao__description">
-            {{ $t('home.dafText') }}
-          </p>
-          <el-button
-            class="root__learnMore"
-            type="primary"
-            @click="go('https://peakd.com/proposals')"
-          >
-            {{ $t('home.dafButton') }}</el-button
-          >
-          <!-- Learn more -->
-        </div>
-        <img class="root__dao__image" src="~/assets/images/distribution.svg" />
-      </div>
-    </div>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, onBeforeMount} from '@vue/composition-api'
+import {defineComponent, reactive, onBeforeMount} from '@nuxtjs/composition-api'
 import {EXCHANGES} from '../helpers/var'
-import Logo from '~/components/logo/logo.vue'
 import scrollindicator from '~/components/scrollindicator.vue'
 export default defineComponent({
-  components: {Logo, scrollindicator},
+  name: 'Index',
+  components: {scrollindicator},
   props: {},
   setup() {
     const state = reactive({
@@ -159,7 +138,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .root {
   height: 100%;
   &__container {
@@ -222,12 +201,17 @@ export default defineComponent({
     &__title {
       color: white;
       font-weight: 500;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-size: 16px;
       opacity: 1;
       padding-bottom: 2px;
       cursor: default;
       border-bottom: 1px solid rgb(224, 224, 224);
+    }
+
+    &__subtitle {
+      color: rgb(187, 187, 187);
+      margin-bottom: 20px;
     }
 
     &__exchange {
@@ -288,12 +272,6 @@ export default defineComponent({
     }
   }
 
-  &__eco {
-    &__image {
-      width: 300px;
-    }
-  }
-
   &__tech {
     &__inner {
       display: flex;
@@ -303,10 +281,6 @@ export default defineComponent({
       flex: 1;
       text-align: center;
     }
-  }
-
-  &__eco {
-    background: #ebebf5;
   }
 
   &__wallets {

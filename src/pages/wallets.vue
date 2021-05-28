@@ -15,13 +15,11 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from '@vue/composition-api'
+import {defineComponent} from '@nuxtjs/composition-api'
 import {WALLETS} from '../helpers/var'
-import Logo from '~/components/logo/logo.vue'
-import App from '~/components/app/app.vue'
 
 export default defineComponent({
-  components: {Logo, App},
+  name: 'Wallets',
   props: {},
   setup() {
     return {WALLETS}

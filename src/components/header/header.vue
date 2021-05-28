@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from '@vue/composition-api'
+import {defineComponent} from '@nuxtjs/composition-api'
 import Logo from '~/components/logo/logo.vue'
 import MobileMenu from '~/components/mobileMenu/mobileMenu.vue'
 import Navigation from '~/components/navigation/navigation.vue'

@@ -7,6 +7,7 @@ import Vue from 'vue'
 
 import {config, library, dom} from '@fortawesome/fontawesome-svg-core'
 import {
+  faTimes as fasTimes,
   faChevronDown as fasChevronDown,
   faPuzzlePiece as fasPuzzlePiece,
   faGlobe as fasGlobe,
@@ -32,6 +33,7 @@ import {
   faAppStoreIos as fabAppStoreIos,
   faWindows as fabWindows,
   faApple as fabApple,
+  faLinkedin as fabLinkedin,
 } from '@fortawesome/free-brands-svg-icons'
 
 dom.watch()
@@ -76,6 +78,7 @@ const fabSteemit: any = {
 } */
 
 library.add(
+  fabLinkedin,
   fabHive,
   fabYoutube,
   fabFacebook,
@@ -101,6 +104,7 @@ library.add(
   fasGlobe,
   fasExternalLinkAlt,
   fasChevronDown,
+  fasTimes,
 )
 
 Vue.component('fa-icon', FontAwesomeIcon)

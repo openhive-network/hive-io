@@ -7,10 +7,37 @@
           {{ $t(`eco.text`) }}
         </p>
       </div>
-      <div class="eco__apps">
-        <App v-for="eco in ECOSYSTEM" :key="eco.id" :item="eco" />
+      <div class="eco__types">
+        <AppType
+          v-for="appType in appTypes"
+          :key="appType.value"
+          :class="{
+            'eco__type--inactive':
+              $route.query.t && $route.query.t !== appType.value,
+          }"
+          :app-type="appType.value"
+          :count="appType.count"
+          @click.native="filterEco(appType.value)"
+        />
       </div>
-      <h1 class="eco__subTitle">{{ $t(`eco.subTitle`) }}</h1>
+      <ModalEco />
+
+      <div class="eco__apps">
+        <!-- <EcoDetailed
+          v-if="$route.name === 'eco-app' || $accessor.activeEco.id"
+        /> -->
+        <App
+          v-for="eco in filteredEco"
+          :key="eco.id"
+          :item="eco"
+          :open-modal="true"
+          :move="true"
+          :show-name="true"
+          :show-types="true"
+          app-type="eco"
+        />
+      </div>
+      <h2 class="eco__subTitle">{{ $t(`eco.subTitle`) }}</h2>
       <p class="eco__subText">
         {{ $t(`eco.subText`) }}
       </p>
@@ -26,17 +53,71 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from '@vue/composition-api'
-import {ECOSYSTEM, STATISTIC_WEBSITES} from '../helpers/var'
-import Logo from '~/components/logo/logo.vue'
-import App from '~/components/app/app.vue'
-import StatWebsite from '~/components/statWebsite/statWebsite.vue'
+import {
+  defineComponent,
+  useRouter,
+  useRoute,
+  watch,
+  reactive,
+  ref,
+  computed,
+  useAsync,
+} from '@nuxtjs/composition-api'
+import {ECOSYSTEM, STATISTIC_WEBSITES, TYPE_COLORS} from '../helpers/var'
+import {routerPush} from '~/helpers/util'
+import EcoDetailed from '~/components/app/ecoDetailed.vue'
 
 export default defineComponent({
-  components: {Logo, App, StatWebsite},
+  name: 'Eco',
+  components: {EcoDetailed},
   props: {},
-  setup() {
-    return {ECOSYSTEM, STATISTIC_WEBSITES}
+  setup(_prop, {root}) {
+    const route = useRoute()
+    useAsync(() => {
+      if (route.value.name === 'eco-app') {
+        root.$accessor.setActiveEco(
+          ECOSYSTEM.filter((e) => e.id === route.value.params.app)[0],
+        )
+      }
+    })
+    const appTypes = computed(() =>
+      Object.keys(TYPE_COLORS)
+        .filter((c) => {
+          return ECOSYSTEM.filter((e) => e.types.includes(c as any))[0]
+        })
+        .map((c) => {
+          return {
+            value: c,
+            count: ECOSYSTEM.filter((e) => e.types.includes(c as any)).length,
+          }
+        }),
+    )
+    const filteredEco = ref([] as any)
+
+    const getFilteredEco = (key) => {
+      filteredEco.value = ECOSYSTEM.filter((e) => !key || e.types.includes(key))
+    }
+
+    getFilteredEco(route.value.query.t)
+    watch(
+      () => route.value.query.t,
+      (newT) => getFilteredEco(newT),
+    )
+    return {
+      filteredEco,
+      appTypes,
+      ECOSYSTEM,
+      STATISTIC_WEBSITES,
+    }
+  },
+  methods: {
+    async filterEco(key: string) {
+      if (this.$route.query.t === key) {
+        await routerPush(this, `/eco`)
+      } else {
+        await routerPush(this, `/eco?t=${key}`)
+      }
+    },
   },
 })
 </script>
@@ -64,6 +145,26 @@ export default defineComponent({
 
   &__text {
     max-width: 820px;
+  }
+
+  &__types {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    .app-type {
+      margin-right: 12px;
+      margin-bottom: 8px;
+    }
+  }
+
+  &__type {
+    &--inactive {
+      opacity: 0.333;
+      &:hover {
+        opacity: 0.75;
+      }
+    }
   }
 
   h1 {
@@ -101,8 +202,14 @@ export default defineComponent({
 }
 
 @media (max-width: 600px) {
-  .eco__first {
-    margin-top: 20px;
+  .eco {
+    &__first {
+      margin-top: 20px;
+    }
+
+    &__types {
+      justify-content: space-evenly;
+    }
   }
 }
 </style>

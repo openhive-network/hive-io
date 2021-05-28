@@ -1,21 +1,43 @@
-export interface IWallet {
+export interface IBaseApp {
   id: string
   name: string
-  os: any[]
   image: string
-  type: Type
+  types: Type[]
+}
+
+export interface IWallet extends IBaseApp {
+  os: any[]
   website: {firefox?: string; chrome?: string; safari?: string} | string
   github?: string
   gitlab?: string
+  closedSource?: boolean
 }
 
-export interface IEcoItem {
+export interface IEcoItem extends IBaseApp {
+  id: string
+  website: string
+  description: string
+  featured?: boolean // Is the app one of the top 50/100 performing web3 apps worldwide?
+}
+
+export interface IContributor {
   id: string
   name: string
-  description: string
-  image: string
-  website: string
-  type: Type
+  image?: string
+  social: {
+    linkedin?: string
+    twitter?: string
+    hive: string
+  }
+  labels: ContributorLabel[]
+  inactive?: boolean
+}
+
+export const enum ContributorLabel {
+  coreDeveloper = 'Core Developer',
+  developer = 'Developer',
+  blockProducer = 'Block Producer',
+  marketing = 'Marketing',
 }
 
 export type OS =
@@ -29,4 +51,16 @@ export type OS =
   | 'firefox'
   | 'chrome'
 
-export type Type = 'game' | 'app' | 'extension' | 'wallet'
+export type Type =
+  | 'game'
+  | 'social'
+  | 'nft'
+  | 'tools'
+  | 'travel'
+  | 'wordpress'
+  | 'video'
+  | 'sport'
+  | 'defi'
+  | 'app'
+  | 'extension'
+  | 'wallet'

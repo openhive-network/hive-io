@@ -29,7 +29,7 @@ import {
   watch,
   onMounted,
   ref,
-} from '@vue/composition-api'
+} from '@nuxtjs/composition-api'
 
 import {
   NAVIGATION_HEADER,

@@ -10,35 +10,42 @@
           {{ $t(`about.title`) }} 3<span style="color: #e31337">.</span>0
         </h1>
         <p class="about__text">{{ $t('about.text') }}</p>
-        <h2 style="opacity: 0.5; margin-top: 120px">Why choose Hive?</h2>
+        <!-- <h2 style="opacity: 0.5; margin-top: 120px">Why choose Hive?</h2> -->
+        <div>
+          <div class="about__feature">
+            <h2 class="about__feature__text">{{ $t('about.featureFast') }}.</h2>
+            <h3>{{ $t('about.featureFastText') }}</h3>
+          </div>
+
+          <div class="about__feature">
+            <h2 class="about__feature__text">
+              {{ $t('about.featureScalable') }}.
+            </h2>
+            <h3>{{ $t('about.featureScalableText') }}</h3>
+          </div>
+
+          <div class="about__feature">
+            <h2 class="about__feature__text">
+              {{ $t('about.featurePowerful') }}.
+            </h2>
+            <h3>
+              {{ $t('about.featurePowerfulText') }}
+            </h3>
+          </div>
+        </div>
       </div>
 
-      <div class="about__feature">
-        <h2 class="about__feature__text">{{ $t('about.featureFast') }}.</h2>
-        <h3>{{ $t('about.featureFastText') }}</h3>
-      </div>
-
-      <div class="about__feature">
-        <h2 class="about__feature__text">{{ $t('about.featureScalable') }}.</h2>
-        <h3>{{ $t('about.featureScalableText') }}</h3>
-      </div>
-
-      <div class="about__feature">
-        <h2 class="about__feature__text">{{ $t('about.featurePowerful') }}.</h2>
-        <h3>
-          {{ $t('about.featurePowerfulText') }}
-        </h3>
-      </div>
+      <Contributors />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from '@vue/composition-api'
-import Logo from '~/components/logo/logo.vue'
+import {defineComponent} from '@nuxtjs/composition-api'
 
 export default defineComponent({
-  components: {Logo},
+  name: 'About',
+  components: {},
   props: {},
   setup() {
     return {}
@@ -67,7 +74,7 @@ export default defineComponent({
     max-width: 820px;
     text-align: center;
     margin-top: -15px;
-    min-height: calc(100vh - 200px); /* 100vh - header - padding */
+    min-height: 60vh;
   }
 
   &__titleImage {
@@ -86,6 +93,7 @@ export default defineComponent({
   h3 {
     font-size: 1.2rem;
     font-weight: 400;
+    text-align: left;
   }
 
   &__feature {

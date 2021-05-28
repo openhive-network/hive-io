@@ -9,9 +9,9 @@ const env = {
 }
 export default {
   modern: !isDev,
-  mode: 'universal',
   srcDir: './src/',
   rootDir: './',
+  target: 'static',
   /*
    ** Headers of the page
    */
@@ -40,15 +40,16 @@ export default {
       twitterCard: 'summary_large_image',
     },
   },
+  components: true,
   loading: false,
   head: {
     // titleTemplate: '%s - Nuxt.js', <= for testing
     link: [
-      /* {
-        rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Work+Sans:400,500,700,800,900&display=swap'
-      }, */
+      // {
+      //   rel: 'stylesheet',
+      //   href:
+      //     'https://fonts.googleapis.com/css?family=Work+Sans:400,500,700&display=swap',
+      // },
       {rel: 'icon', type: 'image/x-icon', href: '/favicons/favicon.ico'},
     ],
   },
@@ -66,11 +67,18 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '@/plugins/composition-api',
+    // '@/plugins/composition-api',
     '@/plugins/element-ui',
     {src: '@/plugins/tippy', ssr: false},
     '@/plugins/fontawesome',
+    {src: '@/plugins/vue-modal', ssr: true},
   ],
+  generate: {
+    routes: ['/'],
+    // Has to be there due to Nuxt Composition API & Typescript
+    interval: 1000,
+    fallback: 'index.html',
+  },
   /*
    ** Nuxt.js dev-modules
    */
@@ -81,11 +89,15 @@ export default {
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
     'nuxt-typed-vuex',
+    '@nuxtjs/composition-api/module',
+    ['@nuxtjs/router', {}],
+    // ['@nuxtjs/google-fonts', {families: {'Work+Sans': true}}],
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
+    'nuxt-client-init-module',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',

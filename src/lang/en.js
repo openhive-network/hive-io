@@ -3,15 +3,15 @@ export default {
     learnMore: 'Learn More',
     ecoTitle: 'Hive Ecosystem',
     ecoText:
-      'Hive has a thriving ecosystem of apps, communities & individuals, leveraging the Hive blockchain & decentralised structure.',
+      'Hive has a thriving ecosystem of over 126 apps, communities & projects and is home to some of the most-used Web3 apps in the world, such as Splinterlands, PeakD and HiveBlog.',
     ecoButton: 'Explore',
     walletsTitle: 'Wallets',
     walletsText:
-      'Hive wallets are available for Windows, MacOS, Linux, iOS, Android & Web.',
+      'Wallets are incredibly important to securely store your cryptocurrencies and to interact with Web3 apps.\nHive has multiple community-owned and open-source wallets available for Windows, macOS, Linux, iOS, Android & Web.',
     walletsButton: 'Choose wallet',
     dafTitle: 'DHF',
     dafText:
-      'The development of Hive and its ecosystem is sustained via the DHF; Decentralised Hive Fund.',
+      'The development of Hive and its ecosystem is made possible by contributors. To incentivize crucial work, such as Core Development, a DAO-like structure: the Decentralised Hive Fund (DHF), is being leveraged to intelligently fund important work.',
     dafButton: 'Learn more',
     exchanges: {
       title: 'Listed Exchanges',

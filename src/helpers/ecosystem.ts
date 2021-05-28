@@ -236,7 +236,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://www.dlux.io/',
     types: [EcoType.tools],
   },
-].concat(BLOCKEXPLORERS)
+].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {
   game: {

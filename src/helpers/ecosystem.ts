@@ -1,4 +1,5 @@
-import {IEcoItem} from '~/types/index'
+import {BLOCKEXPLORERS} from './blockexplorers'
+import {IEcoItem, EcoType} from '~/types/index'
 
 /**
  * Hive Ecosystem
@@ -10,7 +11,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'A digital trading card game built on blockchain technology.',
     image: 'splinterlands.png',
     website: 'https://splinterlands.com',
-    types: ['game', 'nft'],
+    types: [EcoType.game, EcoType.nft],
     featured: true,
   },
   {
@@ -19,7 +20,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Decentralized social media with true ownership.',
     image: 'peakd.svg',
     website: 'https://peakd.com',
-    types: ['social'],
+    types: [EcoType.social],
     featured: true,
   },
   {
@@ -29,7 +30,7 @@ export const ECOSYSTEM: IEcoItem[] = [
       'Communities without borders. A social network owned and operated by its users.',
     image: 'blackhive.png',
     website: 'https://hive.blog',
-    types: ['social'],
+    types: [EcoType.social],
     featured: false,
   },
   {
@@ -39,7 +40,7 @@ export const ECOSYSTEM: IEcoItem[] = [
       'A digital art marketplace that makes creating and collecting rare digital art simple and accessible.',
     image: 'nftshowroom.png',
     website: 'https://nftshowroom.com',
-    types: ['nft'],
+    types: [EcoType.nft],
     featured: true,
   },
   {
@@ -48,7 +49,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Tokenised video communities.',
     image: 'threespeak.svg',
     website: 'https://3speak.co',
-    types: ['social', 'video'],
+    types: [EcoType.social, EcoType.video],
     featured: true,
   },
   {
@@ -58,7 +59,7 @@ export const ECOSYSTEM: IEcoItem[] = [
       'Hot topics on a social network owned and operated by its users.',
     image: 'ecency.svg',
     website: 'https://ecency.com',
-    types: ['social'],
+    types: [EcoType.social],
     featured: true,
   },
   {
@@ -68,7 +69,7 @@ export const ECOSYSTEM: IEcoItem[] = [
       'A social platform where users get paid for creating, and interacting with crypto and finance content.',
     image: 'leofinance.png',
     website: 'https://leofinance.io',
-    types: ['social'],
+    types: [EcoType.social],
     featured: true,
   },
   {
@@ -77,7 +78,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Soccer manager built on the Hive blockchain.',
     image: 'rabona.png',
     website: 'https://rabona.io',
-    types: ['game'],
+    types: [EcoType.game],
     featured: true,
   },
   {
@@ -86,7 +87,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Craft beer brewing business card game.',
     image: 'cryptobrewmaster.png',
     website: 'https://www.cryptobrewmaster.io/',
-    types: ['game'],
+    types: [EcoType.game],
     featured: true,
   },
 
@@ -96,7 +97,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Micro-blogging for Hive.',
     image: 'dbuzz.png',
     website: 'https://d.buzz',
-    types: ['social'],
+    types: [EcoType.social],
   },
   {
     id: 'travelfeed',
@@ -104,7 +105,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'TravelFeed makes travel blogging easy and fun.',
     image: 'travelfeed.png',
     website: 'https://travelfeed.io',
-    types: ['social'],
+    types: [EcoType.social],
   },
   {
     id: 'truvvl',
@@ -113,7 +114,7 @@ export const ECOSYSTEM: IEcoItem[] = [
       'With truvvl stories, swiping through your favorite travel blogs is fun.',
     image: 'truvvl.svg',
     website: 'https://truvvl.com',
-    types: ['social'],
+    types: [EcoType.social],
   },
   // {
   //   id: 'stemsocial',
@@ -129,7 +130,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Power your wordpress blog with blockchain technology.',
     image: 'exxp.svg',
     website: 'https://exxp.io',
-    types: ['tools'],
+    types: [EcoType.social],
   },
   {
     id: 'actifit',
@@ -137,7 +138,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'An innovative dapp that rewards your everyday activity.',
     image: 'actifit.png',
     website: 'https://actifit.io',
-    types: ['social'],
+    types: [EcoType.social],
   },
   {
     id: 'dlease',
@@ -146,7 +147,7 @@ export const ECOSYSTEM: IEcoItem[] = [
       'Invest with confidence using our state of the art Digital Asset Leasing platform.',
     image: 'dlease.png',
     website: 'https://dlease.io',
-    types: ['defi'],
+    types: [EcoType.defi],
   },
   {
     id: 'engrave',
@@ -155,7 +156,7 @@ export const ECOSYSTEM: IEcoItem[] = [
       'Create blog and start earning money in three simple steps with HIVE blockchain technology.',
     image: 'engrave.png',
     website: 'https://dblog.org',
-    types: ['tools'],
+    types: [EcoType.social],
   },
 
   {
@@ -164,7 +165,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'A set of tools to help tokenise the web.',
     image: 'fullalt.png',
     website: 'https://www.fullalt.com',
-    types: ['tools'],
+    types: [EcoType.tools],
+  },
+  {
+    id: 'dcrops',
+    name: 'dCrops',
+    description: 'A decentralized farm simulator.',
+    image: 'dcrops.svg',
+    website: 'https://dcrops.com',
+    types: [EcoType.game, EcoType.nft],
   },
   {
     id: 'lucksacks',
@@ -173,7 +182,7 @@ export const ECOSYSTEM: IEcoItem[] = [
       'Host a custom poker league, tournament, ring game or sit-n-go.',
     image: 'lucksacks.png',
     website: 'https://lucksacks.com',
-    types: ['game'],
+    types: [EcoType.game],
   },
 
   {
@@ -182,7 +191,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'A Science, Technology, Engineering, and Math community.',
     image: 'stemgeeks.png',
     website: 'https://stemgeeks.net',
-    types: ['social'],
+    types: [EcoType.social],
   },
   {
     id: 'dcity',
@@ -190,7 +199,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Build your dCITY on NFT assets.',
     image: 'dcity.png',
     website: 'https://dcity.io',
-    types: ['game'],
+    types: [EcoType.game],
   },
 
   {
@@ -200,7 +209,7 @@ export const ECOSYSTEM: IEcoItem[] = [
       'Go from poor busker to super star with this crypto currency trading card game.',
     image: 'risingstar.png',
     website: 'https://www.risingstargame.com/',
-    types: ['game'],
+    types: [EcoType.game],
   },
   {
     id: 'nftmart',
@@ -208,7 +217,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'An NFT market for Hive. Mostly card games.',
     image: 'nftmart.png',
     website: 'https://www.nftm.art/',
-    types: ['nft'],
+    types: [EcoType.nft],
   },
   {
     id: 'vimm',
@@ -216,7 +225,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Web3 video platform for gamers and independent creators.',
     image: 'vimm.png',
     website: 'https://www.vimm.tv/',
-    types: ['social', 'video'],
+    types: [EcoType.social, EcoType.video],
   },
   {
     id: 'dlux',
@@ -225,9 +234,9 @@ export const ECOSYSTEM: IEcoItem[] = [
       'Build, post, and monetize virtual reality experiences without needing to know any code.',
     image: 'dlux.svg',
     website: 'https://www.dlux.io/',
-    types: ['tools'],
+    types: [EcoType.tools],
   },
-]
+].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {
   game: {
@@ -262,11 +271,7 @@ export const TYPE_COLORS = {
     background: '#faea7e8c',
     text: '#faea7e8c',
   },
-  app: {
-    background: '#faea7e8c',
-    text: '#faea7e8c',
-  },
-  extension: {
+  explorer: {
     background: '#faea7e8c',
     text: '#faea7e8c',
   },

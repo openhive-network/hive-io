@@ -5,7 +5,10 @@
       target="_blank"
       rel="nofollow noopener noreferrer"
       class="statWebsite__inner"
-      :class="{'statWebsite__inner--hover': hover}"
+      :class="{
+        'statWebsite__inner--hover': hover,
+        'statWebsite__inner--transparent': transparent,
+      }"
       @mouseenter="hover = true"
       @mouseleave="hover = false"
     >
@@ -53,6 +56,7 @@ export default defineComponent({
       type: Object,
       default: () => {},
     },
+    transparent: Boolean,
   },
 
   setup(_props) {
@@ -92,6 +96,11 @@ export default defineComponent({
     &:hover,
     &--hover {
       transform: translateY(-10%);
+    }
+
+    &--transparent {
+      background: transparent;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     }
   }
 

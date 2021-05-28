@@ -28,3 +28,10 @@ export const STATISTIC_WEBSITES = [
     image: 'hivedapps-com.svg',
   },
 ]
+
+export const HIVE_PROJECTS = {
+  id: 'hiveprojects',
+  name: 'HiveProjects.io',
+  website: 'https://hiveprojects.io',
+  image: 'hiveprojects.png',
+}

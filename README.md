@@ -10,7 +10,7 @@ For all changes, make a PR to develop branch, which goes to staging.hive.io. Aft
 ## How to add contributors
 
 1.) Add contributor here: https://gitlab.syncad.com/hive/hive-io/-/blob/develop/src/helpers/contributors.ts
-2.) If there is no image in https://gitlab.syncad.com/hive/hive-io/-/tree/develop/src/assets/images/apps and image attribute is empty, it uses image from hive based on social.hive.
+2.) If there is no image in https://gitlab.syncad.com/hive/hive-io/-/tree/develop/src/assets/images/contributors and image attribute is empty, it uses image from hive based on social.hive.
 
 ## Build Setup
 

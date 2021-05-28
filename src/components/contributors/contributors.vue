@@ -143,7 +143,7 @@ export default defineComponent({
   &__container {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
   }
 

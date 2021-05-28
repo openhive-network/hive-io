@@ -134,11 +134,12 @@ export default defineComponent({
   setup(_props, {root}) {
     const hover = ref(false)
     const dict = {threespeak: '3speak'}
-    const statsApp = root.$accessor.statsAppsData.filter(
-      (d) => d.name === (dict[_props.item.id] || _props.item.id),
-    )[0]
-    let stats: any = {}
-    if (statsApp) stats = computed(() => statsApp)
+    const stats = computed(
+      () =>
+        root.$accessor.statsAppsData.filter(
+          (d) => d.name === (dict[_props.item.id] || _props.item.id),
+        )[0],
+    )
     const getImage = (image) => {
       try {
         return require(`~/assets/images/apps/${image}`)

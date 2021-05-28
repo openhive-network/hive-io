@@ -37,6 +37,13 @@
           app-type="eco"
         />
       </div>
+      <h2 style="margin-top: 40px">But wait, there's more...</h2>
+      <p>
+        Over <b>126 projects</b> have been BUIDL'd by the Hive community. You
+        can view all of them via HiveProjects.io
+      </p>
+      <StatWebsite :item="HIVE_PROJECTS" :transparent="true" />
+
       <h2 class="eco__subTitle">{{ $t(`eco.subTitle`) }}</h2>
       <p class="eco__subText">
         {{ $t(`eco.subText`) }}
@@ -63,7 +70,12 @@ import {
   computed,
   useAsync,
 } from '@nuxtjs/composition-api'
-import {ECOSYSTEM, STATISTIC_WEBSITES, TYPE_COLORS} from '../helpers/var'
+import {
+  ECOSYSTEM,
+  STATISTIC_WEBSITES,
+  TYPE_COLORS,
+  HIVE_PROJECTS,
+} from '../helpers/var'
 import {routerPush} from '~/helpers/util'
 import EcoDetailed from '~/components/app/ecoDetailed.vue'
 
@@ -108,6 +120,7 @@ export default defineComponent({
       appTypes,
       ECOSYSTEM,
       STATISTIC_WEBSITES,
+      HIVE_PROJECTS,
     }
   },
   methods: {
@@ -138,13 +151,14 @@ export default defineComponent({
     margin-top: 100px;
     padding: 0 0 20px 0;
     max-width: 720px;
-    min-height: 160px;
+    min-height: 120px;
     width: 100%;
     text-align: center;
   }
 
   &__text {
     max-width: 820px;
+    margin-bottom: 0;
   }
 
   &__types {

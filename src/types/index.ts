@@ -2,7 +2,6 @@ export interface IBaseApp {
   id: string
   name: string
   image: string
-  types: Type[]
 }
 
 export interface IWallet extends IBaseApp {
@@ -11,6 +10,7 @@ export interface IWallet extends IBaseApp {
   github?: string
   gitlab?: string
   closedSource?: boolean
+  types: Type[]
 }
 
 export interface IEcoItem extends IBaseApp {
@@ -18,6 +18,7 @@ export interface IEcoItem extends IBaseApp {
   website: string
   description: string
   featured?: boolean // Is the app one of the top 50/100 performing web3 apps worldwide?
+  types: EcoType[]
 }
 
 export interface IContributor {
@@ -41,6 +42,20 @@ export const enum ContributorLabel {
   operations = 'Operations',
 }
 
+export const enum EcoType {
+  game = 'game',
+  social = 'social',
+  nft = 'nft',
+  tools = 'tools',
+  travel = 'travel',
+  wordpress = 'wordpress',
+  video = 'video',
+  sport = 'sport',
+  defi = 'defi',
+  app = 'app',
+  blockExplorer = 'explorer',
+}
+
 export type OS =
   | 'windows'
   | 'osx'
@@ -52,16 +67,4 @@ export type OS =
   | 'firefox'
   | 'chrome'
 
-export type Type =
-  | 'game'
-  | 'social'
-  | 'nft'
-  | 'tools'
-  | 'travel'
-  | 'wordpress'
-  | 'video'
-  | 'sport'
-  | 'defi'
-  | 'app'
-  | 'extension'
-  | 'wallet'
+export type Type = 'app' | 'extension' | 'wallet'

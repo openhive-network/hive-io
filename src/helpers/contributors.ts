@@ -95,7 +95,7 @@ export const CONTRIBUTORS: IContributor[] = [
     social: {
       hive: 'pharesim',
     },
-    labels: [ContributorLabel.blockProducer],
+    labels: [ContributorLabel.developer, ContributorLabel.blockProducer],
   },
   {
     id: 'themarkymark',
@@ -191,7 +191,7 @@ export const CONTRIBUTORS: IContributor[] = [
     social: {
       hive: 'theycallmedan',
     },
-    labels: [ContributorLabel.marketing],
+    labels: [ContributorLabel.marketing, ContributorLabel.blockProducer],
   },
   {
     id: 'fredrikaa',
@@ -255,9 +255,50 @@ export const CONTRIBUTORS: IContributor[] = [
     id: 'martibis',
     name: 'Martibis',
     social: {
-      hive: 'andablackwidow',
+      hive: 'martibis',
     },
-    labels: [ContributorLabel.coreDeveloper],
+    labels: [ContributorLabel.developer],
+  },
+  {
+    id: 'jarvie',
+    name: 'Jarvie',
+    social: {
+      hive: 'jarvie',
+    },
+    labels: [ContributorLabel.blockProducer],
+  },
+  {
+    id: 'asgarth',
+    name: 'Sergio Sartorelli',
+    social: {
+      hive: 'asgarth',
+    },
+    labels: [ContributorLabel.developer, ContributorLabel.blockProducer],
+  },
+  {
+    id: 'quochuy',
+    name: 'Quochuy',
+    social: {
+      hive: 'quochuy',
+    },
+    labels: [ContributorLabel.developer, ContributorLabel.blockProducer],
+  },
+  {
+    id: 'khaleelkazi',
+    name: 'Khal',
+    social: {
+      hive: 'khaleelkazi',
+    },
+    labels: [ContributorLabel.marketing, ContributorLabel.blockProducer],
+  },
+  {
+    id: 'lukestokes',
+    name: 'Luke Stokes',
+    social: {
+      hive: 'lukestokes',
+      twitter: 'lukestokes',
+    },
+    labels: [ContributorLabel.blockProducer],
   },
 ]
 

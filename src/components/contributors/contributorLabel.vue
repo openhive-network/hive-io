@@ -37,7 +37,7 @@ export default defineComponent({
   cursor: pointer;
 
   &--withCount {
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 7px 15px;
   }
 }

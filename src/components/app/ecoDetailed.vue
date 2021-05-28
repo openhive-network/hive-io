@@ -24,7 +24,16 @@
       </div>
     </div>
     <div v-if="$route.name !== 'eco' && $route.name !== 'eco-app'">
-      <h3 class="eco-detailed__otherTitle">Other Apps</h3>
+      <div style="display: flex; margin-bottom: 10px">
+        <h3 class="eco-detailed__otherTitle" style="margin: 0">Other Apps</h3>
+        <el-button
+          type="primary"
+          style="margin-left: 15px; padding: 6px 18px"
+          plain
+          @click="exploreEco"
+          >Explore Ecosystem</el-button
+        >
+      </div>
       <div class="eco-detailed__otherContainer">
         <App
           v-for="eco in $accessor.otherEco"
@@ -55,6 +64,12 @@ export default defineComponent({
   setup() {
     return {}
   },
+  methods: {
+    exploreEco() {
+      this.$modal.hide('modal-eco')
+      this.$router.push('/eco')
+    },
+  },
 })
 </script>
 
@@ -69,11 +84,12 @@ export default defineComponent({
 
   &__otherTitle {
     font-size: 1.5rem;
+    margin-bottom: 10px;
   }
 
   &__otherTitle,
   &__otherContainer {
-    padding: 0 40px;
+    padding-left: 40px;
   }
   &__otherContainer {
     display: flex;

@@ -4,8 +4,13 @@
     <div class="contributors__subtitle">
       We're a decentralized project, running on more than
       {{ CONTRIBUTORS.length }} people contributing regularly to the Hive
-      Ecosystem
+      Ecosystem.
     </div>
+    <div>
+      The list of contributors below is
+      <i class="link" @click="$accessor.shuffleContributors()">randomized</i>.
+    </div>
+
     <div class="contributors__labels">
       <ContributorsContributorLabel
         v-for="label in contributorLabels"
@@ -89,6 +94,10 @@ export default defineComponent({
       () => route.value.query.t,
       (newT) => getFilteredContributors(newT),
     )
+    watch(
+      () => root.$accessor.shuffledContributors,
+      () => getFilteredContributors(route.value.query.t),
+    )
 
     return {
       filteredContributors: filteredContributors as IContributor[],
@@ -143,7 +152,7 @@ export default defineComponent({
   &__container {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
   }
 

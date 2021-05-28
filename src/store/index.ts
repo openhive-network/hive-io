@@ -75,11 +75,8 @@ export const actions = actionTree(
     // async nuxtServerInit({commit}, {req, app}: any) {
 
     // },
-    nuxtClientInit({commit}) {
-      commit(
-        'setShuffledContributors',
-        shuffleArray(CONTRIBUTORS.filter((e) => !e.inactive)),
-      )
+    nuxtClientInit({commit, dispatch}) {
+      dispatch('shuffleContributors')
       this.$axios
         .get('https://hivedapps.com/api/global')
         .then((result) => {
@@ -97,6 +94,12 @@ export const actions = actionTree(
           }
         })
         .catch()
+    },
+    shuffleContributors({commit}) {
+      commit(
+        'setShuffledContributors',
+        shuffleArray(CONTRIBUTORS.filter((e) => !e.inactive)),
+      )
     },
   },
 )

@@ -2,7 +2,9 @@
   <div
     class="app-type"
     :class="{'app-type--withCount': Boolean(count)}"
-    :style="`background: ${TYPE_COLORS[appType].background}; color:  ${TYPE_COLORS[appType].text}`"
+    :style="`background: ${
+      true ? TYPE_COLORS[appType].background : 'rgb(222 222 236)'
+    }; color:  ${true ? TYPE_COLORS[appType].text : 'rgb(96 96 110)'}`"
   >
     {{ appType }}
     <span v-if="count">({{ count }})</span>

@@ -95,7 +95,7 @@ export const CONTRIBUTORS: IContributor[] = [
     social: {
       hive: 'pharesim',
     },
-    labels: [ContributorLabel.blockProducer],
+    labels: [ContributorLabel.developer, ContributorLabel.blockProducer],
   },
   {
     id: 'themarkymark',
@@ -289,7 +289,7 @@ export const CONTRIBUTORS: IContributor[] = [
     social: {
       hive: 'khaleelkazi',
     },
-    labels: [ContributorLabel.blockProducer],
+    labels: [ContributorLabel.marketing, ContributorLabel.blockProducer],
   },
   {
     id: 'lukestokes',

@@ -93,7 +93,7 @@ export default defineComponent({
   h3 {
     font-size: 1.2rem;
     font-weight: 400;
-    text-align: left;
+    text-align: left !important;
   }
 
   &__feature {

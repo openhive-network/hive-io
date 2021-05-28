@@ -38,6 +38,7 @@ export const enum ContributorLabel {
   developer = 'Developer',
   blockProducer = 'Block Producer',
   marketing = 'Marketing',
+  operations = 'Operations',
 }
 
 export type OS =

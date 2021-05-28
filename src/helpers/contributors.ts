@@ -75,7 +75,7 @@ export const CONTRIBUTORS: IContributor[] = [
   },
   {
     id: 'howo',
-    name: 'Howo',
+    name: 'Martin Lees',
     social: {
       hive: 'howo',
     },
@@ -183,7 +183,7 @@ export const CONTRIBUTORS: IContributor[] = [
     social: {
       hive: 'crimsonclad',
     },
-    labels: [ContributorLabel.marketing, ContributorLabel.blockProducer],
+    labels: [ContributorLabel.operations, ContributorLabel.blockProducer],
   },
   {
     id: 'theycallmedan',
@@ -203,11 +203,11 @@ export const CONTRIBUTORS: IContributor[] = [
   },
   {
     id: 'guiltyparties',
-    name: 'Guiltyparties',
+    name: 'Guilty Parties',
     social: {
       hive: 'guiltyparties',
     },
-    labels: [ContributorLabel.blockProducer],
+    labels: [ContributorLabel.operations, ContributorLabel.blockProducer],
   },
   {
     id: 'acidyo',
@@ -243,6 +243,22 @@ export const CONTRIBUTORS: IContributor[] = [
     },
     labels: [ContributorLabel.developer],
   },
+  {
+    id: 'andablackwidow',
+    name: 'ABW',
+    social: {
+      hive: 'andablackwidow',
+    },
+    labels: [ContributorLabel.coreDeveloper],
+  },
+  {
+    id: 'martibis',
+    name: 'Martibis',
+    social: {
+      hive: 'andablackwidow',
+    },
+    labels: [ContributorLabel.coreDeveloper],
+  },
 ]
 
 export const CONTRIBUTOR_LABELS = {
@@ -250,13 +266,17 @@ export const CONTRIBUTOR_LABELS = {
     background: '#7eaafa8c',
     text: 'rgb(54 100 182)',
   },
+  [ContributorLabel.developer]: {
+    background: '#7ed2fa8c',
+    text: '#0426378c',
+  },
   [ContributorLabel.marketing]: {
     background: '#faa07e8c',
     text: 'rgb(166 77 43)',
   },
-  [ContributorLabel.developer]: {
-    background: '#7ed2fa8c',
-    text: '#0426378c',
+  [ContributorLabel.operations]: {
+    background: '#faea7e8c',
+    text: 'rgb(117 104 20)',
   },
   [ContributorLabel.blockProducer]: {
     background: '#917efa8c',

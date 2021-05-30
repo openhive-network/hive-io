@@ -1,5 +1,6 @@
 <template>
   <div class="updates">
+    <h2 style="text-align: center; margin-bottom: 40px">Newest Updates</h2>
     <UpdatesUpdate class="updates__update" :item="UPDATES[0]" :big="true" />
 
     <div class="updates__smaller">

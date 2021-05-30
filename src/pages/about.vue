@@ -16,34 +16,35 @@
       </div>
       <div v-if="$route.name === 'about'" class="about__first">
         <img
+          v-if="false"
           class="about__titleImage"
           src="~/assets/images/progressiveApp.svg"
         />
-        <h1 class="about__title">
-          {{ $t(`about.title`) }} 3<span style="color: #e31337">.</span>0
-        </h1>
+        <h2 class="about__title">
+          {{ $t(`about.title`) }}<span style="color: #e31337">3</span>
+        </h2>
         <p class="about__text">{{ $t('about.text') }}</p>
         <!-- <h2 style="opacity: 0.5; margin-top: 120px">Why choose Hive?</h2> -->
         <div>
           <div class="about__feature">
-            <h2 class="about__feature__text">{{ $t('about.featureFast') }}.</h2>
-            <h3>{{ $t('about.featureFastText') }}</h3>
+            <h3 class="about__feature__text">{{ $t('about.featureFast') }}.</h3>
+            <h4>{{ $t('about.featureFastText') }}</h4>
           </div>
 
           <div class="about__feature">
-            <h2 class="about__feature__text">
+            <h3 class="about__feature__text">
               {{ $t('about.featureScalable') }}.
-            </h2>
-            <h3>{{ $t('about.featureScalableText') }}</h3>
+            </h3>
+            <h4>{{ $t('about.featureScalableText') }}</h4>
           </div>
 
           <div class="about__feature">
-            <h2 class="about__feature__text">
+            <h3 class="about__feature__text">
               {{ $t('about.featurePowerful') }}.
-            </h2>
-            <h3>
-              {{ $t('about.featurePowerfulText') }}
             </h3>
+            <h4>
+              {{ $t('about.featurePowerfulText') }}
+            </h4>
           </div>
         </div>
       </div>
@@ -95,7 +96,7 @@ export default defineComponent({
     flex-flow: row wrap;
     justify-content: center;
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 
     &__item {
       flex: 1;
@@ -128,6 +129,10 @@ export default defineComponent({
   }
 
   h3 {
+    font-size: 2.4rem;
+  }
+
+  h4 {
     font-size: 1.2rem;
     font-weight: 400;
     text-align: left !important;

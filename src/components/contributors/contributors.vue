@@ -1,6 +1,6 @@
 <template>
   <div class="contributors">
-    <h2 style="text-align: center">Built by the community</h2>
+    <h2 style="text-align: center">Our Builders</h2>
     <div class="contributors__subtitle">
       We're a decentralized project, running on more than
       {{ CONTRIBUTORS.length }} people contributing regularly to the Hive

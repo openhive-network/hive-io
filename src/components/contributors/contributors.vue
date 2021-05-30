@@ -1,6 +1,6 @@
 <template>
   <div class="contributors">
-    <h1>Contributors</h1>
+    <h1>Built by the community</h1>
     <div class="contributors__subtitle">
       We're a decentralized project, running on more than
       {{ CONTRIBUTORS.length }} people contributing regularly to the Hive
@@ -8,7 +8,7 @@
     </div>
     <div>
       The list of contributors below is
-      <i class="link" @click="$accessor.shuffleContributors()">randomized</i>.
+      <i class="link" @click="$accessor.shuffleContributors({})">randomized</i>.
     </div>
 
     <div class="contributors__labels">
@@ -108,9 +108,9 @@ export default defineComponent({
   methods: {
     async filterLabel(key: string) {
       if (this.$route.query.t === key) {
-        await routerPush(this, `/about`)
+        await routerPush(this, `/contributors`)
       } else {
-        await routerPush(this, `/about?t=${key}`)
+        await routerPush(this, `/contributors?t=${key}`)
       }
     },
   },
@@ -124,6 +124,7 @@ export default defineComponent({
   align-items: center;
   max-width: 1200px;
   width: 100%;
+  min-height: 500px;
 
   &__subtitle {
     margin-bottom: 10px;

@@ -90,7 +90,7 @@ export default defineComponent({
     padding: 6px 10px;
     margin: 10px 4px 10px 4px;
     background: #f0f0f7;
-    color: #555562;
+    color: #555555;
     border-radius: 14px 14px 1px 1px;
     text-align: center;
     cursor: pointer;

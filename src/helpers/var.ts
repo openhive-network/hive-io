@@ -6,6 +6,7 @@ export * from './socialmedias'
 export * from './statswebsites'
 export * from './wallets'
 export * from './contributors'
+export * from './updates'
 
 export const INFOBAR = {
   show: false,

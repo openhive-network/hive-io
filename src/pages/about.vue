@@ -1,7 +1,20 @@
 <template>
   <div class="about">
     <div class="about__inner">
-      <div class="about__first">
+      <div class="about__nav">
+        <div
+          v-for="nav in ABOUT_NAVIGATION"
+          :key="nav.to"
+          class="about__nav__item"
+          :class="{'about__nav__item--active': nav.to === $route.name}"
+          @click="
+            nav.to !== $route.name ? $router.push({name: nav.to}) : () => {}
+          "
+        >
+          {{ nav.text }}
+        </div>
+      </div>
+      <div v-if="$route.name === 'about'" class="about__first">
         <img
           class="about__titleImage"
           src="~/assets/images/progressiveApp.svg"
@@ -34,21 +47,22 @@
           </div>
         </div>
       </div>
-
-      <Contributors />
+      <Updates v-if="$route.name === 'about-updates'" />
+      <Contributors v-if="$route.name === 'about-contributors'" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from '@nuxtjs/composition-api'
+import {ABOUT_NAVIGATION} from '~/helpers/navigation'
 
 export default defineComponent({
   name: 'About',
   components: {},
   props: {},
   setup() {
-    return {}
+    return {ABOUT_NAVIGATION}
   },
 })
 </script>
@@ -70,11 +84,31 @@ export default defineComponent({
     flex-flow: column;
     align-items: center;
     justify-content: center;
-    padding: 80px 0 40px 0;
+    padding: 0 0 40px 0;
     max-width: 820px;
     text-align: center;
-    margin-top: -15px;
     min-height: 60vh;
+  }
+
+  &__nav {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 50px;
+
+    &__item {
+      margin: 5px 7px;
+      padding: 10px 20px;
+      min-width: 110px;
+      text-align: center;
+      color: white;
+      background: rgba(33, 37, 41, 0.6);
+      border-radius: 5px;
+      cursor: pointer;
+
+      &--active {
+        background: $primary-color-100;
+      }
+    }
   }
 
   &__titleImage {

@@ -4,7 +4,7 @@
 export const NAVIGATION_HEADER = [
   {
     to: 'about',
-    name: 'About',
+    name: 'Learn More',
   },
   {
     to: 'eco',
@@ -33,7 +33,7 @@ export const NAVIGATION_FOOTER = [
   [
     {
       to: 'about',
-      name: 'About',
+      name: 'Learn More',
     },
     {
       to: 'https://signup.hive.io',
@@ -115,4 +115,13 @@ export const NAVIGATION_FOOTER = [
       name: 'GitLab',
     },
   ],
+]
+
+export const ABOUT_NAVIGATION = [
+  {
+    to: 'about',
+    text: 'About Hive',
+  },
+  {to: 'about-contributors', text: 'Contributors'},
+  {to: 'about-updates', text: 'Updates'},
 ]

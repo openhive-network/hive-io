@@ -29,6 +29,18 @@ export const createRouter = () => {
         meta: {}
       },
       {
+        path: '/updates',
+        component: About,
+        name: 'about-updates',
+        meta: {}
+      },
+      {
+        path: '/contributors',
+        component: About,
+        name: 'about-contributors',
+        meta: {}
+      },
+      {
         path: '/brand',
         component: Brand,
         name: 'brand',

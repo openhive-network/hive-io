@@ -24,7 +24,10 @@
       "
       class="navigation-item__link"
       rel="nofollow noopener noreferrer"
-      :class="{'navigation-item__link--dark': dark}"
+      :class="{
+        'navigation-item__link--dark': dark,
+        'navigation-item__link--active': $route.name.startsWith(to),
+      }"
       :to="{name: to}"
     >
       {{ name }}
@@ -62,7 +65,8 @@ export default defineComponent({
       color: white;
     }
     &:hover,
-    &.nuxt-link-active {
+    &.nuxt-link-active,
+    &--active {
       color: $primary-color-100;
     }
   }

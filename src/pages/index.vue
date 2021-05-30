@@ -6,7 +6,7 @@
         <h1 class="root__headTitle">Fast.</h1>
         <h1 class="root__headTitle">Scalable.</h1>
         <h1 class="root__headTitle">Powerful.</h1>
-        <h3 class="root__subtitle">The Blockchain for Web 3.0</h3>
+        <h3 class="root__subtitle">The Blockchain for Web3</h3>
 
         <el-button
           class="root__learnMore"

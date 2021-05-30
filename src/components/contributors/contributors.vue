@@ -1,12 +1,12 @@
 <template>
   <div class="contributors">
-    <h1>Built by the community</h1>
+    <h2 style="text-align: center">Built by the community</h2>
     <div class="contributors__subtitle">
       We're a decentralized project, running on more than
       {{ CONTRIBUTORS.length }} people contributing regularly to the Hive
       Ecosystem.
     </div>
-    <div>
+    <div style="text-align: center">
       The list of contributors below is
       <i class="link" @click="$accessor.shuffleContributors({})">randomized</i>.
     </div>
@@ -128,6 +128,7 @@ export default defineComponent({
 
   &__subtitle {
     margin-bottom: 10px;
+    text-align: center;
   }
 
   &__labels {

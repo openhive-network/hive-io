@@ -36,7 +36,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   &__item {
-    margin: 0 5px;
+    margin: 0 4px;
     padding: 5px 10px;
     &--dark {
       .navigation-item__link {

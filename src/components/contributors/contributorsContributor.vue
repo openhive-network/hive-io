@@ -15,7 +15,7 @@
       rel="nofollow noopener noreferrer"
       >{{ contributor.name }}</a
     >
-    <div class="contributors-contributor__label dotdotdot">
+    <div class="contributors-contributor__label">
       {{ contributor.labels.join(' & ').replace('Core Developer', 'Core Dev') }}
     </div>
     <div class="contributors-contributor__socials">

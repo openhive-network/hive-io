@@ -73,6 +73,14 @@ export default defineComponent({
   }
 }
 
+@media (max-width: 360px) {
+  .updates-update {
+    iframe {
+      width: 360px !important;
+      height: 205px !important;
+    }
+  }
+}
 // @media (min-width: 576px) {
 //   .updates-update {
 //     iframe {

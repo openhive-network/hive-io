@@ -92,10 +92,13 @@ export default defineComponent({
 
   &__nav {
     display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
     margin-top: 20px;
     margin-bottom: 50px;
 
     &__item {
+      flex: 1;
       margin: 5px 7px;
       padding: 10px 20px;
       min-width: 110px;

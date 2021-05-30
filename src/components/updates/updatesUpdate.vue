@@ -52,6 +52,7 @@ export default defineComponent({
     height: 100%;
     width: 100%;
     border-radius: 0 0 10px 10px;
+    background: rgba(33, 37, 41, 0.6);
   }
 
   &--big {

@@ -44,6 +44,15 @@ export const NAVIGATION_FOOTER = [
       name: 'Brand Assets',
     },
     {
+      to: 'about-contributors',
+      name: 'Contributors',
+    },
+    {
+      to: 'about-updates',
+      name: 'Updates',
+    },
+
+    {
       to: 'https://hive.blog/@hiveio',
       name: 'Blog',
     },
@@ -73,10 +82,6 @@ export const NAVIGATION_FOOTER = [
     {
       to: 'https://hiveblocks.com',
       name: 'Block Explorer',
-    },
-    {
-      to: 'https://hiveprojects.io',
-      name: 'Projects',
     },
     {
       to: 'https://hivekings.com/witnesses',

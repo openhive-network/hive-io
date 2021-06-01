@@ -59,9 +59,9 @@ export const WALLETS: IWallet[] = [
     name: 'Vessel',
     image: 'vessel.png',
     os: [os.windows, os.macos, os.linux],
-    website: 'https://github.com/netuoso/vessel/releases',
+    website: 'https://gitlab.syncad.com/hive/vessel/-/releases',
     types: ['wallet'],
-    github: 'https://github.com/netuoso/vessel',
+    github: 'https://gitlab.syncad.com/hive/vessel',
   },
   {
     id: 'hivewallet',

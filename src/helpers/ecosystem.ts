@@ -100,6 +100,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
   },
   {
+    id: 'engage',
+    name: 'Engage',
+    description:
+      ' A community and conversation manager to stay connected with your Hive audience.',
+    image: 'engage.png',
+    website: 'https://engage.hivechain.app',
+    types: [EcoType.social],
+  },
+  {
     id: 'travelfeed',
     name: 'TravelFeed',
     description: 'TravelFeed makes travel blogging easy and fun.',
@@ -234,6 +243,15 @@ export const ECOSYSTEM: IEcoItem[] = [
       'Build, post, and monetize virtual reality experiences without needing to know any code.',
     image: 'dlux.svg',
     website: 'https://www.dlux.io/',
+    types: [EcoType.tools],
+  },
+  {
+    id: 'hivebuzz',
+    name: 'HiveBuzz',
+    description:
+      'Track your achievements on the Hive blockchain.',
+    image: 'hivebuzz.png',
+    website: 'https://hivebuzz.me',
     types: [EcoType.tools],
   },
 ].concat(BLOCKEXPLORERS as any)

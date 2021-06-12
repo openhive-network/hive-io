@@ -300,6 +300,15 @@ export const CONTRIBUTORS: IContributor[] = [
     },
     labels: [ContributorLabel.blockProducer],
   },
+  {
+    id: 'rishi556',
+    name: 'Rishi Panthee',
+    social: {
+      hive: 'rishi556',
+      linkedin: 'rishi-panthee',
+    },
+    labels: [ContributorLabel.developer, ContributorLabel.blockProducer],
+  },
 ]
 
 export const CONTRIBUTOR_LABELS = {

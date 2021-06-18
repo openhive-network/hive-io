@@ -86,6 +86,7 @@ export const CONTRIBUTORS: IContributor[] = [
     name: 'Ausbitbank',
     social: {
       hive: 'ausbitbank',
+      twitter: 'ausbitbank'
     },
     labels: [ContributorLabel.developer, ContributorLabel.blockProducer],
   },
@@ -299,6 +300,15 @@ export const CONTRIBUTORS: IContributor[] = [
       twitter: 'lukestokes',
     },
     labels: [ContributorLabel.blockProducer],
+  },
+  {
+    id: 'rishi556',
+    name: 'Rishi Panthee',
+    social: {
+      hive: 'rishi556',
+      linkedin: 'rishi-panthee',
+    },
+    labels: [ContributorLabel.developer, ContributorLabel.blockProducer],
   },
 ]
 

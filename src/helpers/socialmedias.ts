@@ -46,4 +46,8 @@ export const SOCIAL_MEDIAS = [
     icon: 'quora',
     link: 'https://www.quora.com/q/hive',
   },
+    {
+    icon: 'instagram',
+    link: 'https://www.instagram.com/hiveblocks',
+  },
 ]

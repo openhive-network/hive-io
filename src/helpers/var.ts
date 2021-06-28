@@ -17,12 +17,12 @@ export const INFOBAR = {
   // Should timer be hidden when date is reached?
   hideWhenReady: false,
   // Shown when timer is NOT reacher
-  title: 'Hard fork 25 in',
+  title: 'Hardfork 25 in',
   // titleDesktopOnly is displayed BEFORE the title ONLY on desktop and hidden on mobile
   titleDesktopOnly: '',
 
   // Shown when date is reached
-  titleReady: 'Hard fork 25 just happened!',
+  titleReady: 'Hardfork 25 just happened!',
 
   // Show when route is active
   routes: ['index'],

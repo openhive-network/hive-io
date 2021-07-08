@@ -116,6 +116,12 @@ export const EXCHANGES = [
     website: 'https://stealthex.io/coin/hbd',
     image: 'StealthEX.png',
   },
+    {
+    id: 'sevenb',
+    name: 'Seven B',
+    website: 'https://sevenb.io',
+    image: '7b.png',
+  },
   {
     id: 'swapspace',
     name: 'SwapSpace',

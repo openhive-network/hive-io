@@ -140,4 +140,10 @@ export const EXCHANGES = [
     website: 'https://wazirx.com/exchange/HIVE-USDT',
     image: 'wazirx.png',
   },
+    {
+    id: 'xbts',
+    name: 'XBTS',
+    website: 'https://app.xbts.io/#/pools?a=hive',
+    image: 'xbts.png',
+  }
 ]

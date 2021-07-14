@@ -104,11 +104,17 @@ export const EXCHANGES = [
     website: 'https://steem-engine.net/?p=market&t=HIVEP',
     image: 'steem-engine.svg',
   },
-    {
+  {
     id: 'sevenb',
     name: 'Seven B',
     website: 'https://sevenb.io',
     image: '7b.png',
+  },
+  {
+    id: 'stealthex',
+    name: 'StealthEX',
+    website: 'https://stealthex.io/coin/hbd',
+    image: 'StealthEX.png',
   },
   {
     id: 'swapspace',

@@ -34,6 +34,7 @@ import {
   faWindows as fabWindows,
   faApple as fabApple,
   faLinkedin as fabLinkedin,
+  faInstagram as fabInstagram,
 } from '@fortawesome/free-brands-svg-icons'
 
 dom.watch()
@@ -105,6 +106,7 @@ library.add(
   fasExternalLinkAlt,
   fasChevronDown,
   fasTimes,
+  fabInstagram,
 )
 
 Vue.component('fa-icon', FontAwesomeIcon)

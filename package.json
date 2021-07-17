@@ -42,7 +42,7 @@
     "nuxt": "^2.15.6",
     "nuxt-client-init-module": "^0.3.0",
     "nuxt-compress": "^5.0.0",
-    "nuxt-i18n": "^6.27.0",
+    "nuxt-i18n": "^6.27.3",
     "nuxt-typed-vuex": "^0.2.0",
     "sass-loader": "10.1.1",
     "typed-vuex": "^0.2.0",

@@ -26,7 +26,9 @@
       rel="nofollow noopener noreferrer"
       :class="{
         'navigation-item__link--dark': dark,
-        'navigation-item__link--active': $route.name.startsWith(to),
+        'navigation-item__link--active': $route.name
+          ? $route.name.startsWith(to)
+          : null,
       }"
       :to="{name: to}"
     >

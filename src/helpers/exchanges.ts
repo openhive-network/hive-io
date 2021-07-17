@@ -98,12 +98,12 @@ export const EXCHANGES = [
     website: 'https://app.sequoir.com/assets/hive',
     image: 'sequoir.svg',
   },
-  {
-    id: 'steemengine',
-    name: 'Steem Engine',
-    website: 'https://steem-engine.net/?p=market&t=HIVEP',
-    image: 'steem-engine.svg',
-  },
+  // {
+  //   id: 'steemengine',
+  //   name: 'Steem Engine',
+  //   website: 'https://steem-engine.net/?p=market&t=HIVEP',
+  //   image: 'steem-engine.svg',
+  // },
   {
     id: 'sevenb',
     name: 'Seven B',
@@ -115,6 +115,12 @@ export const EXCHANGES = [
     name: 'StealthEX',
     website: 'https://stealthex.io/coin/hbd',
     image: 'StealthEX.png',
+  },
+  {
+    id: 'sevenb',
+    name: 'Seven B',
+    website: 'https://sevenb.io',
+    image: '7b.png',
   },
   {
     id: 'swapspace',
@@ -140,10 +146,10 @@ export const EXCHANGES = [
     website: 'https://wazirx.com/exchange/HIVE-USDT',
     image: 'wazirx.png',
   },
-    {
+  {
     id: 'xbts',
     name: 'XBTS',
     website: 'https://app.xbts.io/#/pools?a=hive',
     image: 'xbts.png',
-  }
+  },
 ]

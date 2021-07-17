@@ -9,7 +9,7 @@ export * from './contributors'
 export * from './updates'
 
 export const INFOBAR = {
-  show: true,
+  show: false,
   date: '2021-06-30T14:00:00+00:00',
   url: 'https://hive.blog/hive/@hiveio/hive-hardfork-25-is-on-the-way-hive-to-reach-equilibrium-on-june-30th-2021',
   // If empty, only url is used

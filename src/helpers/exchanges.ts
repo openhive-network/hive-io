@@ -98,12 +98,12 @@ export const EXCHANGES = [
     website: 'https://app.sequoir.com/assets/hive',
     image: 'sequoir.svg',
   },
-  {
-    id: 'steemengine',
-    name: 'Steem Engine',
-    website: 'https://steem-engine.net/?p=market&t=HIVEP',
-    image: 'steem-engine.svg',
-  },
+  // {
+  //   id: 'steemengine',
+  //   name: 'Steem Engine',
+  //   website: 'https://steem-engine.net/?p=market&t=HIVEP',
+  //   image: 'steem-engine.svg',
+  // },
     {
     id: 'sevenb',
     name: 'Seven B',

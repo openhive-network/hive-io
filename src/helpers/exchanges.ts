@@ -104,19 +104,19 @@ export const EXCHANGES = [
   //   website: 'https://steem-engine.net/?p=market&t=HIVEP',
   //   image: 'steem-engine.svg',
   // },
-  {
+    {
     id: 'sevenb',
     name: 'Seven B',
     website: 'https://sevenb.io',
     image: '7b.png',
   },
-  {
+    {
     id: 'stealthex',
     name: 'StealthEX',
     website: 'https://stealthex.io/coin/hbd',
     image: 'StealthEX.png',
   },
-  {
+    {
     id: 'sevenb',
     name: 'Seven B',
     website: 'https://sevenb.io',
@@ -146,10 +146,10 @@ export const EXCHANGES = [
     website: 'https://wazirx.com/exchange/HIVE-USDT',
     image: 'wazirx.png',
   },
-  {
+    {
     id: 'xbts',
     name: 'XBTS',
     website: 'https://app.xbts.io/#/pools?a=hive',
     image: 'xbts.png',
-  },
+  }
 ]

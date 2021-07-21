@@ -80,6 +80,12 @@ export const EXCHANGES = [
     website: 'https://ionomy.com/en/markets/btc-hive',
     image: 'ionomy.png',
   },
+    {
+    id: 'indodax',
+    name: 'Indodax',
+    website: 'https://indodax.com/market/HIVEIDR',
+    image: 'indodax.png',
+  },
   {
     id: 'mxc',
     name: 'MXC',

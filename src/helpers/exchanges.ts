@@ -39,6 +39,12 @@ export const EXCHANGES = [
     image: 'coindcx.svg',
   },
   {
+    id: 'coinex',
+    name: 'CoinEx',
+    website: 'https://www.coinex.com/exchange/hive-usdt',
+    image: 'coinex.png',
+  },
+  {
     id: 'cryptex24',
     name: 'Cryptex24',
     website: 'https://www.cryptex24.io/trade/HIVE&USDT',

@@ -75,18 +75,16 @@ export const NAVIGATION_FOOTER = [
       to: 'eco',
       name: 'Ecosystem',
     },
-    /*
     {
       to: 'https://hive.ausbit.dev/hbd',
       name: 'Hive Dollar (HBD)',
     },
-    */
     {
       to: 'https://hiveblocks.com',
       name: 'Block Explorer',
     },
     {
-      to: 'https://hive.arcange.eu/witnesses',
+      to: 'https://hiveblocks.com/witnesses',
       name: 'Governance',
     },
     /* {

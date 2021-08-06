@@ -84,7 +84,7 @@ export const NAVIGATION_FOOTER = [
       name: 'Block Explorer',
     },
     {
-      to: 'https://hivekings.com/witnesses',
+      to: 'https://hiveblocks.com/witnesses',
       name: 'Governance',
     },
     /* {

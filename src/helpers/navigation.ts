@@ -111,6 +111,10 @@ export const NAVIGATION_FOOTER = [
       to: 'https://hive.io/whitepaper.pdf',
       name: 'Whitepaper',
     },
+        {
+      to: 'https://hive.blue/docs/technical-vision.pdf',
+      name: 'Technical Vision',
+    },
     {
       to: 'https://github.com/openhive-network/hive',
       name: 'GitHub',

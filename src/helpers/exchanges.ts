@@ -33,6 +33,12 @@ export const EXCHANGES = [
     image: 'bittrex.svg',
   },
   {
+    id: 'changelly',
+    name: 'Changelly',
+    website: 'https://changelly.com',
+    image: 'changelly.png',
+  },
+  {
     id: 'coindcx',
     name: 'CoinDCX',
     website: 'https://coindcx.com/trade/HIVEUSDT',
@@ -93,6 +99,12 @@ export const EXCHANGES = [
     image: 'indodax.png',
   },
   {
+    id: 'mandala',
+    name: 'Mandala',
+    website: 'https://trade.mandala.exchange/en/trade/basic/HIVE_BTC',
+    image: 'mandala.png',
+  },
+  {
     id: 'mxc',
     name: 'MXC',
     website: 'https://www.mxc.com/trade/easy#HIVE_USDT',
@@ -121,6 +133,12 @@ export const EXCHANGES = [
     name: 'Seven B',
     website: 'https://sevenb.io',
     image: '7b.png',
+  },
+  {
+    id: 'simpleswap',
+    name: 'SimpleSwap',
+    website: 'https://simpleswap.io',
+    image: 'simpleswap.png',
   },
     {
     id: 'stealthex',

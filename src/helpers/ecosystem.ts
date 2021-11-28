@@ -168,13 +168,21 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
   },
 
-  {
-    id: 'fullalt',
-    name: 'FullAlt',
-    description: 'A set of tools to help tokenise the web.',
-    image: 'fullalt.png',
-    website: 'https://www.fullalt.com',
-    types: [EcoType.tools],
+  // {
+  //   id: 'fullalt',
+  //   name: 'FullAlt',
+  //   description: 'A set of tools to help tokenise the web.',
+  //   image: 'fullalt.png',
+  //   website: 'https://www.fullalt.com',
+  //   types: [EcoType.tools],
+  // },
+    {
+    id: 'nfttunz',
+    name: 'NFTTunz',
+    description: 'Music NFTs on Hive.',
+    image: 'nfttunz.png',
+    website: 'https://nfttunz.io',
+    types: [EcoType.nft],
   },
   {
     id: 'dcrops',

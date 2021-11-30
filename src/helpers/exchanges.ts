@@ -21,6 +21,12 @@ export const EXCHANGES = [
     image: 'beaxy.png',
   },
   {
+    id: 'bithumb',
+    name: 'Bithumb',
+    website: 'https://en.bithumb.com/trade/order/HIVE_KRW',
+    image: 'bithumb.png',
+  },
+  {
     id: 'bitsonic',
     name: 'BITSONIC',
     website: 'https://bitsonic.co.kr/front/en/exchange/hive-usdt',

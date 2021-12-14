@@ -251,7 +251,7 @@ export const ECOSYSTEM: IEcoItem[] = [
       'Build, post, and monetize virtual reality experiences without needing to know any code.',
     image: 'dlux.svg',
     website: 'https://www.dlux.io/',
-    types: [EcoType.tools],
+    types: [EcoType.nft, EcoType.tools],
   },
   {
     id: 'hivebuzz',
@@ -261,6 +261,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'hivebuzz.png',
     website: 'https://hivebuzz.me',
     types: [EcoType.tools],
+  },
+    {
+    id: 'hivepunks',
+    name: 'HivePunks',
+    description:
+      'Collectible auto-generated NFT punks.',
+    image: 'hivepunks.png',
+    website: 'https://punks.usehive.com',
+    types: [EcoType.nft],
   },
 ].concat(BLOCKEXPLORERS as any)
 

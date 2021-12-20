@@ -280,7 +280,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://liketu.net',
     types: [EcoType.social],
   },
-        {
+  {
     id: 'apeminingclub',
     name: 'Ape Mining Club',
     description:
@@ -288,6 +288,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'apeminingclub.png',
     website: 'https://apemining.club',
     types: [EcoType.game],
+  },
+  {
+    id: 'tribaldex',
+    name: 'Tribaldex',
+    description:
+      'Create Tokens + Smart Contracts on the Hive blockchain.',
+    image: 'tribaldex.svg',
+    website: 'https://tribaldex.com',
+    types: [EcoType.defi],
   },
 ].concat(BLOCKEXPLORERS as any)
 

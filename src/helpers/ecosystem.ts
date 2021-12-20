@@ -294,7 +294,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     name: 'Tribaldex',
     description:
       'Create Tokens + Smart Contracts on the Hive blockchain.',
-    image: 'tribaldex.svg',
+    image: 'tribaldex.png',
     website: 'https://tribaldex.com',
     types: [EcoType.defi],
   },

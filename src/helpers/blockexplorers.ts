@@ -20,4 +20,12 @@ export const BLOCKEXPLORERS: IEcoItem[] = [
     image: 'blackhive.png',
     types: [EcoType.tools],
   },
+    {
+    id: 'hiveausbitdev',
+    name: 'Hive at Ausbit',
+    website: 'https://hive.ausbit.dev',
+    description: 'Block explorer for Hive.',
+    image: 'redhive.png',
+    types: [EcoType.tools],
+  },
 ]

@@ -271,6 +271,33 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://punks.usehive.com',
     types: [EcoType.nft],
   },
+    {
+    id: 'liketu',
+    name: 'Liketu',
+    description:
+      'A visual social network for the web of tomorrow.',
+    image: 'liketu.png',
+    website: 'https://liketu.net',
+    types: [EcoType.social],
+  },
+  {
+    id: 'apeminingclub',
+    name: 'Ape Mining Club',
+    description:
+      'An idle simulation game that incorporates its own APE token.',
+    image: 'apeminingclub.png',
+    website: 'https://apemining.club',
+    types: [EcoType.game],
+  },
+  {
+    id: 'tribaldex',
+    name: 'Tribaldex',
+    description:
+      'Create Tokens + Smart Contracts on the Hive blockchain.',
+    image: 'tribaldex.png',
+    website: 'https://tribaldex.com',
+    types: [EcoType.defi],
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

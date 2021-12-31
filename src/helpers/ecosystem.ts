@@ -150,6 +150,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
   },
   {
+    id: 'inji',
+    name: 'inji',
+    description:
+      'Your social platform for Crypto, NFTs, DeFi and the Metaverse',
+    image: 'inji.png',
+    website: 'https://inji.com',
+    types: [EcoType.social, EcoType.nft],
+  },
+  {
     id: 'dlease',
     name: 'DLease',
     description:
@@ -176,7 +185,7 @@ export const ECOSYSTEM: IEcoItem[] = [
   //   website: 'https://www.fullalt.com',
   //   types: [EcoType.tools],
   // },
-    {
+  {
     id: 'nfttunz',
     name: 'NFTTunz',
     description: 'Music NFTs on Hive.',
@@ -216,7 +225,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Build your dCITY on NFT assets.',
     image: 'dcity.png',
     website: 'https://dcity.io',
-    types: [EcoType.game],
+    types: [EcoType.game, EcoType.nft],
   },
 
   {
@@ -256,26 +265,23 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'hivebuzz',
     name: 'HiveBuzz',
-    description:
-      'Track your achievements on the Hive blockchain.',
+    description: 'Track your achievements on the Hive blockchain.',
     image: 'hivebuzz.png',
     website: 'https://hivebuzz.me',
     types: [EcoType.tools],
   },
-    {
+  {
     id: 'hivepunks',
     name: 'HivePunks',
-    description:
-      'Collectible auto-generated NFT punks.',
+    description: 'Collectible auto-generated NFT punks.',
     image: 'hivepunks.png',
     website: 'https://punks.usehive.com',
     types: [EcoType.nft],
   },
-    {
+  {
     id: 'liketu',
     name: 'Liketu',
-    description:
-      'A visual social network for the web of tomorrow.',
+    description: 'A visual social network for the web of tomorrow.',
     image: 'liketu.png',
     website: 'https://liketu.net',
     types: [EcoType.social],
@@ -283,8 +289,7 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'apeminingclub',
     name: 'Ape Mining Club',
-    description:
-      'An idle simulation game that incorporates its own APE token.',
+    description: 'An idle simulation game that incorporates its own APE token.',
     image: 'apeminingclub.png',
     website: 'https://apemining.club',
     types: [EcoType.game],
@@ -292,8 +297,7 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'tribaldex',
     name: 'Tribaldex',
-    description:
-      'Create Tokens + Smart Contracts on the Hive blockchain.',
+    description: 'Create Tokens + Smart Contracts on the Hive blockchain.',
     image: 'tribaldex.png',
     website: 'https://tribaldex.com',
     types: [EcoType.defi],

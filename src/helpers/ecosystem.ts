@@ -225,7 +225,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Build your dCITY on NFT assets.',
     image: 'dcity.png',
     website: 'https://dcity.io',
-    types: [EcoType.game],
+    types: [EcoType.game, EcoType.nft],
   },
 
   {

@@ -23,6 +23,11 @@ export const NAVIGATION_HEADER = [
     name: 'Join',
     isButton: true,
   },
+  {
+    to: 'https://whyhive.co',
+    name: 'Why Hive?',
+    isButton: true,
+  },
 ]
 
 /**
@@ -111,7 +116,7 @@ export const NAVIGATION_FOOTER = [
       to: 'https://hive.io/whitepaper.pdf',
       name: 'Whitepaper',
     },
-        {
+    {
       to: 'https://hive.blue/docs/technical-vision.pdf',
       name: 'Technical Vision',
     },

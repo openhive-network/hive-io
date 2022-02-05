@@ -33,6 +33,12 @@ export const EXCHANGES = [
     image: 'bittrex.svg',
   },
   {
+    id: 'bkex',
+    name: 'BKEX',
+    website: 'https://www.bkex.com/trade/HIVE_USDT',
+    image: 'bkex.png',
+  },
+  {
     id: 'changelly',
     name: 'Changelly',
     website: 'https://changelly.com',
@@ -117,6 +123,12 @@ export const EXCHANGES = [
     image: 'probit_white.png',
   },
   {
+    id: 'routelay',
+    name: 'Routelay',
+    website: 'https://routelay.com/?to=hive',
+    image: 'routelay_white.png',
+  },
+  {
     id: 'sequoir',
     name: 'Sequoir',
     website: 'https://app.sequoir.com/assets/hive',
@@ -139,6 +151,12 @@ export const EXCHANGES = [
     name: 'SimpleSwap',
     website: 'https://simpleswap.io',
     image: 'simpleswap.png',
+  },
+  {
+    id: 'simplex',
+    name: 'Simplex',
+    website: 'https://www.simplex.com/buy-crypto',
+    image: 'simplex.png',
   },
     {
     id: 'stealthex',

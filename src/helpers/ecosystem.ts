@@ -302,6 +302,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://tribaldex.com',
     types: [EcoType.defi],
   },
+    {
+    id: 'hashkings',
+    name: 'Hash Kings',
+    description: 'Cannabis Farming Simulator on the Hive blockchain.',
+    image: 'hashkings.png',
+    website: 'https://www.hashkings.app',
+    types: [EcoType.game],
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

@@ -87,6 +87,10 @@ export const NAVIGATION_FOOTER = [
       to: 'https://hiveblocks.com/witnesses',
       name: 'Governance',
     },
+    {
+       to: 'https://whyhive.co/',
+       name: 'Why Hive',
+    },
     /* {
       to: 'eco',
       name: 'dApps Statistics'

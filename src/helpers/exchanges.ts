@@ -156,7 +156,7 @@ export const EXCHANGES = [
     id: 'simplex',
     name: 'Simplex',
     website: 'https://www.simplex.com/buy-crypto',
-    image: 'simplex.png',
+    image: 'simplex.svg',
   },
     {
     id: 'stealthex',

@@ -283,7 +283,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     name: 'Liketu',
     description: 'A visual social network for the web of tomorrow.',
     image: 'liketu.png',
-    website: 'https://liketu.net',
+    website: 'https://www.liketu.org',
     types: [EcoType.social],
   },
   {

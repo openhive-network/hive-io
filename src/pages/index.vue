@@ -14,12 +14,6 @@
             @click="$router.push('/about')"
             >{{ $t('root.learnMore') }}</el-button
           >
-          <el-button
-            class="root__whyHive"
-            type="primary"
-            @click="go('https://whyhive.co')"
-            >{{ $t('root.whyHive') }}</el-button
-          >
         </div>
       </div>
       <Logo class="root__home__logo" :full="false" />

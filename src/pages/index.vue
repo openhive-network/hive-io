@@ -7,13 +7,14 @@
         <h1 class="root__headTitle">Scalable.</h1>
         <h1 class="root__headTitle">Powerful.</h1>
         <h3 class="root__subtitle">The Blockchain for Web3</h3>
-
-        <el-button
-          class="root__learnMore"
-          type="primary"
-          @click="$router.push('/about')"
-          >{{ $t('root.learnMore') }}</el-button
-        >
+        <div class="root__buttons">
+          <el-button
+            class="root__learnMore"
+            type="primary"
+            @click="$router.push('/about')"
+            >{{ $t('root.learnMore') }}</el-button
+          >
+        </div>
       </div>
       <Logo class="root__home__logo" :full="false" />
     </div>
@@ -245,6 +246,14 @@ export default defineComponent({
   }
 
   &__learnMore {
+    min-width: 150px;
+    width: fit-content;
+    font-size: 16px;
+    padding: 15px 26px;
+    margin-top: 15px;
+    float: left;
+  }
+  &__whyHive {
     min-width: 150px;
     width: fit-content;
     font-size: 16px;

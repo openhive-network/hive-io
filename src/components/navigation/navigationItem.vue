@@ -1,10 +1,18 @@
 <template>
   <div class="navigation-item">
     <el-button
-      v-if="isButton"
+      v-if="isButton && to && !to.includes('whyhive.co')"
       class="navigation-item__button"
       type="primary"
       @click="go(to)"
+      >{{ name }}</el-button
+    >
+    <el-button
+      v-if="isButton && to && to.includes('whyhive.co')"
+      class="navigation-item__whyhive"
+      type="primary"
+      @click="go(to)"
+      plain
       >{{ name }}</el-button
     >
     <a
@@ -60,6 +68,7 @@ export default defineComponent({
 
 <style lang="scss">
 .navigation-item {
+  padding: 5px 5px;
   &__link {
     transition: all ease-in 0.1s;
 
@@ -74,7 +83,10 @@ export default defineComponent({
   }
 
   &__button {
-    min-width: 100px;
+    min-width: 90px;
+  }
+
+  &__whyhive {
   }
 }
 </style>

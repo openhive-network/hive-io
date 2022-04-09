@@ -1,6 +1,7 @@
 export default {
   root: {
     learnMore: 'Learn More',
+    whyHive: 'Why Hive?',
     ecoTitle: 'Hive Ecosystem',
     ecoText:
       'Hive has a thriving ecosystem of over 126 apps, communities & projects and is home to some of the most-used Web3 apps in the world, such as Splinterlands, PeakD and HiveBlog.',

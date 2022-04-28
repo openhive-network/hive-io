@@ -81,7 +81,7 @@ export const NAVIGATION_FOOTER = [
       name: 'Ecosystem',
     },
     {
-      to: 'https://hive.ausbit.dev/hbd',
+      to: 'hbd',
       name: 'Hive Dollar (HBD)',
     },
     {

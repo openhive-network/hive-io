@@ -66,6 +66,30 @@
       </div>
     </div>
 
+    <div class="root__hbd root__container">
+      <div class="root__hbd__inner root__container__inner">
+        <div class="root__hbd__left">
+          <h2 class="root__hbd__title">{{ $t('root.hbdTitle') }}</h2>
+          <p class="root__hbd__description">
+            {{ $t('root.hbdText') }} <br /><br />
+            {{ $t('root.hbdAPR') }}
+          </p>
+          <el-button
+            class="root__learnMore"
+            type="primary"
+            @click="$router.push('/hbd')"
+          >
+            {{ $t('root.hbdButton') }}</el-button
+          >
+          <!--  -->
+        </div>
+        <div class="root__hbd__image-container">
+          <img class="root__hbd__image" src="~/assets/images/hbd.svg" />
+          <div class="root__hbd__image-background"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="root__exchanges-container">
       <div class="root__exchanges__title">
         {{ $t('root.exchanges.title') }}
@@ -330,6 +354,45 @@ export default defineComponent({
     }
   }
 
+  &__hbd {
+    &__inner {
+      flex-flow: row-reverse;
+    }
+
+    &__left {
+      width: 350px;
+      max-width: 350px;
+      width: 100%;
+      min-width: 250px;
+    }
+
+    &__image {
+      width: 150px;
+      z-index: 1;
+
+      &-background {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        opacity: 0.75;
+        border-radius: 10000px;
+        border: 1px solid #e2e2ec;
+      }
+      &-container {
+        margin-left: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 280px;
+        height: 280px;
+        position: relative;
+      }
+    }
+  }
+
   h1 {
     font-size: 3.8rem;
   }
@@ -361,14 +424,17 @@ export default defineComponent({
 
     &__dao__left,
     &__wallets__image-container,
+    &__hbd__image-container,
     &__eco__left,
-    &__wallets__left {
+    &__wallets__left,
+    &__hbd__left {
       margin: 0;
       text-align: center;
     }
 
     &__eco__image,
     &__wallets__image-container,
+    &__hbd__image-container,
     &__dao__image {
       margin-bottom: 50px;
     }
@@ -389,15 +455,18 @@ export default defineComponent({
 
     &__eco__image,
     &__wallets__image-container,
+    &__hbd__image-container,
     &__dao__image {
       width: 200px;
     }
 
-    &__wallets__image {
+    &__wallets__image,
+    &__hbd__image {
       width: 100px;
     }
 
-    &__wallets__image-container {
+    &__wallets__image-container,
+    &__hbd__image-container {
       height: 200px;
     }
   }

@@ -9,6 +9,7 @@ const Brand = () => import('./pages/brand.vue').then((m) => m.default || m)
 const Eco = () => import('./pages/eco.vue').then((m) => m.default || m)
 const Wallets = () => import('./pages/wallets.vue').then((m) => m.default || m)
 const Developers = () => import('./pages/developers.vue').then((m) => m.default || m)
+const Hbd = () => import( './pages/hbd.vue' ).then( ( m ) => m.default || m )
 
 export const createRouter = () => {
   const router = new Router({
@@ -68,6 +69,12 @@ export const createRouter = () => {
         path: '/developers',
         component: Developers,
         name: 'developers',
+        meta: {}
+      },
+      {
+        path: '/hbd',
+        component: Hbd,
+        name: 'hbd',
         meta: {}
       },
     ],

@@ -19,6 +19,10 @@ export default {
       subtitle:
         'Hive is available at the top exchanges for secure transactions',
     },
+    hbdTitle: 'Hive Backed Dollar',
+    hbdText: 'Enjoy safe investment on a decentralized stable coin powered by Hive blockchain. HBD is backed by HIVE and currently provides one of the highest interest rates in the crypto space.',
+    hbdAPR: '20% APR on HBD savings.',
+    hbdButton: 'Learn more'
   },
   about: {
     title: 'Built for Web',
@@ -43,6 +47,22 @@ export default {
     title: 'Choose your Wallet',
     text:
       'Hive wallets are available for Windows, MacOS, Linux, iOS, Android & Web.',
+  },
+  hbd: {
+    title: 'Hive Backed Dollar',
+    text: 'HBD is a native stable coin on Hive blockchain. HBD is built to hold $1 value in the most decentralized ways. It benefits from the fee-less and fast transactions of Hive blockchain.',
+    howTitle: 'How it holds the $1 peg?',
+    howText: 'There are 2 decentralized conversion operations designed to achieve this goal. HIVE to HBD conversion and HBD to HIVE conversion. These two operations keep the price around $1 with a tight margin.',
+    hbdToHiveTitle: 'HBD to HIVE conversion',
+    hbdToHiveText: 'This operation converts set amount of HBD to $1 worth of HIVE with no extra fees. It takes 3.5 days for the conversion to happen. The price for this conversion is the median price of the coming 3.5 days to prevent market manipulations.',
+    hiveToHbdTitle: 'HIVE to HBD conversion',
+    hiveToHbdText: 'This operation is a collateral based conversion. After initialazing the conversion of the X amount of HIVE to HBD, the user get\'s Y amount of HBD immediately. The Y is equivilent of the value of X/2 of the HIVE. The cost for Y amount of HBD is calculated after 3.5 days and the remaining HIVE is returned to the user. The price is the median price of the 3.5 days. This conversion has a 5% fee which is burned in the process.',
+    supportedWallets: 'Supported wallets',
+    interestTitle: 'Interest rate',
+    interestText: 'Hive blockchain offers interest rate on the HBD savings. Saving is an action that locks the HBD with a unlock time of only 3 days. The interest rate is voted by the witnesses (block producers) and is subject to change. It is currently at 20% APR.',
+    whereToBuyTitle: 'Where to buy',
+    moreInfoTitle: 'Statistics, market cap, and more',
+    moreInfoText: 'For more detailed information, checkout ',
   },
   brand: {
     title: 'Brand Assets',

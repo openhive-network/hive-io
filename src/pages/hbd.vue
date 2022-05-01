@@ -60,8 +60,6 @@
               <a href="https://global.bittrex.com" target="_blank" rel="nofollow noopener noreferrer">Bittrex</a>,
               <a href="https://tribaldex.com/trade/SWAP.HBD" target="_blank" rel="nofollow noopener noreferrer">Tribaldex</a>,
               <a href="https://sg.upbit.com" target="_blank" rel="nofollow noopener noreferrer">Upbit</a>,
-              <a href="https://wallet.hive.blog/market" target="_blank" rel="nofollow noopener noreferrer">Internal market</a>,
-              <a href="https://ecency.com/market" target="_blank" rel="nofollow noopener noreferrer">Ecency internal market</a>
               <a href="https://ex.xbts.io/market/XBTSX.HBD_BTS" target="_blank" rel="nofollow noopener noreferrer">XBTS</a>
             </h4>
           </div>

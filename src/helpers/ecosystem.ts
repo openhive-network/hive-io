@@ -310,6 +310,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://www.hashkings.app',
     types: [EcoType.game],
   },
+  {
+    id: 'skatehype',
+    name: 'Skate Hype',
+    description: 'Dedicated skateboarding platform for video, photo, and sequence sharing.',
+    image: 'SkateHype.png',
+    website: 'https://www.skatehype.com',
+    types: [EcoType.social, EcoType.video, EcoType.sport],
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

@@ -78,7 +78,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Soccer manager built on the Hive blockchain.',
     image: 'rabona.png',
     website: 'https://rabona.io',
-    types: [EcoType.game],
+    types: [EcoType.game, EcoType.sport],
     featured: true,
   },
   {
@@ -147,7 +147,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'An innovative dapp that rewards your everyday activity.',
     image: 'actifit.png',
     website: 'https://actifit.io',
-    types: [EcoType.social],
+    types: [EcoType.social, EcoType.sport],
   },
   {
     id: 'inji',

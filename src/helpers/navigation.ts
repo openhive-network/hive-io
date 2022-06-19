@@ -66,10 +66,10 @@ export const NAVIGATION_FOOTER = [
       to: 'https://hive.wiki',
       name: 'Wiki'
     }, */
-    {
-      to: 'mailto:info@hive.io',
-      name: 'Contact',
-    },
+    // {
+    //   to: 'mailto:info@hive.io',
+    //   name: 'Contact',
+    // },
     /* {
       to: 'contributors',
       name: 'Contributors'

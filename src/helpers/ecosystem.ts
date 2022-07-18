@@ -318,6 +318,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://www.skatehype.com',
     types: [EcoType.social, EcoType.video, EcoType.sport],
   },
+  {
+    id: 'hivelist',
+    name: 'HiveLIST',
+    description: 'An Honest Place To Buy Products And Services Using Cryptocurrency.',
+    image: 'hivelist.png',
+    website: 'https://hivelist.io/',
+    types: [EcoType.defi],
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

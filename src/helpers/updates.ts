@@ -11,6 +11,21 @@ export interface IUpdate {
 
 export const UPDATES: IUpdate[] = [
   {
+    video: 'https://www.youtube.com/watch?v=1iHk9vVOAMY',
+    title: 'Core Dev Meeting #39',
+    type: UPDATE_TYPE.coreDevMeeting,
+  },
+  {
+    video: 'https://www.youtube.com/watch?v=ZXpzcXFPqeM',
+    title: 'Core Dev Meeting #38',
+    type: UPDATE_TYPE.coreDevMeeting,
+  },
+  {
+    video: 'https://www.youtube.com/watch?v=yrGrvgXAGMw',
+    title: 'Core Dev Meeting #37',
+    type: UPDATE_TYPE.coreDevMeeting,
+  },
+  {
     video: 'https://www.youtube.com/watch?v=uoskscKWT-A',
     title: 'Core Dev Meeting #36',
     type: UPDATE_TYPE.coreDevMeeting,

@@ -324,7 +324,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'An Honest Place To Buy Products And Services Using Cryptocurrency.',
     image: 'hivelist.png',
     website: 'https://hivelist.io/',
-    types: [EcoType.defi],
+    types: [EcoType.nft, EcoType.defi],
+  },
+  {
+    id: 'waivio',
+    name: 'Waivio',
+    description: 'Waivio is an open distributed attention marketplace for business.',
+    image: 'waivio.png',
+    website: 'https://www.waivio.com/',
+    types: [EcoType.defi, EcoType.social],
   },
 ].concat(BLOCKEXPLORERS as any)
 
@@ -358,8 +366,8 @@ export const TYPE_COLORS = {
     text: '#faea7e8c',
   },
   sport: {
-    background: '#faea7e8c',
-    text: '#faea7e8c',
+    background: 'rgb(229 255 188)',
+    text: 'rgb(129 140 112)',
   },
   explorer: {
     background: '#faea7e8c',

@@ -366,8 +366,8 @@ export const TYPE_COLORS = {
     text: '#faea7e8c',
   },
   sport: {
-    background: '#faea7e8c',
-    text: '#faea7e8c',
+    background: 'rgb(229 255 188)',
+    text: 'rgb(129 140 112)',
   },
   explorer: {
     background: '#faea7e8c',

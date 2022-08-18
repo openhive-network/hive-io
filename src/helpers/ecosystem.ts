@@ -334,6 +334,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://www.waivio.com/',
     types: [EcoType.defi, EcoType.social],
   },
+  {
+    id: 'hiveland',
+    name: 'HiveLand',
+    description: 'HiveLand is an informational platform for Hive-driven tokens.',
+    image: 'hiveland.png',
+    website: 'https://hiveland.live/',
+    types: [EcoType.defi],
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

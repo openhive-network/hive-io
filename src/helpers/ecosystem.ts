@@ -342,6 +342,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://hiveland.live/',
     types: [EcoType.defi],
   },
+    {
+    id: 'woo',
+    name: 'Wrestling Organization Online',
+    description: 'Wrestling Organization Online is a P2E sport business management game.',
+    image: 'WOO.png',
+    website: 'https://play.wrestlingorganizationonline.com',
+    types: [EcoType.game],
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

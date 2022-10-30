@@ -346,7 +346,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'woo',
     name: 'Wrestling Organization Online',
     description: 'Wrestling Organization Online is a P2E sport business management game.',
-    image: 'woo.png',
+    image: 'WOO.png',
     website: 'https://play.wrestlingorganizationonline.com',
     types: [EcoType.game],
   },

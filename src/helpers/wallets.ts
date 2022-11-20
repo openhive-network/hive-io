@@ -126,4 +126,14 @@ export const WALLETS: IWallet[] = [
     types: ['wallet'],
     github: 'https://github.com/actifit/actifit-landingpage',
   },
+    {
+    id: 'hiveledger',
+    name: 'Ledger',
+    image: 'ledger.png',
+    os: [os.web],
+    website: 'https://hiveledger.io/auth/login',
+    types: ['wallet'],
+    github: 'https://gitlab.com/engrave/ledger',
+  },
+
 ]

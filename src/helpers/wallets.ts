@@ -48,6 +48,10 @@ const os = {
     icon: ['fas', 'puzzle-piece'],
     name: 'Extension',
   },
+  hardware: {
+  icon: ['fas', 'wallet'],
+  name: 'Hardware',
+  },
 }
 
 /**
@@ -130,7 +134,7 @@ export const WALLETS: IWallet[] = [
     id: 'hiveledger',
     name: 'Ledger',
     image: 'ledger.png',
-    os: [os.web],
+    os: [os.hardware],
     website: 'https://hiveledger.io/auth/login',
     types: ['wallet'],
     github: 'https://gitlab.com/engrave/ledger',

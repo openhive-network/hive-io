@@ -21,12 +21,12 @@ export const STATISTIC_WEBSITES = [
     website: 'https://dapp.review/explore/hive',
     image: 'dapp-review.svg',
   },
-  {
-    id: 'hivedapps-com',
-    name: 'HiveDapps',
-    website: 'https://hivedapps.com',
-    image: 'hivedapps-com.svg',
-  },
+  // {
+  //   id: 'hivedapps-com',
+  //   name: 'HiveDapps',
+  //   website: 'https://hivedapps.com',
+  //   image: 'hivedapps-com.svg',
+  // },
 ]
 
 export const HIVE_PROJECTS = {

@@ -33,6 +33,7 @@ export default {
       ogSiteName: 'Hive - The Blockchain & Cryptocurrency for Web3',
       description:
         'Hive is a DPoS powered blockchain & cryptocurrency. Fast. Scalable. Powerful. Hive has a thriving ecosystem of dapps, communities & individuals.',
+      keywords: 'hive, web3, blockchain, social blockchain, web3 blockchain, web3 social media, nfts, tokens, hbd, cryptocurrency',
       ogType: 'website',
       ogUrl: 'https://hive.io',
       ogHost: 'https://hive.io',

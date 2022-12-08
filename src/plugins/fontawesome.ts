@@ -12,6 +12,7 @@ import {
   faPuzzlePiece as fasPuzzlePiece,
   faGlobe as fasGlobe,
   faExternalLinkAlt as fasExternalLinkAlt,
+  faWallet as fasWallet,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faHive as fabHive,
@@ -107,6 +108,7 @@ library.add(
   fasChevronDown,
   fasTimes,
   fabInstagram,
+  fasWallet,
 )
 
 Vue.component('fa-icon', FontAwesomeIcon)

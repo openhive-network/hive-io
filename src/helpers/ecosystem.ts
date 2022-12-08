@@ -350,6 +350,22 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://play.wrestlingorganizationonline.com',
     types: [EcoType.game],
   },
+    {
+    id: 'podping',
+    name: 'Podping',
+    description: 'Podping is a global message bus for podcast infrastructure events.',
+    image: 'podping.png',
+    website: 'https://podping.org',
+    types: [EcoType.tools],
+  },
+    {
+    id: 'blocktunes',
+    name: 'BlockTunes',
+    description: 'Tokenizing the music industry with NFTs and artist ran DAOs and paying musicians in cryptocurrency.',
+    image: 'blocktunes.png',
+    website: 'https://blocktunes.net',
+    types: [EcoType.defi, EcoType.nft],
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

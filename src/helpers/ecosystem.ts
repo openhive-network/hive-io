@@ -386,7 +386,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'hivetube',
     name: 'Hive Tube',
     description: 'Hive-Tube is the best alternative to Youtube. P2P, Fediverse syndicated, no fees and no KYC.',
-    image: 'hivetube.svg',
+    image: 'hive-tube.svg',
     website: 'https://hive-tube.com',
     types: [EcoType.social, EcoType.video],
   },

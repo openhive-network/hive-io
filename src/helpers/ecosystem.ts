@@ -366,6 +366,30 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://blocktunes.net',
     types: [EcoType.defi, EcoType.nft],
   },
+    {
+    id: 'muterra',
+    name: 'Muterra',
+    description: 'RPG+TCG game on Hive set in a post-apocalyptic world.',
+    image: 'muterra.png',
+    website: 'https://muterra.in',
+    types: [EcoType.game],
+  },
+    {
+    id: 'psyberx',
+    name: 'PsyberX',
+    description: 'FPS+TPS game where gamers strike fear into their opponents.',
+    image: 'psyberx.png',
+    website: 'https://www.psyber-x.com',
+    types: [EcoType.game],
+  },
+    {
+    id: 'hivetube',
+    name: 'Hive Tube',
+    description: 'Hive-Tube is the best alternative to Youtube. P2P, Fediverse syndicated, no fees and no KYC.',
+    image: 'hivetube.svg',
+    website: 'https://hive-tube.com',
+    types: [EcoType.social, EcoType.video],
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

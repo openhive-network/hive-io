@@ -90,7 +90,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game],
     featured: true,
   },
-
+  {
+    id: 'pinmapple',
+    name: 'Pinmapple',
+    description: 'An interactive visual map where you can explore travel content from around the world and a curated feed of stunning editor\'s picks',
+    image: 'Pinmapple_Logo.svg',
+    website: 'https://www.pinmapple.com/',
+    types: [EcoType.social],
+  },
   {
     id: 'dbuzz',
     name: 'D.Buzz',

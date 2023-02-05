@@ -99,6 +99,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
   },
   {
+    id: 'liketu',
+    name: 'Liketu',
+    description: 'A visual social network for the web of tomorrow.',
+    image: 'liketu.png',
+    website: 'https://www.liketu.org',
+    types: [EcoType.social],
+  },
+  {
     id: 'dbuzz',
     name: 'D.Buzz',
     description: 'Micro-blogging for Hive.',
@@ -282,14 +290,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'hivepunks.png',
     website: 'https://punks.usehive.com',
     types: [EcoType.nft],
-  },
-  {
-    id: 'liketu',
-    name: 'Liketu',
-    description: 'A visual social network for the web of tomorrow.',
-    image: 'liketu.png',
-    website: 'https://www.liketu.org',
-    types: [EcoType.social],
   },
   {
     id: 'apeminingclub',

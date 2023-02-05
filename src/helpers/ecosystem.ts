@@ -90,7 +90,22 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game],
     featured: true,
   },
-
+  {
+    id: 'pinmapple',
+    name: 'Pinmapple',
+    description: 'An interactive visual map where you can explore travel content from around the world and a curated feed of stunning editor picks',
+    image: 'Pinmapple_Logo.svg',
+    website: 'https://www.pinmapple.com/',
+    types: [EcoType.social],
+  },
+  {
+    id: 'liketu',
+    name: 'Liketu',
+    description: 'A visual social network for the web of tomorrow.',
+    image: 'liketu.png',
+    website: 'https://www.liketu.org',
+    types: [EcoType.social],
+  },
   {
     id: 'dbuzz',
     name: 'D.Buzz',
@@ -98,6 +113,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'dbuzz.png',
     website: 'https://d.buzz',
     types: [EcoType.social],
+  },
+  {
+    id: 'woo',
+    name: 'Wrestling Organization Online',
+    description: 'Wrestling Organization Online is a P2E sport business management game.',
+    image: 'WOO.png',
+    website: 'https://play.wrestlingorganizationonline.com',
+    types: [EcoType.game],
   },
   {
     id: 'engage',
@@ -150,24 +173,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social, EcoType.sport],
   },
   {
-    id: 'inji',
-    name: 'inji',
-    description:
-      'Your social platform for Crypto, NFTs, DeFi and the Metaverse',
-    image: 'inji.png',
-    website: 'https://inji.com',
-    types: [EcoType.social, EcoType.nft],
-  },
-  {
-    id: 'dlease',
-    name: 'DLease',
-    description:
-      'Invest with confidence using our state of the art Digital Asset Leasing platform.',
-    image: 'dlease.png',
-    website: 'https://dlease.io',
-    types: [EcoType.defi],
-  },
-  {
     id: 'engrave',
     name: 'Engrave',
     description:
@@ -185,6 +190,14 @@ export const ECOSYSTEM: IEcoItem[] = [
   //   website: 'https://www.fullalt.com',
   //   types: [EcoType.tools],
   // },
+  {
+    id: 'cubfi',
+    name: 'CubFinance',
+    description: 'A DeFi derivatives platform operating bHIVE and bHBD on the BSC Blockchain where users can wrap HIVE & HBD to provide liquidity and trade',
+    image: 'CUB.svg',
+    website: 'https://cubdefi.com/',
+    types: [EcoType.defi],
+  },
   {
     id: 'nfttunz',
     name: 'NFTTunz',
@@ -279,14 +292,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.nft],
   },
   {
-    id: 'liketu',
-    name: 'Liketu',
-    description: 'A visual social network for the web of tomorrow.',
-    image: 'liketu.png',
-    website: 'https://www.liketu.org',
-    types: [EcoType.social],
-  },
-  {
     id: 'apeminingclub',
     name: 'Ape Mining Club',
     description: 'An idle simulation game that incorporates its own APE token.',
@@ -327,6 +332,24 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.nft, EcoType.defi],
   },
   {
+    id: 'inji',
+    name: 'inji',
+    description:
+      'Your social platform for Crypto, NFTs, DeFi and the Metaverse',
+    image: 'inji.png',
+    website: 'https://inji.com',
+    types: [EcoType.social, EcoType.nft],
+  },
+  {
+    id: 'dlease',
+    name: 'DLease',
+    description:
+      'Invest with confidence using our state of the art Digital Asset Leasing platform.',
+    image: 'dlease.png',
+    website: 'https://dlease.io',
+    types: [EcoType.defi],
+  },
+  {
     id: 'waivio',
     name: 'Waivio',
     description: 'Waivio is an open distributed attention marketplace for business.',
@@ -341,14 +364,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'cryptoshots.png',
     website: 'https://crypto-shots.com/',
     types: [EcoType.game, EcoType.nft],
-  },
-    {
-    id: 'woo',
-    name: 'Wrestling Organization Online',
-    description: 'Wrestling Organization Online is a P2E sport business management game.',
-    image: 'WOO.png',
-    website: 'https://play.wrestlingorganizationonline.com',
-    types: [EcoType.game],
   },
     {
     id: 'podping',
@@ -390,6 +405,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://hive-tube.com',
     types: [EcoType.social, EcoType.video],
   },
+    {
+    id: 'kod',
+    name: 'King Of Duels',
+    description: 'King of Duels brings players a complete PvP gaming experience from day one.',
+    image: 'king-of-duels.svg',
+    website: 'https://kod.up.railway.app/',
+    types: [EcoType.game],
+  },
+
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

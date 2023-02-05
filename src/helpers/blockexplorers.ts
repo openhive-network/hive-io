@@ -12,6 +12,14 @@ export const BLOCKEXPLORERS: IEcoItem[] = [
     image: 'redhive.png',
     types: [EcoType.tools],
   },
+    {
+    id: 'hivehub',
+    name: 'HiveHub',
+    website: 'https://hivehub.dev/blocks',
+    description: 'Explore the Hive ecosystem',
+    image: 'hivehub.svg',
+    types: [EcoType.tools],
+  },
   {
     id: 'hiveblockexplorer',
     name: 'Hive Blockexplorer',

@@ -93,7 +93,7 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'pinmapple',
     name: 'Pinmapple',
-    description: 'An interactive visual map where you can explore travel content from around the world and a curated feed of stunning editor\'s picks',
+    description: 'An interactive visual map where you can explore travel content from around the world and a curated feed of stunning editor picks',
     image: 'Pinmapple_Logo.svg',
     website: 'https://www.pinmapple.com/',
     types: [EcoType.social],

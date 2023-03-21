@@ -419,7 +419,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Earn rewards on Hive by asking and answering questions on Reverio.',
     image: 'reverio.svg',
     website: 'https://reverio.io/',
-    types: [EcoType.game],
+    types: [EcoType.social],
   },
 
 ].concat(BLOCKEXPLORERS as any)

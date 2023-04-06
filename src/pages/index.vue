@@ -21,6 +21,30 @@
 
     <scrollindicator style="margin: 0 auto 0px auto; margin-bottom: 40px" />
 
+    <!-- Fast transactions -->
+    <div class="root__general root__container secondarybg">
+      <div class="root__general__inner root__container__inner">
+        <div class="root__general__left">
+          <h2 class="root__general__title">{{ $t('root.fastTitle') }}</h2>
+          <p class="root__general__description">
+            {{ $t('root.fastText') }}
+          </p>
+          <el-button
+            class="root__learnMore"
+            type="primary"
+            @click="go('https://hive.blog/hive-139531/@blocktrades/one-block-irreversibility-for-delegated-proof-of-stake-dpos')"
+          >
+            {{ $t('root.fastButton') }}</el-button
+          >
+          <!--  -->
+        </div>
+        <div class="root__general__image-container">
+          <img class="root__general__image" src="~/assets/images/vault.svg" />
+          <div class="root__general__image-background"></div>
+        </div>
+      </div>
+    </div>
+
     <RootEco />
 
     <div class="root__wallets root__container">
@@ -164,6 +188,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.secondarybg {
+  background: #e7e7f1;
+}
+
 .root {
   height: 100%;
   &__container {
@@ -341,6 +369,45 @@ export default defineComponent({
         background: $secondary-color-100;
         opacity: 0.75;
         border-radius: 10000px;
+      }
+      &-container {
+        margin-left: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 280px;
+        height: 280px;
+        position: relative;
+      }
+    }
+  }
+
+  &__general {
+    &__inner {
+      flex-flow: row-reverse;
+    }
+
+    &__left {
+      width: 350px;
+      max-width: 350px;
+      width: 100%;
+      min-width: 250px;
+    }
+
+    &__image {
+      width: 150px;
+      z-index: 1;
+
+      &-background {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        opacity: 0.75;
+        border-radius: 10000px;
+        border: 1px solid #e2e2ec;
       }
       &-container {
         margin-left: 25px;

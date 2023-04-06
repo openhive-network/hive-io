@@ -24,10 +24,34 @@
     <!-- Fast transactions -->
     <div class="root__general root__container secondarybg">
       <div class="root__general__inner root__container__inner">
+        <div class="root__general__image-container">
+          <img class="root__general__image" src="~/assets/images/vault.svg" />
+          <div class="root__general__image-background"></div>
+        </div>
         <div class="root__general__left">
           <h2 class="root__general__title">{{ $t('root.fastTitle') }}</h2>
           <p class="root__general__description">
             {{ $t('root.fastText') }}
+          </p>
+          <el-button
+            class="root__learnMore"
+            type="primary"
+            @click="go('https://hive.blog/hive-139531/@blocktrades/one-block-irreversibility-for-delegated-proof-of-stake-dpos')"
+          >
+            {{ $t('root.fastButton') }}</el-button
+          >
+          <!--  -->
+        </div>
+      </div>
+    </div>
+
+    <!-- No fees -->
+    <div class="root__general root__container">
+      <div class="root__general__inner root__container__inner">
+        <div class="root__general__left">
+          <h2 class="root__general__title">{{ $t('root.feeTitle') }}</h2>
+          <p class="root__general__description">
+            {{ $t('root.feeText') }}
           </p>
           <el-button
             class="root__learnMore"

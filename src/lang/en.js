@@ -30,7 +30,16 @@ export default {
     fastButton: 'Learn more',
     feeTitle: 'No Fees',
     feeText:
-      'Hive is utilizing RC (resource credits) to achieve fee-less transactions. RC is a resource that gets generated over time for each user based on their stake. This resource is spent when broadcasting transactions as a fee. Fresh accounts by default have some RC to help them start.',
+      'Hive is utilizing RC (resource credits) to achieve fee-less transactions. RC is a resource that gets generated over time for each user based on their stake. This resource is spent when broadcasting transactions as a fee.',
+    feeText2: 'Fresh accounts by default have some free RC to help them start.',
+    decTitle: 'Decentralized',
+    decText:
+      'Hive is one of the most decentralized blockchains. There is no single entity or organization that controlls the network. Everything is run by the community members.',
+    decText2:
+      'The initiative behind the creation of Hive was decentralization. The community came together to create something that can not be overtaken by the centralized entities.',
+    usernameTitle: 'Username',
+    usernameText:
+      'Unlike the other blockchains, wallet addresses in Hive are easy to remember customizable usernames. Your username will be your wallet address and your social media handle at the same time.',
   },
   about: {
     title: 'Built for Web',

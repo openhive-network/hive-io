@@ -28,6 +28,9 @@ export default {
     fastText:
       'Transactions are processed and confirmed in 3 seconds. Hive is using OBI (one-block irreversibility) meaning that transactions become irreversible in less than 3 seconds. No need to wait for confirmations.',
     fastButton: 'Learn more',
+    feeTitle: 'No Fees',
+    feeText:
+      'Hive is utilizing RC (resource credits) to achieve fee-less transactions. RC is a resource that gets generated over time for each user based on their stake. This resource is spent when broadcasting transactions as a fee. Fresh accounts by default have some RC to help them start.',
   },
   about: {
     title: 'Built for Web',

@@ -67,7 +67,7 @@ export default {
   hbd: {
     title: 'Hive Backed Dollar',
     text:
-      'HBD is a native stablecoin on the Hive blockchain. HBD is built to hold $1USD value in the most decentralized ways. It benefits from the fee-less and fast transactions of the Hive blockchain.',
+      'HBD is a native stablecoin on the Hive blockchain. HBD is built to hold $1USD value (loosly) in the most decentralized ways. It benefits from the fee-less and fast transactions of the Hive blockchain.',
     howTitle: 'How does it maintain the $1USD peg?',
     howText:
       'There are two decentralized conversion operations designed to achieve this goal. HIVE to HBD conversion and HBD to HIVE conversion. These two operations keep the price at $1USD with a tight margin.',
@@ -84,6 +84,11 @@ export default {
     whereToBuyTitle: 'Where to buy',
     moreInfoTitle: 'Statistics, market cap, and more',
     moreInfoText: 'You can grab the latest figures at ',
+    risksTitle: 'Risks',
+    risksText:
+      'HBD has a security mechanism built into it called haircut rule. The haircut rule makes sure that debt ratio of HBD to HIVE is always less than 30%. Haircut rule gets activated when the debt ratio is greater or equal to 30%. It stops printing HBD and breaks the $1 peg. The HBD to HIVE conversion will return slightly lower value than $1.',
+    risksText2:
+      'The haircut rule has happened a few times in the past and is proven to be effective in preventing over debt while maintaining a healthy price for both HIVE and HBD tokens.',
   },
   brand: {
     title: 'Brand Assets',

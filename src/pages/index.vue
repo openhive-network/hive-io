@@ -25,8 +25,8 @@
     <div class="root__general root__container secondarybg">
       <div class="root__general__inner root__container__inner non-reverse">
         <div class="root__general__image-container">
-          <img class="root__general__image" src="~/assets/images/vault.svg" />
-          <div class="root__general__image-background"></div>
+          <img class="root__general__image" src="~/assets/images/fast.png" />
+          <!-- <div class="root__general__image-background"></div> -->
         </div>
         <div class="root__general__left">
           <h2 class="root__general__title">{{ $t('root.fastTitle') }}</h2>
@@ -66,8 +66,8 @@
           <!--  -->
         </div>
         <div class="root__general__image-container">
-          <img class="root__general__image" src="~/assets/images/vault.svg" />
-          <div class="root__general__image-background"></div>
+          <img class="root__general__image" src="~/assets/images/fees.png" />
+          <!-- <div class="root__general__image-background"></div> -->
         </div>
       </div>
     </div>
@@ -76,8 +76,8 @@
     <div class="root__general root__container secondarybg">
       <div class="root__general__inner root__container__inner non-reverse">
         <div class="root__general__image-container">
-          <img class="root__general__image" src="~/assets/images/vault.svg" />
-          <div class="root__general__image-background"></div>
+          <img style="width: 280px" src="~/assets/images/decentralized.png" />
+          <!-- <div class="root__general__image-background"></div> -->
         </div>
         <div class="root__general__left">
           <h2 class="root__general__title">{{ $t('root.decTitle') }}</h2>
@@ -117,8 +117,8 @@
           <!--  -->
         </div>
         <div class="root__general__image-container">
-          <img class="root__general__image" src="~/assets/images/vault.svg" />
-          <div class="root__general__image-background"></div>
+          <img style="width: 220px;" src="~/assets/images/username.png" />
+          <!-- <div class="root__general__image-background"></div> -->
         </div>
       </div>
     </div>
@@ -162,7 +162,7 @@
         </div>
         <div class="root__hbd__image-container">
           <img class="root__hbd__image" src="~/assets/images/hbd.svg" />
-          <div class="root__hbd__image-background"></div>
+          <!-- <div class="root__hbd__image-background"></div> -->
         </div>
       </div>
     </div>
@@ -508,7 +508,7 @@ export default defineComponent({
     }
 
     &__image {
-      width: 150px;
+      width: 230px;
       z-index: 1;
 
       &-background {
@@ -553,6 +553,10 @@ export default defineComponent({
 @media (max-width: 1000px) {
   .root__home {
     flex-flow: wrap !important;
+  }
+  .video {
+    margin-top: 40px;
+    margin-bottom: 10px;
   }
 }
 

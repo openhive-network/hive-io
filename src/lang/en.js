@@ -22,7 +22,7 @@ export default {
     hbdTitle: 'Hive Backed Dollar',
     hbdText:
       'Enjoy safe investment on a decentralized stable coin powered by Hive blockchain. HBD is backed by HIVE and currently provides one of the highest interest rates in the crypto space.',
-    hbdAPR: '20% APR on HBD savings.',
+    hbdAPR: 'The interest rate is variable and is voted by the witnesses.',
     hbdButton: 'Learn more',
     fastTitle: 'Fast',
     fastText:

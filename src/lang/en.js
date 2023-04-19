@@ -67,7 +67,7 @@ export default {
   hbd: {
     title: 'Hive Backed Dollar',
     text:
-      'HBD is a native stablecoin on the Hive blockchain. HBD is built to hold $1USD value (loosly) in the most decentralized ways. It benefits from the fee-less and fast transactions of the Hive blockchain.',
+      'HBD is a native stablecoin on the Hive blockchain. HBD is built to hold $1USD value (loosely) in the most decentralized ways. It benefits from the fee-less and fast transactions of the Hive blockchain.',
     howTitle: 'How does it maintain the $1USD peg?',
     howText:
       'There are two decentralized conversion operations designed to achieve this goal. HIVE to HBD conversion and HBD to HIVE conversion. These two operations keep the price at $1USD with a tight margin.',

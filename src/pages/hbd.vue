@@ -60,7 +60,7 @@
               {{ $t('hbd.risksText2') }}
             </h4>
             <h4 style="font-weight: bold;">
-              <a href="https://peakd.com/hive-167922/@arcange/understanding-the-hive-debt-ratio" target="_blank" rel="nofollow noopener noreferrer">Read more</a>
+              <a href="https://peakd.com/hbd/@arcange/hive-debt-ratio-and-haircut-rule" target="_blank" rel="nofollow noopener noreferrer">Read more</a>
             </h4>
           </div>
 

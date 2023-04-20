@@ -107,6 +107,22 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
   },
   {
+    id: 'pinmapple',
+    name: 'Pinmapple',
+    description: 'An interactive visual map where you can explore travel content from around the world and a curated feed of stunning editor picks',
+    image: 'Pinmapple_Logo.svg',
+    website: 'https://www.pinmapple.com/',
+    types: [EcoType.social],
+  },
+  {
+    id: 'liketu',
+    name: 'Liketu',
+    description: 'A visual social network for the web of tomorrow.',
+    image: 'liketu.png',
+    website: 'https://www.liketu.org',
+    types: [EcoType.social],
+  },
+  {
     id: 'dbuzz',
     name: 'D.Buzz',
     description: 'Micro-blogging for Hive.',
@@ -428,6 +444,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'hivedex.png',
     website: 'https://hivedex.io',
     types: [EcoType.tools]
+  },
+
+  {
+    id: 'kod',
+    name: 'King Of Duels',
+    description: 'King of Duels brings players a complete PvP gaming experience from day one.',
+    image: 'king-of-duels.svg',
+    website: 'https://kod.up.railway.app/',
+    types: [EcoType.game],
   },
 
 ].concat(BLOCKEXPLORERS as any)

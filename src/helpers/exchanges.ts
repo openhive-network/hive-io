@@ -81,12 +81,6 @@ export const EXCHANGES = [
     image: 'hive-engine.png',
   },
   {
-    id: 'hotbit',
-    name: 'HOTBIT',
-    website: 'https://www.hotbit.io/exchange?symbol=HIVE_USDT',
-    image: 'hotbit.png',
-  },
-  {
     id: 'huobi',
     name: 'Huobi',
     website: 'https://www.huobi.com/en-us/exchange/hive_usdt/',

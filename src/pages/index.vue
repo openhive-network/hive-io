@@ -16,7 +16,8 @@
           >
         </div>
       </div>
-      <Video class="video" />
+      <!-- <Video class="video" /> -->
+      <Logo class="root__home__logo" :full="false" />
     </div>
 
     <scrollindicator style="margin: 0 auto 0px auto; margin-bottom: 40px" />
@@ -298,6 +299,12 @@ export default defineComponent({
     min-height: calc(
       100vh - 90px - 60px - 80px
     ); /* 100vh - header - padding  */
+
+    &__logo {
+      height: 150px;
+      margin-left: -55px;
+      margin-top: -180px;
+    }
     &__left {
       height: fit-content;
       display: flex;

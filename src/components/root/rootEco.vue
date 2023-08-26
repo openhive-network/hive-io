@@ -57,7 +57,7 @@ export default defineComponent({
 
 <style lang="scss">
 .root-eco {
-  background: #ebebf5;
+  // background: #ebebf5;
   &__inner {
   }
 

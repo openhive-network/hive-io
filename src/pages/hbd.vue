@@ -51,15 +51,30 @@
 
           <div class="hbd__feature">
             <h3 class="hbd__feature__text">
+              {{ $t('hbd.risksTitle') }}
+            </h3>
+            <h4>
+              {{ $t('hbd.risksText') }}
+            </h4>
+            <h4>
+              {{ $t('hbd.risksText2') }}
+            </h4>
+            <h4 style="font-weight: bold;">
+              <a href="https://peakd.com/hbd/@arcange/hive-debt-ratio-and-haircut-rule" target="_blank" rel="nofollow noopener noreferrer">Read more</a>
+            </h4>
+          </div>
+
+          <div class="hbd__feature">
+            <h3 class="hbd__feature__text">
               {{ $t('hbd.whereToBuyTitle') }}
             </h3>
             <h4>
-              <a href="https://wallet.hive.blog/market" target="_blank" rel="nofollow noopener noreferrer">Internal market via HiveBlog</a>,
-              <a href="https://ecency.com/market" target="_blank" rel="nofollow noopener noreferrer">Internal market via Ecency</a>,
-              <a href="https://blocktrades.us" target="_blank" rel="nofollow noopener noreferrer">Blocktrades</a>,
-              <a href="https://global.bittrex.com" target="_blank" rel="nofollow noopener noreferrer">Bittrex</a>,
-              <a href="https://tribaldex.com/trade/SWAP.HBD" target="_blank" rel="nofollow noopener noreferrer">Tribaldex</a>,
-              <a href="https://sg.upbit.com" target="_blank" rel="nofollow noopener noreferrer">Upbit</a>,
+              <a href="https://hivedex.io" target="_blank" rel="nofollow noopener noreferrer">Hivedex.io (internal market)</a><br />
+              <a href="https://wallet.hive.blog/market" target="_blank" rel="nofollow noopener noreferrer">Hive.blog (internal market)</a><br />
+              <a href="https://ecency.com/market" target="_blank" rel="nofollow noopener noreferrer">Ecency (internal market)</a><br />
+              <a href="https://blocktrades.us" target="_blank" rel="nofollow noopener noreferrer">Blocktrades</a><br />
+              <a href="https://tribaldex.com/trade/SWAP.HBD" target="_blank" rel="nofollow noopener noreferrer">Tribaldex</a><br />
+              <a href="https://sg.upbit.com" target="_blank" rel="nofollow noopener noreferrer">Upbit</a><br />
               <a href="https://ex.xbts.io/market/XBTSX.HBD_BTS" target="_blank" rel="nofollow noopener noreferrer">XBTS</a>
             </h4>
           </div>

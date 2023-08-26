@@ -16,37 +16,115 @@
           >
         </div>
       </div>
+      <!-- <Video class="video" /> -->
       <Logo class="root__home__logo" :full="false" />
     </div>
 
     <scrollindicator style="margin: 0 auto 0px auto; margin-bottom: 40px" />
 
-    <RootEco />
-
-    <div class="root__wallets root__container">
-      <div class="root__wallets__inner root__container__inner">
-        <div class="root__wallets__left">
-          <h2 class="root__wallets__title">{{ $t('root.walletsTitle') }}</h2>
-          <p class="root__wallets__description">
-            {{ $t('root.walletsText') }}
+    <!-- Fast transactions -->
+    <div class="root__general root__container secondarybg">
+      <div class="root__general__inner root__container__inner non-reverse">
+        <div class="root__general__image-container">
+          <img class="root__general__image" src="~/assets/images/fast.png" />
+          <!-- <div class="root__general__image-background"></div> -->
+        </div>
+        <div class="root__general__left">
+          <h2 class="root__general__title">{{ $t('root.fastTitle') }}</h2>
+          <p class="root__general__description">
+            {{ $t('root.fastText') }}
           </p>
           <el-button
             class="root__learnMore"
             type="primary"
-            @click="$router.push('/wallets')"
+            @click="go('https://hive.blog/hive-139531/@blocktrades/one-block-irreversibility-for-delegated-proof-of-stake-dpos')"
           >
-            {{ $t('root.walletsButton') }}</el-button
+            {{ $t('root.fastButton') }}</el-button
           >
           <!--  -->
-        </div>
-        <div class="root__wallets__image-container">
-          <img class="root__wallets__image" src="~/assets/images/vault.svg" />
-          <div class="root__wallets__image-background"></div>
         </div>
       </div>
     </div>
 
-    <div class="root__dao root__container">
+    <!-- No fees -->
+    <div class="root__general root__container">
+      <div class="root__general__inner root__container__inner">
+        <div class="root__general__left">
+          <h2 class="root__general__title">{{ $t('root.feeTitle') }}</h2>
+          <p class="root__general__description">
+            {{ $t('root.feeText') }}
+          </p>
+          <p class="root__general__description">
+            {{ $t('root.feeText2') }}
+          </p>
+          <!-- <el-button
+            class="root__learnMore"
+            type="primary"
+            @click="go('https://hive.blog/hive-139531/@blocktrades/one-block-irreversibility-for-delegated-proof-of-stake-dpos')"
+          >
+            {{ $t('root.fastButton') }}</el-button
+          > -->
+          <!--  -->
+        </div>
+        <div class="root__general__image-container">
+          <img class="root__general__image" src="~/assets/images/fees.png" />
+          <!-- <div class="root__general__image-background"></div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Decentralized -->
+    <div class="root__general root__container secondarybg">
+      <div class="root__general__inner root__container__inner non-reverse">
+        <div class="root__general__image-container">
+          <img style="width: 280px" src="~/assets/images/decentralized.png" />
+          <!-- <div class="root__general__image-background"></div> -->
+        </div>
+        <div class="root__general__left">
+          <h2 class="root__general__title">{{ $t('root.decTitle') }}</h2>
+          <p class="root__general__description">
+            {{ $t('root.decText') }}
+          </p>
+          <p class="root__general__description">
+            {{ $t('root.decText2') }}
+          </p>
+          <!-- <el-button
+            class="root__learnMore"
+            type="primary"
+            @click="go('https://hive.blog/hive-139531/@blocktrades/one-block-irreversibility-for-delegated-proof-of-stake-dpos')"
+          >
+            {{ $t('root.fastButton') }}</el-button
+          > -->
+          <!--  -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Username -->
+    <div class="root__general root__container">
+      <div class="root__general__inner root__container__inner">
+        <div class="root__general__left">
+          <h2 class="root__general__title">{{ $t('root.usernameTitle') }}</h2>
+          <p class="root__general__description">
+            {{ $t('root.usernameText') }}
+          </p>
+          <!-- <el-button
+            class="root__learnMore"
+            type="primary"
+            @click="go('https://hive.blog/hive-139531/@blocktrades/one-block-irreversibility-for-delegated-proof-of-stake-dpos')"
+          >
+            {{ $t('root.fastButton') }}</el-button
+          > -->
+          <!--  -->
+        </div>
+        <div class="root__general__image-container">
+          <img style="width: 220px;" src="~/assets/images/username.png" />
+          <!-- <div class="root__general__image-background"></div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="root__dao root__container secondarybg">
       <div class="root__dao__inner root__container__inner">
         <div class="root__dao__left">
           <h2 class="root__dao__title">{{ $t('root.dafTitle') }}</h2>
@@ -85,7 +163,32 @@
         </div>
         <div class="root__hbd__image-container">
           <img class="root__hbd__image" src="~/assets/images/hbd.svg" />
-          <div class="root__hbd__image-background"></div>
+          <!-- <div class="root__hbd__image-background"></div> -->
+        </div>
+      </div>
+    </div>
+
+    <RootEco class="secondarybg"/>
+
+    <div class="root__wallets root__container">
+      <div class="root__wallets__inner root__container__inner">
+        <div class="root__wallets__left">
+          <h2 class="root__wallets__title">{{ $t('root.walletsTitle') }}</h2>
+          <p class="root__wallets__description">
+            {{ $t('root.walletsText') }}
+          </p>
+          <el-button
+            class="root__learnMore"
+            type="primary"
+            @click="$router.push('/wallets')"
+          >
+            {{ $t('root.walletsButton') }}</el-button
+          >
+          <!--  -->
+        </div>
+        <div class="root__wallets__image-container">
+          <img class="root__wallets__image" src="~/assets/images/vault.svg" />
+          <div class="root__wallets__image-background"></div>
         </div>
       </div>
     </div>
@@ -164,6 +267,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.secondarybg {
+  background: #e7e7f1;
+}
+
+.reverse {
+  flex-flow: row-reverse;
+}
+
 .root {
   height: 100%;
   &__container {
@@ -194,7 +305,6 @@ export default defineComponent({
       margin-left: -55px;
       margin-top: -180px;
     }
-
     &__left {
       height: fit-content;
       display: flex;
@@ -287,7 +397,6 @@ export default defineComponent({
 
   &__eco,
   &__dao {
-    background: #e7e7f1;
     &__inner {
     }
 
@@ -354,7 +463,7 @@ export default defineComponent({
     }
   }
 
-  &__hbd {
+  &__general {
     &__inner {
       flex-flow: row-reverse;
     }
@@ -393,6 +502,45 @@ export default defineComponent({
     }
   }
 
+  &__hbd {
+    &__inner {
+      flex-flow: row-reverse;
+    }
+
+    &__left {
+      width: 350px;
+      max-width: 350px;
+      width: 100%;
+      min-width: 250px;
+    }
+
+    &__image {
+      width: 230px;
+      z-index: 1;
+
+      &-background {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        opacity: 0.75;
+        border-radius: 10000px;
+        border: 1px solid #e2e2ec;
+      }
+      &-container {
+        margin-left: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 280px;
+        height: 280px;
+        position: relative;
+      }
+    }
+  }
+
   h1 {
     font-size: 3.8rem;
   }
@@ -402,10 +550,27 @@ export default defineComponent({
   }
 }
 
+.video {
+  width: 100% !important;
+  margin-top: -30px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  max-width: 640px !important;
+}
 @media (max-width: 1000px) {
+  .root__home {
+    flex-flow: wrap !important;
+  }
+  .video {
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
 }
 
 @media (max-width: 700px) {
+  .non-reverse {
+    flex-flow: column !important;
+  }
   .root {
     &__exchanges {
       &__exchange {
@@ -427,7 +592,8 @@ export default defineComponent({
     &__hbd__image-container,
     &__eco__left,
     &__wallets__left,
-    &__hbd__left {
+    &__hbd__left,
+    &__general__left {
       margin: 0;
       text-align: center;
     }
@@ -435,7 +601,8 @@ export default defineComponent({
     &__eco__image,
     &__wallets__image-container,
     &__hbd__image-container,
-    &__dao__image {
+    &__dao__image,
+    &__general__image-container {
       margin-bottom: 50px;
     }
   }
@@ -461,7 +628,7 @@ export default defineComponent({
     }
 
     &__wallets__image,
-    &__hbd__image {
+    &__hbd__image, {
       width: 100px;
     }
 

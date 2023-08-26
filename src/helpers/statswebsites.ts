@@ -4,16 +4,16 @@
 export const STATISTIC_WEBSITES = [
   {
     id: 'dapp-com',
-    name: 'Dapp.com',
-    website: 'https://dapp.com/dapps/hive',
+    name: 'Dappt.com',
+    website: 'https://www.dappt.io/search_product?chain=Hive',
     image: 'dapp-com.png',
   },
-  {
-    id: 'stateofthedapps',
-    name: 'State of the Dapps',
-    website: 'https://stateofthedapps.com/rankings',
-    image: 'stateofthedapps.svg',
-  },
+  // {
+  //   id: 'stateofthedapps',
+  //   name: 'State of the Dapps',
+  //   website: 'https://stateofthedapps.com/rankings',
+  //   image: 'stateofthedapps.svg',
+  // },
 
   {
     id: 'dapp-review',

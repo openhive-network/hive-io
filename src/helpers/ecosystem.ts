@@ -1,5 +1,5 @@
-import {BLOCKEXPLORERS} from './blockexplorers'
-import {IEcoItem, EcoType} from '~/types/index'
+import { BLOCKEXPLORERS } from './blockexplorers'
+import { IEcoItem, EcoType } from '~/types/index'
 
 /**
  * Hive Ecosystem
@@ -72,23 +72,39 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
     featured: true,
   },
+  // {
+  //   id: 'rabona',
+  //   name: 'Rabona',
+  //   description: 'Soccer manager built on the Hive blockchain.',
+  //   image: 'rabona.png',
+  //   website: 'https://rabona.io',
+  //   types: [EcoType.game, EcoType.sport],
+  //   featured: true,
+  // },
+  // {
+  //   id: 'cryptobrewmaster',
+  //   name: 'Brewmaster',
+  //   description: 'Craft beer brewing business card game.',
+  //   image: 'cryptobrewmaster.png',
+  //   website: 'https://www.cryptobrewmaster.io/',
+  //   types: [EcoType.game],
+  //   featured: true,
+  // },
   {
-    id: 'rabona',
-    name: 'Rabona',
-    description: 'Soccer manager built on the Hive blockchain.',
-    image: 'rabona.png',
-    website: 'https://rabona.io',
-    types: [EcoType.game, EcoType.sport],
-    featured: true,
+    id: 'pinmapple',
+    name: 'Pinmapple',
+    description: 'An interactive visual map where you can explore travel content from around the world and a curated feed of stunning editor picks',
+    image: 'Pinmapple_Logo.svg',
+    website: 'https://www.pinmapple.com/',
+    types: [EcoType.social],
   },
   {
-    id: 'cryptobrewmaster',
-    name: 'Brewmaster',
-    description: 'Craft beer brewing business card game.',
-    image: 'cryptobrewmaster.png',
-    website: 'https://www.cryptobrewmaster.io/',
-    types: [EcoType.game],
-    featured: true,
+    id: 'liketu',
+    name: 'Liketu',
+    description: 'A visual social network for the web of tomorrow.',
+    image: 'liketu.png',
+    website: 'https://www.liketu.org',
+    types: [EcoType.social],
   },
   {
     id: 'pinmapple',
@@ -160,7 +176,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'exxp',
     name: 'Exxp',
     description: 'Power your wordpress blog with blockchain technology.',
-    image: 'exxp.svg',
+    image: 'exxp.png',
     website: 'https://exxp.io',
     types: [EcoType.social],
   },
@@ -307,7 +323,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://tribaldex.com',
     types: [EcoType.defi],
   },
-    {
+  {
     id: 'hashkings',
     name: 'Hash Kings',
     description: 'Cannabis Farming Simulator on the Hive blockchain.',
@@ -365,7 +381,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://crypto-shots.com/',
     types: [EcoType.game, EcoType.nft],
   },
-    {
+  {
     id: 'podping',
     name: 'Podping',
     description: 'Podping is a global message bus for podcast infrastructure events.',
@@ -373,7 +389,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://podping.org',
     types: [EcoType.tools],
   },
-    {
+  {
     id: 'blocktunes',
     name: 'BlockTunes',
     description: 'Tokenizing the music industry with NFTs and artist ran DAOs and paying musicians in cryptocurrency.',
@@ -381,7 +397,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://blocktunes.net',
     types: [EcoType.defi, EcoType.nft],
   },
-    {
+  {
     id: 'muterra',
     name: 'Muterra',
     description: 'RPG+TCG game on Hive set in a post-apocalyptic world.',
@@ -389,7 +405,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://muterra.in',
     types: [EcoType.game],
   },
-    {
+  {
     id: 'psyberx',
     name: 'PsyberX',
     description: 'FPS+TPS game where gamers strike fear into their opponents.',
@@ -397,7 +413,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://www.psyber-x.com',
     types: [EcoType.game],
   },
-    {
+  {
     id: 'hivetube',
     name: 'Hive Tube',
     description: 'Hive-Tube is the best alternative to Youtube. P2P, Fediverse syndicated, no fees and no KYC.',
@@ -405,7 +421,32 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://hive-tube.com',
     types: [EcoType.social, EcoType.video],
   },
-    {
+  {
+    id: 'kod',
+    name: 'King Of Duels',
+    description: 'King of Duels brings players a complete PvP gaming experience from day one.',
+    image: 'king-of-duels.svg',
+    website: 'https://kod.up.railway.app/',
+    types: [EcoType.game],
+  },
+  {
+    id: 'reverio',
+    name: 'Reverio',
+    description: 'Earn rewards on Hive by asking and answering questions on Reverio.',
+    image: 'reverio.svg',
+    website: 'https://reverio.io/',
+    types: [EcoType.social],
+  },
+  {
+    id: 'hivedex',
+    name: 'Hivedex.io',
+    description: 'Modern exchange interface for the internal market (HIVE/HBD)',
+    image: 'hivedex.png',
+    website: 'https://hivedex.io',
+    types: [EcoType.tools]
+  },
+
+  {
     id: 'kod',
     name: 'King Of Duels',
     description: 'King of Duels brings players a complete PvP gaming experience from day one.',

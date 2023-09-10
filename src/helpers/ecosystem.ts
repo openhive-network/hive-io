@@ -429,7 +429,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://hivedex.io',
     types: [EcoType.tools]
   },
-
+  {
+    id: 'terracore',
+    name: 'Terracore',
+    description: 'An idle strategy & collectable game on Hive that lets you survive in a post-apocalyptic world by collecting SCRAP.',
+    image: 'terracore.png',
+    website: 'https://www.terracoregame.com/',
+    types: [EcoType.game]
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

@@ -67,7 +67,7 @@ export const NAVIGATION_FOOTER = [
       name: 'Wiki'
     }, */
     {
-      to: 'mailto:info@hive.io',
+      to: 'mailto:outreach@hive.io',
       name: 'Contact',
     },
     /* {

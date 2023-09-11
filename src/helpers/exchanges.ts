@@ -68,6 +68,12 @@ export const EXCHANGES = [
     website: 'https://www.gate.io/trade/HIVE_USDT',
     image: 'gateio.svg',
   },
+    {
+    id: 'easybit',
+    name: 'EasyBit',
+    website: 'https://easybit.com/en/coin-specs/HIVE',
+    image: 'easybit.svg',
+  },
  // {
  //   id: 'hbtc',
  //   name: 'HBTC',

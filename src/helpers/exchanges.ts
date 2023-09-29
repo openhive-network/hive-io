@@ -38,12 +38,12 @@ export const EXCHANGES = [
   //  website: 'https://www.bkex.com/trade/HIVE_USDT',
   //  image: 'bkex.png',
   //},
-  //{
-  //  id: 'changelly',
-  //  name: 'Changelly',
-  //  website: 'https://changelly.com',
-  //  image: 'changelly.png',
-  //},
+  {
+    id: 'changelly',
+    name: 'Changelly',
+    website: 'https://changelly.com',
+    image: 'changelly.png',
+  },
   {
     id: 'coindcx',
     name: 'CoinDCX',

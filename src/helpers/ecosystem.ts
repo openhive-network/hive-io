@@ -135,8 +135,8 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'travelfeed',
     name: 'TravelFeed',
     description: 'TravelFeed makes travel blogging easy and fun.',
-    image: 'travelfeed.png',
-    website: 'https://travelfeed.io',
+    image: 'travelfeed.svg',
+    website: 'https://travelfeed.com',
     types: [EcoType.social],
   },
   {

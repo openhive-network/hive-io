@@ -155,7 +155,7 @@ export const ECOSYSTEM: IEcoItem[] = [
       'The web3 portal for skateboarding. A decentralized social media platform for skateboarders.',
     image: 'skatehive-logo.png',
     website: 'https://skatehive.app',
-    types: [EcoType.social],
+    types: [EcoType.social, EcoType.video, EcoType.sport],
   },
   // {
   //   id: 'stemsocial',

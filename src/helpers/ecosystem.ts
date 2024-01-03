@@ -437,6 +437,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://www.terracoregame.com/',
     types: [EcoType.game]
   },
+  {
+    id: 'vsc',
+    name: "VSC Network",
+    description: 'Next generation L2 smart contracts and wrapping technology on the Hive Blockchain.',
+    image: 'vsc.png',
+    website: 'https://vsc.eco',
+    types: [EcoType.tools, EcoType.defi, EcoType.nft]
+  }
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

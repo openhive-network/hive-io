@@ -23,11 +23,11 @@ export const NAVIGATION_HEADER = [
     name: 'Join',
     isButton: true,
   },
-  {
-    to: 'https://whyhive.co',
-    name: 'Why Hive?',
-    isButton: true,
-  },
+//  {
+//    to: 'https://whyhive.co',
+//    name: 'Why Hive?',
+//    isButton: true,
+ // },
 ]
 
 /**

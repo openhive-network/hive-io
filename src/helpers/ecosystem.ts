@@ -122,15 +122,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://play.wrestlingorganizationonline.com',
     types: [EcoType.game],
   },
-  {
-    id: 'engage',
-    name: 'Engage',
-    description:
-      ' A community and conversation manager to stay connected with your Hive audience.',
-    image: 'engage.png',
-    website: 'https://engage.hivechain.app',
-    types: [EcoType.social],
-  },
+//  {
+//    id: 'engage',
+//    name: 'Engage',
+//    description:
+//      ' A community and conversation manager to stay connected with your Hive audience.',
+//    image: 'engage.png',
+//    website: 'https://engage.hivechain.app',
+//    types: [EcoType.social],
+//  },
   {
     id: 'travelfeed',
     name: 'TravelFeed',
@@ -214,15 +214,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://dcrops.com',
     types: [EcoType.game, EcoType.nft],
   },
-  {
-    id: 'lucksacks',
-    name: 'Lucksacks Poker',
-    description:
-      'Host a custom poker league, tournament, ring game or sit-n-go.',
-    image: 'lucksacks.png',
-    website: 'https://lucksacks.com',
-    types: [EcoType.game],
-  },
+//  {
+//    id: 'lucksacks',
+//    name: 'Lucksacks Poker',
+//    description:
+//      'Host a custom poker league, tournament, ring game or sit-n-go.',
+//    image: 'lucksacks.png',
+//    website: 'https://lucksacks.com',
+//    types: [EcoType.game],
+//  },
 
   {
     id: 'stemgeeks',
@@ -307,14 +307,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://tribaldex.com',
     types: [EcoType.defi],
   },
-  {
-    id: 'hashkings',
-    name: 'Hash Kings',
-    description: 'Cannabis Farming Simulator on the Hive blockchain.',
-    image: 'hashkings.png',
-    website: 'https://www.hashkings.app',
-    types: [EcoType.game],
-  },
+//  {
+//    id: 'hashkings',
+//    name: 'Hash Kings',
+//    description: 'Cannabis Farming Simulator on the Hive blockchain.',
+//    image: 'hashkings.png',
+//    website: 'https://www.hashkings.app',
+//    types: [EcoType.game],
+//  },
   {
     id: 'skatehype',
     name: 'Skate Hype',

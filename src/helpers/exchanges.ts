@@ -104,12 +104,12 @@ export const EXCHANGES = [
     website: 'https://indodax.com/market/HIVEIDR',
     image: 'indodax.png',
   },
-  {
-    id: 'mandala',
-    name: 'Mandala',
-    website: 'https://trade.mandala.exchange/en/trade/basic/HIVE_BTC',
-    image: 'mandala.png',
-  },
+//  {
+//    id: 'mandala',
+//    name: 'Mandala',
+//    website: 'https://trade.mandala.exchange/en/trade/basic/HIVE_BTC',
+//    image: 'mandala.png',
+//  },
   {
     id: 'mexc',
     name: 'MEXC',
@@ -152,12 +152,12 @@ export const EXCHANGES = [
     website: 'https://simpleswap.io',
     image: 'simpleswap.png',
   },
-  {
-    id: 'simplex',
-    name: 'Simplex',
-    website: 'https://www.simplex.com/buy-crypto',
-    image: 'simplex.svg',
-  },
+//  {
+//    id: 'simplex',
+//    name: 'Simplex',
+//    website: 'https://www.simplex.com/buy-crypto',
+//    image: 'simplex.svg',
+// },
     {
     id: 'stealthex',
     name: 'StealthEX',

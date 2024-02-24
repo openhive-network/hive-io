@@ -2,12 +2,12 @@
  * Dapp Statistic Websites where Hive is listed on (is randomized each visit)
  */
 export const STATISTIC_WEBSITES = [
-  {
-    id: 'dapp-com',
-    name: 'Dappt.com',
-    website: 'https://www.dappt.io/search_product?chain=Hive',
-    image: 'dapp-com.png',
-  },
+ // {
+ //   id: 'dapp-com',
+ //   name: 'Dappt.com',
+ //   website: 'https://www.dappt.io/search_product?chain=Hive',
+ //   image: 'dapp-com.png',
+ // },
   // {
   //   id: 'stateofthedapps',
   //   name: 'State of the Dapps',

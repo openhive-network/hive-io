@@ -72,6 +72,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
     featured: true,
   },
+    {
+    id: 'holozing',
+    name: 'Holozing',
+    description: 'A roleplaying adventure game for both casual and competitive players.',
+    image: 'holozing.png',
+    website: 'https://holozing.com/',
+    types: [EcoType.game],
+    featured: true,
+  },
   // {
   //   id: 'rabona',
   //   name: 'Rabona',

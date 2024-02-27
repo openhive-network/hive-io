@@ -78,7 +78,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'A roleplaying adventure game for both casual and competitive players.',
     image: 'holozing.png',
     website: 'https://holozing.com/',
-    types: [EcoType.game],
+    types: [EcoType.game, EcoType.nft],
     featured: true,
   },
   // {
@@ -106,6 +106,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'Pinmapple_Logo.svg',
     website: 'https://www.pinmapple.com/',
     types: [EcoType.social],
+    featured: true,
   },
   {
     id: 'liketu',
@@ -114,6 +115,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'liketu.png',
     website: 'https://www.liketu.org',
     types: [EcoType.social],
+    featured: true,
   },
   {
     id: 'dbuzz',
@@ -122,6 +124,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'dbuzz.png',
     website: 'https://d.buzz',
     types: [EcoType.social],
+    featured: false,
   },
   {
     id: 'woo',
@@ -130,6 +133,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'WOO.png',
     website: 'https://play.wrestlingorganizationonline.com',
     types: [EcoType.game],
+    featured: false,
   },
 //  {
 //    id: 'engage',
@@ -147,6 +151,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'travelfeed.svg',
     website: 'https://travelfeed.com',
     types: [EcoType.social],
+    featured: false,
   },
   {
     id: 'truvvl',
@@ -156,6 +161,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'truvvl.svg',
     website: 'https://truvvl.com',
     types: [EcoType.social],
+    featured: false,
   },
   // {
   //   id: 'stemsocial',
@@ -172,6 +178,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'exxp.png',
     website: 'https://exxp.io',
     types: [EcoType.social],
+    featured: false,
   },
   {
     id: 'actifit',
@@ -180,6 +187,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'actifit.png',
     website: 'https://actifit.io',
     types: [EcoType.social, EcoType.sport],
+    featured: false,
   },
   {
     id: 'engrave',
@@ -189,6 +197,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'engrave.png',
     website: 'https://dblog.org',
     types: [EcoType.social],
+    featured: false,
   },
 
   // {
@@ -206,6 +215,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'CUB.svg',
     website: 'https://cubdefi.com/',
     types: [EcoType.defi],
+    featured: false,
   },
   {
     id: 'nfttunz',
@@ -214,6 +224,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'nfttunz.png',
     website: 'https://nfttunz.io',
     types: [EcoType.nft],
+    featured: false,
   },
   {
     id: 'dcrops',
@@ -222,6 +233,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'dcrops.svg',
     website: 'https://dcrops.com',
     types: [EcoType.game, EcoType.nft],
+    featured: false,
   },
 //  {
 //    id: 'lucksacks',
@@ -240,6 +252,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'stemgeeks.png',
     website: 'https://stemgeeks.net',
     types: [EcoType.social],
+    featured: false,
   },
   {
     id: 'dcity',
@@ -248,6 +261,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'dcity.png',
     website: 'https://dcity.io',
     types: [EcoType.game, EcoType.nft],
+    featured: false,
   },
 
   {
@@ -258,6 +272,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'risingstar.png',
     website: 'https://www.risingstargame.com/',
     types: [EcoType.game],
+    featured: false,
   },
   {
     id: 'nftmart',
@@ -266,6 +281,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'nftmart.png',
     website: 'https://nftm.art/',
     types: [EcoType.nft],
+    featured: false,
   },
   {
     id: 'vimm',
@@ -274,6 +290,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'vimm.png',
     website: 'https://www.vimm.tv/',
     types: [EcoType.social, EcoType.video],
+    featured: false,
   },
   {
     id: 'dlux',
@@ -283,6 +300,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'dlux.svg',
     website: 'https://www.dlux.io/',
     types: [EcoType.nft, EcoType.tools],
+    featured: false,
   },
   {
     id: 'hivebuzz',
@@ -291,6 +309,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'hivebuzz.png',
     website: 'https://hivebuzz.me',
     types: [EcoType.tools],
+    featured: false,
   },
   {
     id: 'hivepunks',
@@ -299,6 +318,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'hivepunks.png',
     website: 'https://punks.usehive.com',
     types: [EcoType.nft],
+    featured: false,
   },
   {
     id: 'apeminingclub',
@@ -307,6 +327,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'apeminingclub.png',
     website: 'https://apemining.club',
     types: [EcoType.game],
+    featured: false,
   },
   {
     id: 'tribaldex',
@@ -315,6 +336,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'tribaldex.png',
     website: 'https://tribaldex.com',
     types: [EcoType.defi],
+    featured: false,
   },
 //  {
 //    id: 'hashkings',
@@ -331,6 +353,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'SkateHype.png',
     website: 'https://www.skatehype.com',
     types: [EcoType.social, EcoType.video, EcoType.sport],
+    featured: false,
   },
   {
     id: 'hivelist',
@@ -339,6 +362,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'hivelist.png',
     website: 'https://hivelist.io/',
     types: [EcoType.nft, EcoType.defi],
+    featured: false,
   },
   {
     id: 'inji',
@@ -348,16 +372,17 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'inji.png',
     website: 'https://inji.com',
     types: [EcoType.social, EcoType.nft],
+    featured: false,
   },
-  {
-    id: 'dlease',
-    name: 'DLease',
-    description:
-      'Invest with confidence using our state of the art Digital Asset Leasing platform.',
-    image: 'dlease.png',
-    website: 'https://dlease.io',
-    types: [EcoType.defi],
-  },
+ // {
+ //   id: 'dlease',
+ //   name: 'DLease',
+ //   description:
+ //     'Invest with confidence using our state of the art Digital Asset Leasing platform.',
+ //   image: 'dlease.png',
+ //   website: 'https://dlease.io',
+ //   types: [EcoType.defi],
+ // },
   {
     id: 'waivio',
     name: 'Waivio',
@@ -365,6 +390,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'waivio.png',
     website: 'https://www.waivio.com/',
     types: [EcoType.defi, EcoType.social],
+    featured: false,
   },
   {
     id: 'cryptoshots',
@@ -373,6 +399,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'cryptoshots.png',
     website: 'https://crypto-shots.com/',
     types: [EcoType.game, EcoType.nft],
+    featured: false,
   },
   {
     id: 'podping',
@@ -381,6 +408,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'podping.png',
     website: 'https://podping.org',
     types: [EcoType.tools],
+    featured: false,
   },
   {
     id: 'blocktunes',
@@ -389,6 +417,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'blocktunes.png',
     website: 'https://blocktunes.net',
     types: [EcoType.defi, EcoType.nft],
+    featured: false,
   },
   {
     id: 'muterra',
@@ -397,6 +426,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'muterra.png',
     website: 'https://muterra.in',
     types: [EcoType.game],
+    featured: false,
   },
   {
     id: 'psyberx',
@@ -405,6 +435,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'psyberx.png',
     website: 'https://www.psyber-x.com',
     types: [EcoType.game],
+    featured: false,
   },
   {
     id: 'hivetube',
@@ -413,6 +444,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'hive-tube.svg',
     website: 'https://hive-tube.com',
     types: [EcoType.social, EcoType.video],
+    featured: false,
   },
   {
     id: 'kod',
@@ -421,6 +453,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'king-of-duels.svg',
     website: 'https://kod.up.railway.app/',
     types: [EcoType.game],
+    featured: false,
   },
   {
     id: 'reverio',
@@ -429,6 +462,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'reverio.svg',
     website: 'https://reverio.io/',
     types: [EcoType.social],
+    featured: false,
   },
   {
     id: 'hivedex',
@@ -436,7 +470,8 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Modern exchange interface for the internal market (HIVE/HBD)',
     image: 'hivedex.png',
     website: 'https://hivedex.io',
-    types: [EcoType.tools]
+    types: [EcoType.tools],
+    featured: false,
   },
   {
     id: 'terracore',
@@ -444,7 +479,8 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'An idle strategy & collectable game on Hive that lets you survive in a post-apocalyptic world by collecting SCRAP.',
     image: 'terracore.png',
     website: 'https://www.terracoregame.com/',
-    types: [EcoType.game]
+    types: [EcoType.game],
+    featured: false,
   },
   {
     id: 'vsc',
@@ -452,7 +488,35 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'Next generation L2 smart contracts and wrapping technology on the Hive Blockchain.',
     image: 'vsc.png',
     website: 'https://vsc.eco',
-    types: [EcoType.tools, EcoType.defi, EcoType.nft]
+    types: [EcoType.tools, EcoType.defi, EcoType.nft], 
+    featured: false,
+  },
+  {
+    id: 'immortalcreed',
+    name: "Immortal Creed",
+    description: 'A trading card game set in a fantasy themed world integrated with blockchain technology. This allows you, the player, to earn, own and trade your game characters, weapons, equipment and currencies.',
+    image: 'immortalcreed.png',
+    website: 'https://immortalcreed.io',
+    types: [EcoType.game, EcoType.nft],
+    featured: false,
+  },
+    {
+    id: 'arcadecolony',
+    name: "Arcade Colony",
+    description: 'A platform for Web2 games to augment into Web3.',
+    image: 'arcadecolony.png',
+    website: 'https://www.arcadecolony.com',
+    types: [EcoType.tools, EcoType.nft],
+    featured: false,
+  },
+    {
+    id: 'genesisleaguesports',
+    name: "Genesis League Sports",
+    description: 'Genesis League Sports is a blockchain-based, play2earn gaming platform and ecosystem specifically designed for sports games and NFTs.',
+    image: 'genesisleaguesports.png',
+    website: 'https://genesisleaguesports.com',
+    types: [EcoType.game, EcoType.nft],
+    featured: false,
   }
 ].concat(BLOCKEXPLORERS as any)
 

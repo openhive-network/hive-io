@@ -504,7 +504,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'arcadecolony',
     name: "Arcade Colony",
     description: 'A platform for Web2 games to augment into Web3.',
-    image: 'arcadecolony.png',
+    image: 'arcadecolony.svg',
     website: 'https://www.arcadecolony.com',
     types: [EcoType.tools, EcoType.nft],
     featured: false,

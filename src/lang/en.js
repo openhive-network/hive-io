@@ -43,7 +43,7 @@ export default {
   },
   about: {
     title: 'Built for Web',
-    text: `Hive is an innovative and forward-looking decentralized blockchain and ecosystem, designed to scale with widespread adoption of the currency and platforms in mind. By combining the lightning-fast processing times and fee-less transactions, Hive is positioned to become one of the leading Web3 blockchains used by people around the world.`,
+    text: `Hive is an innovative and forward-looking decentralized blockchain and ecosystem, designed to scale with widespread adoption of the currency and platforms in mind. By combining the lightning-fast processing times and fee-less transactions, Hive is one of the leading Web3 blockchains used by people around the world.`,
     featureFast: 'Fast',
     featureFastText: 'Hive has 3 second block times with transactions confirmed within milliseconds due to one-block irreversibility, allowing for a seamless experience.',
     featureScalable: 'Scalable',

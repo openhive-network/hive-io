@@ -1,5 +1,5 @@
-import { BLOCKEXPLORERS } from './blockexplorers'
-import { IEcoItem, EcoType } from '~/types/index'
+import {BLOCKEXPLORERS} from './blockexplorers'
+import {IEcoItem, EcoType} from '~/types/index'
 
 /**
  * Hive Ecosystem
@@ -72,12 +72,22 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
     featured: true,
   },
-    {
+  {
     id: 'holozing',
     name: 'Holozing',
-    description: 'A roleplaying adventure game for both casual and competitive players.',
+    description:
+      'A roleplaying adventure game for both casual and competitive players.',
     image: 'holozing.png',
     website: 'https://holozing.com/',
+    types: [EcoType.game, EcoType.nft],
+    featured: true,
+  },
+  {
+    id: 'splinterroyale',
+    name: 'Splinter Royale',
+    description: 'Web3 Trading Card Game meets fast-paced Auto Chess Battler.',
+    image: 'splinterroyale.png',
+    website: 'https://splinterroyale.com',
     types: [EcoType.game, EcoType.nft],
     featured: true,
   },
@@ -102,7 +112,8 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'pinmapple',
     name: 'Pinmapple',
-    description: 'An interactive visual map where you can explore travel content from around the world and a curated feed of stunning editor picks',
+    description:
+      'An interactive visual map where you can explore travel content from around the world and a curated feed of stunning editor picks',
     image: 'Pinmapple_Logo.svg',
     website: 'https://www.pinmapple.com/',
     types: [EcoType.social],
@@ -124,26 +135,27 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'dbuzz.png',
     website: 'https://d.buzz',
     types: [EcoType.social],
-    featured: false,
+    featured: true,
   },
   {
     id: 'woo',
     name: 'Wrestling Organization Online',
-    description: 'Wrestling Organization Online is a P2E sport business management game.',
+    description:
+      'Wrestling Organization Online is a P2E sport business management game.',
     image: 'WOO.png',
     website: 'https://play.wrestlingorganizationonline.com',
     types: [EcoType.game],
     featured: false,
   },
-//  {
-//    id: 'engage',
-//    name: 'Engage',
-//    description:
-//      ' A community and conversation manager to stay connected with your Hive audience.',
-//    image: 'engage.png',
-//    website: 'https://engage.hivechain.app',
-//    types: [EcoType.social],
-//  },
+  //  {
+  //    id: 'engage',
+  //    name: 'Engage',
+  //    description:
+  //      ' A community and conversation manager to stay connected with your Hive audience.',
+  //    image: 'engage.png',
+  //    website: 'https://engage.hivechain.app',
+  //    types: [EcoType.social],
+  //  },
   {
     id: 'travelfeed',
     name: 'TravelFeed',
@@ -211,7 +223,8 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'cubfi',
     name: 'CubFinance',
-    description: 'A DeFi derivatives platform operating bHIVE and bHBD on the BSC Blockchain where users can wrap HIVE & HBD to provide liquidity and trade',
+    description:
+      'A DeFi derivatives platform operating bHIVE and bHBD on the BSC Blockchain where users can wrap HIVE & HBD to provide liquidity and trade',
     image: 'CUB.svg',
     website: 'https://cubdefi.com/',
     types: [EcoType.defi],
@@ -235,15 +248,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game, EcoType.nft],
     featured: false,
   },
-//  {
-//    id: 'lucksacks',
-//    name: 'Lucksacks Poker',
-//    description:
-//      'Host a custom poker league, tournament, ring game or sit-n-go.',
-//    image: 'lucksacks.png',
-//    website: 'https://lucksacks.com',
-//    types: [EcoType.game],
-//  },
+  //  {
+  //    id: 'lucksacks',
+  //    name: 'Lucksacks Poker',
+  //    description:
+  //      'Host a custom poker league, tournament, ring game or sit-n-go.',
+  //    image: 'lucksacks.png',
+  //    website: 'https://lucksacks.com',
+  //    types: [EcoType.game],
+  //  },
 
   {
     id: 'stemgeeks',
@@ -338,18 +351,19 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.defi],
     featured: false,
   },
-//  {
-//    id: 'hashkings',
-//    name: 'Hash Kings',
-//    description: 'Cannabis Farming Simulator on the Hive blockchain.',
-//    image: 'hashkings.png',
-//    website: 'https://www.hashkings.app',
-//    types: [EcoType.game],
-//  },
+  //  {
+  //    id: 'hashkings',
+  //    name: 'Hash Kings',
+  //    description: 'Cannabis Farming Simulator on the Hive blockchain.',
+  //    image: 'hashkings.png',
+  //    website: 'https://www.hashkings.app',
+  //    types: [EcoType.game],
+  //  },
   {
     id: 'skatehype',
     name: 'Skate Hype',
-    description: 'Dedicated skateboarding platform for video, photo, and sequence sharing.',
+    description:
+      'Dedicated skateboarding platform for video, photo, and sequence sharing.',
     image: 'SkateHype.png',
     website: 'https://www.skatehype.com',
     types: [EcoType.social, EcoType.video, EcoType.sport],
@@ -358,35 +372,27 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'hivelist',
     name: 'HiveLIST',
-    description: 'An Honest Place To Buy Products And Services Using Cryptocurrency.',
+    description:
+      'An Honest Place To Buy Products And Services Using Cryptocurrency.',
     image: 'hivelist.png',
     website: 'https://hivelist.io/',
     types: [EcoType.nft, EcoType.defi],
     featured: false,
   },
-  {
-    id: 'inji',
-    name: 'inji',
-    description:
-      'Your social platform for Crypto, NFTs, DeFi and the Metaverse',
-    image: 'inji.png',
-    website: 'https://inji.com',
-    types: [EcoType.social, EcoType.nft],
-    featured: false,
-  },
- // {
- //   id: 'dlease',
- //   name: 'DLease',
- //   description:
- //     'Invest with confidence using our state of the art Digital Asset Leasing platform.',
- //   image: 'dlease.png',
- //   website: 'https://dlease.io',
- //   types: [EcoType.defi],
- // },
+  // {
+  //   id: 'dlease',
+  //   name: 'DLease',
+  //   description:
+  //     'Invest with confidence using our state of the art Digital Asset Leasing platform.',
+  //   image: 'dlease.png',
+  //   website: 'https://dlease.io',
+  //   types: [EcoType.defi],
+  // },
   {
     id: 'waivio',
     name: 'Waivio',
-    description: 'Waivio is an open distributed attention marketplace for business.',
+    description:
+      'Waivio is an open distributed attention marketplace for business.',
     image: 'waivio.png',
     website: 'https://www.waivio.com/',
     types: [EcoType.defi, EcoType.social],
@@ -395,7 +401,8 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'cryptoshots',
     name: 'Crypto Shots',
-    description: 'Crypto Shots is a 3D Shooter connected to the Hive blockchain in which your gaming assets like weapons, ammo, characters and shields are collectible NFTs.',
+    description:
+      'Crypto Shots is a 3D Shooter connected to the Hive blockchain in which your gaming assets like weapons, ammo, characters and shields are collectible NFTs.',
     image: 'cryptoshots.png',
     website: 'https://crypto-shots.com/',
     types: [EcoType.game, EcoType.nft],
@@ -404,7 +411,8 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'podping',
     name: 'Podping',
-    description: 'Podping is a global message bus for podcast infrastructure events.',
+    description:
+      'Podping is a global message bus for podcast infrastructure events.',
     image: 'podping.png',
     website: 'https://podping.org',
     types: [EcoType.tools],
@@ -413,7 +421,8 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'blocktunes',
     name: 'BlockTunes',
-    description: 'Tokenizing the music industry with NFTs and artist ran DAOs and paying musicians in cryptocurrency.',
+    description:
+      'Tokenizing the music industry with NFTs and artist ran DAOs and paying musicians in cryptocurrency.',
     image: 'blocktunes.png',
     website: 'https://blocktunes.net',
     types: [EcoType.defi, EcoType.nft],
@@ -440,7 +449,8 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'hivetube',
     name: 'Hive Tube',
-    description: 'Hive-Tube is the best alternative to Youtube. P2P, Fediverse syndicated, no fees and no KYC.',
+    description:
+      'Hive-Tube is the best alternative to Youtube. P2P, Fediverse syndicated, no fees and no KYC.',
     image: 'hive-tube.svg',
     website: 'https://hive-tube.com',
     types: [EcoType.social, EcoType.video],
@@ -449,7 +459,8 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'kod',
     name: 'King Of Duels',
-    description: 'King of Duels brings players a complete PvP gaming experience from day one.',
+    description:
+      'King of Duels brings players a complete PvP gaming experience from day one.',
     image: 'king-of-duels.svg',
     website: 'https://kod.up.railway.app/',
     types: [EcoType.game],
@@ -458,7 +469,8 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'reverio',
     name: 'Reverio',
-    description: 'Earn rewards on Hive by asking and answering questions on Reverio.',
+    description:
+      'Earn rewards on Hive by asking and answering questions on Reverio.',
     image: 'reverio.svg',
     website: 'https://reverio.io/',
     types: [EcoType.social],
@@ -476,7 +488,8 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'terracore',
     name: 'Terracore',
-    description: 'An idle strategy & collectable game on Hive that lets you survive in a post-apocalyptic world by collecting SCRAP.',
+    description:
+      'An idle strategy & collectable game on Hive that lets you survive in a post-apocalyptic world by collecting SCRAP.',
     image: 'terracore.png',
     website: 'https://www.terracoregame.com/',
     types: [EcoType.game],
@@ -484,40 +497,43 @@ export const ECOSYSTEM: IEcoItem[] = [
   },
   {
     id: 'vsc',
-    name: "VSC Network",
-    description: 'Next generation L2 smart contracts and wrapping technology on the Hive Blockchain.',
+    name: 'VSC Network',
+    description:
+      'Next generation L2 smart contracts and wrapping technology on the Hive Blockchain.',
     image: 'vsc.png',
     website: 'https://vsc.eco',
-    types: [EcoType.tools, EcoType.defi, EcoType.nft], 
+    types: [EcoType.tools, EcoType.defi, EcoType.nft],
     featured: false,
   },
   {
     id: 'immortalcreed',
-    name: "Immortal Creed",
-    description: 'A trading card game set in a fantasy themed world integrated with blockchain technology. This allows you, the player, to earn, own and trade your game characters, weapons, equipment and currencies.',
+    name: 'Immortal Creed',
+    description:
+      'A trading card game set in a fantasy themed world integrated with blockchain technology. This allows you, the player, to earn, own and trade your game characters, weapons, equipment and currencies.',
     image: 'immortalcreed.png',
     website: 'https://immortalcreed.io',
     types: [EcoType.game, EcoType.nft],
     featured: false,
   },
-    {
+  {
     id: 'arcadecolony',
-    name: "Arcade Colony",
+    name: 'Arcade Colony',
     description: 'A platform for Web2 games to augment into Web3.',
     image: 'arcadecolony.svg',
     website: 'https://www.arcadecolony.com',
     types: [EcoType.tools, EcoType.nft],
-    featured: false,
+    featured: true,
   },
-    {
+  {
     id: 'genesisleaguesports',
-    name: "Genesis League Sports",
-    description: 'Genesis League Sports is a blockchain-based, play2earn gaming platform and ecosystem specifically designed for sports games and NFTs.',
+    name: 'Genesis League Sports',
+    description:
+      'Genesis League Sports is a blockchain-based, play2earn gaming platform and ecosystem specifically designed for sports games and NFTs.',
     image: 'genesisleaguesports.png',
     website: 'https://genesisleaguesports.com',
     types: [EcoType.game, EcoType.nft],
-    featured: false,
-  }
+    featured: true,
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

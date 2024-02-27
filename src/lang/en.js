@@ -4,7 +4,7 @@ export default {
     whyHive: 'Why Hive?',
     ecoTitle: 'Hive Ecosystem',
     ecoText:
-      'Hive has a thriving ecosystem of over a hundred apps, communities & projects and is home to some of the most-used Web3 apps in the world, such as Splinterlands, PeakD and HiveBlog.',
+      'Hive has a thriving ecosystem of over a hundred apps, communities & projects and is home to some of the most-used Web3 apps in the world, such as Splinterlands, PeakD and Ecency.',
     ecoButton: 'Explore',
     walletsTitle: 'Wallets',
     walletsText:
@@ -43,21 +43,21 @@ export default {
   },
   about: {
     title: 'Built for Web',
-    text: `Hive is an innovative and forward-looking decentralized blockchain and ecosystem, designed to scale with widespread adoption of the currency and platforms in mind. By combining the lightning-fast processing times and fee-less transactions, Hive is positioned to become one of the leading Web3 blockchains used by people around the world.`,
+    text: `Hive is an innovative and forward-looking decentralized blockchain and ecosystem, designed to scale with widespread adoption of the currency and platforms in mind. By combining the lightning-fast processing times and fee-less transactions, Hive is one of the leading Web3 blockchains used by people around the world.`,
     featureFast: 'Fast',
-    featureFastText: 'Transactions take less than 3 seconds',
+    featureFastText: 'Hive has 3 second block times with transactions confirmed within milliseconds due to one-block irreversibility, allowing for a seamless experience.',
     featureScalable: 'Scalable',
-    featureScalableText: 'Future proof resource-bandwidth & storage system.',
+    featureScalableText: 'Efficiency is key. Hive is optimized for sustainability and flexibility with layered solutions.',
     featurePowerful: 'Powerful',
     featurePowerfulText:
-      'Battle-tested for 5 years by hundreds of apps, communities & projects around the world.',
+      'Hive is a global decentralized network. It is battle-tested by hundreds of apps, communities & projects around the world.',
   },
   eco: {
     title: 'Hive Ecosystem',
-    text: 'Below is a selection of apps & communities leveraging Hive.',
+    text: 'Below is a selection of dapps, games and tools built on Hive.',
     subTitle: 'Interested in statistics?',
     subText:
-      'Thousands of people across numerous dApps are using Hive every day.',
+      'Thousands of people across numerous dapps are using Hive every day.',
   },
   wallets: {
     title: 'Choose your Wallet',

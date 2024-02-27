@@ -39,7 +39,7 @@
       </div>
       <h2 style="margin-top: 40px">But wait, there's more...</h2>
       <p>
-        Over <b>126 projects</b> have been BUIDL'd by the Hive community. You
+        Over <b>190 projects</b> have been BUIDL'd by the Hive community. You
         can view all of them via HiveProjects.io
       </p>
       <StatWebsite :item="HIVE_PROJECTS" :transparent="true" />

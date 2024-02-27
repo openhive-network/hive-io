@@ -63,16 +63,22 @@ export const EXCHANGES = [
     image: 'cryptex24.svg',
   },
   {
-    id: 'gateio',
-    name: 'gate.io',
-    website: 'https://www.gate.io/trade/HIVE_USDT',
-    image: 'gateio.svg',
-  },
-    {
+    id: 'digifinex',
+    name: 'Digifinex',
+    website: 'https://www.digifinex.io/en-ww/trade/USDT/HIVE',
+    image: 'digifinex.svg',
+  },  
+  {
     id: 'easybit',
     name: 'EasyBit',
     website: 'https://easybit.com/en/coin-specs/HIVE',
     image: 'easybit.svg',
+  },
+  {
+    id: 'gateio',
+    name: 'gate.io',
+    website: 'https://www.gate.io/trade/HIVE_USDT',
+    image: 'gateio.svg',
   },
  // {
  //   id: 'hbtc',

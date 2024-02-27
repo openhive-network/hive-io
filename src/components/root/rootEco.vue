@@ -33,6 +33,7 @@
 
 <script lang="ts">
 import {defineComponent, useAsync} from '@nuxtjs/composition-api'
+import {shuffleArray} from '../../helpers/util'
 import {ECOSYSTEM} from '~/helpers/var'
 import {IEcoItem} from '~/types'
 export default defineComponent({
@@ -44,9 +45,16 @@ export default defineComponent({
   },
 
   setup(_props) {
-    const favs = useAsync(() =>
-      ECOSYSTEM.filter((e) => e.featured).slice(0, 8),
-    ) as any
+    const favs = useAsync(() => {
+      const maxFeatured = 8
+      const fixed = ECOSYSTEM.filter((e) => e.featured).slice(0, 1)
+      const random = fixed.concat(
+        shuffleArray(
+          ECOSYSTEM.filter((e) => e.featured).slice(1, ECOSYSTEM.length - 2),
+        ).slice(0, maxFeatured - 1),
+      )
+      return random
+    }) as any
 
     return {
       favs: favs as IEcoItem[],

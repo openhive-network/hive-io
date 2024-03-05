@@ -123,6 +123,12 @@ export const EXCHANGES = [
     image: 'mxc.png',
   },
   {
+    id: 'nominex',
+    name: 'Nominex',
+    website: 'https://nominex.io/markets/HIVE/USDT',
+    image: 'nominex.svg',
+  },
+  {
     id: 'probit',
     name: 'ProBit',
     website: 'https://www.probit.com/app/exchange/HIVE-USDT',

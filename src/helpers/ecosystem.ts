@@ -147,15 +147,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game],
     featured: false,
   },
-  //  {
-  //    id: 'engage',
-  //    name: 'Engage',
-  //    description:
-  //      ' A community and conversation manager to stay connected with your Hive audience.',
-  //    image: 'engage.png',
-  //    website: 'https://engage.hivechain.app',
-  //    types: [EcoType.social],
-  //  },
+    {
+      id: 'engage',
+      name: 'Engage',
+      description:
+        ' A community and conversation manager to stay connected with your Hive audience.',
+      image: 'engage.png',
+      website: 'https://engage.hivechain.app',
+      types: [EcoType.social],
+    },
   {
     id: 'travelfeed',
     name: 'TravelFeed',
@@ -528,12 +528,20 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'genesisleaguesports',
     name: 'Genesis League Sports',
     description:
-      'Genesis League Sports is a blockchain-based, play2earn gaming platform and ecosystem specifically designed for sports games and NFTs.',
+      'A blockchain-based, play2earn gaming platform and ecosystem specifically designed for sports games and NFTs.',
     image: 'genesisleaguesports.png',
     website: 'https://genesisleaguesports.com',
     types: [EcoType.game, EcoType.nft],
     featured: true,
   },
+  {
+    id: 'riseofthepixels',
+    name: 'Rise of the Pixels',
+    description: 'A browser-based simulation game where you manage your own game development studio. Grow through the vibrant eras of gaming, smash bugs, hone your team, and deliver masterpieces to your audiences.',
+    image: 'riseofthepixels.png',
+    website: 'https://riseofthepixels.com/',
+    types: [EcoType.game],
+  },  
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

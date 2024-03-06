@@ -141,5 +141,5 @@ export const ABOUT_NAVIGATION = [
     text: 'About Hive',
   },
   {to: 'about-contributors', text: 'Contributors'},
-  {to: 'about-updates', text: 'Updates'},
+//  {to: 'about-updates', text: 'Updates'},
 ]

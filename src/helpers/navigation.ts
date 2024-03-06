@@ -52,10 +52,10 @@ export const NAVIGATION_FOOTER = [
       to: 'about-contributors',
       name: 'Contributors',
     },
-    {
-      to: 'about-updates',
-      name: 'Updates',
-    },
+    //{
+    //  to: 'about-updates',
+    //  name: 'Updates',
+    //},
 
     {
       to: 'https://hive.blog/@hiveio',
@@ -120,10 +120,10 @@ export const NAVIGATION_FOOTER = [
       to: 'https://hive.io/whitepaper.pdf',
       name: 'Whitepaper',
     },
-  //  {
-  //    to: 'https://hive.blue/docs/technical-vision.pdf',
-  //    name: 'Technical Vision',
-  //  },
+    {
+     to: 'https://hive.blue/docs/technical-vision.pdf',
+      name: 'Technical Vision',
+   },
     {
       to: 'https://github.com/openhive-network/hive',
       name: 'GitHub',

@@ -72,7 +72,7 @@
               <a href="https://ecency.com/market" target="_blank" rel="nofollow noopener noreferrer">Ecency (internal market)</a><br />
               <a href="https://tribaldex.com/trade/SWAP.HBD" target="_blank" rel="nofollow noopener noreferrer">Tribaldex</a><br />
               <a href="https://sg.upbit.com" target="_blank" rel="nofollow noopener noreferrer">Upbit</a><br />
-              <!-- a href="https://ex.xbts.io/market/XBTSX.HBD_BTS" target="_blank" rel="nofollow noopener noreferrer">XBTS</a -->
+              <a href="https://ex.xbts.io/market/XBTSX.HBD_BTS" target="_blank" rel="nofollow noopener noreferrer">XBTS</a>
             </h4>
           </div>
 

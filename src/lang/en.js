@@ -2,44 +2,44 @@ export default {
   root: {
     learnMore: 'Learn More',
     whyHive: 'Why Hive?',
-    ecoTitle: 'Hive Ecosystem',
+    ecoTitle: 'A Thriving, Mature Ecosystem',
     ecoText:
-      'Hive has a thriving ecosystem of over a hundred apps, communities & projects and is home to some of the most-used Web3 apps in the world, such as Splinterlands, PeakD and Ecency.',
+      'Hive is not a shiny new toy. We’ve been around for a while, and have grown a thriving ecosystem of hundreds of dapps, communities & projects. We are home to some of the most used Web3 dapps in the world, such as Splinterlands, PeakD, and Ecency.',
     ecoButton: 'Explore',
     walletsTitle: 'Wallets',
     walletsText:
       'Wallets are incredibly important to securely store your cryptocurrencies and to interact with Web3 apps.\nHive has multiple community-owned and open-source wallets available for Windows, macOS, Linux, iOS, Android & Web.',
     walletsButton: 'Choose wallet',
-    dafTitle: 'DHF',
+    dafTitle: 'Decentralized Hive Fund',
     dafText:
-      'The development of Hive and its ecosystem is made possible by contributors. To incentivize crucial work, such as Core Development, a DAO-like structure: the Decentralised Hive Fund (DHF), is being leveraged to intelligently fund important work.',
+      'The development of Hive and its ecosystem is made possible by the community. To incentivize crucial work, the same community can engage in stake-weighted voting to fund proposals via the Decentralised Hive Fund (DHF).',
     dafButton: 'Learn more',
     exchanges: {
       title: 'Listed Exchanges',
       subtitle:
-        'Hive is available at the top exchanges for secure transactions',
+        'Hive is available at the top exchanges for your convenience.',
     },
     hbdTitle: 'Hive Backed Dollar',
     hbdText:
-      'Enjoy safe investment on a decentralized stable coin powered by Hive blockchain. HBD is backed by HIVE and currently provides one of the highest interest rates in the crypto space.',
-    hbdAPR: 'The interest rate is variable and is voted by the witnesses.',
+      'HBD is a USD-pegged algorithmic stablecoin backed by HIVE. We currently provide one of the highest interest rates in the crypto space for holding HBD in savings.',
+    hbdAPR: 'The interest rate is variable and is voted by the Witnesses.',
     hbdButton: 'Learn more',
     fastTitle: 'Fast',
     fastText:
       'Transactions are processed and confirmed in 3 seconds. Hive is using OBI (one-block irreversibility) meaning that transactions become irreversible in less than 3 seconds. No need to wait for confirmations.',
     fastButton: 'Learn more',
-    feeTitle: 'No Fees',
+    feeTitle: 'Fast with No Fees',
     feeText:
-      'Hive is utilizing RC (resource credits) to achieve fee-less transactions. RC is a resource that gets generated over time for each user based on their stake. This resource is spent when broadcasting transactions as a fee.',
+      'Built for people and communities, Hive technology has enjoyed 3 second transactions and zero gas fees for years. For the technically inclined, we’re a Delegated Proof of Stake (DPoS) chain, allowing those who invest the most time and resources into Hive to realize the most value.',
     feeText2: 'Fresh accounts by default have some free RC to help them start.',
     decTitle: 'Decentralized',
     decText:
       'Hive is one of the most decentralized blockchains. There is no single entity or organization that controlls the network. Everything is run by the community members.',
     decText2:
       'The initiative behind the creation of Hive was decentralization. The community came together to create something that can not be overtaken by the centralized entities.',
-    usernameTitle: 'Username',
+    usernameTitle: 'Readable Wallet Addresses',
     usernameText:
-      'Unlike the other blockchains, wallet addresses in Hive are easy to remember customizable usernames. Your username will be your wallet address and your social media handle at the same time.',
+      'Wallet addresses in Hive are easy to remember. They look and act just like usernames in traditional applications. In other words, a username is a wallet address and a social media handle at the same time.',
   },
   about: {
     title: 'Built for Web',

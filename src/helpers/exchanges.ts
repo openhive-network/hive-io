@@ -26,12 +26,12 @@ export const EXCHANGES = [
   //  website: 'https://bitsonic.co.kr/front/en/exchange/hive-usdt',
   //  image: 'bitsonic.svg',
   //},
-  {
-    id: 'bittrex',
-    name: 'Bittrex',
-    website: 'https://bittrex.com/trade/hive-btc',
-    image: 'bittrex.svg',
-  },
+  //{
+  //  id: 'bittrex',
+  //  name: 'Bittrex',
+  //  website: 'https://bittrex.com/trade/hive-btc',
+  //  image: 'bittrex.svg',
+  //},
   //{
   //  id: 'bkex',
   //  name: 'BKEX',

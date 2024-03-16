@@ -34,9 +34,8 @@
             </h4>
             <h4>
               {{ $t('hbd.supportedWallets') }}:
-              <a href="https://gitlab.syncad.com/hive/vessel/-/releases" target="_blank" rel="nofollow noopener noreferrer">Vessel</a>,
               <a href="https://peakd.com" target="_blank" rel="nofollow noopener noreferrer">Peakd</a>,
-              <a href="https://hive-keychain.com" target="_blank" rel="nofollow noopener noreferrer">Hive keychain</a>
+              <a href="https://hive-keychain.com" target="_blank" rel="nofollow noopener noreferrer">Hive Keychain</a>
             </h4>
           </div>
 
@@ -70,9 +69,7 @@
             </h3>
             <h4>
               <a href="https://hivedex.io" target="_blank" rel="nofollow noopener noreferrer">Hivedex.io (internal market)</a><br />
-              <a href="https://wallet.hive.blog/market" target="_blank" rel="nofollow noopener noreferrer">Hive.blog (internal market)</a><br />
               <a href="https://ecency.com/market" target="_blank" rel="nofollow noopener noreferrer">Ecency (internal market)</a><br />
-              <a href="https://blocktrades.us" target="_blank" rel="nofollow noopener noreferrer">Blocktrades</a><br />
               <a href="https://tribaldex.com/trade/SWAP.HBD" target="_blank" rel="nofollow noopener noreferrer">Tribaldex</a><br />
               <a href="https://sg.upbit.com" target="_blank" rel="nofollow noopener noreferrer">Upbit</a><br />
               <a href="https://ex.xbts.io/market/XBTSX.HBD_BTS" target="_blank" rel="nofollow noopener noreferrer">XBTS</a>
@@ -177,7 +174,7 @@ export default defineComponent({
 
   &__feature {
     width: 100%;
-    max-width: 600px;
+    max-width: 820px;
     min-width: 200px;
     margin: 10px;
     padding: 10px 0;

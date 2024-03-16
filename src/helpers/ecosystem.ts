@@ -419,6 +419,16 @@ export const ECOSYSTEM: IEcoItem[] = [
     featured: false,
   },
   {
+    id: 'exode',
+    name: 'EXODE',
+    description:
+      'EXODE is an immersive science-fiction universe in a playable video game with blockchain assets and currencies.',
+    image: 'exode.png',
+    website: 'https://exode.io/',
+    types: [EcoType.game, EcoType.nft],
+    featured: false,
+  },
+  {
     id: 'blocktunes',
     name: 'BlockTunes',
     description:

@@ -28,7 +28,7 @@ export default {
     fastText:
       'Transactions are processed and confirmed in 3 seconds. Hive is using OBI (one-block irreversibility) meaning that transactions become irreversible in less than 3 seconds. No need to wait for confirmations.',
     fastButton: 'Learn more',
-    feeTitle: 'Fast and Fee-less',
+    feeTitle: 'Fast with No Fees',
     feeText:
       'Built for people and communities, Hive technology has enjoyed 3 second transactions and zero gas fees for years. For the technically inclined, we’re a Delegated Proof of Stake (DPoS) chain, allowing those who invest the most time and resources into Hive to realize the most value.',
     feeText2: 'Fresh accounts by default have some free RC to help them start.',

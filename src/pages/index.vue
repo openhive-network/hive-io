@@ -127,6 +127,7 @@
       </div>
     </div>
 
+    <!-- HDF -->
     <div class="root__dao root__container secondarybg">
       <div class="root__dao__inner root__container__inner">
         <div class="root__dao__left">
@@ -147,6 +148,7 @@
       </div>
     </div>
 
+    <!-- HBD -->
     <div class="root__hbd root__container">
       <div class="root__hbd__inner root__container__inner">
         <div class="root__hbd__left">
@@ -171,7 +173,8 @@
       </div>
     </div>
 
-    <div class="root__wallets root__container">
+    <!-- Wallets -->
+    <!-- div class="root__wallets root__container">
       <div class="root__wallets__inner root__container__inner">
         <div class="root__wallets__left">
           <h2 class="root__wallets__title">{{ $t('root.walletsTitle') }}</h2>
@@ -184,15 +187,15 @@
             @click="$router.push('/wallets')"
           >
             {{ $t('root.walletsButton') }}</el-button
-          >
+          -->
           <!--  -->
-        </div>
+        <!-- /div>
         <div class="root__wallets__image-container">
           <img class="root__wallets__image" src="~/assets/images/vault.svg" />
           <div class="root__wallets__image-background"></div>
         </div>
       </div>
-    </div>
+    </div -->
 
     <div class="root__exchanges-container">
       <div class="root__exchanges__title">

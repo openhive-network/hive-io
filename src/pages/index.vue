@@ -22,13 +22,16 @@
 
     <scrollindicator style="margin: 0 auto 0px auto; margin-bottom: 40px" />
 
+    <!-- Ecosystem -->
+    <RootEco class="secondarybg"/>
+
     <!-- Fast transactions -->
-    <div class="root__general root__container secondarybg">
+    <!--div class="root__general root__container secondarybg">
       <div class="root__general__inner root__container__inner non-reverse">
         <div class="root__general__image-container">
-          <img class="root__general__image" src="~/assets/images/fast.png" />
+          <img class="root__general__image" src="~/assets/images/fast.png" /-->
           <!-- <div class="root__general__image-background"></div> -->
-        </div>
+        <!--/div>
         <div class="root__general__left">
           <h2 class="root__general__title">{{ $t('root.fastTitle') }}</h2>
           <p class="root__general__description">
@@ -40,11 +43,11 @@
             @click="go('https://hive.blog/hive-139531/@blocktrades/one-block-irreversibility-for-delegated-proof-of-stake-dpos')"
           >
             {{ $t('root.fastButton') }}</el-button
-          >
+          -->
           <!--  -->
-        </div>
+        <!--/div>
       </div>
-    </div>
+    </div -->
 
     <!-- No fees -->
     <div class="root__general root__container">
@@ -167,8 +170,6 @@
         </div>
       </div>
     </div>
-
-    <RootEco class="secondarybg"/>
 
     <div class="root__wallets root__container">
       <div class="root__wallets__inner root__container__inner">

@@ -60,7 +60,7 @@ export default {
       'Thousands of people across numerous dapps are using Hive every day.',
   },
   wallets: {
-    title: 'Choose your Wallet',
+    title: 'Choose Your Wallet',
     text:
       'Hive wallets are available for Windows, MacOS, Linux, iOS, Android & Web.',
   },

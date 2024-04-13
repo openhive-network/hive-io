@@ -476,16 +476,16 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game],
     featured: false,
   },
-  {
-    id: 'reverio',
-    name: 'Reverio',
-    description:
-      'Earn rewards on Hive by asking and answering questions on Reverio.',
-    image: 'reverio.svg',
-    website: 'https://reverio.io/',
-    types: [EcoType.social],
-    featured: false,
-  },
+ // {
+ //   id: 'reverio',
+ //   name: 'Reverio',
+ //   description:
+ //     'Earn rewards on Hive by asking and answering questions on Reverio.',
+ //   image: 'reverio.svg',
+ //   website: 'https://reverio.io/',
+ //   types: [EcoType.social],
+ //   featured: false,
+ // },
   {
     id: 'hivedex',
     name: 'Hivedex.io',

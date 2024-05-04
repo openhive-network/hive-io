@@ -327,7 +327,7 @@ export default defineComponent({
       margin: 0 auto;
       // margin-top: 25px;
       //background: #320109;
-      background: #212529;
+      background: #191919;
       justify-content: center;
       align-items: center;
       padding: 40px 40px 50px 40px;

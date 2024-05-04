@@ -326,7 +326,8 @@ export default defineComponent({
       width: calc(100% - 80px);
       margin: 0 auto;
       // margin-top: 25px;
-      background: #320109;
+      //background: #320109;
+      background: #191919;
       justify-content: center;
       align-items: center;
       padding: 40px 40px 50px 40px;
@@ -339,13 +340,13 @@ export default defineComponent({
 
     &__title {
       color: white;
-      font-weight: 500;
+      font-weight: 700;
       margin-bottom: 10px;
       font-size: 16px;
       opacity: 1;
       padding-bottom: 2px;
       cursor: default;
-      border-bottom: 1px solid rgb(224, 224, 224);
+      //border-bottom: 1px solid rgb(224, 224, 224);
     }
 
     &__subtitle {

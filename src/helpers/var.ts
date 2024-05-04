@@ -10,7 +10,7 @@ export * from './updates'
 
 export const INFOBAR = {
   show: true,
-  date: '2024-09-10T12:00:00+00:00',
+  date: '2024-09-10T00:00:00.000Z',
   url: 'https://hivefe.st',
   // If empty, only url is used
   urlReady: '',

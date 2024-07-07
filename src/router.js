@@ -8,8 +8,9 @@ const About = () => import('./pages/about.vue').then((m) => m.default || m)
 const Brand = () => import('./pages/brand.vue').then((m) => m.default || m)
 const Eco = () => import('./pages/eco.vue').then((m) => m.default || m)
 const Wallets = () => import('./pages/wallets.vue').then((m) => m.default || m)
-const Developers = () => import('./pages/developers.vue').then((m) => m.default || m)
-const Hbd = () => import( './pages/hbd.vue' ).then( ( m ) => m.default || m )
+const Developers = () =>
+  import('./pages/developers.vue').then((m) => m.default || m)
+const Hbd = () => import('./pages/hbd.vue').then((m) => m.default || m)
 
 export const createRouter = () => {
   const router = new Router({
@@ -21,61 +22,67 @@ export const createRouter = () => {
         path: '/',
         component: Index,
         name: 'index',
-        meta: {}
+        meta: {},
       },
       {
         path: '/about',
         component: About,
         name: 'about',
-        meta: {}
+        meta: {},
       },
       {
         path: '/updates',
         component: About,
         name: 'about-updates',
-        meta: {}
+        meta: {},
       },
       {
         path: '/contributors',
         component: About,
         name: 'about-contributors',
-        meta: {}
+        meta: {},
       },
       {
         path: '/brand',
         component: Brand,
         name: 'brand',
-        meta: {}
+        meta: {},
       },
       {
         path: '/eco',
         component: Eco,
         name: 'eco',
-        meta: { keepPosition: true, thresholdPosition: 800 }
+        meta: {keepPosition: true, thresholdPosition: 800},
       },
       {
         path: '/eco/:app',
         component: Eco,
         name: 'eco-app',
-        meta: { keepPosition: true, thresholdPosition: 800 }
+        meta: {keepPosition: true, thresholdPosition: 800},
       },
       {
         path: '/wallets',
         component: Wallets,
         name: 'wallets',
-        meta: {}
+        meta: {},
       },
       {
         path: '/developers',
         component: Developers,
         name: 'developers',
-        meta: {}
+        meta: {},
       },
       {
         path: '/hbd',
         component: Hbd,
         name: 'hbd',
-        meta: {}
+        meta: {},
+      },
+      {
+        path: '/roadmap',
+        component: About,
+        name: 'roadmap',
+        meta: {},
       },
     ],
     fallback: true,
@@ -108,7 +115,7 @@ if (process.client) {
   }
 }
 
-const scrollBehavior = function (to, from, savedPosition) {
+const scrollBehavior = function(to, from, savedPosition) {
   // if the returned position is falsy or an empty object,
   // will retain current scroll position.
   let position = false
@@ -120,7 +127,11 @@ const scrollBehavior = function (to, from, savedPosition) {
   ) {
     // console.log('Resetting position to 0', to)
     // scroll to the top of the page
-    if (!to.meta.thresholdPosition || window.pageYOffset > to.meta.thresholdPosition) position = { x: 0, y: 0 }
+    if (
+      !to.meta.thresholdPosition ||
+      window.pageYOffset > to.meta.thresholdPosition
+    )
+      position = {x: 0, y: 0}
   }
 
   // console.log('saved position', savedPosition)
@@ -137,15 +148,18 @@ const scrollBehavior = function (to, from, savedPosition) {
       // coords will be used if no selector is provided,
       // or if the selector didn't match any element.
       if (to.hash) {
-        let { hash } = to
+        let {hash} = to
         // CSS.escape() is not supported with IE and Edge.
-        if (typeof window.CSS !== 'undefined' && typeof window.CSS.escape !== 'undefined') {
+        if (
+          typeof window.CSS !== 'undefined' &&
+          typeof window.CSS.escape !== 'undefined'
+        ) {
           hash = `#${window.CSS.escape(hash.substr(1))}`
         }
         try {
           if (document.querySelector(hash)) {
             // scroll to anchor by returning the selector
-            position = { selector: hash }
+            position = {selector: hash}
           }
         } catch (e) {
           // eslint-disable-next-line no-console

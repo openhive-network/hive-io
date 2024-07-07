@@ -23,11 +23,11 @@ export const NAVIGATION_HEADER = [
     name: 'Join',
     isButton: true,
   },
-//  {
-//    to: 'https://whyhive.co',
-//    name: 'Why Hive?',
-//    isButton: true,
- // },
+  //  {
+  //    to: 'https://whyhive.co',
+  //    name: 'Why Hive?',
+  //    isButton: true,
+  // },
 ]
 
 /**
@@ -52,10 +52,10 @@ export const NAVIGATION_FOOTER = [
       to: 'about-contributors',
       name: 'Contributors',
     },
-    //{
+    // {
     //  to: 'about-updates',
     //  name: 'Updates',
-    //},
+    // },
 
     {
       to: 'https://hive.blog/@hiveio',
@@ -81,6 +81,10 @@ export const NAVIGATION_FOOTER = [
       name: 'Ecosystem',
     },
     {
+      to: 'roadmap',
+      name: 'Roadmap',
+    },
+    {
       to: 'hbd',
       name: 'Hive Dollar (HBD)',
     },
@@ -92,10 +96,10 @@ export const NAVIGATION_FOOTER = [
       to: 'https://hiveblocks.com/witnesses',
       name: 'Governance',
     },
-  //  {
-  //     to: 'https://whyhive.co/',
-  //     name: 'Why Hive',
-  //  },
+    //  {
+    //     to: 'https://whyhive.co/',
+    //     name: 'Why Hive',
+    //  },
     /* {
       to: 'eco',
       name: 'dApps Statistics'
@@ -121,9 +125,9 @@ export const NAVIGATION_FOOTER = [
       name: 'Whitepaper',
     },
     {
-     to: 'https://hive.blue/docs/technical-vision.pdf',
+      to: 'https://hive.blue/docs/technical-vision.pdf',
       name: 'Technical Vision',
-   },
+    },
     {
       to: 'https://github.com/openhive-network/hive',
       name: 'GitHub',
@@ -140,6 +144,10 @@ export const ABOUT_NAVIGATION = [
     to: 'about',
     text: 'About Hive',
   },
-  {to: 'about-contributors', text: 'Contributors'},
-//  {to: 'about-updates', text: 'Updates'},
+  {
+    to: 'roadmap',
+    text: 'Roadmap',
+  },
+  { to: 'about-contributors', text: 'Contributors' },
+  //  {to: 'about-updates', text: 'Updates'},
 ]

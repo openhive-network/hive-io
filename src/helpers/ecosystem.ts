@@ -551,7 +551,16 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'riseofthepixels.png',
     website: 'https://riseofthepixels.com/',
     types: [EcoType.game],
-  },  
+  },
+  {
+    id: 'hive-inbox',
+    name: 'Hive Inbox',
+    description:
+      'Manage Hive Blog\'s replies',
+    image: 'hive-inbox.png',
+    website: 'https://hive-inbox.the-hive-mobile.app',
+    types: [EcoType.social],
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

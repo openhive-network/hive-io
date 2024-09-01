@@ -18,7 +18,10 @@
   "scss.validate": false,
   "editor.formatOnSaveTimeout": 10000,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
-  "prettier.packageManager": "yarn"
+  "prettier.packageManager": "yarn",
+  "i18n-ally.localesPaths": [
+    "src/lang"
+  ]
 }

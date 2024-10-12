@@ -48,6 +48,91 @@
           </div>
         </div>
       </div>
+      <!-- Roadmap -->
+      <div v-if="$route.name === 'roadmap'" class="about__first roadmap">
+        <h2 class="about__title">
+          Roadmap
+        </h2>
+        <p class="about__text">Almost all core development updates are posted on Hive
+          <a href="https://hive.blog/@blocktrades/posts" target="_blank" rel="nofollow noopener noreferrer">@blocktrades</a>
+        </p>
+        <div class="about__feature">
+          <h3 class="about__feature__text">Q3 2024</h3>
+          <h4>
+            <ul>
+              <li>
+                <input id="find" type="checkbox" disabled/>
+                Light weight blockchain nodes with very low storage/cpu/memory requirements
+              </li>
+              <li>
+                <input id="find" type="checkbox" disabled/>
+                Increase performance/scalability of Hive API nodes via improvements to the Hive Application Framework (HAF) and the core Hive API apps
+              </li>
+            </ul>
+          </h4>
+        </div>
+
+        <div class="about__feature">
+          <h3 class="about__feature__text">
+            Q4 2024
+          </h3>
+          <h4>
+            <ul>
+              <li>
+                <input id="find" type="checkbox" disabled/>
+                Define new Hive APIs using HAF technology: Lite accounts API (accounts re-usable across the 2nd layer ecosystem), 2nd layer transaction API, 2nd layer smart contract API, Block Explorer API
+              </li>
+              <li>
+                <input id="find" type="checkbox" disabled/>
+                Complete rewrite of Condenser with newest web technologies
+              </li>
+              <li>
+                <input id="find" type="checkbox" disabled/>
+                Reputation tracker API
+              </li>
+              <li>
+                <input id="find" type="checkbox" disabled/>
+                Wax, A new extensible multi-language API library for Hive (Typescript, Python, C++)
+              </li>
+            </ul>
+          </h4>
+        </div>
+
+        <div class="about__feature">
+          <h3 class="about__feature__text">
+            Q1 2025
+          </h3>
+          <h4>
+            <ul>
+              <li>
+                <input id="find" type="checkbox" disabled/>
+                Release block explorer UI for deployment by all Hive API Nodes
+              </li>
+              <li>
+                <input id="find" type="checkbox" disabled/>
+                New REST-based Hive APIs
+              </li>
+            </ul>
+          </h4>
+        </div>
+        <div class="about__feature">
+          <h3 class="about__feature__text">
+            Q2 2025
+          </h3>
+          <h4>
+            <ul>
+              <li>
+                <input id="find" type="checkbox" disabled/>
+                Interactive OpenAPI documentation for Hive APIs (via swagger)
+              </li>
+              <li>
+                <input id="find" type="checkbox" disabled/>
+                Clive, a new cli and text-based wallet for high security accounts
+              </li>
+            </ul>
+          </h4>
+        </div>
+      </div>
       <Updates v-if="$route.name === 'about-updates'" />
       <Contributors v-if="$route.name === 'about-contributors'" />
     </div>
@@ -69,6 +154,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.roadmap ul {
+    list-style-type: none;
+}
+.roadmap li {
+  margin-bottom: 15px;
+}
+
 .about {
   display: flex;
   align-items: center;

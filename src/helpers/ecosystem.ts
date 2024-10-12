@@ -556,10 +556,19 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'hive-inbox',
     name: 'Hive Inbox',
     description:
-      'Manage Hive Blog\'s replies',
+      'Helps you manage Hive Blog\'s replies.',
     image: 'hive-inbox.png',
     website: 'https://hive-inbox.the-hive-mobile.app',
     types: [EcoType.social],
+  },
+  {
+    id: 'astral-wars',
+    name: 'Astral Wars',
+    description:
+      'Astral Wars is a fast-paced digital trading card game where players use programs, units, deterrents and structures to outsmart opponents in epic duels set in the Astranian universe.',
+    image: 'AstralWars.png',
+    website: 'https://surgent-gaming-marketplace.vercel.app/',
+    types: [EcoType.game],
   },
 ].concat(BLOCKEXPLORERS as any)
 

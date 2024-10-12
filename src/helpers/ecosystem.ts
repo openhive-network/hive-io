@@ -221,12 +221,12 @@ export const ECOSYSTEM: IEcoItem[] = [
   //   types: [EcoType.tools],
   // },
   {
-    id: 'cubfi',
-    name: 'CubFinance',
+    id: 'leodex',
+    name: 'LeoDex',
     description:
-      'A DeFi derivatives platform operating bHIVE and bHBD on the BSC Blockchain where users can wrap HIVE & HBD to provide liquidity and trade',
-    image: 'CUB.svg',
-    website: 'https://cubdefi.com/',
+      'Trade HIVE to and from the top crypto assets in the world like BTC, ETH, DASH and more. LeoDex is a DEX Web app for cross-chain trading that prioritizes a seamless User Experience with a clean and intuitive Interface as a non-custodial decentralized exchange. Trading across blockchains on LeoDex is extremely easy and can be done using Maya Protocol and Hive Aggregation Technology.',
+    image: 'LeoDex.png',
+    website: 'https://leodex.io/',
     types: [EcoType.defi],
     featured: false,
   },

@@ -81,10 +81,10 @@ export const EXCHANGES = [
     image: 'hive-engine.png',
   },
   {
-    id: 'huobi',
-    name: 'Huobi',
-    website: 'https://www.huobi.com/en-us/exchange/hive_usdt/',
-    image: 'huobi.svg',
+    id: 'HTX',
+    name: 'HTX',
+    website: 'https://www.htx.com/trade/hive_usdt?type=spot',
+    image: 'HTX.svg',
   },
   {
     id: 'ionomy',

@@ -21,6 +21,12 @@ export const EXCHANGES = [
     image: 'bithumb.png',
   },
   {
+    id: 'btcc',
+    name: 'BTCC',
+    website: 'https://www.btcc.com/en-US/trade/perpetual/HIVEUSDT',
+    image: 'btcc.svg',
+  },
+  {
     id: 'bydfi',
     name: 'Bydfi',
     website: 'https://www.bydfi.com/en/spot/hive_usdt',
@@ -31,6 +37,12 @@ export const EXCHANGES = [
     name: 'Changelly',
     website: 'https://changelly.com',
     image: 'changelly.png',
+  },
+  {
+    id: 'changenow',
+    name: 'ChangeNow',
+    website: 'https://changenow.io/?from=hive&to=sol',
+    image: 'changenow.png',
   },
   {
     id: 'coindcx',
@@ -83,7 +95,7 @@ export const EXCHANGES = [
   {
     id: 'HTX',
     name: 'HTX',
-    website: 'https://www.htx.com/trade/hive_usdt?type=spot',
+    website: 'https://www.htx.com/trade/hive_usdt',
     image: 'HTX.svg',
   },
   {
@@ -109,6 +121,12 @@ export const EXCHANGES = [
     name: 'MEXC',
     website: 'https://www.mexc.com/exchange/HIVE_USDT?_from=market',
     image: 'mxc.png',
+  },
+  {
+    id: 'namiexchange',
+    name: 'Nami.Exchange',
+    website: 'https://nami.exchange/vi/trade/HIVE-VNST',
+    image: 'nami.webp',
   },
   {
     id: 'nominex',
@@ -170,7 +188,13 @@ export const EXCHANGES = [
     website: 'https://wazirx.com/exchange/HIVE-USDT',
     image: 'wazirx.png',
   },
-    {
+  {
+    id: 'weex',
+    name: 'WEEX',
+    website: 'https://www.weex.com/futures/HIVE-USDT',
+    image: 'weex.svg',
+  },
+  {
     id: 'xbts',
     name: 'XBTS',
     website: 'https://app.xbts.io/#/pools?a=hive',

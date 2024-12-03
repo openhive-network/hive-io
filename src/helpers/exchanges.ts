@@ -117,6 +117,12 @@ export const EXCHANGES = [
     image: 'jucoin.png',
   },
   {
+    id: 'leodex',
+    name: 'LeoDex',
+    website: 'https://leodex.io/',
+    image: 'leodex.webp',
+  },
+  {
     id: 'mexc',
     name: 'MEXC',
     website: 'https://www.mexc.com/exchange/HIVE_USDT?_from=market',

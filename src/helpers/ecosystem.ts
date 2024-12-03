@@ -63,12 +63,12 @@ export const ECOSYSTEM: IEcoItem[] = [
     featured: true,
   },
   {
-    id: 'leofinance',
-    name: 'LeoFinance',
+    id: 'inleo',
+    name: 'InLeo',
     description:
-      'A social platform where users get paid for creating, and interacting with crypto and finance content.',
-    image: 'leofinance.png',
-    website: 'https://leofinance.io',
+      'A social media platform focused on use-owned content and decentralized monetization.',
+    image: 'inleo.avif',
+    website: 'https://inleo.io',
     types: [EcoType.social],
     featured: true,
   },
@@ -472,7 +472,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description:
       'King of Duels brings players a complete PvP gaming experience from day one.',
     image: 'king-of-duels.svg',
-    website: 'https://kod.up.railway.app/',
+    website: 'https://www.kingofduels.online/',
     types: [EcoType.game],
     featured: false,
   },

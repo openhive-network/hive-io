@@ -472,7 +472,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description:
       'King of Duels brings players a complete PvP gaming experience from day one.',
     image: 'king-of-duels.svg',
-    website: 'https://kod.up.railway.app/',
+    website: 'https://www.kingofduels.online/',
     types: [EcoType.game],
     featured: false,
   },

@@ -120,7 +120,7 @@ export const EXCHANGES = [
     id: 'leodex',
     name: 'LeoDex',
     website: 'https://leodex.io/',
-    image: 'LeoDex_Logo_no_Name.png',
+    image: 'leodex.webp',
   },
   {
     id: 'mexc',

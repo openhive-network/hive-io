@@ -81,6 +81,12 @@ export const EXCHANGES = [
     image: 'gateio.svg',
   },
   {
+    id: 'hotcoin',
+    name: 'Hotcoin',
+    website: 'https://www.hotcoin.com/en_US/trade/hive_usdt',
+    image: 'hotcoin.png',
+  },
+  {
     id: 'hitbtc',
     name: 'HitBTC',
     website: 'https://hitbtc.com/HIVE-to-USDT',
@@ -115,6 +121,12 @@ export const EXCHANGES = [
     name: 'JuCoin',
     website: 'https://www.jbex.com/exchange/HIVE/USDT',
     image: 'jucoin.png',
+  },
+  {
+    id: 'kcex',
+    name: 'KCEX',
+    website: 'https://www.kcex.com/futures/exchange/HIVE_USDT',
+    image: 'kcex.svg',
   },
   {
     id: 'leodex',

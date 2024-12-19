@@ -123,6 +123,12 @@ export const EXCHANGES = [
     image: 'jucoin.png',
   },
   {
+    id: 'kcex',
+    name: 'KCEX',
+    website: 'https://www.kcex.com/futures/exchange/HIVE_USDT',
+    image: 'kcex.svg',
+  },
+  {
     id: 'leodex',
     name: 'LeoDex',
     website: 'https://leodex.io/',

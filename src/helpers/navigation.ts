@@ -89,11 +89,11 @@ export const NAVIGATION_FOOTER = [
       name: 'Hive Dollar (HBD)',
     },
     {
-      to: 'https://hiveblocks.com',
+      to: 'https://explore.openhive.network',
       name: 'Block Explorer',
     },
     {
-      to: 'https://hiveblocks.com/witnesses',
+      to: 'https://explore.openhive.network/witnesses',
       name: 'Governance',
     },
     //  {

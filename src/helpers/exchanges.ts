@@ -27,6 +27,12 @@ export const EXCHANGES = [
     image: 'bithumb.png',
   },
   {
+    id: 'bitrue',
+    name: 'Bitrue',
+    website: 'https://www.bitrue.com/futures/HIVE',
+    image: 'bitrue.png',
+  },
+  {
     id: 'btcc',
     name: 'BTCC',
     website: 'https://www.btcc.com/en-US/trade/perpetual/HIVEUSDT',

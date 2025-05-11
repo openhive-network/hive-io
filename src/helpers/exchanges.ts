@@ -15,6 +15,12 @@ export const EXCHANGES = [
     image: 'bitay.png',
   },
   {
+    id: 'bitget',
+    name: 'Bitget',
+    website: 'https://www.bitget.com/spot/HIVEUSDT',
+    image: 'bitget.svg',
+  },
+  {
     id: 'bithumb',
     name: 'Bithumb',
     website: 'https://www.bithumb.com/react/trade/order/HIVE-KRW',
@@ -153,6 +159,12 @@ export const EXCHANGES = [
     image: 'nominex.svg',
   },
   {
+    id: 'pionex',
+    name: 'Pionex',
+    website: 'https://www.pionex.com/en/trade/HIVE_USDT/Manual',
+    image: 'pionex.png',
+  },
+  {
     id: 'probit',
     name: 'ProBit',
     website: 'https://www.probit.com/app/exchange/HIVE-USDT',
@@ -217,5 +229,11 @@ export const EXCHANGES = [
     name: 'XBTS',
     website: 'https://app.xbts.io/#/pools?a=hive',
     image: 'xbts.png',
+  },
+  {
+    id: 'xt',
+    name: 'XT',
+    website: 'https://www.xt.com/en/trade/hive_usdt',
+    image: 'xt.png',
   }
 ]

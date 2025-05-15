@@ -27,6 +27,12 @@ export const EXCHANGES = [
     image: 'bithumb.png',
   },
   {
+    id: 'bitpanda',
+    name: 'Bitpanda',
+    website: 'https://www.bitpanda.com/en/prices/hive-hive',
+    image: 'bitpanda.png',
+  },
+  {
     id: 'bitrue',
     name: 'Bitrue',
     website: 'https://www.bitrue.com/futures/HIVE',

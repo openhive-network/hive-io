@@ -82,7 +82,8 @@
             </h3>
             <h4>
               {{ $t('hbd.moreInfoText') }}
-              <a href="https://hive.ausbit.dev/hbd" target="_blank" rel="nofollow noopener noreferrer">https://hive.ausbit.dev/hbd</a>
+              <a href="https://www.hbdstats.com" target="_blank" rel="nofollow noopener noreferrer">HBD Stats</a>,
+              <a href="https://hive.ausbit.dev/hbd" target="_blank" rel="nofollow noopener noreferrer">Block Explorer</a>
             </h4>
           </div>
         </div>

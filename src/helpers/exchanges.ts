@@ -75,6 +75,12 @@ export const EXCHANGES = [
     image: 'coinex.png',
   },
   {
+    id: 'coinoswap',
+    name: 'CoinoSwap',
+    website: 'https://www.coinoswap.com',
+    image: 'coinoswap.png',
+  },
+  {
     id: 'cryptex24',
     name: 'Cryptex24',
     website: 'https://www.cryptex24.io/trade/HIVE&USDT',
@@ -145,6 +151,12 @@ export const EXCHANGES = [
     name: 'KCEX',
     website: 'https://www.kcex.com/futures/exchange/HIVE_USDT',
     image: 'kcex.svg',
+  },
+  {
+    id: 'lcx',
+    name: 'LCX',
+    website: 'https://exchange.lcx.com/sv/trade/HIVE-EUR',
+    image: 'LCX.png',
   },
   {
     id: 'leodex',

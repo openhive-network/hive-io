@@ -53,7 +53,7 @@
         <h2 class="about__title">
           Roadmap
         </h2>
-        <p class="about__text">Almost all core development updates are posted on Hive
+        <p class="about__text">Just about all our core development updates are shared on Hive
           <a href="https://hive.blog/@blocktrades/posts" target="_blank" rel="nofollow noopener noreferrer">@blocktrades</a>
         </p>
         <div class="about__feature">

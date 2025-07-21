@@ -276,7 +276,7 @@
         </div>
 
         <div class="about__feature">
-          <h3 class="about__feature__text">2026 Q1</h3>h
+          <h3 class="about__feature__text">2026 Q1</h3>
 
           <h4 class="about__feature__sub">Prototyping for smart contracts designing</h4>
 
@@ -321,7 +321,7 @@
         <div class="about__feature">
           <h3 class="about__feature__text">2026 Q3</h3>
 
-          <h4 class="about__feature__sub">Pruned HAF API nodes on ARM-based cell phones? (for personal API nodes)</h4>
+          <h4 class="about__feature__sub">Pruned HAF API nodes on ARM-based cell phones (for personal API nodes)</h4>
         </div>   
       </div>
       <Updates v-if="$route.name === 'about-updates'" />

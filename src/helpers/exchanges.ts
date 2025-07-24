@@ -209,7 +209,7 @@ export const EXCHANGES = [
     {
     id: 'stealthex',
     name: 'StealthEX',
-    website: 'https://stealthex.io/coin/hbd',
+    website: 'https://stealthex.io/coin/hive',
     image: 'StealthEX.png',
   },
   {

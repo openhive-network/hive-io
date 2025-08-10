@@ -15,18 +15,24 @@ export const STATISTIC_WEBSITES = [
   //   image: 'stateofthedapps.svg',
   // },
 
-  {
-    id: 'dapp-review',
-    name: 'Dapp Review',
-    website: 'https://dapp.review/explore/hive',
-    image: 'dapp-review.svg',
-  },
+  //{
+  //  id: 'dapp-review',
+  //  name: 'Dapp Review',
+  //  website: 'https://dapp.review/explore/hive',
+  //  image: 'dapp-review.svg',
+  //},
   // {
   //   id: 'hivedapps-com',
   //   name: 'HiveDapps',
   //   website: 'https://hivedapps.com',
   //   image: 'hivedapps-com.svg',
   // },
+{
+  id: 'rayo',
+  name: 'Rayo',
+  website: 'https://rayo.gg/chain/hive',
+  image: 'rayo.svg',
+  },
 ]
 
 export const HIVE_PROJECTS = {

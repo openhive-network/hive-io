@@ -44,7 +44,7 @@
       </p>
       <StatWebsite :item="HIVE_PROJECTS" :transparent="true" />
 
-      <!-- <h2 class="eco__subTitle">{{ $t(`eco.subTitle`) }}</h2>
+      <h2 class="eco__subTitle">{{ $t(`eco.subTitle`) }}</h2>
       <p class="eco__subText">
         {{ $t(`eco.subText`) }}
       </p>
@@ -54,7 +54,7 @@
           :key="site.id"
           :item="site"
         />
-      </div> -->
+      </div> 
     </div>
   </div>
 </template>

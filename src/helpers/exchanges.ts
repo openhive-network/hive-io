@@ -195,12 +195,6 @@ export const EXCHANGES = [
     image: 'probit_white.png',
   },
   {
-    id: 'sevenb',
-    name: 'Seven B',
-    website: 'https://sevenb.io',
-    image: '7b.png',
-  },
-  {
     id: 'simpleswap',
     name: 'SimpleSwap',
     website: 'https://simpleswap.io',

@@ -65,13 +65,13 @@ export const EXCHANGES = [
   {
     id: 'coindcx',
     name: 'CoinDCX',
-    website: 'https://coindcx.com/trade/HIVEUSDT',
+    website: 'https://coindcx.com/trade/HIVEINR',
     image: 'coindcx.svg',
   },
   {
     id: 'coinex',
     name: 'CoinEx',
-    website: 'https://www.coinex.com/exchange/hive-usdt',
+    website: 'https://www.coinex.com/en/exchange/HIVE-USDT',
     image: 'coinex.png',
   },
   {
@@ -79,12 +79,6 @@ export const EXCHANGES = [
     name: 'CoinoSwap',
     website: 'https://www.coinoswap.com',
     image: 'coinoswap.png',
-  },
-  {
-    id: 'cryptex24',
-    name: 'Cryptex24',
-    website: 'https://www.cryptex24.io/trade/HIVE&USDT',
-    image: 'cryptex24.svg',
   },
   {
     id: 'digifinex',
@@ -129,22 +123,10 @@ export const EXCHANGES = [
     image: 'HTX.svg',
   },
   {
-    id: 'ionomy',
-    name: 'Ionomy',
-    website: 'https://ionomy.com/en/markets/btc-hive',
-    image: 'ionomy.png',
-  },
-  {
     id: 'indodax',
     name: 'Indodax',
     website: 'https://indodax.com/market/HIVEIDR',
     image: 'indodax.png',
-  },
-  {
-    id: 'jucoin',
-    name: 'JuCoin',
-    website: 'https://www.jbex.com/exchange/HIVE/USDT',
-    image: 'jucoin.png',
   },
   {
     id: 'kcex',
@@ -175,12 +157,6 @@ export const EXCHANGES = [
     name: 'Nami.Exchange',
     website: 'https://nami.exchange/vi/trade/HIVE-VNST',
     image: 'nami.webp',
-  },
-  {
-    id: 'nominex',
-    name: 'Nominex',
-    website: 'https://nominex.io/markets/HIVE/USDT',
-    image: 'nominex.svg',
   },
   {
     id: 'pionex',

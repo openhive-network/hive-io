@@ -140,12 +140,12 @@ export const EXCHANGES = [
     website: 'https://exchange.lcx.com/sv/trade/HIVE-EUR',
     image: 'LCX.png',
   },
-  {
-    id: 'leodex',
-    name: 'LeoDex',
-    website: 'https://leodex.io/',
-    image: 'leodex.webp',
-  },
+  //{
+  //  id: 'leodex',
+  //  name: 'LeoDex',
+  //  website: 'https://leodex.io/',
+  //  image: 'leodex.webp',
+  //},
   {
     id: 'mexc',
     name: 'MEXC',

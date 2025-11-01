@@ -268,13 +268,13 @@ export const ECOSYSTEM: IEcoItem[] = [
     featured: false,
   },
   {
-    id: 'dcity',
-    name: 'dCity',
-    description: 'Build your dCITY on NFT assets.',
-    image: 'dcity.png',
-    website: 'https://dcity.io',
-    types: [EcoType.game, EcoType.nft],
-    featured: false,
+    id: 'beeswap',
+    name: 'BeeSwap',
+    description: 'A Hive browser wallet and Hive Engine DeFi application for inexpensive deposits and withdrawals to Hive Engine.',
+    image: 'beeswap.png',
+    website: 'https://beeswap.dcity.io/convert',
+    types: [EcoType.defi],
+    featured: true,
   },
 
   {
@@ -515,16 +515,16 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.tools, EcoType.defi, EcoType.nft],
     featured: false,
   },
-  {
-    id: 'immortalcreed',
-    name: 'Immortal Creed',
-    description:
-      'A trading card game set in a fantasy themed world integrated with blockchain technology. This allows you, the player, to earn, own and trade your game characters, weapons, equipment and currencies.',
-    image: 'immortalcreed.png',
-    website: 'https://immortalcreed.io',
-    types: [EcoType.game, EcoType.nft],
-    featured: false,
-  },
+ // {
+ //   id: 'immortalcreed',
+ //   name: 'Immortal Creed',
+ //   description:
+ //     'A trading card game set in a fantasy themed world integrated with blockchain technology. This allows you, the player, to earn, own and trade your game characters, weapons, equipment and currencies.',
+ //   image: 'immortalcreed.png',
+ //   website: 'https://immortalcreed.io',
+ //   types: [EcoType.game, EcoType.nft],
+ //   featured: false,
+  //},
   {
     id: 'arcadecolony',
     name: 'Arcade Colony',

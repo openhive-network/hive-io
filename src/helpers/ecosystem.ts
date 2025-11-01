@@ -579,6 +579,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://snapie.xyz/',
     types: [EcoType.social],
   },
+    {
+    id: 'hive-analytics',
+    name: 'Hive Analytics',
+    description:
+      'Real-time blockchain intelligence for the Hive ecosystem.',
+    image: 'hiveanalytics.png',
+    website: 'https://hiveanalytics.usehive.com/',
+    types: [EcoType.tools],
+  },
 
 ].concat(BLOCKEXPLORERS as any)
 

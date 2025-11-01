@@ -287,15 +287,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game],
     featured: false,
   },
-  {
-    id: 'nftmart',
-    name: 'NFTMart',
-    description: 'An NFT market for Hive. Mostly card games.',
-    image: 'nftmart.png',
-    website: 'https://nftm.art/',
-    types: [EcoType.nft],
-    featured: false,
-  },
+ // {
+ //   id: 'nftmart',
+ //   name: 'NFTMart',
+ //   description: 'An NFT market for Hive. Mostly card games.',
+ //   image: 'nftmart.png',
+ //   website: 'https://nftm.art/',
+ //   types: [EcoType.nft],
+ //   featured: false,
+ // },
   {
     id: 'vimm',
     name: 'Vimm',
@@ -570,6 +570,16 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://surgent-gaming-marketplace.vercel.app/',
     types: [EcoType.game],
   },
+  {
+    id: 'snapie',
+    name: 'Snapie',
+    description:
+      'Snapie brings social media to the blockchain.',
+    image: 'snapie.png',
+    website: 'https://snapie.xyz/',
+    types: [EcoType.social],
+  },
+
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

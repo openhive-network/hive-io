@@ -49,16 +49,40 @@ export default defineComponent({
   props: {},
 
   setup() {
-    const state = reactive({
-      d: '0',
-      h: '0',
-      m: '0',
-      s: '00',
-      interval: null as any,
-      setInterval: false,
-    })
-
     const infobar = ref(INFOBAR)
+
+    const getInitialCountdown = () => {
+      const then = moment.utc(INFOBAR.date).valueOf()
+      const now = moment.utc().valueOf()
+      if (then - now < 0) {
+        return {d: '0', h: '0', m: '0', s: '0'}
+      }
+      const countdown = moment(then - now)
+      const dNum = Number(countdown.utc().format('DD')) - 1
+      const hNum = Number(countdown.utc().format('HH'))
+      const mNum = Number(countdown.utc().format('mm'))
+      const sNum = Number(countdown.utc().format('ss'))
+
+      return {
+        d: String(dNum),
+        h: dNum > 0 ? (hNum < 10 ? '0' : '') + String(hNum) : String(hNum),
+        m:
+          dNum > 0 || hNum > 0
+            ? (mNum < 10 ? '0' : '') + String(mNum)
+            : String(mNum),
+        s: (sNum < 10 ? '0' : '') + String(sNum),
+      }
+    }
+
+    const initial = getInitialCountdown()
+    const state = reactive({
+      d: initial.d,
+      h: initial.h,
+      m: initial.m,
+      s: initial.s,
+      interval: null as any,
+      setInterval: true,
+    })
 
     const setCountdown = () => {
       const then = moment.utc(INFOBAR.date).valueOf()
@@ -88,9 +112,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      setCountdown()
       state.interval = setInterval(() => {
-        state.setInterval = true
         setCountdown()
       }, 1000)
     })

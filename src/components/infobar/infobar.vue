@@ -17,9 +17,17 @@
       </div>
       <div class="infobar__countdown__timeBox" @click="go()">
         <span class="infobar__countdown__time">{{ formattedCountdown }}</span>
+        <fa-icon
+          class="infobar__countdown__icon"
+          :icon="['fas', 'external-link-alt']"
+        />
       </div>
     </div>
-    <div v-if="state.setInterval && isReady" class="infobar__ready" @click="go()">
+    <div
+      v-if="state.setInterval && isReady"
+      class="infobar__ready"
+      @click="go()"
+    >
       {{ infobar.titleReady }}
     </div>
   </div>
@@ -72,7 +80,10 @@ export default defineComponent({
       // Only show leading zeros when needed
       state.d = String(dNum)
       state.h = dNum > 0 ? (hNum < 10 ? '0' : '') + String(hNum) : String(hNum)
-      state.m = (dNum > 0 || hNum > 0) ? (mNum < 10 ? '0' : '') + String(mNum) : String(mNum)
+      state.m =
+        dNum > 0 || hNum > 0
+          ? (mNum < 10 ? '0' : '') + String(mNum)
+          : String(mNum)
       state.s = (sNum < 10 ? '0' : '') + String(sNum)
     }
 
@@ -121,12 +132,8 @@ export default defineComponent({
 
 <style lang="scss">
 .infobar {
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 120px;
   width: fit-content;
-  margin: 0 auto;
+  margin: -160px auto 50px auto;
   text-align: center;
 
   &--active {
@@ -167,6 +174,10 @@ export default defineComponent({
       min-width: 250px;
       cursor: pointer;
       transition: transform 0.5s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
 
       &:hover {
         transform: translateY(-10%);
@@ -179,6 +190,13 @@ export default defineComponent({
       font-variant-numeric: tabular-nums;
       letter-spacing: 2px;
       color: white;
+    }
+
+    &__icon {
+      height: 10px;
+      width: 10px;
+      color: white;
+      opacity: 0.8;
     }
   }
 
@@ -194,14 +212,25 @@ export default defineComponent({
   }
 }
 
+@media (max-height: 800px) {
+  .infobar {
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+}
+
 @media (max-width: 600px) {
   .infobar {
-    top: 100px;
-    padding: 12px 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
 
     &__countdown {
       &__textWrapper {
         font-size: 0.8rem;
+      }
+
+      &__timeBox {
+        padding: 12px 20px;
       }
 
       &__time {

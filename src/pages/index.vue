@@ -1,37 +1,42 @@
 <template>
   <div class="root">
     <div class="root__home root__container">
-      <div class="root__home__left">
-        <h1 v-if="false" class="root__headTitle">Fast. Scalable. Powerful.</h1>
-        <h1 class="root__headTitle">Fast.</h1>
-        <h1 class="root__headTitle">Scalable.</h1>
-        <h1 class="root__headTitle">Powerful.</h1>
-        <h3 class="root__subtitle">The Blockchain for Web3</h3>
-        <div class="root__buttons">
-          <el-button
-            class="root__learnMore"
-            type="primary"
-            @click="$router.push('/about')"
-            >{{ $t('root.learnMore') }}</el-button
-          >
+      <Infobar />
+      <div class="root__home__wrapper">
+        <div class="root__home__left">
+          <h1 v-if="false" class="root__headTitle">
+            Fast. Scalable. Powerful.
+          </h1>
+          <h1 class="root__headTitle">Fast.</h1>
+          <h1 class="root__headTitle">Scalable.</h1>
+          <h1 class="root__headTitle">Powerful.</h1>
+          <h3 class="root__subtitle">The Blockchain for Web3</h3>
+          <div class="root__buttons">
+            <el-button
+              class="root__learnMore"
+              type="primary"
+              @click="$router.push('/about')"
+              >{{ $t('root.learnMore') }}</el-button
+            >
+          </div>
         </div>
+        <!-- <Video class="video" /> -->
+        <Logo class="root__home__logo" :full="false" />
       </div>
-      <!-- <Video class="video" /> -->
-      <Logo class="root__home__logo" :full="false" />
     </div>
 
     <scrollindicator style="margin: 0 auto 0px auto; margin-bottom: 40px" />
 
     <!-- Ecosystem -->
-    <RootEco class="secondarybg"/>
+    <RootEco class="secondarybg" />
 
     <!-- Fast transactions -->
     <!--div class="root__general root__container secondarybg">
       <div class="root__general__inner root__container__inner non-reverse">
         <div class="root__general__image-container">
           <img class="root__general__image" src="~/assets/images/fast.png" /-->
-          <!-- <div class="root__general__image-background"></div> -->
-        <!--/div>
+    <!-- <div class="root__general__image-background"></div> -->
+    <!--/div>
         <div class="root__general__left">
           <h2 class="root__general__title">{{ $t('root.fastTitle') }}</h2>
           <p class="root__general__description">
@@ -44,8 +49,8 @@
           >
             {{ $t('root.fastButton') }}</el-button
           -->
-          <!--  -->
-        <!--/div>
+    <!--  -->
+    <!--/div>
       </div>
     </div -->
 
@@ -188,8 +193,8 @@
           >
             {{ $t('root.walletsButton') }}</el-button
           -->
-          <!--  -->
-        <!-- /div>
+    <!--  -->
+    <!-- /div>
         <div class="root__wallets__image-container">
           <img class="root__wallets__image" src="~/assets/images/vault.svg" />
           <div class="root__wallets__image-background"></div>
@@ -298,24 +303,38 @@ export default defineComponent({
   }
 
   &__home {
+    display: flex;
+    flex-direction: column !important;
     align-items: center;
+    justify-content: center;
     padding: 60px 20px 0px 20px;
     min-height: calc(
       100vh - 90px - 60px - 80px
     ); /* 100vh - header - padding  */
 
+    &__wrapper {
+      display: flex;
+      flex-direction: row !important;
+      align-items: center;
+      justify-items: center;
+      position: relative;
+      flex-shrink: 0;
+      flex-wrap: nowrap;
+    }
+
     &__logo {
       height: 150px;
       margin-left: -55px;
-      margin-top: -180px;
+      margin-top: -130px;
+      flex-shrink: 0;
     }
     &__left {
       height: fit-content;
       display: flex;
       flex-flow: column;
       justify-content: center;
-      margin-top: -50px;
       min-width: 433px;
+      flex-shrink: 0;
     }
   }
 
@@ -563,9 +582,6 @@ export default defineComponent({
   max-width: 640px !important;
 }
 @media (max-width: 1000px) {
-  .root__home {
-    flex-flow: wrap !important;
-  }
   .video {
     margin-top: 40px;
     margin-bottom: 10px;
@@ -633,7 +649,7 @@ export default defineComponent({
     }
 
     &__wallets__image,
-    &__hbd__image, {
+    &__hbd__image {
       width: 100px;
     }
 

@@ -17,9 +17,17 @@
       </div>
       <div class="infobar__countdown__timeBox" @click="go()">
         <span class="infobar__countdown__time">{{ formattedCountdown }}</span>
+        <fa-icon
+          class="infobar__countdown__icon"
+          :icon="['fas', 'external-link-alt']"
+        />
       </div>
     </div>
-    <div v-if="state.setInterval && isReady" class="infobar__ready" @click="go()">
+    <div
+      v-if="state.setInterval && isReady"
+      class="infobar__ready"
+      @click="go()"
+    >
       {{ infobar.titleReady }}
     </div>
   </div>
@@ -41,16 +49,40 @@ export default defineComponent({
   props: {},
 
   setup() {
-    const state = reactive({
-      d: '0',
-      h: '0',
-      m: '0',
-      s: '00',
-      interval: null as any,
-      setInterval: false,
-    })
-
     const infobar = ref(INFOBAR)
+
+    const getInitialCountdown = () => {
+      const then = moment.utc(INFOBAR.date).valueOf()
+      const now = moment.utc().valueOf()
+      if (then - now < 0) {
+        return {d: '0', h: '0', m: '0', s: '0'}
+      }
+      const countdown = moment(then - now)
+      const dNum = Number(countdown.utc().format('DD')) - 1
+      const hNum = Number(countdown.utc().format('HH'))
+      const mNum = Number(countdown.utc().format('mm'))
+      const sNum = Number(countdown.utc().format('ss'))
+
+      return {
+        d: String(dNum),
+        h: dNum > 0 ? (hNum < 10 ? '0' : '') + String(hNum) : String(hNum),
+        m:
+          dNum > 0 || hNum > 0
+            ? (mNum < 10 ? '0' : '') + String(mNum)
+            : String(mNum),
+        s: (sNum < 10 ? '0' : '') + String(sNum),
+      }
+    }
+
+    const initial = getInitialCountdown()
+    const state = reactive({
+      d: initial.d,
+      h: initial.h,
+      m: initial.m,
+      s: initial.s,
+      interval: null as any,
+      setInterval: true,
+    })
 
     const setCountdown = () => {
       const then = moment.utc(INFOBAR.date).valueOf()
@@ -72,14 +104,15 @@ export default defineComponent({
       // Only show leading zeros when needed
       state.d = String(dNum)
       state.h = dNum > 0 ? (hNum < 10 ? '0' : '') + String(hNum) : String(hNum)
-      state.m = (dNum > 0 || hNum > 0) ? (mNum < 10 ? '0' : '') + String(mNum) : String(mNum)
+      state.m =
+        dNum > 0 || hNum > 0
+          ? (mNum < 10 ? '0' : '') + String(mNum)
+          : String(mNum)
       state.s = (sNum < 10 ? '0' : '') + String(sNum)
     }
 
     onMounted(() => {
-      setCountdown()
       state.interval = setInterval(() => {
-        state.setInterval = true
         setCountdown()
       }, 1000)
     })
@@ -121,12 +154,8 @@ export default defineComponent({
 
 <style lang="scss">
 .infobar {
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 120px;
   width: fit-content;
-  margin: 0 auto;
+  margin: -160px auto 50px auto;
   text-align: center;
 
   &--active {
@@ -167,6 +196,10 @@ export default defineComponent({
       min-width: 250px;
       cursor: pointer;
       transition: transform 0.5s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
 
       &:hover {
         transform: translateY(-10%);
@@ -179,6 +212,13 @@ export default defineComponent({
       font-variant-numeric: tabular-nums;
       letter-spacing: 2px;
       color: white;
+    }
+
+    &__icon {
+      height: 10px;
+      width: 10px;
+      color: white;
+      opacity: 0.8;
     }
   }
 
@@ -194,14 +234,25 @@ export default defineComponent({
   }
 }
 
+@media (max-height: 800px) {
+  .infobar {
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+}
+
 @media (max-width: 600px) {
   .infobar {
-    top: 100px;
-    padding: 12px 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
 
     &__countdown {
       &__textWrapper {
         font-size: 0.8rem;
+      }
+
+      &__timeBox {
+        padding: 12px 20px;
       }
 
       &__time {

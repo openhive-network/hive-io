@@ -1,7 +1,6 @@
 <template>
   <div class="layout layout--default">
     <Header class="layout__header" :items="headerNavigation" />
-    <Infobar v-if="showInfobar" />
     <nuxt class="layout__main" />
     <div class="layout__socials">
       <SocialIcon
@@ -35,29 +34,20 @@ import {
   NAVIGATION_HEADER,
   NAVIGATION_FOOTER,
   SOCIAL_MEDIAS,
-  INFOBAR,
 } from '../helpers/var'
-import Infobar from '~/components/infobar/infobar.vue'
 import Header from '~/components/header/header.vue'
 import Footer from '~/components/footer/footer.vue'
 import SocialIcon from '~/components/icon/icon.vue'
 
 export default defineComponent({
-  components: {Header, Footer, Infobar, SocialIcon},
+  components: {Header, Footer, SocialIcon},
   props: {},
   setup(_props, {root}) {
     const headerNavigation = ref(NAVIGATION_HEADER)
     const footerNavigation = ref(NAVIGATION_FOOTER)
     const socials = ref(SOCIAL_MEDIAS)
-    const infobar = ref(INFOBAR)
 
     const preventScroll = computed(() => root.$accessor.preventScroll)
-    const showInfobar = computed(
-      () =>
-        INFOBAR.show &&
-        INFOBAR.routes.includes(String(root.$route.name)) &&
-        root.$route.name,
-    )
 
     onMounted(() => {
       watch(
@@ -81,8 +71,6 @@ export default defineComponent({
       headerNavigation,
       footerNavigation,
       socials,
-      infobar,
-      showInfobar,
     }
   },
 })

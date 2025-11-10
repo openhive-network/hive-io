@@ -5,36 +5,21 @@
     "
     class="infobar"
     :class="{'infobar--active': isReady}"
-    @click="go()"
   >
     <div v-if="!isReady" class="infobar__countdown">
-      <div class="infobar__countdown__preText">
+      <div class="infobar__countdown__textWrapper">
         <span
           v-if="infobar.titleDesktopOnly"
           class="infobar__countdown__preText--desktopOnly"
           >{{ infobar.titleDesktopOnly }}</span
         >
-        {{ infobar.title }}
+        <span class="infobar__countdown__preText">{{ infobar.title }}</span>
       </div>
-      <div class="infobar__countdown__numbers">
-        <div class="infobar__countdown__d">
-          {{ state.d }}
-        </div>
-        :
-        <div class="infobar__countdown__h">
-          {{ state.h }}
-        </div>
-        :
-        <div class="infobar__countdown__m">
-          {{ state.m }}
-        </div>
-        :
-        <div class="infobar__countdown__s">
-          {{ state.s }}
-        </div>
+      <div class="infobar__countdown__timeBox" @click="go()">
+        <span class="infobar__countdown__time">{{ formattedCountdown }}</span>
       </div>
     </div>
-    <div v-if="state.setInterval && isReady">
+    <div v-if="state.setInterval && isReady" class="infobar__ready" @click="go()">
       {{ infobar.titleReady }}
     </div>
   </div>
@@ -58,8 +43,8 @@ export default defineComponent({
   setup() {
     const state = reactive({
       d: '0',
-      h: '01',
-      m: '00',
+      h: '0',
+      m: '0',
       s: '00',
       interval: null as any,
       setInterval: false,
@@ -72,22 +57,23 @@ export default defineComponent({
       const now = moment.utc().valueOf()
       if (then - now < 0) {
         clearInterval(state.interval)
-        state.d = '00'
-        state.h = '00'
-        state.m = '00'
-        state.s = '00'
+        state.d = '0'
+        state.h = '0'
+        state.m = '0'
+        state.s = '0'
         return
       }
       const countdown = moment(then - now)
-      const d = countdown.utc().format('DD')
-      const h = countdown.utc().format('HH')
-      const m = countdown.utc().format('mm')
-      const s = countdown.utc().format('ss')
+      const dNum = Number(countdown.utc().format('DD')) - 1
+      const hNum = Number(countdown.utc().format('HH'))
+      const mNum = Number(countdown.utc().format('mm'))
+      const sNum = Number(countdown.utc().format('ss'))
 
-      state.d = `${Number(d) - 1 < 10 ? '0' : ''}${String(Number(d) - 1)}`
-      state.h = h
-      state.m = m
-      state.s = s
+      // Only show leading zeros when needed
+      state.d = String(dNum)
+      state.h = dNum > 0 ? (hNum < 10 ? '0' : '') + String(hNum) : String(hNum)
+      state.m = (dNum > 0 || hNum > 0) ? (mNum < 10 ? '0' : '') + String(mNum) : String(mNum)
+      state.s = (sNum < 10 ? '0' : '') + String(sNum)
     }
 
     onMounted(() => {
@@ -106,8 +92,18 @@ export default defineComponent({
       return `${state.d}:${state.h}:${state.m}:${state.s}`
     })
 
+    const formattedCountdown = computed(() => {
+      const parts: string[] = []
+      if (state.d !== '0') parts.push(`${state.d}d`)
+      if (state.h !== '0' || state.d !== '0') parts.push(`${state.h}h`)
+      if (state.m !== '0' || state.h !== '0' || state.d !== '0')
+        parts.push(`${state.m}m`)
+      parts.push(`${state.s}s`)
+      return parts.join(' ')
+    })
+
     const isReady = computed(() => {
-      return countdown.value === '00:00:00:00'
+      return countdown.value === '0:0:0:00' || countdown.value === '0:0:0:0'
     })
 
     const go = () => {
@@ -118,7 +114,7 @@ export default defineComponent({
       }
     }
 
-    return {state, isReady, countdown, go, infobar}
+    return {state, isReady, countdown, go, infobar, formattedCountdown}
   },
 })
 </script>
@@ -131,49 +127,90 @@ export default defineComponent({
   top: 120px;
   width: fit-content;
   margin: 0 auto;
-  background: $primary-color-100;
-  color: white;
-  border-radius: 4px;
-  padding: 15px 30px;
-  min-width: 250px;
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-  cursor: pointer; // default;
 
   &--active {
-    background: $primary-color-100;
-    cursor: pointer;
-
-    transition: transform 0.5s;
-    &:hover {
-      transform: translateY(-10%);
+    .infobar__ready {
+      background: $primary-color-100;
+      cursor: pointer;
+      transition: transform 0.5s;
+      &:hover {
+        transform: translateY(-10%);
+      }
     }
   }
 
   &__countdown {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+
+    &__textWrapper {
+      color: #1a1a1a;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
     &__preText {
-      margin-right: 7px;
-    }
-    &__numbers {
-      display: flex;
+      color: inherit;
     }
 
-    &__s {
-      min-width: 30px;
-      text-align: left;
+    &__timeBox {
+      background: $primary-color-100;
+      color: white;
+      border-radius: 4px;
+      padding: 15px 30px;
+      min-width: 250px;
+      cursor: pointer;
+      transition: transform 0.5s;
+
+      &:hover {
+        transform: translateY(-10%);
+      }
     }
+
+    &__time {
+      font-size: 1.8rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 2px;
+      color: white;
+    }
+  }
+
+  &__ready {
+    background: $primary-color-100;
+    color: white;
+    border-radius: 4px;
+    padding: 15px 30px;
+    min-width: 250px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
   }
 }
 
 @media (max-width: 600px) {
   .infobar {
     top: 100px;
+    padding: 12px 20px;
+
+    &__countdown {
+      &__textWrapper {
+        font-size: 0.8rem;
+      }
+
+      &__time {
+        font-size: 1.5rem;
+        letter-spacing: 1.5px;
+      }
+    }
   }
+
   .infobar__countdown__preText--desktopOnly {
     display: none !important;
   }

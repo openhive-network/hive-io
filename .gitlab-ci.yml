@@ -1,4 +1,4 @@
-image: node:14
+image: node:24
 
 stages:
   - build
@@ -12,19 +12,18 @@ cache:
     - node_modules/
     - _site/vendor/
     - .bundled/
-    - .yarn
+    - .npm/
 
 build:
   stage: build
   script:
     - ls -l
-    - yarn config set cache-folder .yarn
-    - yarn install
-    - yarn generate
+    - npm ci --cache .npm --prefer-offline
+    - npm run build
     - echo "BUILD SUCCESSFULLY"
   artifacts:
     paths:
-      - dist/
+      - out/
     expire_in: 20 mins
   # environment:
   #   name: development
@@ -43,7 +42,7 @@ deploy_staging:
     - export DISTRIBUTION_ID=$DISTRIBUTION_ID
     - pip install awscli --upgrade --user
     - export PATH=~/.local/bin:$PATH
-    - aws s3 sync --acl public-read --delete dist $S3_BUCKET_NAME_STAGING
+    - aws s3 sync --acl public-read --delete out $S3_BUCKET_NAME_STAGING
     #- aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
     - echo "DEPLOYED SUCCESSFULLY TO STAGING"
   environment:
@@ -63,7 +62,7 @@ deploy_master:
     - export DISTRIBUTION_ID=$DISTRIBUTION_ID
     - pip install awscli --upgrade --user
     - export PATH=~/.local/bin:$PATH
-    - aws s3 sync --acl public-read --cache-control "max-age=2592000, public" --delete dist $S3_BUCKET_NAME_PRODUCTION
+    - aws s3 sync --acl public-read --cache-control "max-age=2592000, public" --delete out $S3_BUCKET_NAME_PRODUCTION
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
     - echo "DEPLOYED SUCCESSFULLY TO PRODUCTION"
   environment:

@@ -37,7 +37,7 @@
     "featureFast": "Fast",
     "featureFastText": "Hive has 3 second block times with transactions confirmed within milliseconds due to one-block irreversibility, allowing for a seamless experience.",
     "featureScalable": "Scalable",
-    "featureScalableText": "Efficiency is key. Hive is optimized for sustainability and flexibility with layered solutions.",
+    "featureScalableText": "Efficiency is key. Hive is optimized for sustainability and flexibility with layered solutions. Nodes can run on modest hardware, keeping the network accessible to all.",
     "featurePowerful": "Powerful",
     "featurePowerfulText": "Hive is a global decentralized network. It is battle-tested by hundreds of apps, communities & projects around the world."
   },

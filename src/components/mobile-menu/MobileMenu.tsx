@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useMainStore } from '@/store/useMainStore';
-import { Navigation } from '@/components/navigation/Navigation';
+import { MobileNavigation } from '@/components/navigation/MobileNavigation';
 
 interface MobileMenuProps extends React.HTMLAttributes<HTMLDivElement> {
   items?: any[];
@@ -24,28 +24,32 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
 
   return (
     <div className={className} {...props}>
-      <div className="block relative z-[1] select-none">
-        <input
-          type="checkbox"
-          onClick={onClick}
-          className="block w-10 h-8 absolute top-[-7px] left-[-5px] cursor-pointer opacity-0 z-[2]"
-        />
-
-        <span className={`block w-[33px] h-1 mb-[5px] relative bg-[#212529] rounded-[3px] z-[1] origin-[4px_0px] transition-all duration-500 ease-[cubic-bezier(0.77,0.2,0.05,1)] first:origin-[0%_0%] [&:nth-last-child(2)]:origin-[0%_100%] ${
-          isMobileActive ? 'opacity-100 rotate-45 -translate-x-0.5 -translate-y-px' : ''
-        }`}></span>
-        <span className={`block w-[33px] h-1 mb-[5px] relative bg-[#212529] rounded-[3px] z-[1] origin-[4px_0px] transition-all duration-500 ease-[cubic-bezier(0.77,0.2,0.05,1)] first:origin-[0%_0%] [&:nth-last-child(2)]:origin-[0%_100%] ${
-          isMobileActive ? 'opacity-0 scale-[0.2]' : ''
-        }`}></span>
-        <span className={`block w-[33px] h-1 mb-[5px] relative bg-[#212529] rounded-[3px] z-[1] origin-[4px_0px] transition-all duration-500 ease-[cubic-bezier(0.77,0.2,0.05,1)] first:origin-[0%_0%] [&:nth-last-child(2)]:origin-[0%_100%] ${
-          isMobileActive ? 'opacity-100 -rotate-45 translate-x-0 -translate-y-px' : ''
-        }`}></span>
-
-        <Navigation
-          className={`${isMobileActive ? 'flex' : 'hidden'} fixed top-0 bottom-0 right-0 left-0 w-full flex-col justify-center [&>*]:text-center [&>*]:py-2.5 [&>*]:px-0 [&>*]:w-full -mt-[200px] bg-[#f0f0f8]`}
+      {/* Navigation overlay */}
+      <div className={`${isMobileActive ? 'fixed' : 'hidden'} top-0 bottom-0 right-0 left-0 w-full bg-hive-light-grey z-98 overflow-y-auto pt-24 px-6`}>
+        <MobileNavigation
           items={items}
           onClicked={() => setIsMobileActive(false)}
         />
+      </div>
+
+      {/* Hamburger button */}
+      <div className="block relative z-100 select-none w-[33px] h-[22px]">
+        <input
+          type="checkbox"
+          onClick={onClick}
+          checked={isMobileActive}
+          className="block w-10 h-8 absolute top-[-7px] left-[-5px] cursor-pointer opacity-0 z-101"
+        />
+
+        <span className={`block w-full h-1 absolute left-0 bg-hive-black rounded-[3px] origin-center transition-all duration-300 ease-in-out ${
+          isMobileActive ? 'top-[10px] rotate-45' : 'top-0'
+        }`}></span>
+        <span className={`block w-full h-1 absolute top-[10px] left-0 bg-hive-black rounded-[3px] origin-center transition-all duration-300 ease-in-out ${
+          isMobileActive ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+        }`}></span>
+        <span className={`block w-full h-1 absolute left-0 bg-hive-black rounded-[3px] origin-center transition-all duration-300 ease-in-out ${
+          isMobileActive ? 'top-[10px] -rotate-45' : 'top-[20px]'
+        }`}></span>
       </div>
     </div>
   );

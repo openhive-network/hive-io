@@ -40,6 +40,11 @@ export const NAVIGATION_HEADER_DROPDOWN = [
         name: 'Repositories',
         description: 'Browser Hive applications and source code',
       },
+      {
+        to: 'core-dev-meetings',
+        name: 'Core Dev Meetings',
+        description: 'Watch recordings of core developer meetings',
+      },
     ],
   },
   {

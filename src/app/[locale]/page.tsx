@@ -47,12 +47,15 @@ export default function HomePage() {
           </div>
         </div>
         <div className="flex-shrink-0">
-          <ScrollIndicator style={{ margin: '0 auto 0px auto', marginBottom: '40px' }} />
+          <ScrollIndicator
+            style={{ margin: '0 auto 0px auto', marginBottom: '40px' }}
+            scrollToSelector="#ecosystem-section"
+          />
         </div>
       </div>
 
       {/* Ecosystem */}
-      <RootEco className="bg-[#e7e7f1]" />
+      <RootEco id="ecosystem-section" className="bg-[#e7e7f1]" />
 
       {/* No fees */}
       <div className="flex flex-1 min-h-[550px] justify-center">

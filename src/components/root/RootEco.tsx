@@ -32,9 +32,9 @@ export const RootEco: React.FC<RootEcoProps> = ({ full = true, className, ...pro
   return (
     <div className={`flex flex-1 min-h-[550px] justify-center ${className || ''}`} {...props}>
       <ModalEco />
-      <div className="flex flex-row justify-between w-full items-center max-w-[840px] py-10 px-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px] max-[700px]:px-10">
+      <div className="flex flex-row justify-between w-full items-center max-w-[920px] py-10 px-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px] max-[700px]:px-10">
         <div className="max-w-[450px] w-full min-w-[250px] mr-[25px] max-[700px]:m-0 max-[700px]:text-center">
-          <h2 className="text-4xl">{t('root.ecoTitle')}</h2>
+          <h2 className="text-4xl font-bold">{t('root.ecoTitle')}</h2>
           <p className="mt-2.5">
             {t('root.ecoText')}
           </p>
@@ -46,29 +46,37 @@ export const RootEco: React.FC<RootEcoProps> = ({ full = true, className, ...pro
           </Button>
         </div>
         <div className="relative h-[250px] w-[250px] mt-[86px] max-[600px]:mt-[60px] max-[600px]:mb-[50px] max-[600px]:ml-[70px]">
-          {favs.map((app, index) => (
-            <div
-              key={app.id}
-              className={`absolute [&_a]:text-[0.9rem] ${index === 0 ? 'top-0 left-0 z-[1]' :
-                index === 1 ? 'top-[-115px] left-[35px] [&_.flex.justify-center]:h-20 [&_.flex.justify-center]:w-20' :
-                  index === 2 ? 'top-[-40px] left-[150px] [&_.flex.justify-center]:h-[85px] [&_.flex.justify-center]:w-[85px]' :
-                    index === 3 ? 'top-[96px] left-[151px] [&_.flex.justify-center]:h-[65px] [&_.flex.justify-center]:w-[65px]' :
-                      index === 4 ? 'top-[-108px] left-[-86px] [&_.flex.justify-center]:h-[77px] [&_.flex.justify-center]:w-[77px]' :
-                        index === 5 ? 'top-[10px] left-[-102px] [&_.flex.justify-center]:h-[60px] [&_.flex.justify-center]:w-[60px]' :
-                          index === 6 ? 'top-[147px] left-[13px] [&_.flex.justify-center]:h-20 [&_.flex.justify-center]:w-20' :
-                            index === 7 ? 'top-[117px] left-[-93px] [&_.flex.justify-center]:h-[55px] [&_.flex.justify-center]:w-[55px]' :
-                              ''
-                }`}
-            >
-              <App
-                item={app}
-                move={true}
-                showName={false}
-                openModal={true}
-                appType="eco"
-              />
-            </div>
-          ))}
+          {favs.map((app, index) => {
+            const getSizeForIndex = (idx: number) => {
+              const sizes = [110, 80, 85, 65, 80, 55, 60, 77];
+              return sizes[idx] || 110;
+            };
+
+            return (
+              <div
+                key={app.id}
+                className={`absolute [&_a]:text-[0.9rem] ${index === 0 ? ' z-[1]' :
+                  index === 1 ? 'top-[-115px] left-[35px]' :
+                    index === 2 ? 'top-[-40px] left-[150px]' :
+                      index === 3 ? 'top-[96px] left-[151px]' :
+                        index === 4 ? 'top-[147px] left-[13px]' :
+                          index === 5 ? 'top-[117px] left-[-93px]' :
+                            index === 6 ? 'top-[10px] left-[-102px]' :
+                              index === 7 ? 'top-[-108px] left-[-86px]' :
+                                ''
+                  }`}
+              >
+                <App
+                  item={app}
+                  move={true}
+                  showName={false}
+                  openModal={true}
+                  appType="eco"
+                  size={getSizeForIndex(index)}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

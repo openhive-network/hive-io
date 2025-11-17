@@ -10,7 +10,7 @@ export default function WalletsPage() {
 
   return (
     <div className="flex justify-center w-full min-h-[calc(100vh-80px)] py-20 px-5">
-      <div className="flex flex-col items-center w-full max-w-[1200px]">
+      <div className="flex flex-col items-center w-full max-w-[1000px]">
         {/* Hero Section */}
         <div className="flex flex-col items-center text-center mb-16">
           <h1 className="text-[4rem] font-bold leading-tight mb-6 max-[600px]:text-[3rem]">
@@ -22,9 +22,9 @@ export default function WalletsPage() {
         </div>
 
         {/* Wallets Grid */}
-        <div className="flex flex-row flex-wrap items-start justify-center w-full gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-6 w-full place-items-center">
           {WALLETS.map((wallet) => (
-            <App key={wallet.id} item={wallet} />
+            <App key={wallet.id} item={wallet} showName={true} />
           ))}
         </div>
       </div>

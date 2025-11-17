@@ -102,7 +102,7 @@ export const Infobar: React.FC = () => {
 
   return (
     <div
-      className="w-fit mx-auto -mt-20 mb-[50px] text-center max-h-[800px]:mt-0 max-h-[800px]:mb-[30px] max-[600px]:mt-0 max-[600px]:mb-5"
+      className="w-fit mx-auto -mt-32 mb-[50px] text-center max-h-[800px]:mt-0 max-h-[800px]:mb-[30px] max-[600px]:mt-0 max-[600px]:mb-5"
     >
       {!isReady && (
         <div className="flex flex-col items-center justify-center gap-2.5">
@@ -115,10 +115,10 @@ export const Infobar: React.FC = () => {
             <span>{INFOBAR.title}</span>
           </div>
           <div
-            className="bg-[#e31337] text-white rounded px-[30px] py-[15px] min-w-[250px] cursor-pointer transition-transform duration-500 hover:-translate-y-[10%] flex items-center justify-center gap-3 max-[600px]:px-5 max-[600px]:py-3"
+            className="bg-[#e31337] text-white rounded px-[30px] py-[10px] min-w-[250px] cursor-pointer transition-transform duration-500 hover:-translate-y-[10%] flex items-center justify-center gap-3 max-[600px]:px-5 max-[600px]:py-2"
             onClick={go}
           >
-            <span className="text-[1.8rem] font-bold font-variant-numeric-tabular-nums tracking-[2px] text-white max-[600px]:text-2xl max-[600px]:tracking-[1.5px]">
+            <span className="text-[1.8rem] font-bold tabular-nums tracking-[2px] text-white max-[600px]:text-2xl max-[600px]:tracking-[1.5px]">
               {formattedCountdown}
             </span>
             <FontAwesomeIcon

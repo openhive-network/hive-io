@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { NavigationItem } from './NavigationItem';
 import {
   NavigationMenu,
@@ -11,6 +11,7 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import { Link } from '@/i18n/routing';
+import { ChevronRight } from 'lucide-react';
 
 interface NavigationChild {
   to?: string;
@@ -38,6 +39,14 @@ export const Navigation: React.FC<NavigationProps> = ({
   className,
   ...props
 }) => {
+  const [hoveredSubmenu, setHoveredSubmenu] = useState<number | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  // Reset hoveredSubmenu when dropdown changes
+  useEffect(() => {
+    setHoveredSubmenu(null);
+  }, [openDropdown]);
+
   // Check if any items have children (dropdown menus)
   const hasDropdowns = useMemo(() => {
     return items.some(item => item.children && item.children.length > 0);
@@ -57,34 +66,30 @@ export const Navigation: React.FC<NavigationProps> = ({
               if (item.children && item.children.length > 0) {
                 return (
                   <NavigationMenuItem key={index} className={isMobileMenu ? 'w-full' : ''}>
-                    <NavigationMenuTrigger className={`text-base font-normal bg-transparent border-none py-[5px] px-2.5 cursor-pointer transition-colors duration-100 ease-in hover:text-[#e31337] data-[state=open]:text-[#e31337] ${isMobileMenu ? 'w-full justify-center' : ''}`}>
+                    <NavigationMenuTrigger
+                      className={`text-base font-normal bg-transparent border-none py-[5px] px-2.5 cursor-pointer transition-colors duration-100 ease-in hover:text-[#e31337] data-[state=open]:text-[#e31337] ${isMobileMenu ? 'w-full justify-center' : ''}`}
+                      onPointerEnter={() => setOpenDropdown(item.name || null)}
+                      onPointerLeave={() => setHoveredSubmenu(null)}
+                    >
                       {item.name}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className={`p-3 ${isMobileMenu ? 'w-full relative' : 'min-w-[280px]'}`}>
-                      <ul className="list-none p-0 m-0 flex flex-col gap-2">
-                        {item.children.map((child, childIndex) => (
-                          <li key={childIndex}>
-                            {child.to && (child.to.includes('https://') || child.to.includes('mailto')) ? (
-                              <NavigationMenuLink
-                                href={child.to}
-                                target="_blank"
-                                rel="nofollow noopener noreferrer"
-                                onClick={onClicked}
-                                className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
-                              >
-                                <div className="flex flex-col gap-1">
-                                  <div className="text-sm font-medium text-black">{child.name}</div>
-                                  {child.description && (
-                                    <p className="text-[13px] text-[#666] m-0 leading-[1.4]">
-                                      {child.description}
-                                    </p>
-                                  )}
-                                </div>
-                              </NavigationMenuLink>
-                            ) : child.to ? (
-                              <NavigationMenuLink asChild>
-                                <Link
-                                  href={`/${child.to}` as any}
+                    <NavigationMenuContent
+                      className={`p-3 ${isMobileMenu ? 'w-full relative' : item.children?.some((child: any) => child.submenu) ? 'w-[560px]' : 'w-[280px]'}`}
+                      onPointerLeave={() => setHoveredSubmenu(null)}
+                    >
+                      <div className="flex gap-0">
+                        {/* Main menu items */}
+                        <ul className="list-none p-0 m-0 flex flex-col gap-2 min-w-[280px] shrink-0">
+                          {item.children && item.children.map((child: any, childIndex) => (
+                            <li
+                              key={childIndex}
+                              onMouseEnter={() => child.submenu ? setHoveredSubmenu(childIndex) : setHoveredSubmenu(null)}
+                            >
+                              {child.to && (child.to.includes('https://') || child.to.includes('mailto')) ? (
+                                <NavigationMenuLink
+                                  href={child.to}
+                                  target="_blank"
+                                  rel="nofollow noopener noreferrer"
                                   onClick={onClicked}
                                   className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
                                 >
@@ -96,12 +101,96 @@ export const Navigation: React.FC<NavigationProps> = ({
                                       </p>
                                     )}
                                   </div>
-                                </Link>
-                              </NavigationMenuLink>
-                            ) : null}
-                          </li>
-                        ))}
-                      </ul>
+                                </NavigationMenuLink>
+                              ) : child.to ? (
+                                <NavigationMenuLink asChild>
+                                  <Link
+                                    href={`/${child.to}` as any}
+                                    onClick={onClicked}
+                                    className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
+                                  >
+                                    <div className="flex flex-col gap-1">
+                                      <div className="text-sm font-medium text-black">{child.name}</div>
+                                      {child.description && (
+                                        <p className="text-[13px] text-[#666] m-0 leading-[1.4]">
+                                          {child.description}
+                                        </p>
+                                      )}
+                                    </div>
+                                  </Link>
+                                </NavigationMenuLink>
+                              ) : child.submenu ? (
+                                <div className={`block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in cursor-pointer ${hoveredSubmenu === childIndex ? 'bg-[#f5f5f5]' : 'hover:bg-[#f5f5f5]'}`}>
+                                  <div className="flex flex-col gap-1">
+                                    <div className="flex items-center justify-between">
+                                      <div className="text-sm font-medium text-black">{child.name}</div>
+                                      <ChevronRight className="w-4 h-4 text-[#666] ml-2" />
+                                    </div>
+                                    {child.description && (
+                                      <p className="text-[13px] text-[#666] m-0 leading-[1.4]">
+                                        {child.description}
+                                      </p>
+                                    )}
+                                  </div>
+                                </div>
+                              ) : null}
+                            </li>
+                          ))}
+                        </ul>
+
+                        {/* Right column - Submenu items (only present if dropdown has submenu items) */}
+                        {item.children?.some((child: any) => child.submenu) && (
+                          <div className={`border-l border-gray-200 pl-6 min-w-[280px] shrink-0 transition-opacity duration-200 ${
+                            hoveredSubmenu !== null && item.children && (item.children[hoveredSubmenu] as any)?.submenu
+                              ? 'opacity-100'
+                              : 'opacity-0 pointer-events-none'
+                          }`}>
+                            {hoveredSubmenu !== null && item.children && (item.children[hoveredSubmenu] as any)?.submenu && (
+                              <ul className="list-none p-0 m-0 flex flex-col gap-2">
+                                {(item.children[hoveredSubmenu] as any).submenu.map((subItem: any, subIndex: number) => (
+                                  <li key={subIndex}>
+                                    {subItem.to && (subItem.to.includes('https://') || subItem.to.includes('mailto')) ? (
+                                      <NavigationMenuLink
+                                        href={subItem.to}
+                                        target="_blank"
+                                        rel="nofollow noopener noreferrer"
+                                        onClick={onClicked}
+                                        className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
+                                      >
+                                        <div className="flex flex-col gap-1">
+                                          <div className="text-sm font-medium text-black">{subItem.name}</div>
+                                          {subItem.description && (
+                                            <p className="text-[13px] text-[#666] m-0 leading-[1.4]">
+                                              {subItem.description}
+                                            </p>
+                                          )}
+                                        </div>
+                                      </NavigationMenuLink>
+                                    ) : subItem.to ? (
+                                      <NavigationMenuLink asChild>
+                                        <Link
+                                          href={`/${subItem.to}` as any}
+                                          onClick={onClicked}
+                                          className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
+                                        >
+                                          <div className="flex flex-col gap-1">
+                                            <div className="text-sm font-medium text-black">{subItem.name}</div>
+                                            {subItem.description && (
+                                              <p className="text-[13px] text-[#666] m-0 leading-[1.4]">
+                                                {subItem.description}
+                                              </p>
+                                            )}
+                                          </div>
+                                        </Link>
+                                      </NavigationMenuLink>
+                                    ) : null}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </NavigationMenuContent>
                   </NavigationMenuItem>
                 );

@@ -43,7 +43,7 @@ export const NAVIGATION_HEADER_DROPDOWN = [
       {
         to: 'core-dev-meetings',
         name: 'Core Dev Meetings',
-        description: 'Watch recordings of core developer meetings',
+        description: 'Recordings of core developer meetings',
       },
     ],
   },
@@ -51,24 +51,67 @@ export const NAVIGATION_HEADER_DROPDOWN = [
     name: 'Explore',
     children: [
       {
-        to: 'https://hive.blog',
         name: 'Community',
         description: 'Join Hive communities',
+        submenu: [
+          {
+            to: 'https://hive.blog',
+            name: 'Hive Blog',
+            description: 'Default Hive blogging platform',
+          },
+          {
+            to: 'https://peakd.com',
+            name: 'Peakd',
+            description: 'Popular Hive blogging platform',
+          },
+          {
+            to: 'https://ecency.com',
+            name: 'Ecency',
+            description: 'Popular Hive blogging platform',
+          },
+          {
+            to: 'https://inleo.io',
+            name: 'INLEO',
+            description: 'Microblogging on Hive',
+          },
+        ],
       },
       {
-        to: 'eco',
         name: 'Apps',
         description: 'Discover Hive dApps',
+        submenu: [
+          {
+            to: 'eco',
+            name: 'All Apps',
+            description: 'Browse all Hive applications',
+          },
+          {
+            to: 'https://dappradar.com/rankings/protocol/hive',
+            name: 'Statistics',
+            description: 'View dapp usage statistics',
+          },
+          {
+            to: 'wallets',
+            name: 'Wallets',
+            description: 'Secure your HIVE and HBD',
+          },
+        ],
       },
       {
-        to: 'wallets',
-        name: 'Wallets',
-        description: 'Secure your HIVE and HBD',
-      },
-      {
-        to: 'https://explore.openhive.network/',
-        name: 'Block Explorer',
+        name: 'Block Explorers',
         description: 'Browse blockchain data',
+        submenu: [
+          {
+            to: 'https://hivehub.dev',
+            name: 'HiveHub',
+            description: 'Block explorer for the Hive ecosystem',
+          },
+          {
+            to: 'https://explore.openhive.network/',
+            name: 'OpenHive Explorer',
+            description: 'Block explorer for the Hive ecosystem',
+          },
+        ],
       },
     ],
   },

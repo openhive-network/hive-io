@@ -58,7 +58,7 @@ function EcoContent() {
 
   return (
     <div className="flex justify-center w-full min-h-[calc(100vh-80px)] py-20 px-5">
-      <div className="flex flex-col items-center w-full max-w-[1200px]">
+      <div className="flex flex-col items-center w-full max-w-[1000px]">
         {/* Hero Section */}
         <div className="flex flex-col items-center text-center mb-16">
           <h1 className="text-[4rem] font-bold leading-tight mb-6 max-[600px]:text-[3rem]">

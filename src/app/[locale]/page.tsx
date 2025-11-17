@@ -59,7 +59,7 @@ export default function HomePage() {
 
       {/* No fees */}
       <div className="flex flex-1 min-h-[550px] justify-center">
-        <div className="flex flex-row-reverse justify-between w-full items-center max-w-[840px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
+        <div className="flex flex-row-reverse justify-between w-full items-center max-w-[920px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
           <div className="w-[350px] max-w-[350px] min-w-[250px] max-[700px]:m-0 max-[700px]:text-center">
             <h2 className="text-[2rem] font-bold leading-snug mb-2.5">{t('root.feeTitle')}</h2>
             <p>
@@ -77,7 +77,7 @@ export default function HomePage() {
 
       {/* Decentralized */}
       <div className="flex flex-1 min-h-[550px] justify-center bg-[#e7e7f1]">
-        <div className="flex flex-row justify-between w-full items-center max-w-[840px] px-10 py-10 max-[700px]:flex-col max-[700px]:flex-wrap max-[700px]:py-[100px]">
+        <div className="flex flex-row justify-between w-full items-center max-w-[920px] px-10 py-10 max-[700px]:flex-col max-[700px]:flex-wrap max-[700px]:py-[100px]">
           <div className="ml-[25px] flex justify-center items-center w-[280px] h-[280px] relative max-[700px]:mb-[50px]">
             <img className="w-[280px]" src={getImage('decentralized.png')} alt="Decentralized" />
           </div>
@@ -95,7 +95,7 @@ export default function HomePage() {
 
       {/* Username */}
       <div className="flex flex-1 min-h-[550px] justify-center">
-        <div className="flex flex-row-reverse justify-between w-full items-center max-w-[840px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
+        <div className="flex flex-row-reverse justify-between w-full items-center max-w-[920px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
           <div className="w-[350px] max-w-[350px] min-w-[250px] max-[700px]:m-0 max-[700px]:text-center">
             <h2 className="text-[2rem] font-bold leading-snug mb-2.5">{t('root.usernameTitle')}</h2>
             <p>
@@ -110,7 +110,7 @@ export default function HomePage() {
 
       {/* HDF */}
       <div className="flex flex-1 min-h-[550px] justify-center bg-[#e7e7f1]">
-        <div className="flex flex-row justify-between w-full items-center max-w-[840px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
+        <div className="flex flex-row justify-between w-full items-center max-w-[920px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
           <div className="max-w-[450px] w-full min-w-[250px] mr-[25px] max-[700px]:m-0 max-[700px]:text-center">
             <h2 className="text-[2rem] font-bold leading-snug mb-2.5">{t('root.dafTitle')}</h2>
             <p>
@@ -129,7 +129,7 @@ export default function HomePage() {
 
       {/* HBD */}
       <div className="flex flex-1 min-h-[550px] justify-center">
-        <div className="flex flex-row-reverse justify-between w-full items-center max-w-[840px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
+        <div className="flex flex-row-reverse justify-between w-full items-center max-w-[920px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
           <div className="w-[350px] max-w-[350px] min-w-[250px] max-[700px]:m-0 max-[700px]:text-center">
             <h2 className="text-[2rem] font-bold leading-snug mb-2.5">{t('root.hbdTitle')}</h2>
             <p>

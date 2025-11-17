@@ -43,8 +43,25 @@ export const Icon: React.FC<IconProps> = ({
     };
   }, [tooltip]);
 
-  if (!icon || !link) {
+  if (!icon) {
     return null;
+  }
+
+  if (!link) {
+    return (
+      <span
+        ref={anchorRef as any}
+        style={{ height: `${height}px`, display: 'inline-block', ...style }}
+        title={tooltip}
+        className={className}
+        {...props}
+      >
+        <FontAwesomeIcon
+          icon={icon}
+          style={{ height: `${height}px`, width: `${width}px` }}
+        />
+      </span>
+    );
   }
 
   return (

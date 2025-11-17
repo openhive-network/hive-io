@@ -20,6 +20,7 @@ interface AppProps {
   openDetailed?: boolean;
   detailed?: boolean;
   style?: React.CSSProperties;
+  size?: number;
 }
 
 export const App: React.FC<AppProps> = ({
@@ -31,7 +32,8 @@ export const App: React.FC<AppProps> = ({
   openModal = false,
   openDetailed = false,
   detailed = false,
-  style
+  style,
+  size = 110
 }) => {
   const { getImage } = useAssets();
   const [hover, setHover] = useState(false);
@@ -53,6 +55,9 @@ export const App: React.FC<AppProps> = ({
   };
 
   const getWebsiteUrl = () => {
+    if (!item.website) {
+      return '#';
+    }
     if (typeof item.website === 'string') {
       return item.website;
     }
@@ -79,12 +84,15 @@ export const App: React.FC<AppProps> = ({
     detailed ? 'flex-row flex-wrap items-start justify-start cursor-default mx-[30px] my-[15px]' : ''
   }`;
 
-  const innerClasses = `flex justify-center items-center rounded-[15%] bg-[#e2e2ec] h-[110px] w-[110px] p-3 mb-2 transition-transform duration-500 ${
+  const innerClasses = `flex justify-center items-center rounded-[15%] bg-[#e2e2ec] p-3 mb-2 transition-transform duration-500 ${
     move && !detailed && hover ? '-translate-y-[10%]' : ''
   }`;
 
   const innerContent = (
-    <div className={`flex h-full w-full ${isEngrave ? 'h-auto' : ''} ${isDLease ? 'justify-center' : ''}`}>
+    <div
+      className={`flex ${isEngrave ? 'h-auto' : ''} ${isDLease ? 'justify-center' : ''}`}
+      style={{ height: `${size}px`, width: `${size}px` }}
+    >
       <img
         src={getAppImage(item.image)}
         alt={item.name}

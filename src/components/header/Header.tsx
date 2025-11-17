@@ -14,6 +14,10 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ items = [] }) => {
   const headerRef = useRef<HTMLDivElement>(null);
 
+  // Split items into navigation items and button items
+  const navigationItems = items.filter(item => !item.isButton);
+  const buttonItems = items.filter(item => item.isButton);
+
   // Use useLayoutEffect to update header height before browser paint
   useLayoutEffect(() => {
     if (headerRef.current) {
@@ -36,14 +40,17 @@ export const Header: React.FC<HeaderProps> = ({ items = [] }) => {
   }, []);
 
   return (
-    <div id="header" ref={headerRef} className="max-w-[1300px] w-full">
+    <div id="header" ref={headerRef} className="max-w-screen-2xl w-full">
       <div className="py-5 px-10 flex flex-row justify-between items-center">
-        <Link href="/">
-          <Logo className="h-[33px] max-[600px]:z-[100]" />
-        </Link>
+        <div className="flex flex-row items-center gap-8">
+          <Link href="/">
+            <Logo className="h-[33px] max-[600px]:z-[100]" />
+          </Link>
+          <Navigation className="max-[600px]:!hidden" items={navigationItems} />
+        </div>
 
-        <div className="flex flex-row items-center gap-4">
-          <Navigation className="max-[600px]:!hidden" items={items} />
+        <div className="flex flex-row items-center gap-4 max-[600px]:!hidden">
+          <Navigation items={buttonItems} />
           {/* <LanguageSelector /> */}
         </div>
         <MobileMenu className="hidden max-[600px]:!block" items={items} />

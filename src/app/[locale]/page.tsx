@@ -147,27 +147,29 @@ export default function HomePage() {
       </div>
 
       {/* Exchanges */}
-      <div className="flex flex-col mx-auto bg-[#191919] justify-center items-center py-10 px-10 pb-[50px]">
-        <div className="text-white font-bold mb-[10px] text-base opacity-100 pb-[2px] cursor-default">
-          {t('root.exchanges.title')}
+      <div className="flex flex-col mx-auto bg-[#191919] justify-center items-center py-16 px-5">
+        <div className="flex flex-col items-center text-center mb-12 max-w-[800px]">
+          <h2 className="text-3xl font-bold text-white mb-3">
+            {t('root.exchanges.title')}
+          </h2>
+          <p className="text-[#bbbbbb] text-lg">
+            {t('root.exchanges.subtitle')}
+          </p>
         </div>
-        <div className="text-[#bbbbbb] mb-5">
-          {t('root.exchanges.subtitle')}
-        </div>
-        <div className="flex flex-row flex-wrap max-w-[1100px] justify-evenly items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 max-w-[1200px] w-full place-items-center">
           {EXCHANGES.map((exchange) => (
             <a
               key={exchange.id}
-              className={`py-2 px-[15px] my-[10px] mx-[15px] ${exchange.id === 'huobi' ? 'mt-[5px]' : ''}`}
+              className="flex items-center justify-center h-12 w-full px-4 transition-opacity duration-200 opacity-70 hover:opacity-100"
               href={exchange.website}
               target="_blank"
               rel="nofollow noopener noreferrer"
+              title={exchange.name}
             >
               <img
                 src={getExchangeImage(exchange.image)}
                 alt={exchange.name}
-                className={`transition-opacity duration-100 ease-in opacity-[0.88] hover:opacity-100 ${exchange.id === 'upbit' ? 'h-6' : exchange.id === 'swapzone' ? 'h-[35px]' : 'h-[25px] max-[700px]:h-[14px]'
-                  }`}
+                className="max-h-full max-w-full object-contain"
               />
             </a>
           ))}

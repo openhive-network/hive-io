@@ -13,10 +13,17 @@ import {
 import { Link } from '@/i18n/routing';
 import { ChevronRight } from 'lucide-react';
 
+interface SubmenuItem {
+  to?: string;
+  name?: string;
+  description?: string;
+}
+
 interface NavigationChild {
   to?: string;
   name?: string;
   description?: string;
+  submenu?: SubmenuItem[];
 }
 
 interface NavigationItemType {
@@ -74,12 +81,12 @@ export const Navigation: React.FC<NavigationProps> = ({
                       {item.name}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent
-                      className={`p-3 ${isMobileMenu ? 'w-full relative' : item.children?.some((child: any) => child.submenu) ? 'w-[560px]' : 'w-[280px]'}`}
+                      className={`p-3 ${isMobileMenu ? 'w-full relative' : ''}`}
                       onPointerLeave={() => setHoveredSubmenu(null)}
                     >
                       <div className="flex gap-0">
                         {/* Main menu items */}
-                        <ul className="list-none p-0 m-0 flex flex-col gap-2 min-w-[280px] shrink-0">
+                        <ul className="list-none p-0 m-0 flex flex-col gap-2 flex-1 shrink-0 w-[280px]">
                           {item.children && item.children.map((child: any, childIndex) => (
                             <li
                               key={childIndex}
@@ -138,22 +145,33 @@ export const Navigation: React.FC<NavigationProps> = ({
                           ))}
                         </ul>
 
-                        {/* Right column - Submenu items (only present if dropdown has submenu items) */}
-                        {item.children?.some((child: any) => child.submenu) && (
-                          <div className={`border-l border-gray-200 pl-6 min-w-[280px] shrink-0 transition-opacity duration-200 ${
-                            hoveredSubmenu !== null && item.children && (item.children[hoveredSubmenu] as any)?.submenu
-                              ? 'opacity-100'
-                              : 'opacity-0 pointer-events-none'
-                          }`}>
-                            {hoveredSubmenu !== null && item.children && (item.children[hoveredSubmenu] as any)?.submenu && (
-                              <ul className="list-none p-0 m-0 flex flex-col gap-2">
-                                {(item.children[hoveredSubmenu] as any).submenu.map((subItem: any, subIndex: number) => (
-                                  <li key={subIndex}>
-                                    {subItem.to && (subItem.to.includes('https://') || subItem.to.includes('mailto')) ? (
-                                      <NavigationMenuLink
-                                        href={subItem.to}
-                                        target="_blank"
-                                        rel="nofollow noopener noreferrer"
+                        {/* Right column - Submenu items (only visible when hovering submenu item) */}
+                        {hoveredSubmenu !== null && item.children && (item.children[hoveredSubmenu] as any)?.submenu && (
+                          <div className="border-l border-gray-200 pl-6 min-w-[300px] shrink-0">
+                            <ul className="list-none p-0 m-0 flex flex-col gap-2">
+                              {(item.children[hoveredSubmenu] as any).submenu.map((subItem: any, subIndex: number) => (
+                                <li key={subIndex}>
+                                  {subItem.to && (subItem.to.includes('https://') || subItem.to.includes('mailto')) ? (
+                                    <NavigationMenuLink
+                                      href={subItem.to}
+                                      target="_blank"
+                                      rel="nofollow noopener noreferrer"
+                                      onClick={onClicked}
+                                      className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
+                                    >
+                                      <div className="flex flex-col gap-1">
+                                        <div className="text-sm font-medium text-black">{subItem.name}</div>
+                                        {subItem.description && (
+                                          <p className="text-[13px] text-[#666] m-0 leading-[1.4]">
+                                            {subItem.description}
+                                          </p>
+                                        )}
+                                      </div>
+                                    </NavigationMenuLink>
+                                  ) : subItem.to ? (
+                                    <NavigationMenuLink asChild>
+                                      <Link
+                                        href={`/${subItem.to}` as any}
                                         onClick={onClicked}
                                         className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
                                       >
@@ -165,29 +183,12 @@ export const Navigation: React.FC<NavigationProps> = ({
                                             </p>
                                           )}
                                         </div>
-                                      </NavigationMenuLink>
-                                    ) : subItem.to ? (
-                                      <NavigationMenuLink asChild>
-                                        <Link
-                                          href={`/${subItem.to}` as any}
-                                          onClick={onClicked}
-                                          className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
-                                        >
-                                          <div className="flex flex-col gap-1">
-                                            <div className="text-sm font-medium text-black">{subItem.name}</div>
-                                            {subItem.description && (
-                                              <p className="text-[13px] text-[#666] m-0 leading-[1.4]">
-                                                {subItem.description}
-                                              </p>
-                                            )}
-                                          </div>
-                                        </Link>
-                                      </NavigationMenuLink>
-                                    ) : null}
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
+                                      </Link>
+                                    </NavigationMenuLink>
+                                  ) : null}
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                         )}
                       </div>

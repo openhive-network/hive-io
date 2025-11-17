@@ -33,7 +33,7 @@ export const EcoDetailed: React.FC = () => {
       </div>
       <div>
         <h3 className="text-2xl font-bold leading-normal mb-2.5 pl-10">Similar Apps</h3>
-        <div className="flex flex-row flex-wrap p-0 pr-10 pb-[5px] pl-[30px] [&>div]:!mx-2 [&>div]:!my-1 [&>div>div]:!h-[70px] [&>div>div]:!w-[70px] [&>div>a]:!h-[70px] [&>div>a]:!w-[70px] [&>div>div:last-child]:!hidden">
+        <div className="flex flex-row flex-wrap p-0 pr-10 pb-[5px] pl-[30px] [&>div]:!mx-2 [&>div]:!my-1 [&>div>div:last-child]:!hidden">
           {similarEco.map((eco) => (
             <App
               key={eco.id}
@@ -43,6 +43,7 @@ export const EcoDetailed: React.FC = () => {
               showName={false}
               openModal={true}
               appType="eco"
+              size={40}
               style={{
                 opacity: eco.id === activeEco.id ? '0.333' : '1'
               }}
@@ -64,7 +65,7 @@ export const EcoDetailed: React.FC = () => {
               Explore Ecosystem
             </Button>
           </div>
-          <div className="flex flex-row flex-wrap p-0 pr-10 pb-[5px] pl-[30px] [&>div]:!mx-2 [&>div]:!my-1 [&>div>div]:!h-[70px] [&>div>div]:!w-[70px] [&>div>a]:!h-[70px] [&>div>a]:!w-[70px] [&>div>div:last-child]:!hidden">
+          <div className="flex flex-row flex-wrap p-0 pr-10 pb-[5px] pl-[30px] [&>div]:!mx-2 [&>div]:!my-1 [&>div>div:last-child]:!hidden">
             {otherEco.map((eco) => (
               <App
                 key={eco.id}
@@ -74,6 +75,7 @@ export const EcoDetailed: React.FC = () => {
                 showName={false}
                 openModal={true}
                 appType="eco"
+                size={40}
                 style={{
                   opacity: eco.id === activeEco.id ? '0.333' : '1'
                 }}

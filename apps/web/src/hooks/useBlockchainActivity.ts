@@ -57,6 +57,7 @@ export function useBlockchainActivity(
   const pendingActivitiesRef = useRef<ActivityItem[]>([])
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const isInitialLoadRef = useRef(true)
+  const lastAnimationTimeRef = useRef<number>(Date.now())
 
   /**
    * Display activities one at a time with smooth staggered animation
@@ -73,6 +74,11 @@ export function useBlockchainActivity(
         ...newActivities,
       ]
 
+      // Limit queue size to prevent buildup - keep only 6 most recent
+      if (pendingActivitiesRef.current.length > 6) {
+        pendingActivitiesRef.current = pendingActivitiesRef.current.slice(0, 6)
+      }
+
       // If already animating, just let it continue with the updated queue
       if (animationIntervalRef.current) {
         return
@@ -83,6 +89,27 @@ export function useBlockchainActivity(
         // Check if there are pending activities
         if (pendingActivitiesRef.current.length === 0) {
           // No more pending activities, stop animation
+          animationIntervalRef.current = null
+          return
+        }
+
+        const now = Date.now()
+        const timeSinceLastAnimation = now - lastAnimationTimeRef.current
+
+        // If more than 2 seconds have passed since last animation (likely tab was inactive),
+        // show all pending activities immediately
+        if (timeSinceLastAnimation > 2000 && pendingActivitiesRef.current.length > 0) {
+          // Take up to 5 pending activities and show them immediately
+          const activitiesToShow = pendingActivitiesRef.current.splice(0, 5)
+
+          displayedActivitiesRef.current = [
+            ...activitiesToShow,
+            ...displayedActivitiesRef.current,
+          ].slice(0, 5)
+
+          setActivities([...displayedActivitiesRef.current.slice(0, maxActivities)])
+
+          lastAnimationTimeRef.current = now
           animationIntervalRef.current = null
           return
         }
@@ -99,6 +126,8 @@ export function useBlockchainActivity(
 
         // Update the displayed state (only first 4 visible)
         setActivities([...displayedActivitiesRef.current.slice(0, maxActivities)])
+
+        lastAnimationTimeRef.current = now
 
         // Calculate delay with ±10% variation for natural feel
         const baseDelay = 700 // ~700ms per activity for smooth feel

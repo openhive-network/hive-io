@@ -88,6 +88,24 @@ export function parseOperation(
       }
     }
 
+    case 'claim_reward_balance_operation': {
+      const data = opData as operation['claim_reward_balance_operation']
+
+      if (!data) return null
+
+      return {
+        id,
+        txId,
+        type: 'other',
+        message: `${data.account} claimed rewards`,
+        user: data.account,
+        timestamp,
+        icon: '🏆',
+        color: 'text-yellow-600',
+        avatarUrl: getUserAvatar(data.account),
+      }
+    }
+
     case 'vote_operation': {
       const data = opData as operation['vote_operation']
 
@@ -120,7 +138,7 @@ export function parseOperation(
           id,
           txId,
           type: 'post',
-          message: `${data.author} just published a post`,
+          message: `${data.author} published a post`,
           user: data.author,
           timestamp,
           icon: '📝',
@@ -179,6 +197,45 @@ export function parseOperation(
       // Parse common custom_json operations
       if (data.id.startsWith('sm_')) {
         console.log(data.id)
+        // if (data.id.includes('delegate_cards')) {
+        //   return {
+        //     id,
+        //     txId,
+        //     type: 'custom',
+        //     message: `${user} delegated Splinterlands cards`,
+        //     user,
+        //     timestamp,
+        //     icon: '🃏',
+        //     color: 'text-gray-700',
+        //     avatarUrl: getUserAvatar(user),
+        //   }
+        // }
+        if (data.id.includes('market_purchase')) {
+          return {
+            id,
+            txId,
+            type: 'custom',
+            message: `${user} made a Splinterlands market purchase`,
+            user,
+            timestamp,
+            icon: '🛒',
+            color: 'text-gray-700',
+            avatarUrl: getUserAvatar(user),
+          }
+        }
+        // if (data.id.includes('sm_claim_rewards')) {
+        //   return {
+        //     id,
+        //     txId,
+        //     type: 'custom',
+        //     message: `${user} claimed Splinterlands rewards`,
+        //     user,
+        //     timestamp,
+        //     icon: '🎁',
+        //     color: 'text-gray-700',
+        //     avatarUrl: getUserAvatar(user),
+        //   }
+        // }
         return {
           id,
           txId,
@@ -193,6 +250,8 @@ export function parseOperation(
       }
     }
   }
+
+  console.log('Unparsed operation type:', opType, txId)
 
   return null
 }
@@ -268,22 +327,64 @@ export function filterOptimalActivities(
     return true
   })
 
+  // Third pass: Ensure variety by avoiding too many of the same type in a row
+  // Vote operations: max 1 consecutive (no back-to-back votes)
+  // Other operations: max 2 consecutive
+  const diversified: ActivityItem[] = []
+  const remaining = [...uniqueActivities]
+
+  while (remaining.length > 0 && diversified.length < maxActivities) {
+    let selected: ActivityItem | undefined
+
+    if (diversified.length >= 1) {
+      const lastType = diversified[diversified.length - 1].type
+
+      // For vote operations, never allow consecutive votes
+      if (lastType === 'vote') {
+        selected = remaining.find((a) => a.type !== 'vote')
+      }
+      // For other operations, check last 2 activities
+      else if (diversified.length >= 2) {
+        const secondLastType = diversified[diversified.length - 2].type
+
+        // If last 2 are the same type, avoid that type
+        if (lastType === secondLastType) {
+          selected = remaining.find((a) => a.type !== lastType)
+        }
+      }
+    }
+
+    // If no specific constraint or couldn't find different type, take the first one
+    if (!selected) {
+      selected = remaining[0]
+    }
+
+    // Add selected activity and remove from remaining
+    if (selected) {
+      diversified.push(selected)
+      const index = remaining.indexOf(selected)
+      remaining.splice(index, 1)
+    } else {
+      break
+    }
+  }
+
   // If we have enough optimal activities, return them
-  if (uniqueActivities.length >= maxActivities) {
-    return uniqueActivities.slice(0, maxActivities)
+  if (diversified.length >= maxActivities) {
+    return diversified.slice(0, maxActivities)
   }
 
   // Otherwise, fill with random activities from the remaining pool
-  const remaining = activities.filter((activity) => {
-    // Don't include activities already in uniqueActivities
-    return !uniqueActivities.some((ua) => ua.id === activity.id)
+  const leftover = activities.filter((activity) => {
+    // Don't include activities already in diversified
+    return !diversified.some((ua) => ua.id === activity.id)
   })
 
   // Shuffle remaining and take what we need
-  const shuffledRemaining = shuffleArray(remaining)
-  const needed = maxActivities - uniqueActivities.length
+  const shuffledRemaining = shuffleArray(leftover)
+  const needed = maxActivities - diversified.length
 
-  return [...uniqueActivities, ...shuffledRemaining.slice(0, needed)]
+  return [...diversified, ...shuffledRemaining.slice(0, needed)]
 }
 
 // Track block sync state

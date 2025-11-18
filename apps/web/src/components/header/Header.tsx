@@ -50,8 +50,8 @@ export const Header: React.FC<HeaderProps> = ({ items = [] }) => {
           <Navigation className="max-[600px]:!hidden" items={navigationItems} />
         </div>
 
-        {/* Centered InfobarCompact */}
-        <div className="absolute left-1/2 -translate-x-1/2 max-[900px]:hidden">
+        {/* Centered InfobarCompact - Desktop only */}
+        <div className="absolute left-1/2 -translate-x-1/2 max-[1250px]:hidden">
           <InfobarCompact />
         </div>
 
@@ -60,6 +60,11 @@ export const Header: React.FC<HeaderProps> = ({ items = [] }) => {
           {/* <LanguageSelector /> */}
         </div>
         <MobileMenu className="hidden max-[600px]:!block ml-auto" items={items} />
+      </div>
+
+      {/* InfobarCompact - Mobile version below navbar */}
+      <div className="hidden max-[1250px]:flex justify-center px-4 pb-4">
+        <InfobarCompact />
       </div>
     </div>
   );

@@ -102,9 +102,9 @@ export const InfobarCompact: React.FC = () => {
   return (
     <div
       onClick={go}
-      className="flex items-center gap-2 bg-[#e31337] text-white px-3 py-1.5 rounded-md cursor-pointer transition-all duration-200 hover:bg-[#c51230] hover:shadow-md max-[900px]:hidden"
+      className="flex items-center gap-2 bg-[#e31337] text-white px-3 py-1.5 rounded-md cursor-pointer transition-all duration-200 hover:bg-[#c51230] hover:shadow-md"
     >
-      <FontAwesomeIcon icon={faClock} className="w-3 h-3 opacity-90" />
+      <FontAwesomeIcon icon={faClock} className="opacity-90" style={{ height: '14px', width: '14px' }} />
       <div className="flex items-center gap-1.5">
         <span className="text-xs font-semibold uppercase tracking-wide opacity-90">
           {INFOBAR.title}
@@ -114,8 +114,9 @@ export const InfobarCompact: React.FC = () => {
         </span>
       </div>
       <FontAwesomeIcon
-        className="w-2.5 h-2.5 opacity-70"
+        className="opacity-70"
         icon={faExternalLinkAlt}
+        style={{ height: '12px', width: '12px' }}
       />
     </div>
   );

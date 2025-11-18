@@ -62,6 +62,20 @@ export function useBlockchainActivity(
   const isInitialLoadRef = useRef(true)
   const pendingActivitiesRef = useRef<ActivityItem[]>([])
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const hasInitializedRef = useRef(false)
+  const hasLoadedDefaultsRef = useRef(false)
+
+  /**
+   * Preload an image to ensure it's cached before display
+   */
+  const preloadImage = (url: string): Promise<void> => {
+    return new Promise((resolve) => {
+      const img = new Image()
+      img.onload = () => resolve()
+      img.onerror = () => resolve() // Resolve anyway to not block
+      img.src = url
+    })
+  }
 
   /**
    * Display activities one at a time with animation
@@ -92,7 +106,7 @@ export function useBlockchainActivity(
       }
 
       // Start animation loop
-      const displayNext = () => {
+      const displayNext = async () => {
         // Check if there are pending activities
         if (pendingActivitiesRef.current.length === 0) {
           animationIntervalRef.current = null
@@ -101,6 +115,11 @@ export function useBlockchainActivity(
 
         // Get next activity from queue (from front)
         const nextActivity = pendingActivitiesRef.current.shift()!
+
+        // Preload avatar image if present
+        if (nextActivity.avatarUrl) {
+          await preloadImage(nextActivity.avatarUrl)
+        }
 
         // Add to front and keep only maxActivities
         displayedActivitiesRef.current = [
@@ -124,7 +143,7 @@ export function useBlockchainActivity(
       }
 
       // Start displaying
-      displayNext()
+      void displayNext()
     },
     [maxActivities],
   )
@@ -209,7 +228,9 @@ export function useBlockchainActivity(
    * Fetch initial block number immediately on mount
    */
   useEffect(() => {
-    if (!enabled) return
+    if (!enabled || hasInitializedRef.current) return
+
+    hasInitializedRef.current = true
 
     // Fetch block number immediately to avoid showing default block for too long
     const fetchInitialBlock = async () => {
@@ -232,7 +253,9 @@ export function useBlockchainActivity(
    * Load default activities on mount
    */
   useEffect(() => {
-    if (!enabled) return
+    if (!enabled || hasLoadedDefaultsRef.current) return
+
+    hasLoadedDefaultsRef.current = true
 
     // Load default activities on initial mount
     const defaultActivities = getDefaultActivities()

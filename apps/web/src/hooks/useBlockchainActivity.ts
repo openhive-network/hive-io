@@ -28,6 +28,11 @@ interface UseBlockchainActivityResult {
   transactionCount: number
 }
 
+// Animation constants
+const ANIMATION_BASE_DELAY = 700 // Base delay between activity animations (ms)
+const ANIMATION_VARIATION = 0.2 // ±20% variation for natural feel
+const ANIMATION_MIN_DELAY = 500 // Minimum delay (ms)
+
 /**
  * Hook to fetch and parse real-time blockchain activities
  * Combines block observation with activity parsing
@@ -54,32 +59,34 @@ export function useBlockchainActivity(
   const displayedActivitiesRef = useRef<ActivityItem[]>([])
   const currentIntervalRef = useRef(updateInterval)
   const intervalIdRef = useRef<NodeJS.Timeout | null>(null)
+  const isInitialLoadRef = useRef(true)
   const pendingActivitiesRef = useRef<ActivityItem[]>([])
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null)
-  const isInitialLoadRef = useRef(true)
-  const lastAnimationTimeRef = useRef<number>(Date.now())
 
   /**
-   * Display activities one at a time with smooth staggered animation
-   * Maintains a queue and animates at a consistent pace
+   * Display activities one at a time with animation
+   * Maintains backup queue with large capacity for continuous flow
+   * Prioritizes optimal activities by re-filtering the queue
    */
   const displayActivitiesSmooth = useCallback(
     (newActivities: ActivityItem[]) => {
-      // If no new activities, nothing to animate
       if (newActivities.length === 0) return
 
-      // Add to pending queue (at the end, to maintain order)
-      pendingActivitiesRef.current = [
+      // Add to pending queue with large capacity (up to 80 activities)
+      // This allows continuous flow even when many blocks are processed
+      const combinedQueue = [
         ...pendingActivitiesRef.current,
         ...newActivities,
-      ]
+      ].slice(0, maxActivities * 20)
 
-      // Limit queue size to prevent buildup - keep only 6 most recent
-      if (pendingActivitiesRef.current.length > 6) {
-        pendingActivitiesRef.current = pendingActivitiesRef.current.slice(0, 6)
-      }
+      // Re-filter to maintain optimal ordering in the queue
+      // This ensures the best activities are always at the front
+      pendingActivitiesRef.current = filterOptimalActivities(
+        combinedQueue,
+        maxActivities * 20,
+      )
 
-      // If already animating, just let it continue with the updated queue
+      // If already animating, let it continue with updated queue
       if (animationIntervalRef.current) {
         return
       }
@@ -88,28 +95,6 @@ export function useBlockchainActivity(
       const displayNext = () => {
         // Check if there are pending activities
         if (pendingActivitiesRef.current.length === 0) {
-          // No more pending activities, stop animation
-          animationIntervalRef.current = null
-          return
-        }
-
-        const now = Date.now()
-        const timeSinceLastAnimation = now - lastAnimationTimeRef.current
-
-        // If more than 2 seconds have passed since last animation (likely tab was inactive),
-        // show all pending activities immediately
-        if (timeSinceLastAnimation > 2000 && pendingActivitiesRef.current.length > 0) {
-          // Take up to 5 pending activities and show them immediately
-          const activitiesToShow = pendingActivitiesRef.current.splice(0, 5)
-
-          displayedActivitiesRef.current = [
-            ...activitiesToShow,
-            ...displayedActivitiesRef.current,
-          ].slice(0, 5)
-
-          setActivities([...displayedActivitiesRef.current.slice(0, maxActivities)])
-
-          lastAnimationTimeRef.current = now
           animationIntervalRef.current = null
           return
         }
@@ -117,28 +102,28 @@ export function useBlockchainActivity(
         // Get next activity from queue (from front)
         const nextActivity = pendingActivitiesRef.current.shift()!
 
-        // Add to displayed activities at the front
-        // Keep 5 in the ref (for queue) but only show 4 to user
+        // Add to front and keep only maxActivities
         displayedActivitiesRef.current = [
           nextActivity,
           ...displayedActivitiesRef.current,
-        ].slice(0, 5)
+        ].slice(0, maxActivities)
 
-        // Update the displayed state (only first 4 visible)
-        setActivities([...displayedActivitiesRef.current.slice(0, maxActivities)])
+        // Update the displayed state
+        setActivities([...displayedActivitiesRef.current])
 
-        lastAnimationTimeRef.current = now
-
-        // Calculate delay with ±10% variation for natural feel
-        const baseDelay = 700 // ~700ms per activity for smooth feel
-        const variation = (Math.random() - 0.5) * 0.2 * baseDelay
-        const delay = Math.max(400, baseDelay + variation)
+        // Calculate delay with variation for natural feel
+        const variation =
+          (Math.random() - 0.5) * ANIMATION_VARIATION * ANIMATION_BASE_DELAY
+        const delay = Math.max(
+          ANIMATION_MIN_DELAY,
+          ANIMATION_BASE_DELAY + variation,
+        )
 
         // Schedule next activity
         animationIntervalRef.current = setTimeout(displayNext, delay) as any
       }
 
-      // Start displaying activities
+      // Start displaying
       displayNext()
     },
     [maxActivities],
@@ -151,11 +136,15 @@ export function useBlockchainActivity(
     if (!enabled) return
 
     try {
-      const {activities: newActivities, latestBlock, shouldSpeedUp, transactionCount} =
-        await fetchBlockchainActivity(
-          lastBlockRef.current,
-          3, // max 3 blocks per fetch
-        )
+      const {
+        activities: newActivities,
+        latestBlock,
+        shouldSpeedUp,
+        transactionCount,
+      } = await fetchBlockchainActivity(
+        lastBlockRef.current,
+        3, // max 3 blocks per fetch
+      )
 
       // Detect new block for animation
       if (lastBlockRef.current > 0 && latestBlock > lastBlockRef.current) {
@@ -164,48 +153,44 @@ export function useBlockchainActivity(
       }
 
       // On first fetch from default block, show latestBlock - 1 for display
-      const displayBlock = currentBlock === DEFAULT_BLOCK ? latestBlock - 1 : latestBlock
+      const displayBlock =
+        currentBlock === DEFAULT_BLOCK ? latestBlock - 1 : latestBlock
 
       setCurrentBlock(displayBlock)
       setBlockTimestamp(new Date().toLocaleTimeString())
       setTransactionCount(transactionCount)
       lastBlockRef.current = latestBlock
 
-      // Smooth display of new activities
+      // Update activities pool
       if (newActivities.length > 0) {
-        // On first real data fetch, merge with default activities
-        if (isInitialLoadRef.current) {
-          // Add all new real activities to the pool
-          activitiesPoolRef.current = [
-            ...newActivities,
-            ...activitiesPoolRef.current,
-          ].slice(0, maxActivities * 3)
+        // Add new activities to pool
+        activitiesPoolRef.current = [
+          ...newActivities,
+          ...activitiesPoolRef.current,
+        ].slice(0, maxActivities * 3)
 
-          // Mark initial load as complete
-          isInitialLoadRef.current = false
-        } else {
-          // Normal operation: add new activities to pool
-          activitiesPoolRef.current = [
-            ...newActivities,
-            ...activitiesPoolRef.current,
-          ].slice(0, maxActivities * 3)
-        }
+        // Mark initial load as complete
+        isInitialLoadRef.current = false
 
-        // Filter to get optimal activities from the pool (get 5 to maintain queue)
+        // Filter to get optimal activities from the pool
         const optimalActivities = filterOptimalActivities(
           activitiesPoolRef.current,
-          5,
+          maxActivities * 3, // Get more activities from pool to fill backup queue
         )
 
-        // Find truly new optimal activities (not already displayed)
-        const displayedIds = new Set(displayedActivitiesRef.current.map((a) => a.id))
-        const trulyNewOptimal = optimalActivities.filter(
-          (a) => !displayedIds.has(a.id),
+        // Find activities not already in backup queue or displayed
+        // This allows pool activities to flow into backup queue continuously
+        const queuedIds = new Set([
+          ...pendingActivitiesRef.current.map((a) => a.id),
+          ...displayedActivitiesRef.current.map((a) => a.id),
+        ])
+        const activitiesToQueue = optimalActivities.filter(
+          (a) => !queuedIds.has(a.id),
         )
 
-        // Display only the truly new optimal activities with smooth animation
-        if (trulyNewOptimal.length > 0) {
-          displayActivitiesSmooth(trulyNewOptimal)
+        // Add new activities to backup queue for continuous animation
+        if (activitiesToQueue.length > 0) {
+          displayActivitiesSmooth(activitiesToQueue)
         }
       }
 
@@ -244,12 +229,12 @@ export function useBlockchainActivity(
   }, [])
 
   /**
-   * Load default activities on mount with animation
+   * Load default activities on mount
    */
   useEffect(() => {
     if (!enabled) return
 
-    // Load and animate default activities on initial mount
+    // Load default activities on initial mount
     const defaultActivities = getDefaultActivities()
     displayActivitiesSmooth(defaultActivities)
 

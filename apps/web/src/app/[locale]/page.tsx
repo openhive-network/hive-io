@@ -6,10 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo/Logo';
 import { ScrollIndicator } from '@/components/ScrollIndicator';
 import { RootEco } from '@/components/root/RootEco';
-import { Infobar } from '@/components/infobar/Infobar';
-import { BlockObserver } from '@/components/BlockObserver';
 import { useAssets } from '@/hooks/useAssets';
 import { EXCHANGES } from '@/lib/data/var';
+
+// Live Activity Components
+import { DynamicHero } from '@/components/hero/DynamicHero';
 
 export default function HomePage() {
   const router = useRouter();
@@ -27,32 +28,11 @@ export default function HomePage() {
   return (
     <div className="h-full">
       <div
-        className="flex flex-1 flex-col items-center pt-[60px] px-5 pb-0"
+        className="flex flex-1 flex-col items-center justify-center pt-[60px] px-5 pb-0 relative"
         style={{ minHeight: 'calc(100vh - 80px)' }}
       >
-        <div className="flex flex-col items-center justify-center flex-grow mt-0 sm:-mt-10 md:-mt-16 lg:-mt-20">
-          <Infobar />
-          <div className="flex flex-row items-center justify-items-center relative shrink-0 flex-nowrap">
-            <div className="h-fit flex flex-col justify-center min-w-[433px] shrink-0 max-[600px]:min-w-0">
-              <h1 className="text-[3.8rem] font-bold leading-tight">Fast.</h1>
-              <h1 className="text-[3.8rem] font-bold leading-tight">Scalable.</h1>
-              <h1 className="text-[3.8rem] font-bold leading-tight">Powerful.</h1>
-              <h3 className="mt-[10px] text-[1.75rem] font-bold leading-normal">The Blockchain for Web3</h3>
-              <div>
-                <Button className="min-w-[150px] w-fit text-base py-[15px] px-[26px] mt-[15px] float-left" onClick={() => router.push('/about')}>
-                  {t('root.learnMore')}
-                </Button>
-              </div>
-            </div>
-            <Logo className="h-[150px] -ml-[55px] -mt-[130px] shrink-0 max-[600px]:hidden" full={false} />
-          </div>
-        </div>
-        <div className="flex-shrink-0">
-          <ScrollIndicator
-            style={{ margin: '0 auto 0px auto', marginBottom: '40px' }}
-            scrollToSelector="#ecosystem-section"
-          />
-        </div>
+        {/* Dynamic Hero with Live Block Number and Activities */}
+        <DynamicHero />
       </div>
 
       {/* Ecosystem */}
@@ -176,9 +156,6 @@ export default function HomePage() {
           ))}
         </div>
       </div>
-
-      {/* Live Block Observer */}
-      <BlockObserver />
     </div>
   );
 }

@@ -13,3 +13,6 @@ const initHiveChain = async () => {
 export const getHiveChain = async (): Promise<IHiveChainInterface> => {
   return initHiveChain()
 }
+
+// Re-export activity utilities
+export * from './activity'

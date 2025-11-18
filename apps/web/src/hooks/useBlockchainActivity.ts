@@ -250,15 +250,16 @@ export function useBlockchainActivity(
   }, [])
 
   /**
-   * Load default activities on mount
+   * Load default activities on mount - start immediately
    */
   useEffect(() => {
-    if (!enabled || hasLoadedDefaultsRef.current) return
+    if (hasLoadedDefaultsRef.current) return
 
     hasLoadedDefaultsRef.current = true
 
-    // Load default activities on initial mount
+    // Load default activities immediately on mount
     const defaultActivities = getDefaultActivities()
+    // Start displaying them right away, no delay
     displayActivitiesSmooth(defaultActivities)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

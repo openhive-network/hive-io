@@ -89,11 +89,10 @@ function generateRandomActivities(count: number): ActivityItem[] {
 
 /**
  * Get randomized default activities
- * Returns 5 random activities generated from contributors
- * (5 in queue, but only 4 displayed at a time)
+ * Returns N random activities generated from contributors
  */
-export function getDefaultActivities(): ActivityItem[] {
-  return generateRandomActivities(5)
+export function getDefaultActivities(count: number = 5): ActivityItem[] {
+  return generateRandomActivities(count)
 }
 
 // Default block data

@@ -85,7 +85,7 @@ export const EXCHANGES = [
     name: 'Digifinex',
     website: 'https://www.digifinex.io/en-ww/trade/USDT/HIVE',
     image: 'digifinex.svg',
-  },  
+  },
   {
     id: 'easybit',
     name: 'EasyBit',
@@ -164,19 +164,19 @@ export const EXCHANGES = [
     website: 'https://www.pionex.com/en/trade/HIVE_USDT/Manual',
     image: 'pionex.png',
   },
-  {
-    id: 'probit',
-    name: 'ProBit',
-    website: 'https://www.probit.com/app/exchange/HIVE-USDT',
-    image: 'probit_white.png',
-  },
+  // {
+  //   id: 'probit',
+  //   name: 'ProBit',
+  //   website: 'https://www.probit.com/app/exchange/HIVE-USDT',
+  //   image: 'probit_white.png',
+  // },
   {
     id: 'simpleswap',
     name: 'SimpleSwap',
     website: 'https://simpleswap.io',
     image: 'simpleswap.png',
   },
-    {
+  {
     id: 'stealthex',
     name: 'StealthEX',
     website: 'https://stealthex.io/coin/hive',
@@ -229,5 +229,5 @@ export const EXCHANGES = [
     name: 'XT',
     website: 'https://www.xt.com/en/trade/hive_usdt',
     image: 'xt.png',
-  }
+  },
 ]

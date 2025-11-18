@@ -38,122 +38,87 @@ export default function HomePage() {
       {/* Ecosystem */}
       <RootEco id="ecosystem-section" className="bg-[#e7e7f1]" />
 
-      {/* No fees */}
-      <div className="flex flex-1 min-h-[550px] justify-center">
-        <div className="flex flex-row-reverse justify-between w-full items-center max-w-[920px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
-          <div className="w-[350px] max-w-[350px] min-w-[250px] max-[700px]:m-0 max-[700px]:text-center">
-            <h2 className="text-[2rem] font-bold leading-snug mb-2.5">{t('root.feeTitle')}</h2>
-            <p>
-              {t('root.feeText')}
-            </p>
-            <p>
-              {t('root.feeText2')}
-            </p>
-          </div>
-          <div className="ml-[25px] flex justify-center items-center w-[280px] h-[280px] relative max-[700px]:mb-[50px]">
-            <img className="w-[150px] z-[1]" src={getImage('fees.png')} alt="No fees" />
-          </div>
-        </div>
-      </div>
+      {/* Core Features Section */}
+      <div className="w-full py-32 px-5">
+        <div className="max-w-[1200px] mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
+            Why Hive?
+          </h2>
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Feature 1: Fast & Free */}
+            <div className="group bg-gradient-to-br from-blue-50 to-indigo-100 border-2 border-blue-300 rounded-xl p-8 transition-all duration-300 hover:border-blue-400">
+              <div className="flex items-center justify-center w-20 h-20 mb-6 mx-auto">
+                <img className="w-full h-full object-contain" src={getImage('fees.png')} alt="No fees" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{t('root.feeTitle')}</h3>
+              <p className="text-base text-gray-700 leading-relaxed mb-3 text-center">
+                {t('root.feeText')}
+              </p>
+              <p className="text-sm text-gray-600 text-center">
+                {t('root.feeText2')}
+              </p>
+            </div>
 
-      {/* Decentralized */}
-      <div className="flex flex-1 min-h-[550px] justify-center bg-[#e7e7f1]">
-        <div className="flex flex-row justify-between w-full items-center max-w-[920px] px-10 py-10 max-[700px]:flex-col max-[700px]:flex-wrap max-[700px]:py-[100px]">
-          <div className="ml-[25px] flex justify-center items-center w-[280px] h-[280px] relative max-[700px]:mb-[50px]">
-            <img className="w-[280px]" src={getImage('decentralized.png')} alt="Decentralized" />
-          </div>
-          <div className="w-[350px] max-w-[350px] min-w-[250px] max-[700px]:m-0 max-[700px]:text-center">
-            <h2 className="text-[2rem] font-bold leading-snug mb-2.5">{t('root.decTitle')}</h2>
-            <p>
-              {t('root.decText')}
-            </p>
-            <p>
-              {t('root.decText2')}
-            </p>
-          </div>
-        </div>
-      </div>
+            {/* Feature 2: Decentralized */}
+            <div className="group bg-gradient-to-br from-purple-50 to-pink-100 border-2 border-purple-300 rounded-xl p-8 transition-all duration-300 hover:border-purple-400">
+              <div className="flex items-center justify-center w-20 h-20 mb-6 mx-auto">
+                <img className="w-full h-full object-contain" src={getImage('decentralized.png')} alt="Decentralized" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{t('root.decTitle')}</h3>
+              <p className="text-base text-gray-700 leading-relaxed mb-3 text-center">
+                {t('root.decText')}
+              </p>
+              <p className="text-sm text-gray-600 text-center">
+                {t('root.decText2')}
+              </p>
+            </div>
 
-      {/* Username */}
-      <div className="flex flex-1 min-h-[550px] justify-center">
-        <div className="flex flex-row-reverse justify-between w-full items-center max-w-[920px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
-          <div className="w-[350px] max-w-[350px] min-w-[250px] max-[700px]:m-0 max-[700px]:text-center">
-            <h2 className="text-[2rem] font-bold leading-snug mb-2.5">{t('root.usernameTitle')}</h2>
-            <p>
-              {t('root.usernameText')}
-            </p>
-          </div>
-          <div className="ml-[25px] flex justify-center items-center w-[280px] h-[280px] relative max-[700px]:mb-[50px]">
-            <img className="w-[220px]" src={getImage('username.png')} alt="Username" />
-          </div>
-        </div>
-      </div>
-
-      {/* HDF */}
-      <div className="flex flex-1 min-h-[550px] justify-center bg-[#e7e7f1]">
-        <div className="flex flex-row justify-between w-full items-center max-w-[920px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
-          <div className="max-w-[450px] w-full min-w-[250px] mr-[25px] max-[700px]:m-0 max-[700px]:text-center">
-            <h2 className="text-[2rem] font-bold leading-snug mb-2.5">{t('root.dafTitle')}</h2>
-            <p>
-              {t('root.dafText')}
-            </p>
-            <Button
-              className="min-w-[150px] w-fit text-base py-[15px] px-[26px] mt-[15px] float-left"
-              onClick={() => go('https://peakd.com/proposals')}
-            >
-              {t('root.dafButton')}
-            </Button>
-          </div>
-          <img className="w-[250px] max-[700px]:mb-[50px] max-[600px]:w-[200px]" src={getImage('distribution.svg')} alt="HDF" />
-        </div>
-      </div>
-
-      {/* HBD */}
-      <div className="flex flex-1 min-h-[550px] justify-center">
-        <div className="flex flex-row-reverse justify-between w-full items-center max-w-[920px] px-10 py-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px]">
-          <div className="w-[350px] max-w-[350px] min-w-[250px] max-[700px]:m-0 max-[700px]:text-center">
-            <h2 className="text-[2rem] font-bold leading-snug mb-2.5">{t('root.hbdTitle')}</h2>
-            <p>
-              {t('root.hbdText')} <br /><br />
-              {t('root.hbdAPR')}
-            </p>
-            <Button className="min-w-[150px] w-fit text-base py-[15px] px-[26px] mt-[15px] float-left" onClick={() => router.push('/hbd')}>
-              {t('root.hbdButton')}
-            </Button>
-          </div>
-          <div className="ml-[25px] flex justify-center items-center w-[280px] h-[280px] relative max-[700px]:mb-[50px] max-[600px]:h-[200px]">
-            <img className="w-[230px] z-[1] max-[600px]:w-[100px]" src={getImage('hbd.svg')} alt="HBD" />
+            {/* Feature 3: DeFi Made Simple */}
+            <div className="group bg-gradient-to-br from-emerald-50 to-teal-100 border-2 border-emerald-300 rounded-xl p-8 transition-all duration-300 hover:border-emerald-400">
+              <div className="flex items-center justify-center w-20 h-20 mb-6 mx-auto">
+                <img className="w-full h-full object-contain" src={getImage('hbd.svg')} alt="HBD DeFi" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">DeFi Made Simple</h3>
+              <p className="text-base text-gray-700 leading-relaxed text-center">
+                Earn up to 15% APR on HBD, our decentralized stablecoin pegged to USD.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Exchanges */}
-      <div className="flex flex-col mx-auto bg-[#191919] justify-center items-center py-16 px-5">
-        <div className="flex flex-col items-center text-center mb-12 max-w-[800px]">
-          <h2 className="text-3xl font-bold text-white mb-3">
-            {t('root.exchanges.title')}
-          </h2>
-          <p className="text-[#bbbbbb] text-lg">
-            {t('root.exchanges.subtitle')}
-          </p>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 max-w-[1200px] w-full place-items-center">
-          {EXCHANGES.map((exchange) => (
-            <a
-              key={exchange.id}
-              className="flex items-center justify-center h-12 w-full px-4 transition-opacity duration-200 opacity-70 hover:opacity-100"
-              href={exchange.website}
-              target="_blank"
-              rel="nofollow noopener noreferrer"
-              title={exchange.name}
-            >
-              <img
-                src={getExchangeImage(exchange.image)}
-                alt={exchange.name}
-                className="max-h-full max-w-full object-contain"
-              />
-            </a>
-          ))}
+      <div className="w-full bg-gradient-to-b from-slate-900 via-gray-900 to-black py-32 px-5">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl font-bold text-white mb-6">
+              {t('root.exchanges.title')}
+            </h2>
+            <p className="text-l text-gray-400 max-w-[700px] mx-auto leading-relaxed">
+              {t('root.exchanges.subtitle')}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 max-w-[1300px] mx-auto">
+            {EXCHANGES.map((exchange) => (
+              <a
+                key={exchange.id}
+                className="flex items-center justify-center h-20 bg-white/5 border border-white/10 rounded-xl transition-colors duration-200 hover:bg-white/10 hover:border-white/20"
+                href={exchange.website}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                title={exchange.name}
+              >
+                <img
+                  src={getExchangeImage(exchange.image)}
+                  alt={exchange.name}
+                  className="max-h-8 max-w-[65%] object-contain opacity-70"
+                  loading="lazy"
+                />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </div>

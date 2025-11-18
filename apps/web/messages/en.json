@@ -13,7 +13,7 @@
     "dafButton": "Learn more",
     "exchanges": {
       "title": "Listed Exchanges",
-      "subtitle": "Hive is available at the top exchanges for your convenience."
+      "subtitle": "Trade HIVE on 40+ exchanges worldwide. Maximum liquidity, maximum accessibility."
     },
     "hbdTitle": "Hive Backed Dollar",
     "hbdText": "HBD is a USD-pegged algorithmic stablecoin backed by HIVE. We currently provide one of the highest interest rates in the crypto space for holding HBD in savings.",
@@ -23,11 +23,11 @@
     "fastText": "Transactions are processed and confirmed in 3 seconds. Hive is using OBI (one-block irreversibility) meaning that transactions become irreversible in less than 3 seconds. No need to wait for confirmations.",
     "fastButton": "Learn more",
     "feeTitle": "Fast with No Fees",
-    "feeText": "Built for people and communities, Hive technology has enjoyed 3 second transactions and zero gas fees for years. For the technically inclined, we're a Delegated Proof of Stake (DPoS) chain, allowing those who invest the most time and resources into Hive to realize the most value.",
-    "feeText2": "Fresh accounts by default have some free RC to help them start.",
+    "feeText": "Experience lightning-fast 3-second transactions with zero gas fees. Our Delegated Proof of Stake technology empowers users and communities, not intermediaries.",
+    "feeText2": "",
     "decTitle": "Decentralized",
     "decText": "Hive is one of the most decentralized blockchains. There is no single entity or organization that controlls the network. Everything is run by the community members.",
-    "decText2": "The initiative behind the creation of Hive was decentralization. The community came together to create something that can not be overtaken by the centralized entities.",
+    "decText2": "",
     "usernameTitle": "Readable Wallet Addresses",
     "usernameText": "Wallet addresses in Hive are easy to remember. They look and act just like usernames in traditional applications. In other words, a username is a wallet address and a social media handle at the same time."
   },

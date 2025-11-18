@@ -32,14 +32,14 @@ export const RootEco: React.FC<RootEcoProps> = ({ full = true, className, ...pro
   return (
     <div className={`flex flex-1 min-h-[550px] justify-center ${className || ''}`} {...props}>
       <ModalEco />
-      <div className="flex flex-row justify-between w-full items-center max-w-[920px] py-10 px-10 max-[700px]:flex-col-reverse max-[700px]:flex-wrap max-[700px]:py-[100px] max-[700px]:px-10">
-        <div className="max-w-[450px] w-full min-w-[250px] mr-[25px] max-[700px]:m-0 max-[700px]:text-center">
-          <h2 className="text-4xl font-bold">{t('root.ecoTitle')}</h2>
-          <p className="mt-2.5">
+      <div className="flex flex-row justify-between w-full items-center max-w-[1100px] gap-16 py-20 px-10 max-[900px]:flex-col-reverse max-[900px]:gap-12 max-[700px]:py-[100px]">
+        <div className="flex-1 max-w-[500px] max-[900px]:text-center">
+          <h2 className="text-4xl font-bold leading-tight mb-6 text-gray-900">{t('root.ecoTitle')}</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-6">
             {t('root.ecoText')}
           </p>
           <Button
-            className="min-w-[150px] w-fit text-base py-[15px] px-[26px] mt-[15px]"
+            className="min-w-[160px] text-base py-6 px-8 font-semibold max-[900px]:mx-auto"
             onClick={() => router.push('/eco')}
           >
             {t('root.ecoButton')}

@@ -7,6 +7,7 @@ import { Logo } from '@/components/logo/Logo';
 import { ScrollIndicator } from '@/components/ScrollIndicator';
 import { RootEco } from '@/components/root/RootEco';
 import { Infobar } from '@/components/infobar/Infobar';
+import { BlockObserver } from '@/components/BlockObserver';
 import { useAssets } from '@/hooks/useAssets';
 import { EXCHANGES } from '@/lib/data/var';
 
@@ -175,6 +176,9 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
+      {/* Live Block Observer */}
+      <BlockObserver />
     </div>
   );
 }

@@ -1,7 +1,7 @@
-import type { NextConfig } from "next";
-import createNextIntlPlugin from 'next-intl/plugin';
+import type {NextConfig} from 'next'
+import createNextIntlPlugin from 'next-intl/plugin'
 
-const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 const nextConfig: NextConfig = {
   // Static export configuration
@@ -14,6 +14,6 @@ const nextConfig: NextConfig = {
 
   // Add trailing slashes for better static hosting
   trailingSlash: true,
-};
+}
 
-export default withNextIntl(nextConfig);
+export default withNextIntl(nextConfig)

@@ -36,7 +36,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
       <div className="block relative z-100 select-none w-[33px] h-[22px]">
         <input
           type="checkbox"
-          onClick={onClick}
+          onChange={onClick}
           checked={isMobileActive}
           className="block w-10 h-8 absolute top-[-7px] left-[-5px] cursor-pointer opacity-0 z-101"
         />

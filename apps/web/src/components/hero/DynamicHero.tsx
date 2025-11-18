@@ -102,14 +102,14 @@ export function DynamicHero() {
       <div className="w-full max-w-2xl h-[480px]">
 
         {activities.length > 0 && (
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {activities.map((activity, index) => {
               const isAnimating = animatingIds.has(activity.id);
               const isFadingOut = index >= 4;
               return (
                 <div
                   key={activity.id}
-                  className={`bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 hover:bg-white hover:shadow-lg hover:border-gray-300 transition-all duration-500 ${isAnimating ? 'animate-slide-in-right' : ''
+                  className={`bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 ${isAnimating ? 'animate-slide-in-right' : ''
                     } ${isFadingOut ? 'opacity-0 translate-y-2 h-0 overflow-hidden' : 'opacity-100 translate-y-0'
                     }`}
                 >

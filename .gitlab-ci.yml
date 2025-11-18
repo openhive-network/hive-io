@@ -9,21 +9,26 @@ cache:
   untracked: true
   key: '$CI_PROJECT_ID'
   paths:
-    - node_modules/
-    - _site/vendor/
-    - .bundled/
-    - .npm/
+    - .pnpm-store/
+    - apps/web/node_modules/
+    - apps/web/.next/
+    - packages/hive-lib/node_modules/
+    - packages/hive-lib/dist/
 
 build:
   stage: build
+  before_script:
+    - corepack enable
+    - corepack prepare pnpm@latest --activate
+    - pnpm config set store-dir .pnpm-store
   script:
     - ls -l
-    - npm ci --cache .npm --prefer-offline
-    - npm run build
+    - pnpm install --frozen-lockfile
+    - pnpm build
     - echo "BUILD SUCCESSFULLY"
   artifacts:
     paths:
-      - out/
+      - apps/web/out/
     expire_in: 20 mins
   # environment:
   #   name: development
@@ -42,7 +47,7 @@ deploy_staging:
     - export DISTRIBUTION_ID=$DISTRIBUTION_ID
     - pip install awscli --upgrade --user
     - export PATH=~/.local/bin:$PATH
-    - aws s3 sync --acl public-read --delete out $S3_BUCKET_NAME_STAGING
+    - aws s3 sync --acl public-read --delete apps/web/out $S3_BUCKET_NAME_STAGING
     #- aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
     - echo "DEPLOYED SUCCESSFULLY TO STAGING"
   environment:
@@ -62,7 +67,7 @@ deploy_master:
     - export DISTRIBUTION_ID=$DISTRIBUTION_ID
     - pip install awscli --upgrade --user
     - export PATH=~/.local/bin:$PATH
-    - aws s3 sync --acl public-read --cache-control "max-age=2592000, public" --delete out $S3_BUCKET_NAME_PRODUCTION
+    - aws s3 sync --acl public-read --cache-control "max-age=2592000, public" --delete apps/web/out $S3_BUCKET_NAME_PRODUCTION
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
     - echo "DEPLOYED SUCCESSFULLY TO PRODUCTION"
   environment:

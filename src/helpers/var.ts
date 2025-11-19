@@ -9,7 +9,7 @@ export * from './contributors'
 export * from './updates'
 
 export const INFOBAR = {
-  show: true,
+  show: false,
   // date: '2020-09-10T00:00:00.000Z',
   date: '2025-11-19T13:00:00+00:00',
   url: 'https://peakd.com/hive-160391/@gtg/brace-yourself-hardfork-is-coming',

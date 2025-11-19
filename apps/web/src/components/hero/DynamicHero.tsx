@@ -261,7 +261,7 @@ export function DynamicHero() {
                 ? { opacity: isFadingOut ? 0 : 1, transform: baseTransform, top: 0, left: 0, right: 0 }
                 : hasFinishedAnimating
                   ? { opacity: 1, transform: baseTransform, top: 0, left: 0, right: 0 }
-                  : { opacity: 0, transform: `${baseTransform} translateX(20px)`, top: 0, left: 0, right: 0 };
+                  : { opacity: 0, transform: `${baseTransform} translateX(50px)`, top: 0, left: 0, right: 0 };
 
             // Log position changes
             const prevPosition = prevPositionsRef.current.get(activity.id);

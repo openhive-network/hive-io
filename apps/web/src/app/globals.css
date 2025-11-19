@@ -189,7 +189,7 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(var(--y-pos, 0px)) translateX(20px);
+    transform: translateY(var(--y-pos, 0px)) translateX(50px);
   }
   to {
     opacity: 1;
@@ -207,7 +207,7 @@
 }
 
 .animate-fade-in {
-  animation: fadeIn 1s ease-out;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .animate-scroll-left {

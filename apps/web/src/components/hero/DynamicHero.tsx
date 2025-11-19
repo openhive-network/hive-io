@@ -2,20 +2,43 @@
 
 import { useBlockchainActivity } from '@/hooks/useBlockchainActivity';
 import { formatTimeAgo } from '@hiveio/hive-lib';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export function DynamicHero() {
   const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const maxActivities = 4;
   const { activities, currentBlock, transactionCount } = useBlockchainActivity({
-    maxActivities: 4,
+    maxActivities,
     enabled: isVisible
   });
 
   const [animatingIds, setAnimatingIds] = useState<Set<string>>(new Set());
+  const [finishedAnimatingIds, setFinishedAnimatingIds] = useState<Set<string>>(new Set());
+  const [queuedIds, setQueuedIds] = useState<string[]>([]);
+  const [exitingIds, setExitingIds] = useState<Set<string>>(new Set());
   const prevActivitiesRef = useRef<Set<string>>(new Set());
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Handle animation completion
+  const handleAnimationEnd = useCallback((activityId: string, event: React.AnimationEvent) => {
+    if (event.animationName === 'fadeIn') {
+      console.log('✅ Animation complete:', activityId);
+
+      // Clear animating state
+      setAnimatingIds(new Set());
+
+      // Add to finished set
+      setFinishedAnimatingIds((prev) => new Set([...prev, activityId]));
+
+      // Remove from queue (next animation will be started by the queue effect)
+      setQueuedIds((prev) => {
+        const remaining = prev.slice(1);
+        console.log('📋 Queue remaining:', remaining.length);
+        return remaining;
+      });
+    }
+  }, []);
 
   // Observe visibility of the container
   useEffect(() => {
@@ -49,20 +72,19 @@ export function DynamicHero() {
     prevActivitiesRef.current = currentIds;
 
     if (newIds.length > 0) {
-      // Clear any existing timeout
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-
-      // Add new IDs to animating set
-      setAnimatingIds(new Set(newIds));
-
-      // Remove animation class after animation completes (300ms)
-      timeoutRef.current = setTimeout(() => {
-        setAnimatingIds(new Set());
-      }, 300);
+      console.log('➕ Adding to queue:', newIds);
+      setQueuedIds((prev) => [...prev, ...newIds]);
     }
   }, [activities]);
+
+  // Start first animation when queue goes from empty to having items
+  useEffect(() => {
+    if (queuedIds.length > 0 && animatingIds.size === 0) {
+      const firstId = queuedIds[0];
+      console.log('🎬 Starting animation:', firstId);
+      setAnimatingIds(new Set([firstId]));
+    }
+  }, [queuedIds, animatingIds]);
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4">
@@ -110,17 +132,20 @@ export function DynamicHero() {
       </div>
 
       {/* Live Activities Feed */}
-      <div ref={containerRef} className="w-full max-w-2xl h-[360px] overflow-hidden mb-[70px] relative">
+      <div ref={containerRef} className="w-full max-w-2xl h-[360px] mb-[70px] relative">
 
         <div className="space-y-2.5">
-          {[0, 1, 2, 3].map((index) => {
-            const activity = activities[index];
-            if (!activity) return null;
+          {activities.map((activity) => {
             const isAnimating = animatingIds.has(activity.id);
+            const hasFinishedAnimating = finishedAnimatingIds.has(activity.id);
+            // Only set opacity if not currently animating
+            const opacity = isAnimating ? undefined : (hasFinishedAnimating ? 1 : 0);
             return (
               <div
-                key={index}
+                key={activity.id}
+                style={{ opacity }}
                 className={`bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 ${isAnimating ? 'animate-fade-in' : ''}`}
+                onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
               >
                 <div className="flex items-center gap-4">
                   {activity.avatarUrl ? (

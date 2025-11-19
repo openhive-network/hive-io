@@ -29,7 +29,7 @@ interface UseBlockchainActivityResult {
 }
 
 // Animation constants
-const ANIMATION_BASE_DELAY = 700 // Base delay between activity animations (ms)
+const ANIMATION_BASE_DELAY = 1000 // Base delay between activity animations (ms)
 const ANIMATION_VARIATION = 0.2 // ±20% variation for natural feel
 const ANIMATION_MIN_DELAY = 500 // Minimum delay (ms)
 
@@ -133,10 +133,7 @@ export function useBlockchainActivity(
         // Calculate delay with variation for natural feel
         const variation =
           (Math.random() - 0.5) * ANIMATION_VARIATION * ANIMATION_BASE_DELAY
-        const delay = Math.max(
-          ANIMATION_MIN_DELAY,
-          ANIMATION_BASE_DELAY + variation,
-        )
+        const delay = ANIMATION_BASE_DELAY
 
         // Schedule next activity
         animationIntervalRef.current = setTimeout(displayNext, delay) as any

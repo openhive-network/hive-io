@@ -55,7 +55,8 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
     return (
       <div className={`py-[5px] px-[5px] ${className || ''}`} {...props}>
         <Button
-          className="min-w-[90px]"
+          size="lg"
+          className="min-w-[110px] bg-[#e31337] hover:bg-[#c11129] text-white font-semibold transition-colors duration-200 text-base"
           onClick={() => {
             go(to);
             handleClick();

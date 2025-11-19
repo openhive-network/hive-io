@@ -8,14 +8,31 @@ import { ScrollIndicator } from '@/components/ScrollIndicator';
 import { RootEco } from '@/components/root/RootEco';
 import { useAssets } from '@/hooks/useAssets';
 import { EXCHANGES } from '@/lib/data/var';
+import { useState, useRef, useEffect } from 'react';
 
 // Live Activity Components
 import { DynamicHero } from '@/components/hero/DynamicHero';
+
+interface MoneyParticle {
+  id: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  rotation: number;
+  rotationSpeed: number;
+}
 
 export default function HomePage() {
   const router = useRouter();
   const t = useTranslations();
   const { getImage } = useAssets();
+  const [particles, setParticles] = useState<MoneyParticle[]>([]);
+  const defiCardRef = useRef<HTMLDivElement>(null);
+  const particleIdRef = useRef(0);
+  const animationFrameRef = useRef<number>(null);
+  const isHoveringRef = useRef(false);
+  const lastParticleTimeRef = useRef(0);
 
   const go = (link: string) => {
     window.open(link, '_blank');
@@ -23,6 +40,62 @@ export default function HomePage() {
 
   const getExchangeImage = (image: string) => {
     return getImage(`exchanges/${image}`);
+  };
+
+  // Particle animation loop for DeFi card
+  useEffect(() => {
+    const animate = () => {
+      const updateParticles = (prev: MoneyParticle[]) => {
+        return prev
+          .map((p) => ({
+            ...p,
+            x: p.x + p.vx,
+            y: p.y + p.vy,
+            vy: p.vy + 0.5, // gravity
+            rotation: p.rotation + p.rotationSpeed,
+          }))
+          .filter((p) => p.y < window.innerHeight + 100); // remove off-screen particles
+      };
+
+      setParticles(updateParticles);
+
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    animate();
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
+
+  // Mouse move handler for DeFi card (HBD particles)
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isHoveringRef.current || !defiCardRef.current) return;
+
+    // Throttle particle creation - only create one every 50ms
+    const now = Date.now();
+    if (now - lastParticleTimeRef.current < 50) return;
+    lastParticleTimeRef.current = now;
+
+    // Create particle at cursor position
+    const newParticle: MoneyParticle = {
+      id: particleIdRef.current++,
+      x: e.clientX,
+      y: e.clientY,
+      vx: (Math.random() - 0.5) * 4,
+      vy: -Math.random() * 3 - 2,
+      rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 10,
+    };
+
+    setParticles((prev) => [...prev, newParticle]);
+
+    // Limit particles
+    if (particles.length > 40) {
+      setParticles((prev) => prev.slice(-40));
+    }
   };
 
   return (
@@ -75,7 +148,13 @@ export default function HomePage() {
             </div>
 
             {/* Feature 3: DeFi Made Simple */}
-            <div className="group bg-gradient-to-br from-emerald-50 to-teal-100 border-2 border-emerald-300 rounded-xl p-8 transition-all duration-300 hover:border-emerald-400">
+            <div
+              ref={defiCardRef}
+              className="group bg-gradient-to-br from-emerald-50 to-teal-100 border-2 border-emerald-300 rounded-xl p-8 transition-all duration-300 hover:border-emerald-400 relative overflow-hidden cursor-pointer"
+              onMouseEnter={() => { isHoveringRef.current = true; }}
+              onMouseLeave={() => { isHoveringRef.current = false; }}
+              onMouseMove={handleMouseMove}
+            >
               <div className="flex items-center justify-center w-20 h-20 mb-6 mx-auto">
                 <img className="w-full h-full object-contain" src={getImage('hbd.svg')} alt="HBD DeFi" />
               </div>
@@ -121,6 +200,29 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      {/* HBD Money Fountain Particles */}
+      {particles.map((particle) => (
+        <div
+          key={particle.id}
+          className="fixed pointer-events-none z-50"
+          style={{
+            left: `${particle.x}px`,
+            top: `${particle.y}px`,
+            transform: `translate(-50%, -50%) rotate(${particle.rotation}deg)`,
+            transition: 'none',
+          }}
+        >
+          <img
+            src={getImage('hbd.svg')}
+            alt="HBD"
+            className="w-8 h-8 opacity-80"
+            style={{
+              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
+            }}
+          />
+        </div>
+      ))}
     </div>
   );
 }

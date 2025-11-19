@@ -196,7 +196,6 @@ export function parseOperation(
 
       // Parse common custom_json operations
       if (data.id.startsWith('sm_')) {
-        console.log(data.id)
         // if (data.id.includes('delegate_cards')) {
         //   return {
         //     id,
@@ -250,8 +249,6 @@ export function parseOperation(
       }
     }
   }
-
-  console.log('Unparsed operation type:', opType, txId)
 
   return null
 }
@@ -524,10 +521,10 @@ export async function fetchBlockchainActivity(
 
       const block = result.block
 
-      console.log(
-        `Fetched block ${blockNum} with ${block.transactions.length} transactions.`,
-        block,
-      )
+      // console.log(
+      //   `Fetched block ${blockNum} with ${block.transactions.length} transactions.`,
+      //   block,
+      // )
 
       actualLatestBlock = blockNum
       latestTransactionCount = block.transactions.length

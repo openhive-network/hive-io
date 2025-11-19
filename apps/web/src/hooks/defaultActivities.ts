@@ -64,12 +64,10 @@ function generateRandomActivities(count: number): ActivityItem[] {
     // Use templates in order from shuffled array to ensure variety
     const template = shuffledTemplates[i % shuffledTemplates.length]
 
-    // Set timestamp to future to always show "just now"
-    const futureTimestamp = new Date()
-    futureTimestamp.setSeconds(futureTimestamp.getSeconds() + 60)
-
     // Generate a mock transaction ID for default activities
-    const mockTxId = `${Math.random().toString(16).substring(2, 10)}${Math.random().toString(16).substring(2, 34)}`
+    const mockTxId = `${Math.random()
+      .toString(16)
+      .substring(2, 10)}${Math.random().toString(16).substring(2, 34)}`
 
     activities.push({
       id: `default-${i}`,
@@ -77,7 +75,7 @@ function generateRandomActivities(count: number): ActivityItem[] {
       type: template.type,
       message: template.getMessage(username),
       user: username,
-      timestamp: futureTimestamp,
+      timestamp: new Date(),
       icon: template.icon,
       color: template.color,
       avatarUrl: `https://images.hive.blog/u/${username}/avatar/small`,
@@ -91,7 +89,7 @@ function generateRandomActivities(count: number): ActivityItem[] {
  * Get randomized default activities
  * Returns N random activities generated from contributors
  */
-export function getDefaultActivities(count: number = 5): ActivityItem[] {
+export function getDefaultActivities(count: number = 2): ActivityItem[] {
   return generateRandomActivities(count)
 }
 

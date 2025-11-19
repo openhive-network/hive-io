@@ -1,23 +1,45 @@
 'use client';
 
 import { useBlockchainActivity } from '@/hooks/useBlockchainActivity';
-import { formatTimeAgo } from '@hiveio/hive-lib';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export function DynamicHero() {
   const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const maxActivities = 4;
-  const { activities, currentBlock, transactionCount } = useBlockchainActivity({
+  const maxActivities = 4; // Change this to limit number of activities fetched
+  const LIMIT_TOTAL_ACTIVITIES = 0; // Set to 0 to disable - stops accepting new activities after this many
+
+  const seenActivitiesRef = useRef<Set<string>>(new Set());
+  const [shouldStopPolling, setShouldStopPolling] = useState(false);
+
+  const { activities: hookActivities, currentBlock, transactionCount } = useBlockchainActivity({
     maxActivities,
-    enabled: isVisible
+    enabled: true
   });
+
+  const activities = LIMIT_TOTAL_ACTIVITIES > 0
+    ? hookActivities.filter(activity => {
+      if (seenActivitiesRef.current.has(activity.id)) {
+        return true; // Keep already seen activities
+      }
+      if (seenActivitiesRef.current.size < LIMIT_TOTAL_ACTIVITIES) {
+        seenActivitiesRef.current.add(activity.id);
+        // Stop polling once we've reached the limit
+        if (seenActivitiesRef.current.size === LIMIT_TOTAL_ACTIVITIES) {
+          setShouldStopPolling(true);
+        }
+        return true;
+      }
+      return false; // Reject new activities once limit reached
+    })
+    : hookActivities;
 
   const [animatingIds, setAnimatingIds] = useState<Set<string>>(new Set());
   const [finishedAnimatingIds, setFinishedAnimatingIds] = useState<Set<string>>(new Set());
   const [queuedIds, setQueuedIds] = useState<string[]>([]);
   const [exitingActivities, setExitingActivities] = useState<typeof activities>([]);
+  const [fadingOutIds, setFadingOutIds] = useState<Set<string>>(new Set());
   const prevActivitiesRef = useRef<Set<string>>(new Set());
   const prevActivitiesArrayRef = useRef<typeof activities>([]);
   const prevPositionsRef = useRef<Map<string, number>>(new Map());
@@ -55,7 +77,12 @@ export function DynamicHero() {
         const isExiting = prev.some((a) => a.id === activityId);
         if (isExiting) {
           console.log('🚪 Exit complete:', activityId);
-          // Remove from exiting and finished
+          // Remove from exiting, fading, and finished
+          setFadingOutIds((prevFading) => {
+            const next = new Set(prevFading);
+            next.delete(activityId);
+            return next;
+          });
           setFinishedAnimatingIds((prevFinished) => {
             const next = new Set(prevFinished);
             next.delete(activityId);
@@ -132,6 +159,11 @@ export function DynamicHero() {
       // Get exiting activities from previous activities array (not current!)
       const exitingActsList = prevActivitiesArrayRef.current.filter((a) => exitIds.includes(a.id));
       setExitingActivities(exitingActsList);
+
+      // Trigger fade out after a tick to ensure transition happens
+      requestAnimationFrame(() => {
+        setFadingOutIds(new Set(exitIds));
+      });
     }
 
     if (newIds.length > 0) {
@@ -204,25 +236,29 @@ export function DynamicHero() {
       <div ref={containerRef} className="w-full max-w-2xl h-[360px] mb-[70px] relative">
 
         <div className="relative" style={{ minHeight: `${maxActivities * 100}px` }}>
-          {[...activities, ...exitingActivities].map((activity, index) => {
+          {[...exitingActivities, ...activities].map((activity, index) => {
             const isAnimating = animatingIds.has(activity.id);
             const hasFinishedAnimating = finishedAnimatingIds.has(activity.id);
             const isExiting = exitingActivities.some((a) => a.id === activity.id);
 
-            // Calculate position - exiting items go to bottom, animating items stay at top
-            const actualIndex = isExiting
-              ? activities.length
-              : isAnimating
-                ? 0  // Always position animating items at top
+            // Calculate position - animating items stay at top, exiting items keep their last position
+            const actualIndex = isAnimating
+              ? 0  // Always position animating items at top
+              : isExiting
+                ? prevPositionsRef.current.get(activity.id) !== undefined
+                  ? prevPositionsRef.current.get(activity.id)! / 90
+                  : activities.length
                 : activities.findIndex((a) => a.id === activity.id);
             const yPosition = actualIndex * 90; // 80px height + 10px gap
 
             // Set opacity and transform for animations
             const baseTransform = `translateY(${yPosition}px)`;
+            const isFadingOut = fadingOutIds.has(activity.id);
+
             const style = isAnimating
               ? { '--y-pos': `${yPosition}px`, top: 0, left: 0, right: 0 } as React.CSSProperties
               : isExiting
-                ? { opacity: 0, transform: `${baseTransform} translateX(-100%)`, top: 0, left: 0, right: 0 }
+                ? { opacity: isFadingOut ? 0 : 1, transform: baseTransform, top: 0, left: 0, right: 0 }
                 : hasFinishedAnimating
                   ? { opacity: 1, transform: baseTransform, top: 0, left: 0, right: 0 }
                   : { opacity: 0, transform: `${baseTransform} translateX(20px)`, top: 0, left: 0, right: 0 };
@@ -247,7 +283,7 @@ export function DynamicHero() {
               <div
                 key={activity.id}
                 style={style}
-                className={`absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-300 ${isAnimating ? 'animate-fade-in' : ''}`}
+                className={`absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 ${isAnimating ? 'animate-fade-in' : ''}`}
                 onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
                 onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
               >
@@ -264,9 +300,6 @@ export function DynamicHero() {
                   <div className="flex-1 min-w-0">
                     <p className={`text-sm font-semibold ${activity.color} truncate`}>
                       {activity.message}
-                    </p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {formatTimeAgo(activity.timestamp)}
                     </p>
                   </div>
                   {activity.txId && (

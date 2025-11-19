@@ -30,7 +30,7 @@ export default function HomePage() {
   const [particles, setParticles] = useState<MoneyParticle[]>([]);
   const defiCardRef = useRef<HTMLDivElement>(null);
   const particleIdRef = useRef(0);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number>(null);
   const isHoveringRef = useRef(false);
   const lastParticleTimeRef = useRef(0);
 

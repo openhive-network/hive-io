@@ -311,6 +311,14 @@ export const CONTRIBUTORS: IContributor[] = [
     },
     labels: [ContributorLabel.developer, ContributorLabel.blockProducer],
   },
+  {
+    id: 'borislavzlatanov',
+    name: 'Borislav Zlatanov',
+    social: {
+      hive: 'borislavzlatanov',
+    },
+    labels: [ContributorLabel.developer, ContributorLabel.blockProducer],
+  },
 ]
 
 export const CONTRIBUTOR_LABELS = {

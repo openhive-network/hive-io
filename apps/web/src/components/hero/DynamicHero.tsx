@@ -17,25 +17,53 @@ export function DynamicHero() {
   const [animatingIds, setAnimatingIds] = useState<Set<string>>(new Set());
   const [finishedAnimatingIds, setFinishedAnimatingIds] = useState<Set<string>>(new Set());
   const [queuedIds, setQueuedIds] = useState<string[]>([]);
-  const [exitingIds, setExitingIds] = useState<Set<string>>(new Set());
+  const [exitingActivities, setExitingActivities] = useState<typeof activities>([]);
   const prevActivitiesRef = useRef<Set<string>>(new Set());
+  const prevActivitiesArrayRef = useRef<typeof activities>([]);
+  const prevPositionsRef = useRef<Map<string, number>>(new Map());
 
   // Handle animation completion
   const handleAnimationEnd = useCallback((activityId: string, event: React.AnimationEvent) => {
     if (event.animationName === 'fadeIn') {
-      console.log('✅ Animation complete:', activityId);
+      console.log('✅ Animation complete:', activityId.substring(0, 10));
 
       // Clear animating state
       setAnimatingIds(new Set());
 
-      // Add to finished set
-      setFinishedAnimatingIds((prev) => new Set([...prev, activityId]));
+      // Add to finished set (keep only last 5)
+      setFinishedAnimatingIds((prev) => {
+        const arr = [...prev, activityId];
+        const updated = new Set(arr.slice(-5)); // Keep only last 5
+        console.log('   Updated finishedAnimatingIds:', Array.from(updated).map(id => id.substring(0, 10)));
+        return updated;
+      });
 
       // Remove from queue (next animation will be started by the queue effect)
       setQueuedIds((prev) => {
         const remaining = prev.slice(1);
-        console.log('📋 Queue remaining:', remaining.length);
+        console.log('   Queue remaining:', remaining.length);
         return remaining;
+      });
+    }
+  }, []);
+
+  // Handle transition end for exit animations
+  const handleTransitionEnd = useCallback((activityId: string, event: React.TransitionEvent) => {
+    if (event.propertyName === 'opacity') {
+      // Check if this is an exiting activity
+      setExitingActivities((prev) => {
+        const isExiting = prev.some((a) => a.id === activityId);
+        if (isExiting) {
+          console.log('🚪 Exit complete:', activityId);
+          // Remove from exiting and finished
+          setFinishedAnimatingIds((prevFinished) => {
+            const next = new Set(prevFinished);
+            next.delete(activityId);
+            return next;
+          });
+          return prev.filter((a) => a.id !== activityId);
+        }
+        return prev;
       });
     }
   }, []);
@@ -44,7 +72,19 @@ export function DynamicHero() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        const wasVisible = isVisible;
+        const nowVisible = entry.isIntersecting;
+        setIsVisible(nowVisible);
+
+        // If becoming visible after being hidden, reset animation state
+        if (!wasVisible && nowVisible) {
+          console.log('🔄 Visibility restored, clearing queue');
+          setQueuedIds([]);
+          setAnimatingIds(new Set());
+          setExitingActivities([]);
+          // Mark all current activities as finished
+          setFinishedAnimatingIds(new Set(activities.map((a) => a.id)));
+        }
       },
       { threshold: 0.1 } // Trigger when at least 10% is visible
     );
@@ -58,7 +98,23 @@ export function DynamicHero() {
         observer.unobserve(containerRef.current);
       }
     };
-  }, []);
+  }, [isVisible, activities]);
+
+  // Handle tab visibility changes
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        console.log('🔄 Tab visible, clearing queue');
+        setQueuedIds([]);
+        setAnimatingIds(new Set());
+        setExitingActivities([]);
+        setFinishedAnimatingIds(new Set(activities.map((a) => a.id)));
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [activities]);
 
   // Detect new activities and mark them for animation
   useEffect(() => {
@@ -68,13 +124,24 @@ export function DynamicHero() {
     // Find truly new IDs that weren't in the previous set
     const newIds = Array.from(currentIds).filter((id) => !prevIds.has(id));
 
-    // Update previous activities reference first
-    prevActivitiesRef.current = currentIds;
+    // Find IDs that are leaving (were in prev but not in current)
+    const exitIds = Array.from(prevIds).filter((id) => !currentIds.has(id));
+
+    if (exitIds.length > 0) {
+      console.log('🚪 Exiting:', exitIds);
+      // Get exiting activities from previous activities array (not current!)
+      const exitingActsList = prevActivitiesArrayRef.current.filter((a) => exitIds.includes(a.id));
+      setExitingActivities(exitingActsList);
+    }
 
     if (newIds.length > 0) {
       console.log('➕ Adding to queue:', newIds);
       setQueuedIds((prev) => [...prev, ...newIds]);
     }
+
+    // Update refs with current state
+    prevActivitiesRef.current = currentIds;
+    prevActivitiesArrayRef.current = activities;
   }, [activities]);
 
   // Start first animation when queue goes from empty to having items
@@ -82,9 +149,11 @@ export function DynamicHero() {
     if (queuedIds.length > 0 && animatingIds.size === 0) {
       const firstId = queuedIds[0];
       console.log('🎬 Starting animation:', firstId);
+      console.log('   Current activities:', activities.map(a => a.id.substring(0, 10)));
+      console.log('   finishedAnimatingIds:', Array.from(finishedAnimatingIds).map(id => id.substring(0, 10)));
       setAnimatingIds(new Set([firstId]));
     }
-  }, [queuedIds, animatingIds]);
+  }, [queuedIds, animatingIds, activities, finishedAnimatingIds]);
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4">
@@ -134,18 +203,53 @@ export function DynamicHero() {
       {/* Live Activities Feed */}
       <div ref={containerRef} className="w-full max-w-2xl h-[360px] mb-[70px] relative">
 
-        <div className="space-y-2.5">
-          {activities.map((activity) => {
+        <div className="relative" style={{ minHeight: `${maxActivities * 100}px` }}>
+          {[...activities, ...exitingActivities].map((activity, index) => {
             const isAnimating = animatingIds.has(activity.id);
             const hasFinishedAnimating = finishedAnimatingIds.has(activity.id);
-            // Only set opacity if not currently animating
-            const opacity = isAnimating ? undefined : (hasFinishedAnimating ? 1 : 0);
+            const isExiting = exitingActivities.some((a) => a.id === activity.id);
+
+            // Calculate position - exiting items go to bottom, animating items stay at top
+            const actualIndex = isExiting
+              ? activities.length
+              : isAnimating
+                ? 0  // Always position animating items at top
+                : activities.findIndex((a) => a.id === activity.id);
+            const yPosition = actualIndex * 90; // 80px height + 10px gap
+
+            // Set opacity and transform for animations
+            const baseTransform = `translateY(${yPosition}px)`;
+            const style = isAnimating
+              ? { '--y-pos': `${yPosition}px`, top: 0, left: 0, right: 0 } as React.CSSProperties
+              : isExiting
+                ? { opacity: 0, transform: `${baseTransform} translateX(-100%)`, top: 0, left: 0, right: 0 }
+                : hasFinishedAnimating
+                  ? { opacity: 1, transform: baseTransform, top: 0, left: 0, right: 0 }
+                  : { opacity: 0, transform: `${baseTransform} translateX(20px)`, top: 0, left: 0, right: 0 };
+
+            // Log position changes
+            const prevPosition = prevPositionsRef.current.get(activity.id);
+            if (prevPosition !== yPosition) {
+              console.log(`📐 ${activity.id.substring(0, 10)}:`, {
+                prevPos: prevPosition ?? 'new',
+                newPos: yPosition,
+                actualIndex,
+                isAnimating,
+                hasFinishedAnimating,
+                isExiting,
+                activitiesArray: activities.map(a => a.id.substring(0, 10)),
+                transform: isAnimating ? `var(--y-pos: ${yPosition}px)` : style.transform
+              });
+              prevPositionsRef.current.set(activity.id, yPosition);
+            }
+
             return (
               <div
                 key={activity.id}
-                style={{ opacity }}
-                className={`bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 ${isAnimating ? 'animate-fade-in' : ''}`}
+                style={style}
+                className={`absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-300 ${isAnimating ? 'animate-fade-in' : ''}`}
                 onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
+                onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
               >
                 <div className="flex items-center gap-4">
                   {activity.avatarUrl ? (

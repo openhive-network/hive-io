@@ -16,7 +16,6 @@ interface UseBlockchainActivityOptions {
   maxActivities: number
   updateInterval: number
   enabled: boolean
-  animationDelay: number
   paused?: boolean
 }
 
@@ -26,7 +25,6 @@ interface UseBlockchainActivityResult {
   error: string | null
   currentBlock: number
   blockTimestamp: string
-  isNewBlock: boolean
   transactionCount: number
   reset: () => void
 }
@@ -42,7 +40,6 @@ export function useBlockchainActivity(
     maxActivities,
     updateInterval,
     enabled,
-    animationDelay,
     paused = false,
   } = options
 
@@ -51,15 +48,12 @@ export function useBlockchainActivity(
   const [error, setError] = useState<string | null>(null)
   const [currentBlock, setCurrentBlock] = useState(DEFAULT_BLOCK)
   const [blockTimestamp, setBlockTimestamp] = useState('')
-  const [isNewBlock, setIsNewBlock] = useState(false)
   const [transactionCount, setTransactionCount] = useState(DEFAULT_TX_COUNT)
 
   const lastBlockRef = useRef(0)
   const activitiesPoolRef = useRef<ActivityItem[]>([])
   const displayedActivitiesRef = useRef<ActivityItem[]>([])
-  const currentIntervalRef = useRef(updateInterval)
   const intervalIdRef = useRef<NodeJS.Timeout | null>(null)
-  const isInitialLoadRef = useRef(true)
   const pendingActivitiesRef = useRef<ActivityItem[]>([])
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const hasInitializedRef = useRef(false)
@@ -82,11 +76,11 @@ export function useBlockchainActivity(
   }
 
   /**
-   * Display activities one at a time with animation
+   * Queue activities for display
    * Maintains backup queue with large capacity for continuous flow
    * Prioritizes optimal activities by re-filtering the queue
    */
-  const displayActivitiesSmooth = useCallback(
+  const queueActivities = useCallback(
     (newActivities: ActivityItem[]) => {
       if (newActivities.length === 0) return
 
@@ -109,11 +103,11 @@ export function useBlockchainActivity(
         return
       }
 
-      // Start animation loop
-      const displayNext = async () => {
+      // Process queue - push activities to state
+      const processQueue = async () => {
         // If paused, check again after a short delay
         if (pausedRef.current) {
-          animationIntervalRef.current = setTimeout(displayNext, 100)
+          animationIntervalRef.current = setTimeout(processQueue, 100)
           return
         }
 
@@ -141,13 +135,13 @@ export function useBlockchainActivity(
         setActivities([...displayedActivitiesRef.current])
 
         // Schedule next activity
-        animationIntervalRef.current = setTimeout(displayNext, animationDelay)
+        animationIntervalRef.current = setTimeout(processQueue, 10)
       }
 
-      // Start displaying
-      void displayNext()
+      // Start processing
+      void processQueue()
     },
-    [maxActivities, animationDelay],
+    [maxActivities],
   )
 
   /**
@@ -167,12 +161,6 @@ export function useBlockchainActivity(
         3, // max 3 blocks per fetch
       )
 
-      // Detect new block for animation
-      if (lastBlockRef.current > 0 && latestBlock > lastBlockRef.current) {
-        setIsNewBlock(true)
-        setTimeout(() => setIsNewBlock(false), 500)
-      }
-
       // On first fetch from default block, show latestBlock - 1 for display
       const displayBlock =
         currentBlock === DEFAULT_BLOCK ? latestBlock - 1 : latestBlock
@@ -189,9 +177,6 @@ export function useBlockchainActivity(
           ...newActivities,
           ...activitiesPoolRef.current,
         ].slice(0, maxActivities * 3)
-
-        // Mark initial load as complete
-        isInitialLoadRef.current = false
 
         // Filter to get optimal activities from the pool
         const optimalActivities = filterOptimalActivities(
@@ -211,7 +196,7 @@ export function useBlockchainActivity(
 
         // Add new activities to backup queue for continuous animation
         if (activitiesToQueue.length > 0) {
-          displayActivitiesSmooth(activitiesToQueue)
+          queueActivities(activitiesToQueue)
         }
       }
 
@@ -224,7 +209,7 @@ export function useBlockchainActivity(
       setError(err instanceof Error ? err.message : 'Unknown error')
       setIsLoading(false)
     }
-  }, [enabled, maxActivities, updateInterval, displayActivitiesSmooth])
+  }, [enabled, maxActivities, updateInterval, queueActivities])
 
   /**
    * Fetch initial block number immediately on mount
@@ -262,7 +247,7 @@ export function useBlockchainActivity(
     // Load default activities immediately on mount
     const defaultActivities = getDefaultActivities()
     // Start displaying them right away, no delay
-    displayActivitiesSmooth(defaultActivities)
+    queueActivities(defaultActivities)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -278,7 +263,6 @@ export function useBlockchainActivity(
       void fetchActivity()
 
       // Set up polling interval after first fetch
-      currentIntervalRef.current = updateInterval
       intervalIdRef.current = setInterval(() => {
         void fetchActivity()
       }, updateInterval)
@@ -324,7 +308,6 @@ export function useBlockchainActivity(
     activitiesPoolRef.current = []
     displayedActivitiesRef.current = []
     pendingActivitiesRef.current = []
-    isInitialLoadRef.current = true
 
     // Reset state to empty first
     setActivities([])
@@ -359,7 +342,7 @@ export function useBlockchainActivity(
         initialActivities = getDefaultActivities()
       }
 
-      displayActivitiesSmooth(initialActivities)
+      queueActivities(initialActivities)
 
       // Restart polling after additional delay
       setTimeout(() => {
@@ -369,7 +352,7 @@ export function useBlockchainActivity(
         }, updateInterval)
       }, 3000)
     }, 50)
-  }, [displayActivitiesSmooth, fetchActivity, updateInterval])
+  }, [queueActivities, fetchActivity, updateInterval])
 
   return {
     activities,
@@ -377,7 +360,6 @@ export function useBlockchainActivity(
     error,
     currentBlock,
     blockTimestamp,
-    isNewBlock,
     transactionCount,
     reset,
   }

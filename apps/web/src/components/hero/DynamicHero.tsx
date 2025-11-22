@@ -39,7 +39,6 @@ export function DynamicHero() {
     maxActivities,
     updateInterval: 3000,
     enabled: true,
-    animationDelay: ANIMATION_DELAY,
     paused: isHoveringFeed,
   });
 
@@ -73,13 +72,17 @@ export function DynamicHero() {
   isTabHiddenRef.current = isTabHidden; // Keep ref in sync for callbacks
   const displayedActivitiesRef = useRef(displayedActivities);
   displayedActivitiesRef.current = displayedActivities; // Always keep ref in sync
-  const prevActivitiesRef = useRef<Set<string>>(new Set());
   const prevPositionsRef = useRef<Map<string, number>>(new Map());
+  const lastAnimationEndRef = useRef<number>(0);
+  const cooldownTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Handle animation completion
   const handleAnimationEnd = useCallback((activityId: string, event: React.AnimationEvent) => {
     if (event.animationName === 'fadeIn') {
       console.log('✅ Animation complete:', activityId.substring(0, 10));
+
+      // Record when animation ended for cooldown calculation
+      lastAnimationEndRef.current = Date.now();
 
       // Clear animating state
       setAnimatingIds(new Set());
@@ -177,47 +180,82 @@ export function DynamicHero() {
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [animatingIds.size]);
 
-  // Sync displayedActivities with activities from hook
-  // New activities are added, removed activities are marked for fading
+  // Cleanup cooldown timer on unmount
   useEffect(() => {
-    const currentIds = new Set(activities.map((a) => a.id));
-    const prevIds = prevActivitiesRef.current;
+    return () => {
+      if (cooldownTimerRef.current) {
+        clearTimeout(cooldownTimerRef.current);
+      }
+    };
+  }, []);
 
-    // Find truly new IDs that weren't in the previous set
-    const newIds = Array.from(currentIds).filter((id) => !prevIds.has(id));
+  // Handle activities leaving (fading out)
+  // Only exit when we're over capacity and no animation is in progress
+  useEffect(() => {
+    // Don't exit while an animation is running
+    if (animatingIds.size > 0) return;
 
-    // Find IDs that are leaving (were in prev but not in current)
-    const exitIds = Array.from(prevIds).filter((id) => !currentIds.has(id));
+    // Count non-fading activities
+    const activeCount = displayedActivities.filter(a => !fadingOutIds.has(a.id)).length;
 
-    if (exitIds.length > 0) {
-      console.log('🚪 Exiting:', exitIds);
-      // Mark these IDs for fading out - they stay in displayedActivities
-      setFadingOutIds((prev) => new Set([...prev, ...exitIds]));
+    // Only exit if we're over max capacity
+    if (activeCount > maxActivities) {
+      // Exit the last (oldest) non-fading activity
+      const nonFadingActivities = displayedActivities.filter(a => !fadingOutIds.has(a.id));
+      const oldestActivity = nonFadingActivities[nonFadingActivities.length - 1];
+
+      if (oldestActivity) {
+        console.log('🚪 Exiting oldest:', oldestActivity.id.substring(0, 10));
+        setFadingOutIds((prev) => new Set([...prev, oldestActivity.id]));
+      }
+    }
+  }, [displayedActivities, fadingOutIds, animatingIds, maxActivities]);
+
+  // Start animation when queue has items, or pick up pending activities when queue is empty
+  useEffect(() => {
+    // Clear any existing cooldown timer when effect runs
+    if (cooldownTimerRef.current) {
+      clearTimeout(cooldownTimerRef.current);
+      cooldownTimerRef.current = null;
     }
 
-    if (newIds.length > 0) {
-      console.log('➕ Adding to queue:', newIds);
-      setQueuedIds((prev) => [...prev, ...newIds]);
-
-      // Add new activities to displayed list (at the front)
-      const newActivities = activities.filter((a) => newIds.includes(a.id));
-      setDisplayedActivities((prev) => [...newActivities, ...prev]);
-    }
-
-    // Update ref with current state
-    prevActivitiesRef.current = currentIds;
-  }, [activities]);
-
-  // Start first animation when queue goes from empty to having items
-  useEffect(() => {
     if (queuedIds.length > 0 && animatingIds.size === 0) {
+      // Queue has an item ready - start its animation
       const firstId = queuedIds[0];
       console.log('🎬 Starting animation:', firstId);
       console.log('   Current displayedActivities:', displayedActivities.map(a => a.id.substring(0, 10)));
       console.log('   finishedAnimatingIds:', Array.from(finishedAnimatingIds).map(id => id.substring(0, 10)));
       setAnimatingIds(new Set([firstId]));
+    } else if (queuedIds.length === 0 && animatingIds.size === 0 && !isHoveringFeed) {
+      // Queue is empty and no animation running - check for pending activities
+      const displayedIds = new Set(displayedActivities.map(a => a.id));
+      const pendingActivities = activities.filter(a => !displayedIds.has(a.id));
+
+      if (pendingActivities.length > 0) {
+        // Check cooldown: wait 1300ms after animation ends (500ms CSS + 1300ms = 1800ms total)
+        const CSS_ANIMATION_DURATION = 500;
+        const cooldownNeeded = ANIMATION_DELAY - CSS_ANIMATION_DURATION; // 1300ms
+        const timeSinceLastAnimation = Date.now() - lastAnimationEndRef.current;
+
+        if (lastAnimationEndRef.current > 0 && timeSinceLastAnimation < cooldownNeeded) {
+          // Not enough time passed - schedule a re-check
+          const remainingCooldown = cooldownNeeded - timeSinceLastAnimation;
+          console.log(`⏳ Cooldown: waiting ${remainingCooldown}ms before next animation`);
+          cooldownTimerRef.current = setTimeout(() => {
+            // Force re-render to trigger this effect again
+            setQueuedIds(prev => [...prev]);
+          }, remainingCooldown);
+          return;
+        }
+
+        // Cooldown complete - queue the first pending activity
+        const nextActivity = pendingActivities[0];
+        console.log('➕ Picking up pending activity:', nextActivity.id.substring(0, 10));
+        setQueuedIds([nextActivity.id]);
+        setDisplayedActivities(prev => [nextActivity, ...prev]);
+      }
     }
-  }, [queuedIds, animatingIds, displayedActivities, finishedAnimatingIds]);
+  }, [queuedIds, animatingIds, displayedActivities, finishedAnimatingIds, activities, isHoveringFeed]);
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-6xl max-[600px]:px-1 mx-auto px-4">

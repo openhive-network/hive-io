@@ -27,6 +27,7 @@ interface UseBlockchainActivityResult {
   blockTimestamp: string
   isNewBlock: boolean
   transactionCount: number
+  reset: () => void
 }
 
 /**
@@ -285,6 +286,79 @@ export function useBlockchainActivity(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled])
 
+  /**
+   * Reset everything and start fresh (like a page reload)
+   */
+  const reset = useCallback(() => {
+    console.log('🔄 Resetting blockchain activity hook')
+
+    // Save activities from pool before clearing (if we have any)
+    // These are real blockchain activities from the last known block
+    const savedPoolActivities = [...activitiesPoolRef.current]
+    const savedBlock = lastBlockRef.current
+
+    // Clear all timers
+    if (intervalIdRef.current) {
+      clearInterval(intervalIdRef.current)
+      intervalIdRef.current = null
+    }
+    if (animationIntervalRef.current) {
+      clearTimeout(animationIntervalRef.current)
+      animationIntervalRef.current = null
+    }
+
+    // Reset all refs
+    lastBlockRef.current = 0
+    activitiesPoolRef.current = []
+    displayedActivitiesRef.current = []
+    pendingActivitiesRef.current = []
+    isInitialLoadRef.current = true
+
+    // Reset state to empty first
+    setActivities([])
+    setCurrentBlock(DEFAULT_BLOCK)
+    setTransactionCount(DEFAULT_TX_COUNT)
+    setIsLoading(true)
+    setError(null)
+
+    // Use setTimeout to ensure state is cleared before adding new activities
+    setTimeout(() => {
+      // Use saved pool activities if we have any, otherwise fall back to hardcoded defaults
+      let initialActivities
+      if (savedPoolActivities.length > 0) {
+        console.log(
+          '📦 Using saved pool activities for reset:',
+          savedPoolActivities.length,
+        )
+        // Re-filter to get optimal selection and assign new IDs to avoid conflicts
+        initialActivities = filterOptimalActivities(savedPoolActivities, 4).map(
+          (activity, index) => ({
+            ...activity,
+            id: `reset-${Date.now()}-${index}`,
+          }),
+        )
+        // Restore the last known block number so we continue from there
+        if (savedBlock > 0) {
+          lastBlockRef.current = savedBlock
+          setCurrentBlock(savedBlock)
+        }
+      } else {
+        console.log('📦 Using hardcoded default activities for reset')
+        initialActivities = getDefaultActivities()
+      }
+
+      displayActivitiesSmooth(initialActivities)
+
+      // Restart polling after additional delay
+      setTimeout(() => {
+        void fetchActivity()
+        intervalIdRef.current = setInterval(() => {
+          void fetchActivity()
+        }, updateInterval)
+      }, 3000)
+    }, 50)
+  }, [displayActivitiesSmooth, fetchActivity, updateInterval])
+
   return {
     activities,
     isLoading,
@@ -293,5 +367,6 @@ export function useBlockchainActivity(
     blockTimestamp,
     isNewBlock,
     transactionCount,
+    reset,
   }
 }

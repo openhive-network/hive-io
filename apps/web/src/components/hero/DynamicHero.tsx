@@ -34,7 +34,7 @@ export function DynamicHero() {
   const seenActivitiesRef = useRef<Set<string>>(new Set());
   const [shouldStopPolling, setShouldStopPolling] = useState(false);
 
-  const { activities: hookActivities, currentBlock, transactionCount } = useBlockchainActivity({
+  const { activities: hookActivities, currentBlock, transactionCount, reset: resetHook } = useBlockchainActivity({
     maxActivities,
     updateInterval: 3000,
     enabled: true,
@@ -63,6 +63,8 @@ export function DynamicHero() {
   const [queuedIds, setQueuedIds] = useState<string[]>([]);
   const [fadingOutIds, setFadingOutIds] = useState<Set<string>>(new Set());
   const [displayedActivities, setDisplayedActivities] = useState<typeof activities>([]);
+  const displayedActivitiesRef = useRef(displayedActivities);
+  displayedActivitiesRef.current = displayedActivities; // Always keep ref in sync
   const prevActivitiesRef = useRef<Set<string>>(new Set());
   const prevPositionsRef = useRef<Map<string, number>>(new Map());
 
@@ -110,23 +112,11 @@ export function DynamicHero() {
     }
   }, [fadingOutIds]);
 
-  // Observe visibility of the container
+  // Observe visibility of the container (for scroll-based visibility)
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        const wasVisible = isVisible;
-        const nowVisible = entry.isIntersecting;
-        setIsVisible(nowVisible);
-
-        // If becoming visible after being hidden, reset animation state
-        if (!wasVisible && nowVisible) {
-          console.log('🔄 Visibility restored, clearing queue');
-          setQueuedIds([]);
-          setAnimatingIds(new Set());
-          setFadingOutIds(new Set());
-          // Mark all current activities as finished
-          setFinishedAnimatingIds(new Set(displayedActivities.map((a) => a.id)));
-        }
+        setIsVisible(entry.isIntersecting);
       },
       { threshold: 0.1 } // Trigger when at least 10% is visible
     );
@@ -140,23 +130,29 @@ export function DynamicHero() {
         observer.unobserve(containerRef.current);
       }
     };
-  }, [isVisible, displayedActivities]);
+  }, []);
 
-  // Handle tab visibility changes
+  // Handle tab visibility changes - reset everything when tab becomes visible
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
-        console.log('🔄 Tab visible, clearing queue');
+        console.log('🔄 Tab visible, resetting everything');
+        // Reset local state
         setQueuedIds([]);
         setAnimatingIds(new Set());
         setFadingOutIds(new Set());
-        setFinishedAnimatingIds(new Set(displayedActivities.map((a) => a.id)));
+        setFinishedAnimatingIds(new Set());
+        setDisplayedActivities([]);
+        prevActivitiesRef.current = new Set();
+        prevPositionsRef.current = new Map();
+        // Reset the hook to start fresh
+        resetHook();
       }
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [displayedActivities]);
+  }, [resetHook]);
 
   // Sync displayedActivities with activities from hook
   // New activities are added, removed activities are marked for fading
@@ -246,9 +242,10 @@ export function DynamicHero() {
       </div>
 
       {/* Live Activities Feed */}
+      {/* Height: min 4 activities (360px) on mobile, up to 6 (540px) on desktop based on viewport */}
       <div
         ref={containerRef}
-        className="w-full max-w-2xl relative mb-[50px] min-h-[min(540px,calc(100vh-520px))]"
+        className="w-full max-w-2xl relative mb-[50px] min-h-[360px] md:min-h-[min(540px,max(360px,calc(100vh-520px)))]"
       >
 
         <div className="relative">
@@ -302,15 +299,14 @@ export function DynamicHero() {
                 onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
               >
                 <div className="flex items-center gap-4">
-                  {activity.avatarUrl ? (
-                    <img
-                      src={activity.avatarUrl}
-                      alt={activity.user || 'User'}
-                      className="w-12 h-12 rounded-full flex-shrink-0 bg-gray-200 object-cover ring-2 ring-white"
-                    />
-                  ) : (
-                    <span className="text-2xl flex-shrink-0">{activity.icon}</span>
-                  )}
+                  <img
+                    src={activity.avatarUrl || 'https://images.hive.blog/u/null/avatar/small'}
+                    alt={activity.user || 'User'}
+                    className="w-12 h-12 rounded-full shrink-0 bg-gray-300 object-cover ring-2 ring-white"
+                    onError={(e) => {
+                      e.currentTarget.src = 'https://images.hive.blog/u/null/avatar/small';
+                    }}
+                  />
                   <div className="flex-1 min-w-0">
                     <p className={`text-sm font-semibold ${activity.color} truncate`}>
                       {activity.message}

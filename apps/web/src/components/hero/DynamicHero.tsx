@@ -1,6 +1,7 @@
 'use client';
 
 import { useBlockchainActivity } from '@/hooks/useBlockchainActivity';
+import { Link } from '@/i18n/routing';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 // Calculate max activities based on screen dimensions
@@ -23,7 +24,7 @@ export function DynamicHero() {
   const [maxActivities, setMaxActivities] = useState(() => calculateMaxActivities());
 
   const LIMIT_TOTAL_ACTIVITIES = 0; // Set to 0 to disable - stops accepting new activities after this many
-  const ANIMATION_DELAY = 1800; // Delay between activity animations (ms)
+  const ANIMATION_DELAY = 1300; // Delay between activity animations (ms)
 
   // Calculate maxActivities once on mount (no resize updates to avoid layout shifts)
   useEffect(() => {
@@ -267,10 +268,30 @@ export function DynamicHero() {
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 max-[600px]:text-2xl">
           Web3 Becomes Reality
         </h2>
-        <p className="text-lg md:text-xl text-gray-600 mt-8 mb-16 max-w-[600px] mx-auto max-[600px]:text-base max-[600px]:mb-10">
+        <p className="text-lg md:text-xl text-gray-600 mt-8 mb-8 max-w-[600px] mx-auto max-[600px]:text-base max-[600px]:mb-6">
           Built by the community, for the community. Experience the power of Hive, the
           decentralized blockchain that puts you in control.
         </p>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-16 max-[600px]:mb-10">
+          <a
+            href="https://developers.hive.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3 bg-[#e31337] text-white font-semibold rounded-lg hover:bg-[#c41230] transition-colors duration-200 text-lg max-[600px]:text-base max-[600px]:px-6 max-[600px]:py-2.5"
+          >
+            Start Building
+          </a>
+          <a
+            href="https://peakd.com/trending"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-[#e31337] hover:text-[#e31337] transition-colors duration-200 text-lg max-[600px]:text-base max-[600px]:px-6 max-[600px]:py-2.5"
+          >
+            Explore
+          </a>
+        </div>
       </div>
 
       {/* Live Block Number - Subtle */}

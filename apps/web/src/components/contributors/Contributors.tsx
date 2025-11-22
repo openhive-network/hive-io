@@ -106,7 +106,7 @@ export const Contributors: React.FC<ContributorsProps> = ({ full = true }) => {
       </div>
 
       {/* Contributors Grid */}
-      <div className="flex flex-row flex-wrap justify-center w-full gap-5">
+      <div className="flex flex-row flex-wrap justify-center w-full gap-3 max-[600px]:gap-2">
         {contributors.map((contributor) => (
           <ContributorsContributor
             key={contributor.id}

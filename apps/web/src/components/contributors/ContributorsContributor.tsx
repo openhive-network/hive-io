@@ -30,33 +30,41 @@ export const ContributorsContributor: React.FC<ContributorsContributorProps> = (
     : `https://images.hive.blog/u/${contributor.social?.hive}/avatar/large`;
 
   return (
-    <div className={`flex flex-col flex-nowrap p-[14px] bg-[#e2e2ec] rounded-[5px] max-[720px]:flex-1 ${className}`}>
-      <img
-        className="min-h-[190px] min-w-[190px] max-h-[190px] max-w-[190px] h-full w-full object-contain rounded-[10px] max-[768px]:max-h-40 max-[768px]:max-w-40 max-[720px]:max-h-full max-[720px]:max-w-full max-[720px]:min-w-[150px] max-[720px]:min-h-[150px]"
-        src={imageUrl}
-        alt={contributor.name}
-      />
+    <div className={`group flex flex-col items-center p-2.5 bg-[#e2e2ec] rounded-lg w-[115px] max-[600px]:w-[95px] ${className}`}>
       <a
-        className="text-[1.2rem] font-bold py-1.5 px-2.5 my-2.5 mx-1 bg-[#f0f0f7] text-[#555555] rounded-[14px_14px_1px_1px] text-center cursor-pointer"
+        href={`${links.hive}${contributor.social?.hive}`}
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+        className="block"
+      >
+        <img
+          className="h-[85px] w-[85px] max-[600px]:h-[70px] max-[600px]:w-[70px] object-cover rounded-full"
+          src={imageUrl}
+          alt={contributor.name}
+        />
+      </a>
+      <a
+        className="mt-2 text-[0.8rem] max-[600px]:text-[0.7rem] font-semibold text-[#555] text-center leading-tight hover:text-[#e31337] transition-colors truncate w-full"
         href={`${links.hive}${contributor.social?.hive}`}
         target="_blank"
         rel="nofollow noopener noreferrer"
       >
         {contributor.name}
       </a>
-      <div className="text-[0.8rem] text-[#787885] text-center">
+      <div className="mt-0.5 text-[0.65rem] max-[600px]:text-[0.55rem] text-[#787885] text-center leading-tight line-clamp-2 min-h-[2lh]">
         {contributor.labels?.join(' & ').replace('Core Developer', 'Core Dev')}
       </div>
-      <div className="flex items-center justify-center mt-[5px]">
+      <div className="flex items-center justify-center mt-1.5 gap-1">
         {contributor.social && Object.entries(contributor.social).map(([platform, handle]) => (
           <a
             key={platform}
             href={`${links[platform]}${handle}`}
             target="_blank"
             rel="nofollow noopener noreferrer"
+            className="text-[#787885] hover:text-[#e31337] transition-colors"
           >
             <FontAwesomeIcon
-              className="h-5 w-5 cursor-pointer my-[5px] mx-1.5 opacity-100 text-[#787885]"
+              className="h-3.5 w-3.5"
               icon={['fab', platform] as any}
             />
           </a>

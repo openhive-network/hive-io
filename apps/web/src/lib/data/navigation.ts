@@ -51,6 +51,27 @@ export const NAVIGATION_HEADER_DROPDOWN = [
     name: 'Explore',
     children: [
       {
+        name: 'Apps',
+        description: 'Discover Hive dApps',
+        submenu: [
+          {
+            to: 'eco',
+            name: 'All Apps',
+            description: 'Browse all Hive applications',
+          },
+          {
+            to: 'https://dappradar.com/rankings/protocol/hive',
+            name: 'Statistics',
+            description: 'View dapp usage statistics',
+          },
+          {
+            to: 'wallets',
+            name: 'Wallets',
+            description: 'Secure your HIVE and HBD',
+          },
+        ],
+      },
+      {
         name: 'Community',
         description: 'Join Hive communities',
         submenu: [
@@ -76,27 +97,7 @@ export const NAVIGATION_HEADER_DROPDOWN = [
           },
         ],
       },
-      {
-        name: 'Apps',
-        description: 'Discover Hive dApps',
-        submenu: [
-          {
-            to: 'eco',
-            name: 'All Apps',
-            description: 'Browse all Hive applications',
-          },
-          {
-            to: 'https://dappradar.com/rankings/protocol/hive',
-            name: 'Statistics',
-            description: 'View dapp usage statistics',
-          },
-          {
-            to: 'wallets',
-            name: 'Wallets',
-            description: 'Secure your HIVE and HBD',
-          },
-        ],
-      },
+
       {
         name: 'Block Explorers',
         description: 'Browse blockchain data',

@@ -256,7 +256,7 @@ export function DynamicHero() {
             const isFadingOut = fadingOutIds.has(activity.id);
 
             const style = isAnimating
-              ? { '--y-pos': `${yPosition}px`, top: 0, left: 0, right: 0 } as React.CSSProperties
+              ? { '--y-pos': `${yPosition}px`, top: 0, left: 0, right: 0, transition: 'none' } as React.CSSProperties
               : isExiting
                 ? { opacity: isFadingOut ? 0 : 1, transform: baseTransform, top: 0, left: 0, right: 0 }
                 : hasFinishedAnimating

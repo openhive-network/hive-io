@@ -208,6 +208,7 @@
 
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
+  animation-iteration-count: 1;
 }
 
 .animate-scroll-left {

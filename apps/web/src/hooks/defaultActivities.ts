@@ -13,31 +13,26 @@ const ACTIVITY_TEMPLATES = [
   {
     type: 'vote' as const,
     getMessage: (user: string) => `${user} upvoted a post`,
-    icon: '👍',
     color: 'text-gray-700',
   },
   {
     type: 'post' as const,
     getMessage: (user: string) => `${user} just published a post`,
-    icon: '📝',
     color: 'text-gray-800',
   },
   {
     type: 'comment' as const,
     getMessage: (user: string) => `${user} commented on a post`,
-    icon: '💬',
     color: 'text-gray-700',
   },
   {
     type: 'custom' as const,
     getMessage: (user: string) => `${user} powered up rewards`,
-    icon: '⚡',
     color: 'text-[#e31337]',
   },
   {
     type: 'custom' as const,
     getMessage: (user: string) => `${user} claimed rewards`,
-    icon: '🎁',
     color: 'text-gray-700',
   },
 ]
@@ -76,7 +71,6 @@ function generateRandomActivities(count: number): ActivityItem[] {
       message: template.getMessage(username),
       user: username,
       timestamp: new Date(),
-      icon: template.icon,
       color: template.color,
       avatarUrl: `https://images.hive.blog/u/${username}/avatar/small`,
     })

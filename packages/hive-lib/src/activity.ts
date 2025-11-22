@@ -37,7 +37,6 @@ export interface ActivityItem {
   amount?: string
   symbol?: string
   timestamp: Date
-  icon?: string
   color?: string
   avatarUrl?: string
   // For posts, comments, and votes - used to link to peakd
@@ -85,7 +84,6 @@ export function parseOperation(
         amount: asset.amount,
         symbol: asset.symbol,
         timestamp,
-        icon: '💸',
         color: 'text-gray-700',
         avatarUrl: getUserAvatar(data?.from),
       }
@@ -103,7 +101,6 @@ export function parseOperation(
         message: `${data.account} claimed rewards`,
         user: data.account,
         timestamp,
-        icon: '🏆',
         color: 'text-yellow-600',
         avatarUrl: getUserAvatar(data.account),
       }
@@ -124,11 +121,27 @@ export function parseOperation(
         message: `${data.voter} upvoted a post`,
         user: data.voter,
         timestamp,
-        icon: '👍',
         color: 'text-gray-700',
         avatarUrl: getUserAvatar(data.voter),
         author: data.author,
         permlink: data.permlink,
+      }
+    }
+
+    case 'limit_order_create_operation': {
+      const data = opData as operation['limit_order_create_operation']
+
+      if (!data) return null
+
+      return {
+        id,
+        txId,
+        type: 'trade',
+        message: `${data.owner} traded on Hive`,
+        user: data.owner,
+        timestamp,
+        color: 'text-gray-700',
+        avatarUrl: getUserAvatar(data.owner),
       }
     }
 
@@ -146,7 +159,6 @@ export function parseOperation(
           message: `${data.author} published a post`,
           user: data.author,
           timestamp,
-          icon: '📝',
           color: 'text-gray-800',
           avatarUrl: getUserAvatar(data.author),
           author: data.author,
@@ -162,7 +174,6 @@ export function parseOperation(
         message: `${data.author} commented on a post`,
         user: data.author,
         timestamp,
-        icon: '💬',
         color: 'text-gray-700',
         avatarUrl: getUserAvatar(data.author),
         author: data.author,
@@ -187,7 +198,6 @@ export function parseOperation(
         amount: asset.amount,
         symbol: asset.symbol,
         timestamp,
-        icon: '⚡',
         color: 'text-[#e31337]',
         avatarUrl: getUserAvatar(user),
       }
@@ -226,7 +236,6 @@ export function parseOperation(
             message: `${user} made a Splinterlands market purchase`,
             user,
             timestamp,
-            icon: '🛒',
             color: 'text-gray-700',
             avatarUrl: getUserAvatar(user),
           }
@@ -251,7 +260,17 @@ export function parseOperation(
           message: `${user} played Splinterlands`,
           user,
           timestamp,
-          icon: '🎮',
+          color: 'text-gray-700',
+          avatarUrl: getUserAvatar(user),
+        }
+      } else if (data.id === 'ssc-mainnet-hive') {
+        return {
+          id,
+          txId,
+          type: 'custom',
+          message: `${user} traded on Hive Engine`,
+          user,
+          timestamp,
           color: 'text-gray-700',
           avatarUrl: getUserAvatar(user),
         }

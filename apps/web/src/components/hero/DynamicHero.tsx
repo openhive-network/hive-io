@@ -190,7 +190,7 @@ export function DynamicHero() {
   }, [queuedIds, animatingIds, activities, finishedAnimatingIds]);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4">
+    <div className="flex flex-col items-center justify-center w-full max-w-6xl max-[600px]:px-1 mx-auto px-4">
       {/* Main Headlines */}
       <div className="text-center mt-8">
         <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-1 max-[600px]:text-5xl max-[600px]:mb-2">
@@ -199,7 +199,7 @@ export function DynamicHero() {
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 max-[600px]:text-2xl">
           Web3 Becomes Reality
         </h2>
-        <p className="text-lg md:text-xl text-gray-600 mt-8 mb-16 max-w-[600px] mx-auto max-[600px]:text-base max-[600px]:mb-16">
+        <p className="text-lg md:text-xl text-gray-600 mt-8 mb-16 max-w-[600px] mx-auto max-[600px]:text-base max-[600px]:mb-10">
           Built by the community, for the community. Experience the power of Hive, the
           decentralized blockchain that puts you in control.
         </p>

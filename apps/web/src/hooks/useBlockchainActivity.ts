@@ -17,6 +17,7 @@ interface UseBlockchainActivityOptions {
   updateInterval: number
   enabled: boolean
   animationDelay: number
+  paused?: boolean
 }
 
 interface UseBlockchainActivityResult {
@@ -42,6 +43,7 @@ export function useBlockchainActivity(
     updateInterval,
     enabled,
     animationDelay,
+    paused = false,
   } = options
 
   const [activities, setActivities] = useState<ActivityItem[]>([])
@@ -62,6 +64,10 @@ export function useBlockchainActivity(
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const hasInitializedRef = useRef(false)
   const hasLoadedDefaultsRef = useRef(false)
+  const pausedRef = useRef(paused)
+
+  // Keep pausedRef in sync
+  pausedRef.current = paused
 
   /**
    * Preload an image to ensure it's cached before display
@@ -105,6 +111,12 @@ export function useBlockchainActivity(
 
       // Start animation loop
       const displayNext = async () => {
+        // If paused, check again after a short delay
+        if (pausedRef.current) {
+          animationIntervalRef.current = setTimeout(displayNext, 100)
+          return
+        }
+
         // Check if there are pending activities
         if (pendingActivitiesRef.current.length === 0) {
           animationIntervalRef.current = null

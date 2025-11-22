@@ -211,6 +211,10 @@
   animation-iteration-count: 1;
 }
 
+.animation-paused {
+  animation-play-state: paused !important;
+}
+
 .animate-scroll-left {
   animation: scrollLeft linear infinite;
 }

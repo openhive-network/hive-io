@@ -33,12 +33,14 @@ export function DynamicHero() {
 
   const seenActivitiesRef = useRef<Set<string>>(new Set());
   const [shouldStopPolling, setShouldStopPolling] = useState(false);
+  const [isHoveringFeed, setIsHoveringFeed] = useState(false);
 
   const { activities: hookActivities, currentBlock, transactionCount, reset: resetHook } = useBlockchainActivity({
     maxActivities,
     updateInterval: 3000,
     enabled: true,
     animationDelay: ANIMATION_DELAY,
+    paused: isHoveringFeed,
   });
 
   const activities = LIMIT_TOTAL_ACTIVITIES > 0
@@ -63,6 +65,9 @@ export function DynamicHero() {
   const [queuedIds, setQueuedIds] = useState<string[]>([]);
   const [fadingOutIds, setFadingOutIds] = useState<Set<string>>(new Set());
   const [displayedActivities, setDisplayedActivities] = useState<typeof activities>([]);
+  const [hoveredActivityId, setHoveredActivityId] = useState<string | null>(null);
+  const hoveredActivityIdRef = useRef<string | null>(null);
+  hoveredActivityIdRef.current = hoveredActivityId; // Keep ref in sync for callbacks
   const displayedActivitiesRef = useRef(displayedActivities);
   displayedActivitiesRef.current = displayedActivities; // Always keep ref in sync
   const prevActivitiesRef = useRef<Set<string>>(new Set());
@@ -90,6 +95,12 @@ export function DynamicHero() {
         console.log('   Queue remaining:', remaining.length);
         return remaining;
       });
+
+      // If user was hovering this activity while it was animating, pause now
+      if (hoveredActivityIdRef.current === activityId) {
+        console.log('⏸️ Pausing after animation complete (was hovered)');
+        setIsHoveringFeed(true);
+      }
     }
   }, [maxActivities]);
 
@@ -143,6 +154,8 @@ export function DynamicHero() {
         setFadingOutIds(new Set());
         setFinishedAnimatingIds(new Set());
         setDisplayedActivities([]);
+        setHoveredActivityId(null);
+        setIsHoveringFeed(false);
         prevActivitiesRef.current = new Set();
         prevPositionsRef.current = new Map();
         // Reset the hook to start fresh
@@ -246,6 +259,7 @@ export function DynamicHero() {
       <div
         ref={containerRef}
         className="w-full max-w-2xl relative mb-[50px] min-h-[360px] md:min-h-[min(540px,max(360px,calc(100vh-520px)))]"
+        onMouseLeave={() => setIsHoveringFeed(false)}
       >
 
         <div className="relative">
@@ -311,12 +325,32 @@ export function DynamicHero() {
                   </p>
                 </div>
                 {activity.txId && (
-                  <span className="text-xs text-gray-400 font-mono shrink-0">
+                  <span className="text-xs text-gray-400 group-hover:text-[#e31337] font-mono shrink-0 transition-colors">
                     {activity.txId.substring(0, 4)}...{activity.txId.substring(activity.txId.length - 4)}
                   </span>
                 )}
               </div>
             );
+
+            const animationClass = isAnimating && !isHoveringFeed ? 'animate-fade-in' : '';
+            const pausedClass = isHoveringFeed ? 'animation-paused' : '';
+
+            // Track hovered activity - pause immediately if not animating,
+            // otherwise pause will trigger when animation completes
+            const handleCardMouseEnter = () => {
+              // Don't allow pausing on fading out activities
+              if (isFadingOut) return;
+
+              setHoveredActivityId(activity.id);
+              if (!isAnimating) {
+                setIsHoveringFeed(true);
+              }
+              // If animating, pause will be triggered in handleAnimationEnd
+            };
+
+            const handleCardMouseLeave = () => {
+              setHoveredActivityId(null);
+            };
 
             return isClickable ? (
               <a
@@ -325,9 +359,11 @@ export function DynamicHero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={style}
-                className={`absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 hover:bg-white/90 hover:border-gray-300 cursor-pointer ${isAnimating ? 'animate-fade-in' : ''}`}
+                className={`group absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 hover:bg-white/90 hover:border-gray-300 cursor-pointer ${animationClass} ${pausedClass}`}
                 onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
                 onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
+                onMouseEnter={handleCardMouseEnter}
+                onMouseLeave={handleCardMouseLeave}
               >
                 {cardContent}
               </a>
@@ -335,9 +371,11 @@ export function DynamicHero() {
               <div
                 key={activity.id}
                 style={style}
-                className={`absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 ${isAnimating ? 'animate-fade-in' : ''}`}
+                className={`group absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 ${animationClass} ${pausedClass}`}
                 onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
                 onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
+                onMouseEnter={handleCardMouseEnter}
+                onMouseLeave={handleCardMouseLeave}
               >
                 {cardContent}
               </div>

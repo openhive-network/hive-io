@@ -35,7 +35,7 @@ export function DynamicHero() {
   const [shouldStopPolling, setShouldStopPolling] = useState(false);
   const [isHoveringFeed, setIsHoveringFeed] = useState(false);
 
-  const { activities: hookActivities, currentBlock, transactionCount, reset: resetHook } = useBlockchainActivity({
+  const { activities: hookActivities, currentBlock, transactionCount } = useBlockchainActivity({
     maxActivities,
     updateInterval: 3000,
     enabled: true,
@@ -68,6 +68,9 @@ export function DynamicHero() {
   const [hoveredActivityId, setHoveredActivityId] = useState<string | null>(null);
   const hoveredActivityIdRef = useRef<string | null>(null);
   hoveredActivityIdRef.current = hoveredActivityId; // Keep ref in sync for callbacks
+  const [isTabHidden, setIsTabHidden] = useState(false);
+  const isTabHiddenRef = useRef(false);
+  isTabHiddenRef.current = isTabHidden; // Keep ref in sync for callbacks
   const displayedActivitiesRef = useRef(displayedActivities);
   displayedActivitiesRef.current = displayedActivities; // Always keep ref in sync
   const prevActivitiesRef = useRef<Set<string>>(new Set());
@@ -99,6 +102,12 @@ export function DynamicHero() {
       // If user was hovering this activity while it was animating, pause now
       if (hoveredActivityIdRef.current === activityId) {
         console.log('⏸️ Pausing after animation complete (was hovered)');
+        setIsHoveringFeed(true);
+      }
+
+      // If tab was hidden while animating, pause now
+      if (isTabHiddenRef.current) {
+        console.log('⏸️ Pausing after animation complete (tab hidden)');
         setIsHoveringFeed(true);
       }
     }
@@ -143,29 +152,30 @@ export function DynamicHero() {
     };
   }, []);
 
-  // Handle tab visibility changes - reset everything when tab becomes visible
+  // Handle tab visibility changes - pause when hidden, resume when visible
   useEffect(() => {
     const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        console.log('🔄 Tab visible, resetting everything');
-        // Reset local state
-        setQueuedIds([]);
-        setAnimatingIds(new Set());
-        setFadingOutIds(new Set());
-        setFinishedAnimatingIds(new Set());
-        setDisplayedActivities([]);
-        setHoveredActivityId(null);
-        setIsHoveringFeed(false);
-        prevActivitiesRef.current = new Set();
-        prevPositionsRef.current = new Map();
-        // Reset the hook to start fresh
-        resetHook();
+      if (document.visibilityState === 'hidden') {
+        console.log('👁️ Tab hidden, pausing');
+        setIsTabHidden(true);
+        // If no animation is currently running, pause immediately
+        if (animatingIds.size === 0) {
+          setIsHoveringFeed(true);
+        }
+        // If animation is running, it will pause after completion (handled in handleAnimationEnd)
+      } else if (document.visibilityState === 'visible') {
+        console.log('👁️ Tab visible, resuming');
+        setIsTabHidden(false);
+        // Only unpause if not hovering a card
+        if (!hoveredActivityId) {
+          setIsHoveringFeed(false);
+        }
       }
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [resetHook]);
+  }, [animatingIds.size, hoveredActivityId]);
 
   // Sync displayedActivities with activities from hook
   // New activities are added, removed activities are marked for fading

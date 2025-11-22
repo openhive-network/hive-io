@@ -9,13 +9,15 @@ export function DynamicHero() {
 
   const maxActivities = 4; // Change this to limit number of activities fetched
   const LIMIT_TOTAL_ACTIVITIES = 0; // Set to 0 to disable - stops accepting new activities after this many
+  const ANIMATION_DELAY = 1800; // Delay between activity animations (ms)
 
   const seenActivitiesRef = useRef<Set<string>>(new Set());
   const [shouldStopPolling, setShouldStopPolling] = useState(false);
 
   const { activities: hookActivities, currentBlock, transactionCount } = useBlockchainActivity({
     maxActivities,
-    enabled: true
+    enabled: true,
+    animationDelay: ANIMATION_DELAY,
   });
 
   const activities = LIMIT_TOTAL_ACTIVITIES > 0

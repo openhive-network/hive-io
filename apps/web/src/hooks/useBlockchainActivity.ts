@@ -16,6 +16,7 @@ interface UseBlockchainActivityOptions {
   maxActivities?: number
   updateInterval?: number
   enabled?: boolean
+  animationDelay?: number
 }
 
 interface UseBlockchainActivityResult {
@@ -28,9 +29,6 @@ interface UseBlockchainActivityResult {
   transactionCount: number
 }
 
-// Animation constants
-const ANIMATION_BASE_DELAY = 1800 // Base delay between activity animations (ms)
-
 /**
  * Hook to fetch and parse real-time blockchain activities
  * Combines block observation with activity parsing
@@ -42,6 +40,7 @@ export function useBlockchainActivity(
     maxActivities = 4,
     updateInterval = 3000, // 3 seconds (Hive block time)
     enabled = true,
+    animationDelay = 1800, // Base delay between activity animations (ms)
   } = options
 
   const [activities, setActivities] = useState<ActivityItem[]>([])
@@ -129,16 +128,13 @@ export function useBlockchainActivity(
         setActivities([...displayedActivitiesRef.current])
 
         // Schedule next activity
-        animationIntervalRef.current = setTimeout(
-          displayNext,
-          ANIMATION_BASE_DELAY,
-        ) as any
+        animationIntervalRef.current = setTimeout(displayNext, animationDelay)
       }
 
       // Start displaying
       void displayNext()
     },
-    [maxActivities],
+    [maxActivities, animationDelay],
   )
 
   /**

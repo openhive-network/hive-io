@@ -317,7 +317,16 @@ export function DynamicHero() {
             // Activities are clickable if they have a txId AND are not hardcoded defaults
             // Hardcoded defaults have IDs starting with "default-"
             const isClickable = !!activity.txId && !activity.id.startsWith('default-');
-            const txUrl = isClickable ? `https://hivehub.dev/tx/${activity.txId}` : undefined;
+
+            // For posts, comments, and votes, link to peakd; otherwise link to hivehub transaction
+            let activityUrl: string | undefined;
+            if (isClickable) {
+              if ((activity.type === 'post' || activity.type === 'comment' || activity.type === 'vote') && activity.author && activity.permlink) {
+                activityUrl = `https://peakd.com/@${activity.author}/${activity.permlink}`;
+              } else {
+                activityUrl = `https://hivehub.dev/tx/${activity.txId}`;
+              }
+            }
 
             const cardContent = (
               <div className="flex items-center gap-4">
@@ -365,7 +374,7 @@ export function DynamicHero() {
             return isClickable ? (
               <a
                 key={activity.id}
-                href={txUrl}
+                href={activityUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={style}

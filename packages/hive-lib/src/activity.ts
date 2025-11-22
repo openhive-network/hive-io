@@ -40,6 +40,9 @@ export interface ActivityItem {
   icon?: string
   color?: string
   avatarUrl?: string
+  // For posts, comments, and votes - used to link to peakd
+  author?: string
+  permlink?: string
 }
 
 /**
@@ -124,6 +127,8 @@ export function parseOperation(
         icon: '👍',
         color: 'text-gray-700',
         avatarUrl: getUserAvatar(data.voter),
+        author: data.author,
+        permlink: data.permlink,
       }
     }
 
@@ -144,6 +149,8 @@ export function parseOperation(
           icon: '📝',
           color: 'text-gray-800',
           avatarUrl: getUserAvatar(data.author),
+          author: data.author,
+          permlink: data.permlink,
         }
       }
 
@@ -158,6 +165,8 @@ export function parseOperation(
         icon: '💬',
         color: 'text-gray-700',
         avatarUrl: getUserAvatar(data.author),
+        author: data.author,
+        permlink: data.permlink,
       }
     }
 
@@ -324,11 +333,30 @@ export function filterOptimalActivities(
     return true
   })
 
-  // Third pass: Ensure variety by avoiding too many of the same type in a row
+  // Third pass: Limit activities on the same post (author/permlink combo) to max 2
+  // This prevents too many votes/comments on the same popular post from flooding the feed
+  const authorPermlinkCounts = new Map<string, number>()
+  const limitedByPost = uniqueActivities.filter((activity) => {
+    // Only apply to activities that have author/permlink (votes, comments, posts)
+    if (!activity.author || !activity.permlink) return true
+
+    const key = `${activity.author}/${activity.permlink}`
+    const currentCount = authorPermlinkCounts.get(key) || 0
+
+    // Allow max 2 activities per author/permlink combo
+    if (currentCount >= 2) {
+      return false
+    }
+
+    authorPermlinkCounts.set(key, currentCount + 1)
+    return true
+  })
+
+  // Fourth pass: Ensure variety by avoiding too many of the same type in a row
   // Vote operations: max 1 consecutive (no back-to-back votes)
   // Other operations: max 2 consecutive
   const diversified: ActivityItem[] = []
-  const remaining = [...uniqueActivities]
+  const remaining = [...limitedByPost]
 
   while (remaining.length > 0 && diversified.length < maxActivities) {
     let selected: ActivityItem | undefined

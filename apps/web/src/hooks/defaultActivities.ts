@@ -64,7 +64,7 @@ function generateRandomActivities(count: number): ActivityItem[] {
     // Use templates in order from shuffled array to ensure variety
     const template = shuffledTemplates[i % shuffledTemplates.length]
 
-    // Generate a mock transaction ID for default activities
+    // Generate a mock transaction ID for display (not clickable)
     const mockTxId = `${Math.random()
       .toString(16)
       .substring(2, 10)}${Math.random().toString(16).substring(2, 34)}`

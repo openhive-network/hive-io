@@ -290,7 +290,48 @@ export function DynamicHero() {
               prevPositionsRef.current.set(activity.id, yPosition);
             }
 
-            return (
+            // Activities are clickable if they have a txId AND are not hardcoded defaults
+            // Hardcoded defaults have IDs starting with "default-"
+            const isClickable = !!activity.txId && !activity.id.startsWith('default-');
+            const txUrl = isClickable ? `https://hivehub.dev/tx/${activity.txId}` : undefined;
+
+            const cardContent = (
+              <div className="flex items-center gap-4">
+                <img
+                  src={activity.avatarUrl || 'https://images.hive.blog/u/null/avatar/small'}
+                  alt={activity.user || 'User'}
+                  className="w-12 h-12 rounded-full shrink-0 bg-gray-300 object-cover ring-2 ring-white"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.hive.blog/u/null/avatar/small';
+                  }}
+                />
+                <div className="flex-1 min-w-0">
+                  <p className={`text-sm font-semibold ${activity.color} truncate`}>
+                    {activity.message}
+                  </p>
+                </div>
+                {activity.txId && (
+                  <span className="text-xs text-gray-400 font-mono shrink-0">
+                    {activity.txId.substring(0, 4)}...{activity.txId.substring(activity.txId.length - 4)}
+                  </span>
+                )}
+              </div>
+            );
+
+            return isClickable ? (
+              <a
+                key={activity.id}
+                href={txUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={style}
+                className={`absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 hover:bg-white/90 hover:border-gray-300 cursor-pointer ${isAnimating ? 'animate-fade-in' : ''}`}
+                onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
+                onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
+              >
+                {cardContent}
+              </a>
+            ) : (
               <div
                 key={activity.id}
                 style={style}
@@ -298,31 +339,7 @@ export function DynamicHero() {
                 onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
                 onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
               >
-                <div className="flex items-center gap-4">
-                  <img
-                    src={activity.avatarUrl || 'https://images.hive.blog/u/null/avatar/small'}
-                    alt={activity.user || 'User'}
-                    className="w-12 h-12 rounded-full shrink-0 bg-gray-300 object-cover ring-2 ring-white"
-                    onError={(e) => {
-                      e.currentTarget.src = 'https://images.hive.blog/u/null/avatar/small';
-                    }}
-                  />
-                  <div className="flex-1 min-w-0">
-                    <p className={`text-sm font-semibold ${activity.color} truncate`}>
-                      {activity.message}
-                    </p>
-                  </div>
-                  {activity.txId && (
-                    <a
-                      href={`https://hivehub.dev/tx/${activity.txId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-gray-400 hover:text-[#e31337] font-mono shrink-0 transition-colors"
-                    >
-                      {activity.txId.substring(0, 4)}...{activity.txId.substring(activity.txId.length - 4)}
-                    </a>
-                  )}
-                </div>
+                {cardContent}
               </div>
             );
           })}

@@ -61,10 +61,9 @@ export function DynamicHero() {
   const [animatingIds, setAnimatingIds] = useState<Set<string>>(new Set());
   const [finishedAnimatingIds, setFinishedAnimatingIds] = useState<Set<string>>(new Set());
   const [queuedIds, setQueuedIds] = useState<string[]>([]);
-  const [exitingActivities, setExitingActivities] = useState<typeof activities>([]);
   const [fadingOutIds, setFadingOutIds] = useState<Set<string>>(new Set());
+  const [displayedActivities, setDisplayedActivities] = useState<typeof activities>([]);
   const prevActivitiesRef = useRef<Set<string>>(new Set());
-  const prevActivitiesArrayRef = useRef<typeof activities>([]);
   const prevPositionsRef = useRef<Map<string, number>>(new Map());
 
   // Handle animation completion
@@ -94,29 +93,22 @@ export function DynamicHero() {
 
   // Handle transition end for exit animations
   const handleTransitionEnd = useCallback((activityId: string, event: React.TransitionEvent) => {
-    if (event.propertyName === 'opacity') {
-      // Check if this is an exiting activity
-      setExitingActivities((prev) => {
-        const isExiting = prev.some((a) => a.id === activityId);
-        if (isExiting) {
-          console.log('🚪 Exit complete:', activityId);
-          // Remove from exiting, fading, and finished
-          setFadingOutIds((prevFading) => {
-            const next = new Set(prevFading);
-            next.delete(activityId);
-            return next;
-          });
-          setFinishedAnimatingIds((prevFinished) => {
-            const next = new Set(prevFinished);
-            next.delete(activityId);
-            return next;
-          });
-          return prev.filter((a) => a.id !== activityId);
-        }
-        return prev;
+    if (event.propertyName === 'opacity' && fadingOutIds.has(activityId)) {
+      console.log('🚪 Exit complete:', activityId);
+      // Remove from fading and displayed
+      setFadingOutIds((prev) => {
+        const next = new Set(prev);
+        next.delete(activityId);
+        return next;
+      });
+      setDisplayedActivities((prev) => prev.filter((a) => a.id !== activityId));
+      setFinishedAnimatingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(activityId);
+        return next;
       });
     }
-  }, []);
+  }, [fadingOutIds]);
 
   // Observe visibility of the container
   useEffect(() => {
@@ -131,9 +123,9 @@ export function DynamicHero() {
           console.log('🔄 Visibility restored, clearing queue');
           setQueuedIds([]);
           setAnimatingIds(new Set());
-          setExitingActivities([]);
+          setFadingOutIds(new Set());
           // Mark all current activities as finished
-          setFinishedAnimatingIds(new Set(activities.map((a) => a.id)));
+          setFinishedAnimatingIds(new Set(displayedActivities.map((a) => a.id)));
         }
       },
       { threshold: 0.1 } // Trigger when at least 10% is visible
@@ -148,7 +140,7 @@ export function DynamicHero() {
         observer.unobserve(containerRef.current);
       }
     };
-  }, [isVisible, activities]);
+  }, [isVisible, displayedActivities]);
 
   // Handle tab visibility changes
   useEffect(() => {
@@ -157,16 +149,17 @@ export function DynamicHero() {
         console.log('🔄 Tab visible, clearing queue');
         setQueuedIds([]);
         setAnimatingIds(new Set());
-        setExitingActivities([]);
-        setFinishedAnimatingIds(new Set(activities.map((a) => a.id)));
+        setFadingOutIds(new Set());
+        setFinishedAnimatingIds(new Set(displayedActivities.map((a) => a.id)));
       }
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [activities]);
+  }, [displayedActivities]);
 
-  // Detect new activities and mark them for animation
+  // Sync displayedActivities with activities from hook
+  // New activities are added, removed activities are marked for fading
   useEffect(() => {
     const currentIds = new Set(activities.map((a) => a.id));
     const prevIds = prevActivitiesRef.current;
@@ -179,24 +172,21 @@ export function DynamicHero() {
 
     if (exitIds.length > 0) {
       console.log('🚪 Exiting:', exitIds);
-      // Get exiting activities from previous activities array (not current!)
-      const exitingActsList = prevActivitiesArrayRef.current.filter((a) => exitIds.includes(a.id));
-      setExitingActivities(exitingActsList);
-
-      // Trigger fade out after a tick to ensure transition happens
-      requestAnimationFrame(() => {
-        setFadingOutIds(new Set(exitIds));
-      });
+      // Mark these IDs for fading out - they stay in displayedActivities
+      setFadingOutIds((prev) => new Set([...prev, ...exitIds]));
     }
 
     if (newIds.length > 0) {
       console.log('➕ Adding to queue:', newIds);
       setQueuedIds((prev) => [...prev, ...newIds]);
+
+      // Add new activities to displayed list (at the front)
+      const newActivities = activities.filter((a) => newIds.includes(a.id));
+      setDisplayedActivities((prev) => [...newActivities, ...prev]);
     }
 
-    // Update refs with current state
+    // Update ref with current state
     prevActivitiesRef.current = currentIds;
-    prevActivitiesArrayRef.current = activities;
   }, [activities]);
 
   // Start first animation when queue goes from empty to having items
@@ -204,11 +194,11 @@ export function DynamicHero() {
     if (queuedIds.length > 0 && animatingIds.size === 0) {
       const firstId = queuedIds[0];
       console.log('🎬 Starting animation:', firstId);
-      console.log('   Current activities:', activities.map(a => a.id.substring(0, 10)));
+      console.log('   Current displayedActivities:', displayedActivities.map(a => a.id.substring(0, 10)));
       console.log('   finishedAnimatingIds:', Array.from(finishedAnimatingIds).map(id => id.substring(0, 10)));
       setAnimatingIds(new Set([firstId]));
     }
-  }, [queuedIds, animatingIds, activities, finishedAnimatingIds]);
+  }, [queuedIds, animatingIds, displayedActivities, finishedAnimatingIds]);
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-6xl max-[600px]:px-1 mx-auto px-4">
@@ -262,32 +252,30 @@ export function DynamicHero() {
       >
 
         <div className="relative">
-          {[...exitingActivities, ...activities].map((activity, index) => {
+          {displayedActivities.map((activity) => {
             const isAnimating = animatingIds.has(activity.id);
             const hasFinishedAnimating = finishedAnimatingIds.has(activity.id);
-            const isExiting = exitingActivities.some((a) => a.id === activity.id);
+            const isFadingOut = fadingOutIds.has(activity.id);
 
-            // Calculate position - animating items stay at top, exiting items keep their last position
-            const actualIndex = isAnimating
-              ? 0  // Always position animating items at top
-              : isExiting
-                ? prevPositionsRef.current.get(activity.id) !== undefined
-                  ? prevPositionsRef.current.get(activity.id)! / 90
-                  : activities.length
-                : activities.findIndex((a) => a.id === activity.id);
+            // Calculate position based on index in displayedActivities
+            // Fading out items move to the bottom (maxActivities position)
+            const currentIndex = displayedActivities.findIndex((a) => a.id === activity.id);
+            const actualIndex = isAnimating ? 0 : currentIndex;
             const yPosition = actualIndex * 90; // 80px height + 10px gap
 
             // Set opacity and transform for animations
             const baseTransform = `translateY(${yPosition}px)`;
-            const isFadingOut = fadingOutIds.has(activity.id);
 
+            // Determine style based on state
+            // - Animating: use CSS animation (no inline transition)
+            // - Fading out: opacity 0, same position animation
+            // - Finished animating: opacity 1, position animation
+            // - Not yet animated: hidden (opacity 0, offset)
             const style = isAnimating
               ? { '--y-pos': `${yPosition}px`, top: 0, left: 0, right: 0, transition: 'none' } as React.CSSProperties
-              : isExiting
+              : hasFinishedAnimating || isFadingOut
                 ? { opacity: isFadingOut ? 0 : 1, transform: baseTransform, top: 0, left: 0, right: 0 }
-                : hasFinishedAnimating
-                  ? { opacity: 1, transform: baseTransform, top: 0, left: 0, right: 0 }
-                  : { opacity: 0, transform: `${baseTransform} translateX(50px)`, top: 0, left: 0, right: 0 };
+                : { opacity: 0, transform: `${baseTransform} translateX(50px)`, top: 0, left: 0, right: 0 };
 
             // Log position changes
             const prevPosition = prevPositionsRef.current.get(activity.id);
@@ -298,8 +286,8 @@ export function DynamicHero() {
                 actualIndex,
                 isAnimating,
                 hasFinishedAnimating,
-                isExiting,
-                activitiesArray: activities.map(a => a.id.substring(0, 10)),
+                isFadingOut,
+                displayedArray: displayedActivities.map(a => a.id.substring(0, 10)),
                 transform: isAnimating ? `var(--y-pos: ${yPosition}px)` : style.transform
               });
               prevPositionsRef.current.set(activity.id, yPosition);

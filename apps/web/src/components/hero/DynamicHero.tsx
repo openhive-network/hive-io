@@ -166,16 +166,16 @@ export function DynamicHero() {
       } else if (document.visibilityState === 'visible') {
         console.log('👁️ Tab visible, resuming');
         setIsTabHidden(false);
-        // Only unpause if not hovering a card
-        if (!hoveredActivityId) {
-          setIsHoveringFeed(false);
-        }
+        // Clear hover state - user is no longer hovering after returning from another tab
+        // This is especially important on mobile where touch "hover" gets stuck
+        setHoveredActivityId(null);
+        setIsHoveringFeed(false);
       }
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [animatingIds.size, hoveredActivityId]);
+  }, [animatingIds.size]);
 
   // Sync displayedActivities with activities from hook
   // New activities are added, removed activities are marked for fading

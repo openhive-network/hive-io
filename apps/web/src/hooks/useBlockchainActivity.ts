@@ -13,10 +13,10 @@ import {
 } from './defaultActivities'
 
 interface UseBlockchainActivityOptions {
-  maxActivities?: number
-  updateInterval?: number
-  enabled?: boolean
-  animationDelay?: number
+  maxActivities: number
+  updateInterval: number
+  enabled: boolean
+  animationDelay: number
 }
 
 interface UseBlockchainActivityResult {
@@ -34,13 +34,13 @@ interface UseBlockchainActivityResult {
  * Combines block observation with activity parsing
  */
 export function useBlockchainActivity(
-  options: UseBlockchainActivityOptions = {},
+  options: UseBlockchainActivityOptions,
 ): UseBlockchainActivityResult {
   const {
-    maxActivities = 4,
-    updateInterval = 3000, // 3 seconds (Hive block time)
-    enabled = true,
-    animationDelay = 1800, // Base delay between activity animations (ms)
+    maxActivities,
+    updateInterval,
+    enabled,
+    animationDelay,
   } = options
 
   const [activities, setActivities] = useState<ActivityItem[]>([])

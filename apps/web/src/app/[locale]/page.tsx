@@ -101,8 +101,7 @@ export default function HomePage() {
   return (
     <div className="h-full">
       <div
-        className="flex flex-1 flex-col items-center justify-center pt-[60px] max-[600px]:pt-0 px-5 pb-0 relative"
-        style={{ minHeight: 'calc(100vh - 80px)' }}
+        className="flex flex-1 flex-col items-center pt-[60px] max-[600px]:pt-0 px-5 pb-0 relative"
       >
         {/* Dynamic Hero with Live Block Number and Activities */}
         <DynamicHero />

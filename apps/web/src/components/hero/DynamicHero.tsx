@@ -3,19 +3,40 @@
 import { useBlockchainActivity } from '@/hooks/useBlockchainActivity';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+// Calculate max activities based on screen dimensions
+function calculateMaxActivities(): number {
+  if (typeof window === 'undefined') return 4;
+
+  const height = window.innerHeight;
+  const width = window.innerWidth;
+
+  const headerSpace = width < 600 ? 500 : 500;
+  const availableHeight = height - headerSpace;
+  const calculated = Math.floor(availableHeight / 90);
+
+  return Math.max(4, Math.min(calculated, 6));
+}
+
 export function DynamicHero() {
   const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [maxActivities, setMaxActivities] = useState(() => calculateMaxActivities());
 
-  const maxActivities = 4; // Change this to limit number of activities fetched
   const LIMIT_TOTAL_ACTIVITIES = 0; // Set to 0 to disable - stops accepting new activities after this many
   const ANIMATION_DELAY = 1800; // Delay between activity animations (ms)
+
+  // Calculate maxActivities once on mount (no resize updates to avoid layout shifts)
+  useEffect(() => {
+    const calculated = calculateMaxActivities();
+    setMaxActivities(calculated);
+  }, []);
 
   const seenActivitiesRef = useRef<Set<string>>(new Set());
   const [shouldStopPolling, setShouldStopPolling] = useState(false);
 
   const { activities: hookActivities, currentBlock, transactionCount } = useBlockchainActivity({
     maxActivities,
+    updateInterval: 3000,
     enabled: true,
     animationDelay: ANIMATION_DELAY,
   });
@@ -57,7 +78,7 @@ export function DynamicHero() {
       // Add to finished set (keep only last 5)
       setFinishedAnimatingIds((prev) => {
         const arr = [...prev, activityId];
-        const updated = new Set(arr.slice(-5)); // Keep only last 5
+        const updated = new Set(arr.slice(-maxActivities));
         console.log('   Updated finishedAnimatingIds:', Array.from(updated).map(id => id.substring(0, 10)));
         return updated;
       });
@@ -69,7 +90,7 @@ export function DynamicHero() {
         return remaining;
       });
     }
-  }, []);
+  }, [maxActivities]);
 
   // Handle transition end for exit animations
   const handleTransitionEnd = useCallback((activityId: string, event: React.TransitionEvent) => {
@@ -235,9 +256,12 @@ export function DynamicHero() {
       </div>
 
       {/* Live Activities Feed */}
-      <div ref={containerRef} className="w-full max-w-2xl h-[360px] mb-[70px] relative">
+      <div
+        ref={containerRef}
+        className="w-full max-w-2xl relative mb-[50px] min-h-[min(540px,calc(100vh-520px))]"
+      >
 
-        <div className="relative" style={{ minHeight: `${maxActivities * 100}px` }}>
+        <div className="relative">
           {[...exitingActivities, ...activities].map((activity, index) => {
             const isAnimating = animatingIds.has(activity.id);
             const hasFinishedAnimating = finishedAnimatingIds.has(activity.id);

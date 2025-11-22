@@ -22,7 +22,7 @@ export default function WalletsPage() {
         </div>
 
         {/* Wallets Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-6 w-full place-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 w-full max-w-[800px] place-items-center">
           {WALLETS.map((wallet) => (
             <App key={wallet.id} item={wallet} showName={true} />
           ))}

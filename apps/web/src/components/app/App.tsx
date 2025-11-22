@@ -21,6 +21,7 @@ interface AppProps {
   detailed?: boolean;
   style?: React.CSSProperties;
   size?: number;
+  compact?: boolean;
 }
 
 export const App: React.FC<AppProps> = ({
@@ -33,7 +34,8 @@ export const App: React.FC<AppProps> = ({
   openDetailed = false,
   detailed = false,
   style,
-  size = 110
+  size = 110,
+  compact = false
 }) => {
   const { getImage } = useAssets();
   const [hover, setHover] = useState(false);
@@ -84,7 +86,7 @@ export const App: React.FC<AppProps> = ({
     detailed ? 'flex-row flex-wrap items-start justify-start cursor-default mx-[30px] my-[15px]' : ''
   }`;
 
-  const innerClasses = `flex justify-center items-center rounded-[15%] bg-[#e2e2ec] p-3 mb-2 transition-transform duration-500 ${
+  const innerClasses = `flex justify-center items-center rounded-[15%] bg-[#e2e2ec] ${compact ? 'p-2' : 'p-3'} mb-2 transition-transform duration-500 ${
     move && !detailed && hover ? '-translate-y-[10%]' : ''
   }`;
 
@@ -132,9 +134,9 @@ export const App: React.FC<AppProps> = ({
               href={getWebsiteUrl()}
               target="_blank"
               rel="nofollow noopener noreferrer"
-              className={`flex items-center mt-0.5 mb-1.5 text-base transition-all ease-in duration-100 ${
-                move && !detailed && hover ? 'text-[#e31337]' : ''
-              } ${detailed ? 'text-2xl font-semibold' : ''}`}
+              className={`flex items-center mt-0.5 mb-1.5 transition-all ease-in duration-100 ${
+                compact ? 'text-[0.8rem]' : 'text-base'
+              } ${move && !detailed && hover ? 'text-[#e31337]' : ''} ${detailed ? 'text-2xl font-semibold' : ''}`}
               onMouseEnter={() => setHover(true)}
               onMouseLeave={() => setHover(false)}
             >
@@ -183,7 +185,7 @@ export const App: React.FC<AppProps> = ({
             href={item.github || item.gitlab}
             target="_blank"
             rel="nofollow noopener noreferrer"
-            className="flex items-center mt-1 text-[0.88rem] opacity-50 transition-all ease-in duration-100 hover:text-[#e31337]"
+            className={`flex items-center mt-1 ${compact ? 'text-[0.7rem]' : 'text-[0.88rem]'} opacity-50 transition-all ease-in duration-100 hover:text-[#e31337]`}
           >
             Open Source
             <FontAwesomeIcon
@@ -194,7 +196,7 @@ export const App: React.FC<AppProps> = ({
         )}
 
         {'closedSource' in item && item.closedSource && (
-          <div className="flex items-center mt-1 text-[0.88rem] opacity-50">
+          <div className={`flex items-center mt-1 ${compact ? 'text-[0.7rem]' : 'text-[0.88rem]'} opacity-50`}>
             Closed Source
             <FontAwesomeIcon className="h-[7px] ml-[5px]" icon={faTimes} />
           </div>

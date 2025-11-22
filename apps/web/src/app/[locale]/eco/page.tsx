@@ -89,7 +89,7 @@ function EcoContent() {
         <ModalEco />
 
         {/* Apps Grid */}
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] justify-items-center w-full gap-x-5 gap-y-8 mb-16">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] justify-items-center w-full gap-x-3 gap-y-5 mb-16">
           {filteredEco.map((eco) => (
             <App
               key={eco.id}
@@ -99,6 +99,8 @@ function EcoContent() {
               showName={true}
               showTypes={true}
               appType="eco"
+              size={85}
+              compact={true}
             />
           ))}
         </div>

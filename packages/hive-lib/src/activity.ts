@@ -434,79 +434,68 @@ export function filterOptimalActivities(
 // Track block sync state
 let blockCheckCounter = 0
 let assumedHeadBlock = 0
+let cachedGlobalProps: DynamicGlobalProperties | null = null
 
-/**
- * Fetch initial activities for default display
- * Fetches from multiple recent blocks and randomizes selection
- */
-export async function fetchInitialActivities(count: number = 4): Promise<{
-  activities: ActivityItem[]
-  currentBlock: number
-  transactionCount: number
-}> {
-  const hive = await getHiveChain()
+// Asset can be either string format "123.456 HIVE" or object format
+export type HiveAsset = string | { amount: string; nai: string; precision: number }
 
-  // Get current head block
-  const props = await hive.api.database_api.get_dynamic_global_properties({})
-  const headBlock = props.head_block_number
-
-  // Fetch last 10 blocks to get a good pool of activities
-  const allActivities: ActivityItem[] = []
-  let latestTransactionCount = 0
-
-  for (let i = 0; i < 10; i++) {
-    const blockNum = headBlock - i
-
-    try {
-      const result = await hive.api.block_api.get_block({block_num: blockNum})
-
-      if (!result?.block?.transactions) continue
-
-      const block = result.block
-
-      // Store transaction count from the latest block
-      if (i === 0) {
-        latestTransactionCount = block.transactions.length
-      }
-
-      // Parse all transactions in the block
-      block.transactions.forEach((tx, txIndex: number) => {
-        const operations = tx.operations || []
-        // Get transaction ID from block.transaction_ids array (same order as transactions)
-        const txId = (block as any).transaction_ids?.[txIndex]
-
-        const interestingOps = filterInterestingOperations(operations)
-
-        interestingOps.forEach((op) => {
-          const activity = parseOperation(hive, op, blockNum, txIndex, txId)
-          if (activity) {
-            allActivities.push(activity)
-          }
-        })
-      })
-    } catch (error) {
-      console.error(`Failed to fetch block ${blockNum}:`, error)
-    }
-  }
-
-  // Filter and get optimal activities
-  const optimalActivities = filterOptimalActivities(allActivities, count * 3)
-
-  // Shuffle and take the requested count
-  const shuffled = shuffleArray(optimalActivities)
-  const selected = shuffled.slice(0, count)
-
-  return {
-    activities: selected,
-    currentBlock: headBlock,
-    transactionCount: latestTransactionCount,
-  }
+export interface DynamicGlobalProperties {
+  head_block_number: number
+  head_block_id: string
+  time: string
+  current_witness: string
+  total_pow: number
+  num_pow_witnesses: number
+  virtual_supply: HiveAsset
+  current_supply: HiveAsset
+  init_hbd_supply: HiveAsset
+  current_hbd_supply: HiveAsset
+  total_vesting_fund_hive: HiveAsset
+  total_vesting_shares: HiveAsset
+  total_reward_fund_hive: HiveAsset
+  total_reward_shares2: string
+  pending_rewarded_vesting_shares: HiveAsset
+  pending_rewarded_vesting_hive: HiveAsset
+  hbd_interest_rate: number
+  hbd_print_rate: number
+  maximum_block_size: number
+  required_actions_partition_percent: number
+  current_aslot: number
+  recent_slots_filled: string
+  participation_count: number
+  last_irreversible_block_num: number
+  vote_power_reserve_rate: number
+  delegation_return_period: number
+  reverse_auction_seconds: number
+  available_account_subsidies: number
+  hbd_stop_percent: number
+  hbd_start_percent: number
+  next_maintenance_time: string
+  last_budget_time: string
+  next_daily_maintenance_time: string
+  content_reward_percent: number
+  vesting_reward_percent: number
+  proposal_fund_percent: number
+  dhf_interval_ledger: string
+  downvote_pool_percent: number
+  current_remove_threshold: number
+  early_voting_seconds: number
+  mid_voting_seconds: number
+  max_consecutive_recurrent_transfer_failures: number
+  max_recurrent_transfer_end_date: number
+  min_recurrent_transfers_recurrence: number
+  max_open_recurrent_transfers: number
 }
 
 /**
  * Fetch blockchain activities from recent blocks
  * Optimized to avoid unnecessary dynamic_global_properties calls
  */
+export interface BlockWitness {
+  blockNum: number
+  witness: string
+}
+
 export async function fetchBlockchainActivity(
   lastBlock: number,
   maxBlocks: number = 3,
@@ -515,12 +504,15 @@ export async function fetchBlockchainActivity(
   latestBlock: number
   shouldSpeedUp: boolean
   transactionCount: number
+  witnesses: BlockWitness[]
+  globalProps: DynamicGlobalProperties | null
 }> {
   const hive = await getHiveChain()
 
   // Only check dynamic props on first call or every 10 blocks
   if (lastBlock === 0 || blockCheckCounter % 10 === 0) {
     const props = await hive.api.database_api.get_dynamic_global_properties({})
+    cachedGlobalProps = props as unknown as DynamicGlobalProperties
     assumedHeadBlock = props.head_block_number
 
     // If this is the first fetch, set lastBlock to fetch recent blocks
@@ -548,6 +540,7 @@ export async function fetchBlockchainActivity(
   }
 
   const newActivities: ActivityItem[] = []
+  const witnesses: BlockWitness[] = []
   let actualLatestBlock = lastBlock
   let latestTransactionCount = 0
 
@@ -568,13 +561,16 @@ export async function fetchBlockchainActivity(
 
       const block = result.block
 
-      // console.log(
-      //   `Fetched block ${blockNum} with ${block.transactions.length} transactions.`,
-      //   block,
-      // )
-
       actualLatestBlock = blockNum
       latestTransactionCount = block.transactions.length
+
+      // Track the witness/producer for this block
+      if (block.witness) {
+        witnesses.push({
+          blockNum,
+          witness: block.witness,
+        })
+      }
 
       // Parse all transactions in the block
       block.transactions.forEach((tx, txIndex: number) => {
@@ -608,5 +604,7 @@ export async function fetchBlockchainActivity(
     latestBlock: actualLatestBlock,
     shouldSpeedUp,
     transactionCount: latestTransactionCount,
+    witnesses,
+    globalProps: cachedGlobalProps,
   }
 }

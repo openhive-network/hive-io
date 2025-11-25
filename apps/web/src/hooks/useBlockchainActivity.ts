@@ -5,6 +5,8 @@ import {
   fetchBlockchainActivity,
   filterOptimalActivities,
   type ActivityItem,
+  type BlockWitness,
+  type DynamicGlobalProperties,
 } from '@hiveio/hive-lib'
 import {
   getDefaultActivities,
@@ -17,6 +19,7 @@ interface UseBlockchainActivityOptions {
   updateInterval: number
   enabled: boolean
   paused?: boolean
+  onNewBlock?: (blockNum: number, witness: string) => void
 }
 
 interface UseBlockchainActivityResult {
@@ -26,6 +29,7 @@ interface UseBlockchainActivityResult {
   currentBlock: number
   blockTimestamp: string
   transactionCount: number
+  globalProps: DynamicGlobalProperties | null
   reset: () => void
 }
 
@@ -41,6 +45,7 @@ export function useBlockchainActivity(
     updateInterval,
     enabled,
     paused = false,
+    onNewBlock,
   } = options
 
   const [activities, setActivities] = useState<ActivityItem[]>([])
@@ -49,6 +54,7 @@ export function useBlockchainActivity(
   const [currentBlock, setCurrentBlock] = useState(DEFAULT_BLOCK)
   const [blockTimestamp, setBlockTimestamp] = useState('')
   const [transactionCount, setTransactionCount] = useState(DEFAULT_TX_COUNT)
+  const [globalProps, setGlobalProps] = useState<DynamicGlobalProperties | null>(null)
 
   const lastBlockRef = useRef(0)
   const activitiesPoolRef = useRef<ActivityItem[]>([])
@@ -58,10 +64,13 @@ export function useBlockchainActivity(
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const hasInitializedRef = useRef(false)
   const hasLoadedDefaultsRef = useRef(false)
+  const isFirstFetchRef = useRef(true)
   const pausedRef = useRef(paused)
+  const onNewBlockRef = useRef(onNewBlock)
 
-  // Keep pausedRef in sync
+  // Keep refs in sync
   pausedRef.current = paused
+  onNewBlockRef.current = onNewBlock
 
   /**
    * Preload an image to ensure it's cached before display
@@ -156,19 +165,34 @@ export function useBlockchainActivity(
         latestBlock,
         shouldSpeedUp,
         transactionCount,
+        witnesses,
+        globalProps: fetchedGlobalProps,
       } = await fetchBlockchainActivity(
         lastBlockRef.current,
         3, // max 3 blocks per fetch
       )
 
+      // Update global props if we received new ones
+      if (fetchedGlobalProps) {
+        setGlobalProps(fetchedGlobalProps)
+      }
+
       // On first fetch from default block, show latestBlock - 1 for display
       const displayBlock =
-        currentBlock === DEFAULT_BLOCK ? latestBlock - 1 : latestBlock
+        isFirstFetchRef.current ? latestBlock - 1 : latestBlock
+      isFirstFetchRef.current = false
 
       setCurrentBlock(displayBlock)
       setBlockTimestamp(new Date().toLocaleTimeString())
       setTransactionCount(transactionCount)
       lastBlockRef.current = latestBlock
+
+      // Notify about new blocks/witnesses
+      if (onNewBlockRef.current && witnesses.length > 0) {
+        witnesses.forEach((w) => {
+          onNewBlockRef.current?.(w.blockNum, w.witness)
+        })
+      }
 
       // Update activities pool
       if (newActivities.length > 0) {
@@ -209,7 +233,7 @@ export function useBlockchainActivity(
       setError(err instanceof Error ? err.message : 'Unknown error')
       setIsLoading(false)
     }
-  }, [enabled, maxActivities, updateInterval, queueActivities])
+  }, [enabled, maxActivities, queueActivities])
 
   /**
    * Fetch initial block number immediately on mount
@@ -219,13 +243,16 @@ export function useBlockchainActivity(
 
     hasInitializedRef.current = true
 
-    // Fetch block number immediately to avoid showing default block for too long
+    // Fetch block number and global props immediately
     const fetchInitialBlock = async () => {
       try {
-        const {latestBlock} = await fetchBlockchainActivity(0, 1)
+        const {latestBlock, globalProps: initialGlobalProps} = await fetchBlockchainActivity(0, 1)
         setCurrentBlock(latestBlock - 1)
         setBlockTimestamp(new Date().toLocaleTimeString())
         lastBlockRef.current = latestBlock
+        if (initialGlobalProps) {
+          setGlobalProps(initialGlobalProps)
+        }
       } catch (err) {
         console.error('Failed to fetch initial block:', err)
       }
@@ -361,6 +388,7 @@ export function useBlockchainActivity(
     currentBlock,
     blockTimestamp,
     transactionCount,
+    globalProps,
     reset,
   }
 }

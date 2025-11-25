@@ -182,10 +182,10 @@ export default function HomePage() {
       </div>
 
       {/* Token Showcase Section */}
-      <div className="w-full bg-gradient-to-b from-gray-900 to-black py-24 px-10">
+      <div className="w-full bg-linear-to-b from-gray-900 to-black py-24 px-10">
         <div className="max-w-screen-2xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-bold text-white text-center mb-16">
-            Our Tokens<span className="text-[#e31337]">.</span>
+            Our Coins<span className="text-[#e31337]">.</span>
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* HIVE Token Card */}

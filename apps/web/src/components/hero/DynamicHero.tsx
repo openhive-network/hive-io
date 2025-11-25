@@ -333,19 +333,19 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
           {/* Height: min 4 activities (360px) on mobile, up to 6 (540px) on desktop based on viewport */}
           <div
             ref={containerRef}
-            className="w-full relative mb-[50px] bg-white/50 backdrop-blur-sm border-2 border-gray-200/80 rounded-3xl p-6"
+            className="w-full relative mb-[50px] bg-[#1a2332] backdrop-blur-sm border-2 border-gray-200/80 rounded-3xl p-6"
             onMouseLeave={() => setIsHoveringFeed(false)}
           >
             {/* Title and Live Indicator */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <h3 className="text-lg font-bold text-gray-900">Activity</h3>
+                <h3 className="text-lg font-bold text-white">Activity</h3>
                 {currentBlock > 0 ? (
                   <a
                     href={`https://hivehub.dev/b/${currentBlock}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-semibold text-gray-500 hover:text-[#e31337] transition-colors"
+                    className="text-sm font-semibold text-gray-400 hover:text-[#e31337] transition-colors"
                   >
                     #{currentBlock.toLocaleString()}
                   </a>
@@ -418,6 +418,11 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
                   }
                 }
 
+                // Extract action text by removing username prefix from message
+                const actionText = activity.user && activity.message.startsWith(activity.user)
+                  ? activity.message.slice(activity.user.length).trim()
+                  : activity.message;
+
                 const cardContent = (
                   <div className="flex items-center gap-4">
                     <img
@@ -428,16 +433,24 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
                         e.currentTarget.src = 'https://images.hive.blog/u/null/avatar/small';
                       }}
                     />
-                    <div className="flex-1 min-w-0">
-                      <p className={`text-sm font-semibold ${activity.color} truncate`}>
-                        {activity.message}
-                      </p>
-                    </div>
-                    {activity.txId && (
-                      <span className="text-xs text-gray-400 group-hover:text-[#e31337] font-mono shrink-0 transition-colors">
-                        {activity.txId.substring(0, 4)}...{activity.txId.substring(activity.txId.length - 4)}
+                    <div className="flex-1 min-w-0 flex flex-col">
+                      <span className="text-sm font-bold text-gray-900 truncate">
+                        {activity.user || 'Unknown'}
                       </span>
-                    )}
+                      <span className={`text-sm ${activity.color} truncate`}>
+                        {actionText}
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-end shrink-0">
+                      <span className="text-sm text-gray-400 group-hover:text-[#e31337] transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                        ↗
+                      </span>
+                      {activity.txId && (
+                        <span className="text-xs text-gray-400 group-hover:text-[#e31337] font-mono transition-colors">
+                          {activity.txId.substring(0, 4)}...{activity.txId.substring(activity.txId.length - 4)}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 );
 
@@ -468,7 +481,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={style}
-                    className={`group absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 hover:bg-white/90 hover:border-gray-300 cursor-pointer ${animationClass} ${pausedClass}`}
+                    className={`group absolute bg-gray-200 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 hover:bg-white/90 hover:border-gray-300 cursor-pointer ${animationClass} ${pausedClass}`}
                     onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
                     onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
                     onMouseEnter={handleCardMouseEnter}
@@ -480,7 +493,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
                   <div
                     key={activity.id}
                     style={style}
-                    className={`group absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 ${animationClass} ${pausedClass}`}
+                    className={`group absolute bg-gray-200 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 ${animationClass} ${pausedClass}`}
                     onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
                     onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
                     onMouseEnter={handleCardMouseEnter}

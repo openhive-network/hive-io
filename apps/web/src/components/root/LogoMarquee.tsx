@@ -25,9 +25,8 @@ interface MarqueeItemProps {
 
 const MarqueeImage: React.FC<MarqueeItemProps> = ({ src, alt, tall }) => (
   <div
-    className={`shrink-0 rounded-2xl overflow-hidden bg-gray-800 ${
-      tall ? 'w-[280px] h-[420px]' : 'w-[280px] h-[200px]'
-    }`}
+    className={`shrink-0 rounded-2xl overflow-hidden bg-gray-800 ${tall ? 'w-[280px] h-[420px]' : 'w-[280px] h-[202px]'
+      }`}
   >
     <img
       src={src}
@@ -44,11 +43,22 @@ interface StatCardProps {
 }
 
 const StatCard: React.FC<StatCardProps> = ({ value, label }) => (
-  <div className="shrink-0 w-[280px] h-[200px] rounded-2xl bg-gray-900 p-6 flex flex-col justify-center">
+  <div className="shrink-0 w-[280px] h-[202px] rounded-2xl bg-gray-900 p-6 flex flex-col justify-center">
     <span className="text-4xl md:text-5xl font-bold text-[#e31337]">
       {value}
     </span>
     <span className="text-gray-400 text-sm mt-2">{label}</span>
+  </div>
+);
+
+// A column that contains either 1 tall item or 2 stacked small items
+interface MarqueeColumnProps {
+  children: React.ReactNode;
+}
+
+const MarqueeColumn: React.FC<MarqueeColumnProps> = ({ children }) => (
+  <div className="shrink-0 flex flex-col gap-4">
+    {children}
   </div>
 );
 
@@ -63,47 +73,57 @@ export const LogoMarquee: React.FC<LogoMarqueeProps> = ({ className }) => {
     return num.toString();
   };
 
-  // Items for the marquee - mix of images and stats
-  const marqueeItems = [
-    { type: 'image', src: COMMUNITY_IMAGES[0], tall: true },
-    { type: 'image', src: COMMUNITY_IMAGES[1], tall: false },
-    { type: 'stat', value: formatNumber(totalAccounts), label: 'Total accounts' },
-    { type: 'image', src: COMMUNITY_IMAGES[2], tall: true },
-    { type: 'image', src: COMMUNITY_IMAGES[3], tall: false },
-    { type: 'image', src: COMMUNITY_IMAGES[4], tall: false },
-    { type: 'image', src: COMMUNITY_IMAGES[5], tall: true },
-  ];
+  // Tetris-like columns: either 1 tall image OR 2 stacked small items
+  const renderColumns = (keyPrefix: string) => (
+    <>
+      {/* Column 1: Tall image */}
+      <MarqueeColumn>
+        <MarqueeImage src={COMMUNITY_IMAGES[0]} alt="Hive community" tall />
+      </MarqueeColumn>
 
-  // Duplicate for seamless loop
-  const duplicatedItems = [...marqueeItems, ...marqueeItems];
+      {/* Column 2: Two stacked small images */}
+      <MarqueeColumn>
+        <MarqueeImage src={COMMUNITY_IMAGES[1]} alt="Hive community" />
+        <MarqueeImage src={COMMUNITY_IMAGES[2]} alt="Hive community" />
+      </MarqueeColumn>
+
+      {/* Column 3: Tall image */}
+      <MarqueeColumn>
+        <MarqueeImage src={COMMUNITY_IMAGES[3]} alt="Hive community" tall />
+      </MarqueeColumn>
+
+      {/* Column 4: Stat + small image stacked */}
+      <MarqueeColumn>
+        <StatCard value={formatNumber(10)} label="Total HiveFests" />
+        <MarqueeImage src={COMMUNITY_IMAGES[4]} alt="Hive community" />
+      </MarqueeColumn>
+
+      {/* Column 5: Tall image */}
+      <MarqueeColumn>
+        <MarqueeImage src={COMMUNITY_IMAGES[5]} alt="Hive community" tall />
+      </MarqueeColumn>
+
+      {/* Column 6: Two stacked small images */}
+      <MarqueeColumn>
+        <MarqueeImage src={COMMUNITY_IMAGES[0]} alt="Hive community" />
+        <MarqueeImage src={COMMUNITY_IMAGES[3]} alt="Hive community" />
+      </MarqueeColumn>
+    </>
+  );
 
   return (
     <div className={`w-full bg-gradient-to-b from-gray-900 to-black py-24 px-10 overflow-hidden ${className || ''}`}>
       <div className="max-w-screen-2xl mx-auto mb-16">
         <h2 className="text-5xl md:text-6xl font-bold text-white text-center">
-          A Thriving Community<span className="text-[#e31337]">.</span>
+          Join a Thriving Community<span className="text-[#e31337]">.</span>
         </h2>
       </div>
 
       {/* Animated Marquee */}
-      <div className="relative min-h-[470px]">
+      <div className="relative h-[420px]">
         <div className="flex gap-4 animate-marquee hover:paused">
-          {duplicatedItems.map((item, index) =>
-            item.type === 'stat' ? (
-              <StatCard
-                key={`stat-${index}`}
-                value={item.value!}
-                label={item.label!}
-              />
-            ) : (
-              <MarqueeImage
-                key={`image-${index}`}
-                src={item.src!}
-                alt="Hive community"
-                tall={item.tall}
-              />
-            )
-          )}
+          {renderColumns('first')}
+          {renderColumns('second')}
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useImperativeHandle, forwardRef } from 'react';
+import React, { useImperativeHandle, forwardRef, useState, useEffect, useRef } from 'react';
 import { useBlockProducers } from '@/hooks/useBlockProducers';
 
 const WITNESS_COUNT = 10;
@@ -17,6 +17,44 @@ export const RootDPoS = forwardRef<RootDPoSHandle, RootDPoSProps>(({ className, 
     initialCount: WITNESS_COUNT,
     enabled: true,
   });
+
+  // Track both current and outgoing producer for crossfade
+  const [currentProducer, setCurrentProducer] = useState(latestProducer);
+  const [outgoingProducer, setOutgoingProducer] = useState<typeof latestProducer>(null);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+  const prevProducerRef = useRef(latestProducer?.producer);
+
+  // Crossfade when producer changes
+  useEffect(() => {
+    if (latestProducer && latestProducer.producer !== prevProducerRef.current) {
+      // Set the old producer as outgoing (starts visible)
+      if (currentProducer) {
+        setOutgoingProducer(currentProducer);
+        setIsFadingOut(false);
+        // Trigger fade-out on next frame
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setIsFadingOut(true);
+          });
+        });
+      }
+      // Set new producer as current
+      setCurrentProducer(latestProducer);
+      prevProducerRef.current = latestProducer.producer;
+
+      // Clear outgoing after transition completes
+      const timeout = setTimeout(() => {
+        setOutgoingProducer(null);
+        setIsFadingOut(false);
+      }, 400);
+
+      return () => clearTimeout(timeout);
+    } else if (latestProducer && !currentProducer) {
+      // Initial load
+      setCurrentProducer(latestProducer);
+      prevProducerRef.current = latestProducer.producer;
+    }
+  }, [latestProducer, currentProducer]);
 
   // Expose addBlock to parent via ref
   useImperativeHandle(ref, () => ({
@@ -48,52 +86,81 @@ export const RootDPoS = forwardRef<RootDPoSHandle, RootDPoSProps>(({ className, 
           {/* Central block indicator */}
           <div className="flex flex-col items-center mb-12">
             {/* Latest block producer highlight */}
-            {latestProducer ? (
+            {currentProducer ? (
               <div className="relative">
                 {/* Pulsing glow */}
                 <div className="absolute inset-0 bg-[#e31337] rounded-full blur-2xl opacity-30 animate-pulse" />
 
-                {/* Producer avatar */}
-                <div className="relative flex flex-col items-center">
-                  <div className="relative mb-4">
-                    <div className="absolute -inset-2 bg-gradient-to-r from-[#e31337] to-[#ff4d6a] rounded-full opacity-50 blur-md animate-pulse" />
-                    <img
-                      src={`https://images.hive.blog/u/${latestProducer.producer}/avatar`}
-                      alt={latestProducer.producer}
-                      className="relative w-24 h-24 rounded-full border-4 border-[#e31337] object-cover bg-gray-800"
-                      onError={(e) => {
-                        e.currentTarget.src = 'https://images.hive.blog/u/null/avatar';
-                      }}
-                    />
-                    {/* Live indicator */}
-                    <div className="absolute -bottom-1 -right-1 flex items-center gap-1 bg-[#e31337] px-2 py-1 rounded-full">
-                      <div className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                {/* Container for crossfade */}
+                <div className="relative">
+                  {/* Outgoing producer (fading out) */}
+                  {outgoingProducer && (
+                    <div className={`absolute inset-0 flex flex-col items-center transition-opacity duration-300 ease-out ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}>
+                      <div className="relative mb-4">
+                        <div className="absolute -inset-2 bg-gradient-to-r from-[#e31337] to-[#ff4d6a] rounded-full opacity-50 blur-md animate-pulse" />
+                        <img
+                          src={`https://images.hive.blog/u/${outgoingProducer.producer}/avatar`}
+                          alt={outgoingProducer.producer}
+                          className="relative w-24 h-24 rounded-full border-4 border-[#e31337] object-cover bg-gray-800"
+                        />
+                        <div className="absolute -bottom-1 -right-1 flex items-center gap-1 bg-[#e31337] px-2 py-1 rounded-full">
+                          <div className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                          </div>
+                          <span className="text-xs font-bold text-white">LIVE</span>
+                        </div>
                       </div>
-                      <span className="text-xs font-bold text-white">LIVE</span>
+                      <span className="text-xl font-bold text-white">@{outgoingProducer.producer}</span>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-sm text-gray-400">Block</span>
+                        <span className="text-sm font-mono text-[#e31337]">#{outgoingProducer.block_num.toLocaleString()}</span>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  {/* Producer info */}
-                  <a
-                    href={`https://peakd.com/@${latestProducer.producer}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xl font-bold text-white hover:text-[#e31337] transition-colors"
-                  >
-                    @{latestProducer.producer}
-                  </a>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-sm text-gray-400">Block</span>
+                  {/* Current producer (fading in) */}
+                  <div className="relative flex flex-col items-center transition-opacity duration-300 ease-out opacity-100">
+                    <div className="relative mb-4">
+                      <div className="absolute -inset-2 bg-gradient-to-r from-[#e31337] to-[#ff4d6a] rounded-full opacity-50 blur-md animate-pulse" />
+                      <img
+                        src={`https://images.hive.blog/u/${currentProducer.producer}/avatar`}
+                        alt={currentProducer.producer}
+                        className="relative w-24 h-24 rounded-full border-4 border-[#e31337] object-cover bg-gray-800"
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.hive.blog/u/null/avatar';
+                        }}
+                      />
+                      {/* Live indicator */}
+                      <div className="absolute -bottom-1 -right-1 flex items-center gap-1 bg-[#e31337] px-2 py-1 rounded-full">
+                        <div className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                        </div>
+                        <span className="text-xs font-bold text-white">LIVE</span>
+                      </div>
+                    </div>
+
+                    {/* Producer info */}
                     <a
-                      href={`https://hivehub.dev/b/${latestProducer.block_num}`}
+                      href={`https://peakd.com/@${currentProducer.producer}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm font-mono text-[#e31337] hover:underline"
+                      className="text-xl font-bold text-white hover:text-[#e31337] transition-colors"
                     >
-                      #{latestProducer.block_num.toLocaleString()}
+                      @{currentProducer.producer}
                     </a>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-sm text-gray-400">Block</span>
+                      <a
+                        href={`https://hivehub.dev/b/${currentProducer.block_num}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-mono text-[#e31337] hover:underline"
+                      >
+                        #{currentProducer.block_num.toLocaleString()}
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

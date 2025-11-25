@@ -2,17 +2,17 @@
 
 import React from 'react';
 
-interface RootHistoryProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface RootHistoryProps extends React.HTMLAttributes<HTMLDivElement> { }
 
 export const RootHistory: React.FC<RootHistoryProps> = ({ className, ...props }) => {
   return (
     <div className={`w-full py-24 px-10 ${className || ''}`} {...props}>
-      <div className="max-w-screen-2xl mx-auto">
+      <div className="max-w-screen-2xl mx-auto min-h-[420px] flex justify-center items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left side - Bold statement */}
           <div>
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              Forged in Fire<span className="text-[#e31337]">.</span>
+              We forked<span className="text-[#e31337]">.</span>
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-4">
               In March 2020, a hostile takeover threatened to centralize a blockchain.
@@ -46,8 +46,9 @@ export const RootHistory: React.FC<RootHistoryProps> = ({ className, ...props })
                     <span>Aug 2020</span>
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-[#e31337] transition-colors leading-snug mb-2">
+                <h3 className="text-xl font-bold text-white group-hover:text-[#e31337] transition-colors leading-snug mb-2 flex items-center gap-2">
                   The Great Steem Wars
+                  <span className="text-lg transition-transform duration-200 group-hover:translate-x-1">→</span>
                 </h3>
                 <p className="text-sm text-gray-400">
                   Inside Crypto&apos;s Biggest Hostile Takeover
@@ -73,8 +74,9 @@ export const RootHistory: React.FC<RootHistoryProps> = ({ className, ...props })
                     <span>Mar 2020</span>
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-white leading-snug mb-2">
+                <h3 className="text-xl font-bold text-white leading-snug mb-2 flex items-center gap-2">
                   The Fork That Won
+                  <span className="text-lg transition-transform duration-200 group-hover:translate-x-1">→</span>
                 </h3>
                 <p className="text-sm text-white/80">
                   How Hive Outperformed Steemit

@@ -1,8 +1,17 @@
 'use client';
 
 import { useBlockchainActivity } from '@/hooks/useBlockchainActivity';
+import { useTotalAccounts } from '@/hooks/useTotalAccounts';
+import { useTransactionStats } from '@/hooks/useTransactionStats';
+import { useTVL } from '@/hooks/useTVL';
 import { Link } from '@/i18n/routing';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { DynamicGlobalProperties } from '@hiveio/hive-lib';
+
+interface DynamicHeroProps {
+  onNewBlock?: (blockNum: number, witness: string) => void;
+  onGlobalProps?: (props: DynamicGlobalProperties) => void;
+}
 
 // Calculate max activities based on screen dimensions
 function calculateMaxActivities(): number {
@@ -15,10 +24,10 @@ function calculateMaxActivities(): number {
   const availableHeight = height - headerSpace;
   const calculated = Math.floor(availableHeight / 90);
 
-  return Math.max(4, Math.min(calculated, 6));
+  return Math.max(4, Math.min(calculated, 4));
 }
 
-export function DynamicHero() {
+export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
   const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const [maxActivities, setMaxActivities] = useState(() => calculateMaxActivities());
@@ -36,12 +45,32 @@ export function DynamicHero() {
   const [shouldStopPolling, setShouldStopPolling] = useState(false);
   const [isHoveringFeed, setIsHoveringFeed] = useState(false);
 
-  const { activities: hookActivities, currentBlock } = useBlockchainActivity({
+  const { activities: hookActivities, currentBlock, globalProps } = useBlockchainActivity({
     maxActivities,
     updateInterval: 3000,
     enabled: true,
     paused: isHoveringFeed,
+    onNewBlock,
   });
+
+  // Pass global props to parent when updated
+  useEffect(() => {
+    if (globalProps && onGlobalProps) {
+      onGlobalProps(globalProps);
+    }
+  }, [globalProps, onGlobalProps]);
+
+  // Fetch transaction statistics
+  const { displayedTransactions } = useTransactionStats({
+    updateInterval: 3000,
+    enabled: true,
+  });
+
+  // Fetch total accounts (runs once on mount)
+  const { totalAccounts } = useTotalAccounts();
+
+  // Fetch TVL data with live prices
+  const { tvl } = useTVL({ updateInterval: 60000 });
 
   const activities = LIMIT_TOTAL_ACTIVITIES > 0
     ? hookActivities.filter(activity => {
@@ -259,204 +288,272 @@ export function DynamicHero() {
   }, [queuedIds, animatingIds, displayedActivities, finishedAnimatingIds, activities, isHoveringFeed]);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full max-w-6xl max-[600px]:px-1 mx-auto px-4">
-      {/* Main Headlines */}
-      <div className="text-center mt-8">
-        <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-1 max-[600px]:text-5xl max-[600px]:mb-2">
-          Fast & Scalable<span className="text-[#e31337]">.</span>
-        </h1>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 max-[600px]:text-2xl">
-          Web3 Becomes Reality
-        </h2>
-        <p className="text-lg md:text-xl text-gray-600 mt-8 mb-8 max-w-[600px] mx-auto max-[600px]:text-base max-[600px]:mb-6">
-          Built by the community, for the community. Experience the power of Hive, the
-          decentralized blockchain that puts you in control.
-        </p>
+    <div className="w-full max-w-screen-2xl max-[600px]:px-1 mx-auto px-10">
+      {/* Two column layout */}
+      <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center gap-8 lg:gap-12">
+        {/* Main Headlines - Left side on desktop */}
+        <div className="text-center lg:text-left mt-8 lg:mt-0 lg:flex-1">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-1 max-[600px]:text-5xl max-[600px]:mb-2">
+            Fast & Scalable<span className="text-[#e31337]">.</span>
+          </h1>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 max-[600px]:text-2xl">
+            The Blockchain For You.
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 mt-8 mb-8 max-w-[650px] max-[600px]:text-base max-[600px]:mb-6">
+            Battle-tested since 2016. Zero Downtime. Zero Gas Fees. Experience the power of Hive, the
+            decentralized blockchain that puts you in control.
+          </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-16 max-[600px]:mb-10">
-          <a
-            href="https://developers.hive.io/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-3 bg-[#e31337] text-white font-semibold rounded-lg hover:bg-[#c41230] transition-colors duration-200 text-lg max-[600px]:text-base max-[600px]:px-6 max-[600px]:py-2.5"
-          >
-            Start Building
-          </a>
-          <a
-            href="https://peakd.com/trending"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-[#e31337] hover:text-[#e31337] transition-colors duration-200 text-lg max-[600px]:text-base max-[600px]:px-6 max-[600px]:py-2.5"
-          >
-            Explore
-          </a>
-        </div>
-      </div>
-
-      {/* Live Block Number - Subtle */}
-      <div className="relative mb-6 max-[600px]:mb-4 w-full max-w-2xl">
-        <div className="flex items-center justify-between">
-          {/* Live Indicator - Left side */}
-          <div className="flex items-center gap-2">
-            <div className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#22c55e]"></span>
-            </div>
-            <span className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Live</span>
-          </div>
-
-          {/* Block Number - Right side */}
-          <div className="flex items-center gap-1">
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 max-[600px]:mb-8">
             <a
-              href={`https://hivehub.dev/b/${currentBlock}`}
+              href="https://developers.hive.io/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl md:text-2xl font-bold tabular-nums max-[600px]:text-lg text-[#e31337]"
+              className="group inline-flex items-center gap-3 px-10 py-4 bg-[#1a2332] text-white font-semibold rounded-full hover:bg-[#252d3f] transition-colors duration-200 text-lg max-[600px]:text-base max-[600px]:px-8 max-[600px]:py-3"
             >
-              {currentBlock.toLocaleString()}
+              Start Building
+              <span className="text-2xl transition-transform duration-200 group-hover:translate-x-1">→</span>
             </a>
-            <span className="text-base md:text-lg text-gray-400 max-[600px]:text-sm"># Block</span>
+            <a
+              href="https://peakd.com/trending"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-10 py-4 bg-white border-2 border-gray-200 text-gray-900 font-semibold rounded-full hover:border-gray-300 hover:bg-gray-50 transition-colors duration-200 text-lg max-[600px]:text-base max-[600px]:px-8 max-[600px]:py-3"
+            >
+              Explore
+            </a>
+          </div>
+        </div>
+
+        {/* Live Feed - Right side on desktop */}
+        <div className="w-full lg:w-[450px] lg:shrink-0 lg:mt-8">
+
+          {/* Live Activities Feed */}
+          {/* Height: min 4 activities (360px) on mobile, up to 6 (540px) on desktop based on viewport */}
+          <div
+            ref={containerRef}
+            className="w-full relative mb-[50px] bg-[#1a2332] backdrop-blur-sm border-2 border-gray-200/80 rounded-3xl p-6"
+            onMouseLeave={() => setIsHoveringFeed(false)}
+          >
+            {/* Title and Live Indicator */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <h3 className="text-lg font-bold text-white">Activity</h3>
+                {currentBlock > 0 ? (
+                  <a
+                    href={`https://hivehub.dev/b/${currentBlock}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-gray-400 hover:text-[#e31337] transition-colors"
+                  >
+                    #{currentBlock.toLocaleString()}
+                  </a>
+                ) : (
+                  <span className="text-sm font-semibold text-gray-300">---</span>
+                )}
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#22c55e]"></span>
+                </div>
+                <span className="text-sm font-semibold text-[#22c55e] uppercase tracking-wide">Live</span>
+              </div>
+            </div>
+
+            <div className="relative min-h-[360px]">
+              {displayedActivities.map((activity) => {
+                const isAnimating = animatingIds.has(activity.id);
+                const hasFinishedAnimating = finishedAnimatingIds.has(activity.id);
+                const isFadingOut = fadingOutIds.has(activity.id);
+
+                // Calculate position based on index in displayedActivities
+                // Fading out items move to the bottom (maxActivities position)
+                const currentIndex = displayedActivities.findIndex((a) => a.id === activity.id);
+                const actualIndex = isAnimating ? 0 : currentIndex;
+                const yPosition = actualIndex * 90; // 80px height + 10px gap
+
+                // Set opacity and transform for animations
+                const baseTransform = `translateY(${yPosition}px)`;
+
+                // Determine style based on state
+                // - Animating: use CSS animation (no inline transition)
+                // - Fading out: opacity 0, same position animation
+                // - Finished animating: opacity 1, position animation
+                // - Not yet animated: hidden (opacity 0, offset)
+                const style = isAnimating
+                  ? { '--y-pos': `${yPosition}px`, top: 0, left: 0, right: 0, transition: 'none' } as React.CSSProperties
+                  : hasFinishedAnimating || isFadingOut
+                    ? { opacity: isFadingOut ? 0 : 1, transform: baseTransform, top: 0, left: 0, right: 0 }
+                    : { opacity: 0, transform: `${baseTransform} translateX(50px)`, top: 0, left: 0, right: 0 };
+
+                // Log position changes
+                const prevPosition = prevPositionsRef.current.get(activity.id);
+                if (prevPosition !== yPosition) {
+                  console.log(`📐 ${activity.id.substring(0, 10)}:`, {
+                    prevPos: prevPosition ?? 'new',
+                    newPos: yPosition,
+                    actualIndex,
+                    isAnimating,
+                    hasFinishedAnimating,
+                    isFadingOut,
+                    displayedArray: displayedActivities.map(a => a.id.substring(0, 10)),
+                    transform: isAnimating ? `var(--y-pos: ${yPosition}px)` : style.transform
+                  });
+                  prevPositionsRef.current.set(activity.id, yPosition);
+                }
+
+                // Activities are clickable if they have a txId AND are not hardcoded defaults
+                // Hardcoded defaults have IDs starting with "default-"
+                const isClickable = !!activity.txId && !activity.id.startsWith('default-');
+
+                // For posts, comments, and votes, link to peakd; otherwise link to hivehub transaction
+                let activityUrl: string | undefined;
+                if (isClickable) {
+                  if ((activity.type === 'post' || activity.type === 'comment' || activity.type === 'vote') && activity.author && activity.permlink) {
+                    activityUrl = `https://peakd.com/@${activity.author}/${activity.permlink}`;
+                  } else {
+                    activityUrl = `https://hivehub.dev/tx/${activity.txId}`;
+                  }
+                }
+
+                // Extract action text by removing username prefix from message
+                const actionText = activity.user && activity.message.startsWith(activity.user)
+                  ? activity.message.slice(activity.user.length).trim()
+                  : activity.message;
+
+                const cardContent = (
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={activity.avatarUrl || 'https://images.hive.blog/u/null/avatar/small'}
+                      alt={activity.user || 'User'}
+                      className="w-12 h-12 rounded-full shrink-0 bg-gray-300 object-cover ring-2 ring-white"
+                      onError={(e) => {
+                        e.currentTarget.src = 'https://images.hive.blog/u/null/avatar/small';
+                      }}
+                    />
+                    <div className="flex-1 min-w-0 flex flex-col">
+                      <span className="text-sm font-bold text-gray-900 truncate">
+                        {activity.user || 'Unknown'}
+                      </span>
+                      <span className={`text-sm ${activity.color} truncate`}>
+                        {actionText}
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-end shrink-0">
+                      <span className="text-sm text-gray-400 group-hover:text-[#e31337] transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                        ↗
+                      </span>
+                      {activity.txId && (
+                        <span className="text-xs text-gray-400 group-hover:text-[#e31337] font-mono transition-colors">
+                          {activity.txId.substring(0, 4)}...{activity.txId.substring(activity.txId.length - 4)}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+
+                const animationClass = isAnimating && !isHoveringFeed ? 'animate-fade-in' : '';
+                const pausedClass = isHoveringFeed ? 'animation-paused' : '';
+
+                // Track hovered activity - pause immediately if not animating,
+                // otherwise pause will trigger when animation completes
+                const handleCardMouseEnter = () => {
+                  // Don't allow pausing on fading out activities
+                  if (isFadingOut) return;
+
+                  setHoveredActivityId(activity.id);
+                  if (!isAnimating) {
+                    setIsHoveringFeed(true);
+                  }
+                  // If animating, pause will be triggered in handleAnimationEnd
+                };
+
+                const handleCardMouseLeave = () => {
+                  setHoveredActivityId(null);
+                };
+
+                return isClickable ? (
+                  <a
+                    key={activity.id}
+                    href={activityUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={style}
+                    className={`group absolute bg-gray-200 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 hover:bg-white/90 hover:border-gray-300 cursor-pointer ${animationClass} ${pausedClass}`}
+                    onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
+                    onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
+                    onMouseEnter={handleCardMouseEnter}
+                    onMouseLeave={handleCardMouseLeave}
+                  >
+                    {cardContent}
+                  </a>
+                ) : (
+                  <div
+                    key={activity.id}
+                    style={style}
+                    className={`group absolute bg-gray-200 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 ${animationClass} ${pausedClass}`}
+                    onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
+                    onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
+                    onMouseEnter={handleCardMouseEnter}
+                    onMouseLeave={handleCardMouseLeave}
+                  >
+                    {cardContent}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Live Activities Feed */}
-      {/* Height: min 4 activities (360px) on mobile, up to 6 (540px) on desktop based on viewport */}
-      <div
-        ref={containerRef}
-        className="w-full max-w-2xl relative mb-[50px] min-h-[360px] md:min-h-[min(540px,max(360px,calc(100vh-520px)))]"
-        onMouseLeave={() => setIsHoveringFeed(false)}
-      >
+      {/* Stats Bar - Full width below both columns */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 pt-8 border-t border-gray-200 mt-12 mb-16 max-[600px]:mb-10 max-[600px]:gap-6">
+        <div>
+          <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="font-medium">Uptime (Years)</span>
+          </div>
+          <div className="text-4xl font-bold text-gray-900">8+</div>
+        </div>
 
-        <div className="relative">
-          {displayedActivities.map((activity) => {
-            const isAnimating = animatingIds.has(activity.id);
-            const hasFinishedAnimating = finishedAnimatingIds.has(activity.id);
-            const isFadingOut = fadingOutIds.has(activity.id);
+        <div>
+          <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="font-medium">Total Value Locked</span>
+          </div>
+          <div className={`text-4xl font-bold ${tvl ? 'text-gray-900' : 'text-gray-300'}`}>
+            {tvl ? `$${(tvl.totalUSD / 1_000_000).toFixed(2)}M` : '---'}
+          </div>
+        </div>
 
-            // Calculate position based on index in displayedActivities
-            // Fading out items move to the bottom (maxActivities position)
-            const currentIndex = displayedActivities.findIndex((a) => a.id === activity.id);
-            const actualIndex = isAnimating ? 0 : currentIndex;
-            const yPosition = actualIndex * 90; // 80px height + 10px gap
+        <div>
+          <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span className="font-medium">Accounts</span>
+          </div>
+          <div className={`text-4xl font-bold ${totalAccounts > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
+            {totalAccounts > 0 ? `${(totalAccounts / 1_000_000).toFixed(1)}M` : '---'}
+          </div>
+        </div>
 
-            // Set opacity and transform for animations
-            const baseTransform = `translateY(${yPosition}px)`;
-
-            // Determine style based on state
-            // - Animating: use CSS animation (no inline transition)
-            // - Fading out: opacity 0, same position animation
-            // - Finished animating: opacity 1, position animation
-            // - Not yet animated: hidden (opacity 0, offset)
-            const style = isAnimating
-              ? { '--y-pos': `${yPosition}px`, top: 0, left: 0, right: 0, transition: 'none' } as React.CSSProperties
-              : hasFinishedAnimating || isFadingOut
-                ? { opacity: isFadingOut ? 0 : 1, transform: baseTransform, top: 0, left: 0, right: 0 }
-                : { opacity: 0, transform: `${baseTransform} translateX(50px)`, top: 0, left: 0, right: 0 };
-
-            // Log position changes
-            const prevPosition = prevPositionsRef.current.get(activity.id);
-            if (prevPosition !== yPosition) {
-              console.log(`📐 ${activity.id.substring(0, 10)}:`, {
-                prevPos: prevPosition ?? 'new',
-                newPos: yPosition,
-                actualIndex,
-                isAnimating,
-                hasFinishedAnimating,
-                isFadingOut,
-                displayedArray: displayedActivities.map(a => a.id.substring(0, 10)),
-                transform: isAnimating ? `var(--y-pos: ${yPosition}px)` : style.transform
-              });
-              prevPositionsRef.current.set(activity.id, yPosition);
-            }
-
-            // Activities are clickable if they have a txId AND are not hardcoded defaults
-            // Hardcoded defaults have IDs starting with "default-"
-            const isClickable = !!activity.txId && !activity.id.startsWith('default-');
-
-            // For posts, comments, and votes, link to peakd; otherwise link to hivehub transaction
-            let activityUrl: string | undefined;
-            if (isClickable) {
-              if ((activity.type === 'post' || activity.type === 'comment' || activity.type === 'vote') && activity.author && activity.permlink) {
-                activityUrl = `https://peakd.com/@${activity.author}/${activity.permlink}`;
-              } else {
-                activityUrl = `https://hivehub.dev/tx/${activity.txId}`;
-              }
-            }
-
-            const cardContent = (
-              <div className="flex items-center gap-4">
-                <img
-                  src={activity.avatarUrl || 'https://images.hive.blog/u/null/avatar/small'}
-                  alt={activity.user || 'User'}
-                  className="w-12 h-12 rounded-full shrink-0 bg-gray-300 object-cover ring-2 ring-white"
-                  onError={(e) => {
-                    e.currentTarget.src = 'https://images.hive.blog/u/null/avatar/small';
-                  }}
-                />
-                <div className="flex-1 min-w-0">
-                  <p className={`text-sm font-semibold ${activity.color} truncate`}>
-                    {activity.message}
-                  </p>
-                </div>
-                {activity.txId && (
-                  <span className="text-xs text-gray-400 group-hover:text-[#e31337] font-mono shrink-0 transition-colors">
-                    {activity.txId.substring(0, 4)}...{activity.txId.substring(activity.txId.length - 4)}
-                  </span>
-                )}
-              </div>
-            );
-
-            const animationClass = isAnimating && !isHoveringFeed ? 'animate-fade-in' : '';
-            const pausedClass = isHoveringFeed ? 'animation-paused' : '';
-
-            // Track hovered activity - pause immediately if not animating,
-            // otherwise pause will trigger when animation completes
-            const handleCardMouseEnter = () => {
-              // Don't allow pausing on fading out activities
-              if (isFadingOut) return;
-
-              setHoveredActivityId(activity.id);
-              if (!isAnimating) {
-                setIsHoveringFeed(true);
-              }
-              // If animating, pause will be triggered in handleAnimationEnd
-            };
-
-            const handleCardMouseLeave = () => {
-              setHoveredActivityId(null);
-            };
-
-            return isClickable ? (
-              <a
-                key={activity.id}
-                href={activityUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={style}
-                className={`group absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 hover:bg-white/90 hover:border-gray-300 cursor-pointer ${animationClass} ${pausedClass}`}
-                onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
-                onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
-                onMouseEnter={handleCardMouseEnter}
-                onMouseLeave={handleCardMouseLeave}
-              >
-                {cardContent}
-              </a>
-            ) : (
-              <div
-                key={activity.id}
-                style={style}
-                className={`group absolute bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 ${animationClass} ${pausedClass}`}
-                onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
-                onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
-                onMouseEnter={handleCardMouseEnter}
-                onMouseLeave={handleCardMouseLeave}
-              >
-                {cardContent}
-              </div>
-            );
-          })}
+        <div>
+          <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+            <span className="font-medium">Transactions</span>
+          </div>
+          <div className={`text-4xl font-bold ${displayedTransactions > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
+            {displayedTransactions > 0 ? displayedTransactions.toLocaleString() : '---'}
+          </div>
         </div>
       </div>
     </div>

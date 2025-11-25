@@ -87,6 +87,6 @@ export function getDefaultActivities(count: number = 2): ActivityItem[] {
   return generateRandomActivities(count)
 }
 
-// Default block data
-export const DEFAULT_BLOCK = 100000000
-export const DEFAULT_TX_COUNT = 24
+// Default block data - set to 0 so UI shows loading state
+export const DEFAULT_BLOCK = 0
+export const DEFAULT_TX_COUNT = 0

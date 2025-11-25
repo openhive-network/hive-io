@@ -5,15 +5,21 @@ import { useRouter } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo/Logo';
 import { ScrollIndicator } from '@/components/ScrollIndicator';
+import { RootDPoS, RootDPoSHandle } from '@/components/root/RootDPoS';
 import { RootEco } from '@/components/root/RootEco';
+import { RootHistory } from '@/components/root/RootHistory';
+import { LogoMarquee } from '@/components/root/LogoMarquee';
+import { TokenCard } from '@/components/cards/TokenCard';
 import { useAssets } from '@/hooks/useAssets';
+import { useTVL } from '@/hooks/useTVL';
 import { EXCHANGES } from '@/lib/data/var';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import type { DynamicGlobalProperties } from '@hiveio/hive-lib';
 
 // Live Activity Components
 import { DynamicHero } from '@/components/hero/DynamicHero';
 
-interface MoneyParticle {
+interface TokenParticle {
   id: number;
   x: number;
   y: number;
@@ -21,18 +27,57 @@ interface MoneyParticle {
   vy: number;
   rotation: number;
   rotationSpeed: number;
+  type: 'hive' | 'hbd';
 }
 
 export default function HomePage() {
   const router = useRouter();
   const t = useTranslations();
   const { getImage } = useAssets();
-  const [particles, setParticles] = useState<MoneyParticle[]>([]);
-  const defiCardRef = useRef<HTMLDivElement>(null);
+  const [particles, setParticles] = useState<TokenParticle[]>([]);
+  const hiveCardRef = useRef<HTMLDivElement>(null);
+  const hbdCardRef = useRef<HTMLDivElement>(null);
   const particleIdRef = useRef(0);
   const animationFrameRef = useRef<number>(null);
-  const isHoveringRef = useRef(false);
-  const lastParticleTimeRef = useRef(0);
+  const dposRef = useRef<RootDPoSHandle>(null);
+  const hasTriggeredRef = useRef<{ hive: boolean; hbd: boolean }>({ hive: false, hbd: false });
+  const [globalProps, setGlobalProps] = useState<DynamicGlobalProperties | null>(null);
+
+  // Fetch TVL data for locked amounts
+  const { tvl } = useTVL({ updateInterval: 60000 });
+
+  // Callback to pass new block info from DynamicHero to RootDPoS
+  const handleNewBlock = useCallback((blockNum: number, witness: string) => {
+    dposRef.current?.addBlock(blockNum, witness);
+  }, []);
+
+  // Callback to receive global props from DynamicHero
+  const handleGlobalProps = useCallback((props: DynamicGlobalProperties) => {
+    setGlobalProps(props);
+  }, []);
+
+  // Parse supply values from global props (format: "123.456 HIVE" or {amount, nai, precision})
+  const parseSupply = (supply: unknown): number => {
+    if (!supply) return 0;
+    // Handle string format: "123.456 HIVE"
+    if (typeof supply === 'string') {
+      return parseFloat(supply.split(' ')[0]) || 0;
+    }
+    // Handle object format: { amount: "123456", nai: "@@000000021", precision: 3 }
+    if (typeof supply === 'object' && supply !== null && 'amount' in supply) {
+      const obj = supply as { amount: string; precision?: number };
+      const amount = parseInt(obj.amount, 10);
+      const precision = obj.precision ?? 3;
+      return amount / Math.pow(10, precision);
+    }
+    return 0;
+  };
+
+  // Calculate token supply data
+  const hiveSupply = parseSupply(globalProps?.current_supply);
+  const hbdSupply = parseSupply(globalProps?.current_hbd_supply);
+  const hiveLocked = tvl ? tvl.hpAmount + tvl.hiveSavings : 0;
+  const hbdLocked = tvl?.hbdSavings || 0;
 
   const go = (link: string) => {
     window.open(link, '_blank');
@@ -42,22 +87,20 @@ export default function HomePage() {
     return getImage(`exchanges/${image}`);
   };
 
-  // Particle animation loop for DeFi card
+  // Particle animation loop
   useEffect(() => {
     const animate = () => {
-      const updateParticles = (prev: MoneyParticle[]) => {
-        return prev
+      setParticles((prev) =>
+        prev
           .map((p) => ({
             ...p,
             x: p.x + p.vx,
             y: p.y + p.vy,
-            vy: p.vy + 0.5, // gravity
+            vy: p.vy + 0.4,
             rotation: p.rotation + p.rotationSpeed,
           }))
-          .filter((p) => p.y < window.innerHeight + 100); // remove off-screen particles
-      };
-
-      setParticles(updateParticles);
+          .filter((p) => p.y < window.innerHeight + 100)
+      );
 
       animationFrameRef.current = requestAnimationFrame(animate);
     };
@@ -70,105 +113,184 @@ export default function HomePage() {
     };
   }, []);
 
-  // Mouse move handler for DeFi card (HBD particles)
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isHoveringRef.current || !defiCardRef.current) return;
+  // Spawn particles from random positions along the edges of the card (once per page view)
+  const spawnParticleBurst = (
+    cardRef: React.RefObject<HTMLDivElement | null>,
+    type: 'hive' | 'hbd'
+  ) => {
+    if (!cardRef.current || hasTriggeredRef.current[type]) return;
+    hasTriggeredRef.current[type] = true;
 
-    // Throttle particle creation - only create one every 50ms
-    const now = Date.now();
-    if (now - lastParticleTimeRef.current < 50) return;
-    lastParticleTimeRef.current = now;
+    const rect = cardRef.current.getBoundingClientRect();
+    const newParticles: TokenParticle[] = [];
+    const count = 5 + Math.floor(Math.random() * 3); // 5-7 particles
 
-    // Create particle at cursor position
-    const newParticle: MoneyParticle = {
-      id: particleIdRef.current++,
-      x: e.clientX,
-      y: e.clientY,
-      vx: (Math.random() - 0.5) * 4,
-      vy: -Math.random() * 3 - 2,
-      rotation: Math.random() * 360,
-      rotationSpeed: (Math.random() - 0.5) * 10,
-    };
+    for (let i = 0; i < count; i++) {
+      // Pick a random edge (0: top, 1: right, 2: bottom, 3: left)
+      const edge = Math.floor(Math.random() * 4);
+      let x: number, y: number, vx: number, vy: number;
 
-    setParticles((prev) => [...prev, newParticle]);
+      switch (edge) {
+        case 0: // top edge
+          x = rect.left + Math.random() * rect.width;
+          y = rect.top;
+          vx = (Math.random() - 0.5) * 3;
+          vy = -2 - Math.random() * 2;
+          break;
+        case 1: // right edge
+          x = rect.right;
+          y = rect.top + Math.random() * rect.height;
+          vx = 2 + Math.random() * 2;
+          vy = (Math.random() - 0.5) * 3;
+          break;
+        case 2: // bottom edge
+          x = rect.left + Math.random() * rect.width;
+          y = rect.bottom;
+          vx = (Math.random() - 0.5) * 3;
+          vy = 1 + Math.random() * 2;
+          break;
+        default: // left edge
+          x = rect.left;
+          y = rect.top + Math.random() * rect.height;
+          vx = -2 - Math.random() * 2;
+          vy = (Math.random() - 0.5) * 3;
+          break;
+      }
 
-    // Limit particles
-    if (particles.length > 40) {
-      setParticles((prev) => prev.slice(-40));
+      newParticles.push({
+        id: particleIdRef.current++,
+        x,
+        y,
+        vx,
+        vy,
+        rotation: Math.random() * 360,
+        rotationSpeed: (Math.random() - 0.5) * 12,
+        type,
+      });
     }
+
+    setParticles((prev) => [...prev, ...newParticles].slice(-30));
   };
 
   return (
     <div className="h-full">
       <div
-        className="flex flex-1 flex-col items-center pt-[60px] max-[600px]:pt-0 px-5 pb-0 relative"
+        className="flex flex-1 flex-col items-center pt-[20px] max-[600px]:pt-0 pb-0 relative"
       >
         {/* Dynamic Hero with Live Block Number and Activities */}
-        <DynamicHero />
+        <DynamicHero onNewBlock={handleNewBlock} onGlobalProps={handleGlobalProps} />
+      </div>
+
+      {/* Token Showcase Section */}
+      <div className="w-full bg-linear-to-b from-gray-900 to-black py-24 px-10">
+        <div className="max-w-screen-2xl mx-auto">
+          <h2 className="text-5xl md:text-6xl font-bold text-white text-center mb-16">
+            Our Coins<span className="text-[#e31337]">.</span>
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* HIVE Token Card */}
+            <TokenCard
+              ref={hiveCardRef}
+              name="HIVE"
+              subtitle="Utility & Governance"
+              iconSrc={getImage('circle_hive_red.png')}
+              color="#e31337"
+              colorRgb="227,19,55"
+              features={[
+                {
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  ),
+                  text: 'Powers all transactions',
+                },
+                {
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  ),
+                  text: 'Stake to vote for witnesses',
+                },
+                {
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  ),
+                  text: 'Earn curation rewards',
+                },
+              ]}
+              totalSupply={hiveSupply}
+              lockedAmount={hiveLocked}
+              chartLabel="Staked"
+              onMouseEnter={() => spawnParticleBurst(hiveCardRef, 'hive')}
+            />
+
+            {/* HBD Token Card */}
+            <TokenCard
+              ref={hbdCardRef}
+              name="HBD"
+              subtitle="Stablecoin"
+              iconSrc={getImage('hbd.svg')}
+              color="#10b981"
+              colorRgb="16,185,129"
+              features={[
+                {
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  ),
+                  text: 'Algorithmic peg to USD',
+                },
+                {
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  ),
+                  text: 'Backed by HIVE',
+                },
+                {
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                  ),
+                  text: (
+                    <span className="flex items-center gap-2">
+                      Earn <span className="text-2xl font-bold mt-[-2px] text-emerald-400">15%</span> APR
+                    </span>
+                  ),
+                },
+              ]}
+              totalSupply={hbdSupply}
+              lockedAmount={hbdLocked}
+              chartLabel="In Savings"
+              onMouseEnter={() => spawnParticleBurst(hbdCardRef, 'hbd')}
+              buyUrl="https://hivedex.io/"
+            />
+          </div>
+        </div>
       </div>
 
       {/* Ecosystem */}
       <RootEco id="ecosystem-section" className="bg-[#e7e7f1]" />
 
-      {/* Core Features Section */}
-      <div className="w-full py-32 px-5">
-        <div className="max-w-[1200px] mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-            Why Hive?
-          </h2>
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Feature 1: Fast & Free */}
-            <div className="group bg-gradient-to-br from-blue-50 to-indigo-100 border-2 border-blue-300 rounded-xl p-8 transition-all duration-300 hover:border-blue-400">
-              <div className="flex items-center justify-center w-20 h-20 mb-6 mx-auto">
-                <img className="w-full h-full object-contain" src={getImage('fees.png')} alt="No fees" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{t('root.feeTitle')}</h3>
-              <p className="text-base text-gray-700 leading-relaxed mb-3 text-center">
-                {t('root.feeText')}
-              </p>
-              <p className="text-sm text-gray-600 text-center">
-                {t('root.feeText2')}
-              </p>
-            </div>
+      {/* DPoS Visualization */}
+      <RootDPoS ref={dposRef} />
 
-            {/* Feature 2: Decentralized */}
-            <div className="group bg-gradient-to-br from-purple-50 to-pink-100 border-2 border-purple-300 rounded-xl p-8 transition-all duration-300 hover:border-purple-400">
-              <div className="flex items-center justify-center w-20 h-20 mb-6 mx-auto">
-                <img className="w-full h-full object-contain" src={getImage('decentralized.png')} alt="Decentralized" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{t('root.decTitle')}</h3>
-              <p className="text-base text-gray-700 leading-relaxed mb-3 text-center">
-                {t('root.decText')}
-              </p>
-              <p className="text-sm text-gray-600 text-center">
-                {t('root.decText2')}
-              </p>
-            </div>
+      {/* History Section */}
+      <RootHistory className="bg-hive-grey" />
 
-            {/* Feature 3: DeFi Made Simple */}
-            <div
-              ref={defiCardRef}
-              className="group bg-gradient-to-br from-emerald-50 to-teal-100 border-2 border-emerald-300 rounded-xl p-8 transition-all duration-300 hover:border-emerald-400 relative overflow-hidden cursor-pointer"
-              onMouseEnter={() => { isHoveringRef.current = true; }}
-              onMouseLeave={() => { isHoveringRef.current = false; }}
-              onMouseMove={handleMouseMove}
-            >
-              <div className="flex items-center justify-center w-20 h-20 mb-6 mx-auto">
-                <img className="w-full h-full object-contain" src={getImage('hbd.svg')} alt="HBD DeFi" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">DeFi Made Simple</h3>
-              <p className="text-base text-gray-700 leading-relaxed text-center">
-                Earn up to 15% APR on HBD, our decentralized stablecoin pegged to USD.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Community Section */}
+      <LogoMarquee />
 
       {/* Exchanges */}
-      <div className="w-full bg-gradient-to-b from-slate-900 via-gray-900 to-black py-32 px-5">
-        <div className="max-w-[1400px] mx-auto">
+      <div id="exchanges" className="w-full bg-gradient-to-b from-gray-900 to-black py-32 px-10">
+        <div className="max-w-screen-2xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-5xl font-bold text-white mb-6">
               {t('root.exchanges.title')}
@@ -200,7 +322,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* HBD Money Fountain Particles */}
+      {/* Token Particles */}
       {particles.map((particle) => (
         <div
           key={particle.id}
@@ -209,12 +331,11 @@ export default function HomePage() {
             left: `${particle.x}px`,
             top: `${particle.y}px`,
             transform: `translate(-50%, -50%) rotate(${particle.rotation}deg)`,
-            transition: 'none',
           }}
         >
           <img
-            src={getImage('hbd.svg')}
-            alt="HBD"
+            src={getImage(particle.type === 'hive' ? 'circle_hive_red.png' : 'hbd.svg')}
+            alt={particle.type.toUpperCase()}
             className="w-8 h-8 opacity-80"
             style={{
               filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
@@ -222,6 +343,6 @@ export default function HomePage() {
           />
         </div>
       ))}
-    </div>
+    </div >
   );
 }

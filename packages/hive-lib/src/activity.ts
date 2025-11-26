@@ -101,7 +101,7 @@ export function parseOperation(
         message: `${data.account} claimed rewards`,
         user: data.account,
         timestamp,
-        color: 'text-yellow-600',
+        color: 'text-gray-700',
         avatarUrl: getUserAvatar(data.account),
       }
     }
@@ -159,7 +159,7 @@ export function parseOperation(
           message: `${data.author} published a post`,
           user: data.author,
           timestamp,
-          color: 'text-gray-800',
+          color: 'text-gray-700',
           avatarUrl: getUserAvatar(data.author),
           author: data.author,
           permlink: data.permlink,
@@ -198,7 +198,7 @@ export function parseOperation(
         amount: asset.amount,
         symbol: asset.symbol,
         timestamp,
-        color: 'text-[#e31337]',
+        color: 'text-gray-700',
         avatarUrl: getUserAvatar(user),
       }
     }
@@ -435,6 +435,7 @@ export function filterOptimalActivities(
 let blockCheckCounter = 0
 let assumedHeadBlock = 0
 let cachedGlobalProps: DynamicGlobalProperties | null = null
+let cachedHiveFundBalance: { hiveBalance: number; hbdBalance: number } | null = null
 
 // Asset can be either string format "123.456 HIVE" or object format
 export type HiveAsset = string | { amount: string; nai: string; precision: number }
@@ -506,14 +507,31 @@ export async function fetchBlockchainActivity(
   transactionCount: number
   witnesses: BlockWitness[]
   globalProps: DynamicGlobalProperties | null
+  hiveFundBalance: { hiveBalance: number; hbdBalance: number } | null
 }> {
   const hive = await getHiveChain()
 
   // Only check dynamic props on first call or every 10 blocks
   if (lastBlock === 0 || blockCheckCounter % 10 === 0) {
-    const props = await hive.api.database_api.get_dynamic_global_properties({})
+    // Fetch global props and hive.fund account in parallel
+    const [props, hiveFundResult] = await Promise.all([
+      hive.api.database_api.get_dynamic_global_properties({}),
+      hive.api.database_api.find_accounts({ accounts: ['hive.fund'] }),
+    ])
+
     cachedGlobalProps = props as unknown as DynamicGlobalProperties
     assumedHeadBlock = props.head_block_number
+
+    // Cache hive.fund balance using hive.getAsset
+    if (hiveFundResult.accounts && hiveFundResult.accounts.length > 0) {
+      const account = hiveFundResult.accounts[0]
+      const hiveAsset = hive.getAsset(account.balance)
+      const hbdAsset = hive.getAsset(account.hbd_balance)
+      cachedHiveFundBalance = {
+        hiveBalance: parseFloat(hiveAsset.amount),
+        hbdBalance: parseFloat(hbdAsset.amount),
+      }
+    }
 
     // If this is the first fetch, set lastBlock to fetch recent blocks
     if (lastBlock === 0) {
@@ -606,5 +624,6 @@ export async function fetchBlockchainActivity(
     transactionCount: latestTransactionCount,
     witnesses,
     globalProps: cachedGlobalProps,
+    hiveFundBalance: cachedHiveFundBalance,
   }
 }

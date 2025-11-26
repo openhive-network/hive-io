@@ -30,6 +30,7 @@ interface UseBlockchainActivityResult {
   blockTimestamp: string
   transactionCount: number
   globalProps: DynamicGlobalProperties | null
+  hiveFundBalance: { hiveBalance: number; hbdBalance: number } | null
   reset: () => void
 }
 
@@ -55,6 +56,7 @@ export function useBlockchainActivity(
   const [blockTimestamp, setBlockTimestamp] = useState('')
   const [transactionCount, setTransactionCount] = useState(DEFAULT_TX_COUNT)
   const [globalProps, setGlobalProps] = useState<DynamicGlobalProperties | null>(null)
+  const [hiveFundBalance, setHiveFundBalance] = useState<{ hiveBalance: number; hbdBalance: number } | null>(null)
 
   const lastBlockRef = useRef(0)
   const activitiesPoolRef = useRef<ActivityItem[]>([])
@@ -167,6 +169,7 @@ export function useBlockchainActivity(
         transactionCount,
         witnesses,
         globalProps: fetchedGlobalProps,
+        hiveFundBalance: fetchedHiveFundBalance,
       } = await fetchBlockchainActivity(
         lastBlockRef.current,
         3, // max 3 blocks per fetch
@@ -175,6 +178,11 @@ export function useBlockchainActivity(
       // Update global props if we received new ones
       if (fetchedGlobalProps) {
         setGlobalProps(fetchedGlobalProps)
+      }
+
+      // Update hive.fund balance if we received it
+      if (fetchedHiveFundBalance) {
+        setHiveFundBalance(fetchedHiveFundBalance)
       }
 
       // On first fetch from default block, show latestBlock - 1 for display
@@ -246,12 +254,15 @@ export function useBlockchainActivity(
     // Fetch block number and global props immediately
     const fetchInitialBlock = async () => {
       try {
-        const {latestBlock, globalProps: initialGlobalProps} = await fetchBlockchainActivity(0, 1)
+        const {latestBlock, globalProps: initialGlobalProps, hiveFundBalance: initialHiveFundBalance} = await fetchBlockchainActivity(0, 1)
         setCurrentBlock(latestBlock - 1)
         setBlockTimestamp(new Date().toLocaleTimeString())
         lastBlockRef.current = latestBlock
         if (initialGlobalProps) {
           setGlobalProps(initialGlobalProps)
+        }
+        if (initialHiveFundBalance) {
+          setHiveFundBalance(initialHiveFundBalance)
         }
       } catch (err) {
         console.error('Failed to fetch initial block:', err)
@@ -389,6 +400,7 @@ export function useBlockchainActivity(
     blockTimestamp,
     transactionCount,
     globalProps,
+    hiveFundBalance,
     reset,
   }
 }

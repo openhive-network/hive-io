@@ -11,6 +11,7 @@ import type { DynamicGlobalProperties } from '@hiveio/hive-lib';
 interface DynamicHeroProps {
   onNewBlock?: (blockNum: number, witness: string) => void;
   onGlobalProps?: (props: DynamicGlobalProperties) => void;
+  onHiveFundBalance?: (balance: { hiveBalance: number; hbdBalance: number }) => void;
 }
 
 // Calculate max activities based on screen dimensions
@@ -27,7 +28,7 @@ function calculateMaxActivities(): number {
   return Math.max(4, Math.min(calculated, 4));
 }
 
-export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
+export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: DynamicHeroProps) {
   const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const [maxActivities, setMaxActivities] = useState(() => calculateMaxActivities());
@@ -45,7 +46,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
   const [shouldStopPolling, setShouldStopPolling] = useState(false);
   const [isHoveringFeed, setIsHoveringFeed] = useState(false);
 
-  const { activities: hookActivities, currentBlock, globalProps } = useBlockchainActivity({
+  const { activities: hookActivities, currentBlock, globalProps, hiveFundBalance } = useBlockchainActivity({
     maxActivities,
     updateInterval: 3000,
     enabled: true,
@@ -59,6 +60,13 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
       onGlobalProps(globalProps);
     }
   }, [globalProps, onGlobalProps]);
+
+  // Pass hive.fund balance to parent when updated
+  useEffect(() => {
+    if (hiveFundBalance && onHiveFundBalance) {
+      onHiveFundBalance(hiveFundBalance);
+    }
+  }, [hiveFundBalance, onHiveFundBalance]);
 
   // Fetch transaction statistics
   const { displayedTransactions } = useTransactionStats({
@@ -288,7 +296,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
   }, [queuedIds, animatingIds, displayedActivities, finishedAnimatingIds, activities, isHoveringFeed]);
 
   return (
-    <div className="w-full max-w-screen-2xl max-[600px]:px-1 mx-auto px-10">
+    <div className="w-full max-w-screen-2xl max-[600px]:px-4 mx-auto px-10">
       {/* Two column layout */}
       <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center gap-8 lg:gap-12">
         {/* Main Headlines - Left side on desktop */}
@@ -333,24 +341,24 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
           {/* Height: min 4 activities (360px) on mobile, up to 6 (540px) on desktop based on viewport */}
           <div
             ref={containerRef}
-            className="w-full relative mb-[50px] bg-[#1a2332] backdrop-blur-sm border-2 border-gray-200/80 rounded-3xl p-6"
+            className="w-full relative mb-[50px] bg-[#1a2332] backdrop-blur-sm border-2 border-gray-200/80 rounded-3xl p-6 max-[600px]:bg-transparent max-[600px]:border-transparent max-[600px]:p-0"
             onMouseLeave={() => setIsHoveringFeed(false)}
           >
             {/* Title and Live Indicator */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <h3 className="text-lg font-bold text-white">Activity</h3>
+                <h3 className="text-lg font-bold text-white max-[600px]:text-gray-900">Activity</h3>
                 {currentBlock > 0 ? (
                   <a
                     href={`https://hivehub.dev/b/${currentBlock}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-semibold text-gray-400 hover:text-[#e31337] transition-colors"
+                    className="text-sm font-semibold text-gray-400 max-[600px]:text-gray-600 hover:text-[#e31337] transition-colors"
                   >
                     #{currentBlock.toLocaleString()}
                   </a>
                 ) : (
-                  <span className="text-sm font-semibold text-gray-300">---</span>
+                  <span className="text-sm font-semibold text-gray-300 max-[600px]:text-gray-500">---</span>
                 )}
               </div>
               <div className="flex items-center gap-2">
@@ -441,15 +449,15 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
                         {actionText}
                       </span>
                     </div>
-                    <div className="flex flex-col items-end shrink-0">
-                      <span className="text-sm text-gray-400 group-hover:text-[#e31337] transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                        ↗
-                      </span>
+                    <div className="flex items-center gap-1 shrink-0">
                       {activity.txId && (
                         <span className="text-xs text-gray-400 group-hover:text-[#e31337] font-mono transition-colors">
                           {activity.txId.substring(0, 4)}...{activity.txId.substring(activity.txId.length - 4)}
                         </span>
                       )}
+                      <span className="text-sm text-gray-400 group-hover:text-[#e31337] transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                        ↗
+                      </span>
                     </div>
                   </div>
                 );
@@ -481,7 +489,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={style}
-                    className={`group absolute bg-gray-200 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 hover:bg-white/90 hover:border-gray-300 cursor-pointer ${animationClass} ${pausedClass}`}
+                    className={`group absolute bg-gray-200 max-[600px]:bg-white backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 hover:bg-white/90 hover:border-gray-300 cursor-pointer ${animationClass} ${pausedClass}`}
                     onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
                     onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
                     onMouseEnter={handleCardMouseEnter}
@@ -493,7 +501,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
                   <div
                     key={activity.id}
                     style={style}
-                    className={`group absolute bg-gray-200 backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 ${animationClass} ${pausedClass}`}
+                    className={`group absolute bg-gray-200 max-[600px]:bg-white backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 ${animationClass} ${pausedClass}`}
                     onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
                     onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
                     onMouseEnter={handleCardMouseEnter}
@@ -509,7 +517,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
       </div>
 
       {/* Stats Bar - Full width below both columns */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 pt-8 border-t border-gray-200 mt-12 mb-16 max-[600px]:mb-10 max-[600px]:gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 pt-8 max-[600px]:pt-4 border-t border-gray-200 mt-12 max-[600px]:mt-2 mb-16 max-[600px]:mb-10 max-[600px]:gap-4">
         <div>
           <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -517,7 +525,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
             </svg>
             <span className="font-medium">Uptime (Years)</span>
           </div>
-          <div className="text-4xl font-bold text-gray-900">8+</div>
+          <div className="text-4xl max-[600px]:text-2xl font-bold text-gray-900">8+</div>
         </div>
 
         <div>
@@ -527,7 +535,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
             </svg>
             <span className="font-medium">Total Value Locked</span>
           </div>
-          <div className={`text-4xl font-bold ${tvl ? 'text-gray-900' : 'text-gray-300'}`}>
+          <div className={`text-4xl max-[600px]:text-2xl font-bold ${tvl ? 'text-gray-900' : 'text-gray-300'}`}>
             {tvl ? `$${(tvl.totalUSD / 1_000_000).toFixed(2)}M` : '---'}
           </div>
         </div>
@@ -539,7 +547,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
             </svg>
             <span className="font-medium">Accounts</span>
           </div>
-          <div className={`text-4xl font-bold ${totalAccounts > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
+          <div className={`text-4xl max-[600px]:text-2xl font-bold ${totalAccounts > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
             {totalAccounts > 0 ? `${(totalAccounts / 1_000_000).toFixed(1)}M` : '---'}
           </div>
         </div>
@@ -551,7 +559,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps }: DynamicHeroProps) {
             </svg>
             <span className="font-medium">Transactions</span>
           </div>
-          <div className={`text-4xl font-bold ${displayedTransactions > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
+          <div className={`text-4xl max-[600px]:text-2xl font-bold ${displayedTransactions > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
             {displayedTransactions > 0 ? displayedTransactions.toLocaleString() : '---'}
           </div>
         </div>

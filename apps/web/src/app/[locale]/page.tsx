@@ -42,6 +42,7 @@ export default function HomePage() {
   const dposRef = useRef<RootDPoSHandle>(null);
   const hasTriggeredRef = useRef<{ hive: boolean; hbd: boolean }>({ hive: false, hbd: false });
   const [globalProps, setGlobalProps] = useState<DynamicGlobalProperties | null>(null);
+  const [hiveFundBalance, setHiveFundBalance] = useState<{ hiveBalance: number; hbdBalance: number } | null>(null);
 
   // Fetch TVL data for locked amounts
   const { tvl } = useTVL({ updateInterval: 60000 });
@@ -54,6 +55,11 @@ export default function HomePage() {
   // Callback to receive global props from DynamicHero
   const handleGlobalProps = useCallback((props: DynamicGlobalProperties) => {
     setGlobalProps(props);
+  }, []);
+
+  // Callback to receive hive.fund balance from DynamicHero
+  const handleHiveFundBalance = useCallback((balance: { hiveBalance: number; hbdBalance: number }) => {
+    setHiveFundBalance(balance);
   }, []);
 
   // Parse supply values from global props (format: "123.456 HIVE" or {amount, nai, precision})
@@ -73,9 +79,9 @@ export default function HomePage() {
     return 0;
   };
 
-  // Calculate token supply data
-  const hiveSupply = parseSupply(globalProps?.current_supply);
-  const hbdSupply = parseSupply(globalProps?.current_hbd_supply);
+  // Calculate token supply data (subtract hive.fund balance for circulating supply)
+  const hiveSupply = parseSupply(globalProps?.current_supply) - (hiveFundBalance?.hiveBalance ?? 0);
+  const hbdSupply = parseSupply(globalProps?.current_hbd_supply) - (hiveFundBalance?.hbdBalance ?? 0);
   const hiveLocked = tvl ? tvl.hpAmount + tvl.hiveSavings : 0;
   const hbdLocked = tvl?.hbdSavings || 0;
 
@@ -113,15 +119,14 @@ export default function HomePage() {
     };
   }, []);
 
-  // Spawn particles from random positions along the edges of the card (once per page view)
+  // Spawn particles from around the Buy button (once per page view)
   const spawnParticleBurst = (
-    cardRef: React.RefObject<HTMLDivElement | null>,
+    rect: DOMRect,
     type: 'hive' | 'hbd'
   ) => {
-    if (!cardRef.current || hasTriggeredRef.current[type]) return;
+    if (hasTriggeredRef.current[type]) return;
     hasTriggeredRef.current[type] = true;
 
-    const rect = cardRef.current.getBoundingClientRect();
     const newParticles: TokenParticle[] = [];
     const count = 5 + Math.floor(Math.random() * 3); // 5-7 particles
 
@@ -178,14 +183,14 @@ export default function HomePage() {
         className="flex flex-1 flex-col items-center pt-[20px] max-[600px]:pt-0 pb-0 relative"
       >
         {/* Dynamic Hero with Live Block Number and Activities */}
-        <DynamicHero onNewBlock={handleNewBlock} onGlobalProps={handleGlobalProps} />
+        <DynamicHero onNewBlock={handleNewBlock} onGlobalProps={handleGlobalProps} onHiveFundBalance={handleHiveFundBalance} />
       </div>
 
       {/* Token Showcase Section */}
       <div className="w-full bg-linear-to-b from-gray-900 to-black py-24 px-10">
         <div className="max-w-screen-2xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-bold text-white text-center mb-16">
-            Our Coins<span className="text-[#e31337]">.</span>
+            Powered By<span className="text-[#e31337]">.</span>
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* HIVE Token Card */}
@@ -225,7 +230,7 @@ export default function HomePage() {
               totalSupply={hiveSupply}
               lockedAmount={hiveLocked}
               chartLabel="Staked"
-              onMouseEnter={() => spawnParticleBurst(hiveCardRef, 'hive')}
+              onBuyHover={(rect) => spawnParticleBurst(rect, 'hive')}
             />
 
             {/* HBD Token Card */}
@@ -269,7 +274,7 @@ export default function HomePage() {
               totalSupply={hbdSupply}
               lockedAmount={hbdLocked}
               chartLabel="In Savings"
-              onMouseEnter={() => spawnParticleBurst(hbdCardRef, 'hbd')}
+              onBuyHover={(rect) => spawnParticleBurst(rect, 'hbd')}
               buyUrl="https://hivedex.io/"
             />
           </div>

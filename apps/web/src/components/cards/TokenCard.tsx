@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 import { TokenDonutChart } from '@/components/charts/TokenDonutChart';
 
 interface TokenFeature {
@@ -18,7 +18,7 @@ interface TokenCardProps {
   totalSupply: number;
   lockedAmount: number;
   chartLabel: string;
-  onMouseEnter?: () => void;
+  onBuyHover?: (rect: DOMRect) => void;
   buyUrl?: string; // If provided, opens this URL in new tab instead of scrolling to exchanges
 }
 
@@ -34,11 +34,19 @@ export const TokenCard = forwardRef<HTMLDivElement, TokenCardProps>(
       totalSupply,
       lockedAmount,
       chartLabel,
-      onMouseEnter,
+      onBuyHover,
       buyUrl,
     },
     ref
   ) => {
+    // Only trigger particle effect on desktop (hover-capable devices)
+    const handleBuyHover = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+      if (onBuyHover && window.matchMedia('(hover: hover)').matches) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        onBuyHover(rect);
+      }
+    }, [onBuyHover]);
+
     return (
       <div
         ref={ref}
@@ -47,7 +55,6 @@ export const TokenCard = forwardRef<HTMLDivElement, TokenCardProps>(
           background: `linear-gradient(to bottom right, ${color}1a, ${color}0d)`,
           border: `1px solid ${color}4d`,
         }}
-        onMouseEnter={onMouseEnter}
         onMouseOver={(e) => {
           const target = e.currentTarget;
           target.style.borderColor = `${color}80`;
@@ -95,6 +102,7 @@ export const TokenCard = forwardRef<HTMLDivElement, TokenCardProps>(
                         document.getElementById('exchanges')?.scrollIntoView({ behavior: 'smooth' });
                       }
                     }}
+                    onMouseEnter={handleBuyHover}
                     className="px-4 py-1.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:brightness-125 cursor-pointer"
                     style={{
                       backgroundColor: `rgba(${colorRgb}, 0.2)`,

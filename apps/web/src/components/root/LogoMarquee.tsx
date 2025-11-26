@@ -1,129 +1,177 @@
 'use client';
 
 import React from 'react';
-import { useTotalAccounts } from '@/hooks/useTotalAccounts';
 
 interface LogoMarqueeProps {
   className?: string;
 }
 
-// Placeholder community images - replace with actual Hive community photos
-const COMMUNITY_IMAGES = [
-  '/images/community/hive-meetup-1.jpg',
-  '/images/community/hive-meetup-2.jpg',
-  '/images/community/hive-meetup-3.jpg',
-  '/images/community/hive-meetup-4.jpg',
-  '/images/community/hive-meetup-5.jpg',
-  '/images/community/hive-meetup-6.jpg',
-];
-
-interface MarqueeItemProps {
+// Grid: 10 columns × 2 rows = 20 squares
+// Size options: 4 (2×2), 2 (1×2 tall), 1 (1×1 small)
+// Type: 'image' or 'text'
+interface MarqueeImageItem {
+  type: 'image';
   src: string;
-  alt: string;
-  tall?: boolean;
+  size: 4 | 2 | 1;
 }
 
-const MarqueeImage: React.FC<MarqueeItemProps> = ({ src, alt, tall }) => (
-  <div
-    className={`shrink-0 rounded-2xl overflow-hidden bg-gray-800 ${tall ? 'w-[280px] h-[420px]' : 'w-[280px] h-[202px]'
-      }`}
-  >
-    <img
-      src={src}
-      alt={alt}
-      className="w-full h-full object-cover"
-      loading="lazy"
-    />
-  </div>
-);
+interface MarqueeTextItem {
+  type: 'text';
+  value: string;
+  label: string;
+  size: 1; // Text items are always 1×1
+}
 
-interface StatCardProps {
+type MarqueeItem = MarqueeImageItem | MarqueeTextItem;
+
+// Define images and text items with their grid sizes
+const MARQUEE_ITEMS: MarqueeItem[] = [
+  { type: 'text', value: '3s', label: 'Block Time', size: 1 },
+  { type: 'image', src: '/images/community/hivefest10_2.jpeg', size: 1 },
+  { type: 'image', src: '/images/community/hivefest10.jpeg', size: 4 },
+  { type: 'image', src: '/images/community/hivefest10_2.jpeg', size: 1 },
+  { type: 'text', value: '1,200', label: 'Participants during HiveFest', size: 1 },
+  { type: 'image', src: '/images/community/car.jpeg', size: 2 },
+  { type: 'image', src: '/images/community/hivefest7_1.jpeg', size: 1 },
+  { type: 'image', src: '/images/community/hivefest7_2.jpeg', size: 1 },
+  { type: 'image', src: '/images/community/HIVE.jpeg', size: 4 },
+  { type: 'image', src: '/images/community/hivefest10_2.jpeg', size: 1 },
+  { type: 'text', value: '10', label: 'HiveFests Held', size: 1 },
+  { type: 'image', src: '/images/community/hivefest10.jpeg', size: 2 },
+
+];
+
+// Square unit size in pixels
+const SQUARE_SIZE = 200;
+const GAP = 16;
+
+interface MarqueeImageProps {
+  src: string;
+  size: 4 | 2 | 1;
+}
+
+const MarqueeImage: React.FC<MarqueeImageProps> = ({ src, size }) => {
+  // Calculate dimensions based on size
+  // 4 = 2×2 (2 cols, 2 rows)
+  // 2 = 1×2 (1 col, 2 rows - tall)
+  // 1 = 1×1 (1 col, 1 row - small)
+  const width = size === 4 ? SQUARE_SIZE * 2 + GAP : SQUARE_SIZE;
+  const height = size === 1 ? SQUARE_SIZE : SQUARE_SIZE * 2 + GAP;
+
+  return (
+    <div
+      className="shrink-0 rounded-2xl overflow-hidden bg-gray-800"
+      style={{ width, height, minWidth: width, minHeight: height }}
+    >
+      <img
+        src={src}
+        alt="Hive community"
+        width={width}
+        height={height}
+        className="w-full h-full object-cover"
+        loading="eager"
+      />
+    </div>
+  );
+};
+
+interface MarqueeTextCardProps {
   value: string;
   label: string;
 }
 
-const StatCard: React.FC<StatCardProps> = ({ value, label }) => (
-  <div className="shrink-0 w-[280px] h-[202px] rounded-2xl bg-gray-900 p-6 flex flex-col justify-center">
-    <span className="text-4xl md:text-5xl font-bold text-[#e31337]">
-      {value}
-    </span>
+const MarqueeTextCard: React.FC<MarqueeTextCardProps> = ({ value, label }) => (
+  <div
+    className="shrink-0 rounded-2xl bg-gray-800 p-6 flex flex-col justify-center"
+    style={{ width: SQUARE_SIZE, height: SQUARE_SIZE, minWidth: SQUARE_SIZE, minHeight: SQUARE_SIZE }}
+  >
+    <span className="text-4xl font-bold text-[#e31337]">{value}</span>
     <span className="text-gray-400 text-sm mt-2">{label}</span>
   </div>
 );
 
-// A column that contains either 1 tall item or 2 stacked small items
-interface MarqueeColumnProps {
-  children: React.ReactNode;
-}
-
-const MarqueeColumn: React.FC<MarqueeColumnProps> = ({ children }) => (
+// A column that contains items stacked vertically
+const MarqueeColumn: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="shrink-0 flex flex-col gap-4">
     {children}
   </div>
 );
 
 export const LogoMarquee: React.FC<LogoMarqueeProps> = ({ className }) => {
-  const { totalAccounts } = useTotalAccounts();
-
-  const formatNumber = (num: number) => {
-    if (num === 0) return '---';
-    if (num >= 1000000000) return `${(num / 1000000000).toFixed(1)}B`;
-    if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
-    if (num >= 1000) return num.toLocaleString();
-    return num.toString();
+  // Render a single item based on its type
+  const renderItem = (item: MarqueeItem) => {
+    if (item.type === 'text') {
+      return <MarqueeTextCard value={item.value} label={item.label} />;
+    }
+    return <MarqueeImage src={item.src} size={item.size} />;
   };
 
-  // Tetris-like columns: either 1 tall image OR 2 stacked small items
-  const renderColumns = (keyPrefix: string) => (
-    <>
-      {/* Column 1: Tall image */}
-      <MarqueeColumn>
-        <MarqueeImage src={COMMUNITY_IMAGES[0]} alt="Hive community" tall />
-      </MarqueeColumn>
+  // Build columns from items - each column is 1 unit wide, 2 units tall
+  // Tall images (size 2) take full column, small items (size 1) stack in pairs
+  const buildColumns = () => {
+    const columns: React.ReactNode[] = [];
+    let i = 0;
 
-      {/* Column 2: Two stacked small images */}
-      <MarqueeColumn>
-        <MarqueeImage src={COMMUNITY_IMAGES[1]} alt="Hive community" />
-        <MarqueeImage src={COMMUNITY_IMAGES[2]} alt="Hive community" />
-      </MarqueeColumn>
+    while (i < MARQUEE_ITEMS.length) {
+      const item = MARQUEE_ITEMS[i];
 
-      {/* Column 3: Tall image */}
-      <MarqueeColumn>
-        <MarqueeImage src={COMMUNITY_IMAGES[3]} alt="Hive community" tall />
-      </MarqueeColumn>
+      if (item.type === 'image' && item.size === 2) {
+        // Tall image takes full column
+        columns.push(
+          <MarqueeColumn key={i}>
+            {renderItem(item)}
+          </MarqueeColumn>
+        );
+        i++;
+      } else if (item.size === 1) {
+        // Try to pair two small items (image or text)
+        const nextItem = MARQUEE_ITEMS[i + 1];
+        if (nextItem && nextItem.size === 1) {
+          columns.push(
+            <MarqueeColumn key={i}>
+              {renderItem(item)}
+              {renderItem(nextItem)}
+            </MarqueeColumn>
+          );
+          i += 2;
+        } else {
+          // Single small item in column
+          columns.push(
+            <MarqueeColumn key={i}>
+              {renderItem(item)}
+            </MarqueeColumn>
+          );
+          i++;
+        }
+      } else if (item.type === 'image' && item.size === 4) {
+        // 2×2 image spans 2 columns worth of width
+        columns.push(
+          <MarqueeColumn key={i}>
+            {renderItem(item)}
+          </MarqueeColumn>
+        );
+        i++;
+      }
+    }
 
-      {/* Column 4: Stat + small image stacked */}
-      <MarqueeColumn>
-        <StatCard value={formatNumber(10)} label="Total HiveFests" />
-        <MarqueeImage src={COMMUNITY_IMAGES[4]} alt="Hive community" />
-      </MarqueeColumn>
+    return columns;
+  };
 
-      {/* Column 5: Tall image */}
-      <MarqueeColumn>
-        <MarqueeImage src={COMMUNITY_IMAGES[5]} alt="Hive community" tall />
-      </MarqueeColumn>
-
-      {/* Column 6: Two stacked small images */}
-      <MarqueeColumn>
-        <MarqueeImage src={COMMUNITY_IMAGES[0]} alt="Hive community" />
-        <MarqueeImage src={COMMUNITY_IMAGES[3]} alt="Hive community" />
-      </MarqueeColumn>
-    </>
-  );
+  const columns = buildColumns();
 
   return (
-    <div className={`w-full bg-gradient-to-b from-gray-900 to-black py-24 px-10 overflow-hidden ${className || ''}`}>
+    <div className={`w-full bg-gradient-to-b from-gray-900 to-black py-24 overflow-hidden ${className || ''}`}>
       <div className="max-w-screen-2xl mx-auto mb-16">
         <h2 className="text-5xl md:text-6xl font-bold text-white text-center">
           Join a Thriving Community<span className="text-[#e31337]">.</span>
         </h2>
       </div>
 
-      {/* Animated Marquee */}
-      <div className="relative h-[420px]">
-        <div className="flex gap-4 animate-marquee hover:paused">
-          {renderColumns('first')}
-          {renderColumns('second')}
+      {/* Animated Marquee - full width, shows ~half of one set at a time */}
+      <div className="relative overflow-hidden" style={{ height: SQUARE_SIZE * 2 + GAP }}>
+        <div className="flex gap-4 animate-marquee">
+          {columns}
+          {columns}
         </div>
       </div>
 
@@ -138,7 +186,7 @@ export const LogoMarquee: React.FC<LogoMarqueeProps> = ({ className }) => {
         }
 
         .animate-marquee {
-          animation: marquee 40s linear infinite;
+          animation: marquee 15s linear infinite;
         }
       `}</style>
     </div>

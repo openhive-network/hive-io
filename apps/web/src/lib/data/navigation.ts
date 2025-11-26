@@ -48,32 +48,21 @@ export const NAVIGATION_HEADER_DROPDOWN = [
     ],
   },
   {
-    name: 'Explore',
+    name: 'Ecosystem',
     children: [
       {
         name: 'Apps',
         description: 'Discover Hive dApps',
-        submenu: [
-          {
-            to: 'eco',
-            name: 'All Apps',
-            description: 'Browse all Hive applications',
-          },
-          {
-            to: 'https://dappradar.com/rankings/protocol/hive',
-            name: 'Statistics',
-            description: 'View dapp usage statistics',
-          },
-          {
-            to: 'wallets',
-            name: 'Wallets',
-            description: 'Secure your HIVE and HBD',
-          },
-        ],
+        to: 'eco',
       },
       {
-        name: 'Community',
-        description: 'Join Hive communities',
+        to: 'wallets',
+        name: 'Wallets',
+        description: 'Secure your HIVE and HBD',
+      },
+      {
+        name: 'Frontends',
+        description: 'Popular Hive interfaces',
         submenu: [
           {
             to: 'https://hive.blog',
@@ -106,11 +95,13 @@ export const NAVIGATION_HEADER_DROPDOWN = [
             to: 'https://hivehub.dev',
             name: 'HiveHub',
             description: 'Block explorer for the Hive ecosystem',
+            external: true,
           },
           {
             to: 'https://explore.openhive.network/',
             name: 'OpenHive Explorer',
             description: 'Block explorer for the Hive ecosystem',
+            external: true,
           },
         ],
       },

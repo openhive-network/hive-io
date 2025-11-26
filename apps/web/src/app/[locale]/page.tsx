@@ -190,7 +190,7 @@ export default function HomePage() {
       <div className="w-full bg-linear-to-b from-gray-900 to-black py-24 px-10">
         <div className="max-w-screen-2xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-bold text-white text-center mb-16">
-            Powered By<span className="text-[#e31337]">.</span>
+            Tokenomics<span className="text-[#e31337]">.</span>
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* HIVE Token Card */}
@@ -273,7 +273,7 @@ export default function HomePage() {
               ]}
               totalSupply={hbdSupply}
               lockedAmount={hbdLocked}
-              chartLabel="In Savings"
+              chartLabel="Staked"
               onBuyHover={(rect) => spawnParticleBurst(rect, 'hbd')}
               buyUrl="https://hivedex.io/"
             />
@@ -282,13 +282,13 @@ export default function HomePage() {
       </div>
 
       {/* Ecosystem */}
-      <RootEco id="ecosystem-section" className="bg-[#e7e7f1]" />
+      <RootEco id="ecosystem-section" className="bg-white" />
 
       {/* DPoS Visualization */}
       <RootDPoS ref={dposRef} />
 
       {/* History Section */}
-      <RootHistory className="bg-hive-grey" />
+      <RootHistory className="bg-white" />
 
       {/* Community Section */}
       <LogoMarquee />

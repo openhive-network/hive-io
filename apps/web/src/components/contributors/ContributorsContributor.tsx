@@ -30,7 +30,7 @@ export const ContributorsContributor: React.FC<ContributorsContributorProps> = (
     : `https://images.hive.blog/u/${contributor.social?.hive}/avatar/large`;
 
   return (
-    <div className={`group flex flex-col items-center p-2.5 bg-[#e2e2ec] rounded-lg w-[115px] max-[600px]:w-[95px] ${className}`}>
+    <div className={`group flex flex-col items-center p-2.5 bg-gray-200 rounded-lg w-[115px] max-[600px]:w-[95px] ${className}`}>
       <a
         href={`${links.hive}${contributor.social?.hive}`}
         target="_blank"

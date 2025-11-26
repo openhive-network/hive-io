@@ -98,15 +98,18 @@ export const Navigation: React.FC<NavigationProps> = ({
                                   target="_blank"
                                   rel="nofollow noopener noreferrer"
                                   onClick={onClicked}
-                                  className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
+                                  className="group/link block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
                                 >
-                                  <div className="flex flex-col gap-1">
-                                    <div className="text-sm font-medium text-black">{child.name}</div>
-                                    {child.description && (
-                                      <p className="text-[13px] text-[#666] m-0 leading-[1.4]">
-                                        {child.description}
-                                      </p>
-                                    )}
+                                  <div className="flex items-start justify-between gap-2">
+                                    <div className="flex flex-col gap-1">
+                                      <span className="text-sm font-medium text-black">{child.name}</span>
+                                      {child.description && (
+                                        <p className="text-[13px] text-[#666] m-0 leading-[1.4]">
+                                          {child.description}
+                                        </p>
+                                      )}
+                                    </div>
+                                    <span className="text-sm text-gray-400 group-hover/link:text-[#e31337] transition-all duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 shrink-0">↗</span>
                                   </div>
                                 </NavigationMenuLink>
                               ) : child.to ? (
@@ -157,15 +160,18 @@ export const Navigation: React.FC<NavigationProps> = ({
                                       target="_blank"
                                       rel="nofollow noopener noreferrer"
                                       onClick={onClicked}
-                                      className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
+                                      className="group/link block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
                                     >
-                                      <div className="flex flex-col gap-1">
-                                        <div className="text-sm font-medium text-black">{subItem.name}</div>
-                                        {subItem.description && (
-                                          <p className="text-[13px] text-[#666] m-0 leading-[1.4]">
-                                            {subItem.description}
-                                          </p>
-                                        )}
+                                      <div className="flex items-start justify-between gap-2">
+                                        <div className="flex flex-col gap-1">
+                                          <span className="text-sm font-medium text-black">{subItem.name}</span>
+                                          {subItem.description && (
+                                            <p className="text-[13px] text-[#666] m-0 leading-[1.4]">
+                                              {subItem.description}
+                                            </p>
+                                          )}
+                                        </div>
+                                        <span className="text-sm text-gray-400 group-hover/link:text-[#e31337] transition-all duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 shrink-0">↗</span>
                                       </div>
                                     </NavigationMenuLink>
                                   ) : subItem.to ? (

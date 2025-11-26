@@ -82,13 +82,11 @@ export const App: React.FC<AppProps> = ({
   const isEngrave = item.name === 'Engrave';
   const isDLease = item.name === 'DLease';
 
-  const baseClasses = `flex flex-col items-center justify-center cursor-pointer ${
-    detailed ? 'flex-row flex-wrap items-start justify-start cursor-default mx-[30px] my-[15px]' : ''
-  }`;
+  const baseClasses = `flex flex-col items-center justify-center cursor-pointer ${detailed ? 'flex-row flex-wrap items-start justify-start cursor-default mx-[30px] my-[15px]' : ''
+    }`;
 
-  const innerClasses = `flex justify-center items-center rounded-[15%] bg-[#e2e2ec] ${compact ? 'p-2' : 'p-3'} mb-2 transition-transform duration-500 ${
-    move && !detailed && hover ? '-translate-y-[10%]' : ''
-  }`;
+  const innerClasses = `flex justify-center items-center rounded-[15%] bg-gray-200 ${compact ? 'p-2' : 'p-3'} mb-2 transition-transform duration-500 ${move && !detailed && hover ? '-translate-y-[10%]' : ''
+    }`;
 
   const innerContent = (
     <div
@@ -134,9 +132,8 @@ export const App: React.FC<AppProps> = ({
               href={getWebsiteUrl()}
               target="_blank"
               rel="nofollow noopener noreferrer"
-              className={`flex items-center mt-0.5 mb-1.5 transition-all ease-in duration-100 ${
-                compact ? 'text-[0.8rem]' : 'text-base'
-              } ${move && !detailed && hover ? 'text-[#e31337]' : ''} ${detailed ? 'text-2xl font-semibold' : ''}`}
+              className={`flex items-center mt-0.5 mb-1.5 transition-all ease-in duration-100 ${compact ? 'text-[0.8rem]' : 'text-base'
+                } ${move && !detailed && hover ? 'text-[#e31337]' : ''} ${detailed ? 'text-2xl font-semibold' : ''}`}
               onMouseEnter={() => setHover(true)}
               onMouseLeave={() => setHover(false)}
             >
@@ -157,7 +154,7 @@ export const App: React.FC<AppProps> = ({
             </div>
           )}
           {detailed && stats && stats.dau && stats.dau.last_month > 10 && (
-            <div className="py-[5px] px-2.5 ml-[15px] bg-[#e2e2ec] rounded-[5px] text-[0.8rem] cursor-default mb-1.5 max-[525px]:ml-0">
+            <div className="py-[5px] px-2.5 ml-[15px] bg-gray-100 rounded-[5px] text-[0.8rem] cursor-default mb-1.5 max-[525px]:ml-0">
               {`${formatToUnits(stats.dau.last_month)} Monthly Users`}
             </div>
           )}

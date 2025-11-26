@@ -302,10 +302,10 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: Dy
         {/* Main Headlines - Left side on desktop */}
         <div className="text-center lg:text-left mt-8 lg:mt-0 lg:flex-1">
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-1 max-[600px]:text-5xl max-[600px]:mb-2">
-            Fast & Scalable<span className="text-[#e31337]">.</span>
+            Fast <span className="text-[#e31337]">&</span> Scalable<span className="text-[#e31337]">.</span>
           </h1>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 max-[600px]:text-2xl">
-            The Blockchain For You.
+            Blockchain for the people.
           </h2>
           <p className="text-lg md:text-xl text-gray-600 mt-8 mb-8 max-w-[650px] max-[600px]:text-base max-[600px]:mb-6">
             Battle-tested since 2016. Zero Downtime. Zero Gas Fees. Experience the power of Hive, the
@@ -318,7 +318,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: Dy
               href="https://developers.hive.io/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-10 py-4 bg-[#1a2332] text-white font-semibold rounded-full hover:bg-[#252d3f] transition-colors duration-200 text-lg max-[600px]:text-base max-[600px]:px-8 max-[600px]:py-3"
+              className="group inline-flex items-center gap-3 px-10 py-4 bg-gray-800 text-white font-semibold rounded-full hover:bg-[#252d3f] transition-colors duration-200 text-lg max-[600px]:text-base max-[600px]:px-8 max-[600px]:py-3"
             >
               Start Building
               <span className="text-2xl transition-transform duration-200 group-hover:translate-x-1">→</span>
@@ -341,13 +341,13 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: Dy
           {/* Height: min 4 activities (360px) on mobile, up to 6 (540px) on desktop based on viewport */}
           <div
             ref={containerRef}
-            className="w-full relative mb-[50px] bg-[#1a2332] backdrop-blur-sm border-2 border-gray-200/80 rounded-3xl p-6 max-[600px]:bg-transparent max-[600px]:border-transparent max-[600px]:p-0"
+            className="w-full relative mb-[50px] bg-white/80 backdrop-blur-xl shadow-[0_20px_50px_-12px_rgba(227,19,55,0.4)] border border-gray-300 rounded-3xl p-6 max-[600px]:bg-transparent max-[600px]:backdrop-blur-none max-[600px]:shadow-none max-[600px]:border-none max-[600px]:p-0"
             onMouseLeave={() => setIsHoveringFeed(false)}
           >
             {/* Title and Live Indicator */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <h3 className="text-lg font-bold text-white max-[600px]:text-gray-900">Activity</h3>
+                <h3 className="text-lg font-bold text-black max-[600px]:text-gray-900">Blockchain Activity</h3>
                 {currentBlock > 0 ? (
                   <a
                     href={`https://hivehub.dev/b/${currentBlock}`}
@@ -489,7 +489,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: Dy
                     target="_blank"
                     rel="noopener noreferrer"
                     style={style}
-                    className={`group absolute bg-gray-200 max-[600px]:bg-white backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 hover:bg-white/90 hover:border-gray-300 cursor-pointer ${animationClass} ${pausedClass}`}
+                    className={`group absolute bg-white max-[600px]:bg-white backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 hover:bg-white/90 hover:border-gray-300 cursor-pointer ${animationClass} ${pausedClass}`}
                     onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
                     onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
                     onMouseEnter={handleCardMouseEnter}
@@ -501,7 +501,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: Dy
                   <div
                     key={activity.id}
                     style={style}
-                    className={`group absolute bg-gray-200 max-[600px]:bg-white backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 ${animationClass} ${pausedClass}`}
+                    className={`group absolute bg-white max-[600px]:bg-white backdrop-blur-sm border border-gray-200 rounded-xl px-5 py-4 transition-all duration-400 ${animationClass} ${pausedClass}`}
                     onAnimationEnd={(e) => handleAnimationEnd(activity.id, e)}
                     onTransitionEnd={(e) => handleTransitionEnd(activity.id, e)}
                     onMouseEnter={handleCardMouseEnter}

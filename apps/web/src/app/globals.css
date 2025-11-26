@@ -121,7 +121,7 @@
 @layer base {
   html,
   body {
-    @apply m-0 p-0 bg-[#f0f0f8] text-black h-full w-full font-sans;
+    @apply m-0 p-0 bg-white text-black h-full w-full font-sans;
   }
 
   a {

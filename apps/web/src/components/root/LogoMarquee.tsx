@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 interface LogoMarqueeProps {
   className?: string;
@@ -26,7 +26,7 @@ type MarqueeItem = MarqueeImageItem | MarqueeTextItem;
 
 // Define images and text items with their grid sizes
 const MARQUEE_ITEMS: MarqueeItem[] = [
-  { type: 'text', value: '3s', label: 'Block Time', size: 1 },
+  { type: 'text', value: '10', label: 'HiveFests Held', size: 1 },
   { type: 'image', src: '/images/community/hivefest10_2.jpeg', size: 1 },
   { type: 'image', src: '/images/community/hivefest10.jpeg', size: 4 },
   { type: 'image', src: '/images/community/hivefest10_2.jpeg', size: 1 },
@@ -36,13 +36,14 @@ const MARQUEE_ITEMS: MarqueeItem[] = [
   { type: 'image', src: '/images/community/hivefest7_2.jpeg', size: 1 },
   { type: 'image', src: '/images/community/HIVE.jpeg', size: 4 },
   { type: 'image', src: '/images/community/hivefest10_2.jpeg', size: 1 },
-  { type: 'text', value: '10', label: 'HiveFests Held', size: 1 },
+  { type: 'text', value: '3', label: 'Continents hosting HiveFests', size: 1 },
   { type: 'image', src: '/images/community/hivefest10.jpeg', size: 2 },
 
 ];
 
-// Square unit size in pixels
-const SQUARE_SIZE = 200;
+// Unit size in pixels (350x263 aspect ratio)
+const UNIT_WIDTH = 350;
+const UNIT_HEIGHT = 263;
 const GAP = 16;
 
 interface MarqueeImageProps {
@@ -55,8 +56,8 @@ const MarqueeImage: React.FC<MarqueeImageProps> = ({ src, size }) => {
   // 4 = 2×2 (2 cols, 2 rows)
   // 2 = 1×2 (1 col, 2 rows - tall)
   // 1 = 1×1 (1 col, 1 row - small)
-  const width = size === 4 ? SQUARE_SIZE * 2 + GAP : SQUARE_SIZE;
-  const height = size === 1 ? SQUARE_SIZE : SQUARE_SIZE * 2 + GAP;
+  const width = size === 4 ? UNIT_WIDTH * 2 + GAP : UNIT_WIDTH;
+  const height = size === 1 ? UNIT_HEIGHT : UNIT_HEIGHT * 2 + GAP;
 
   return (
     <div
@@ -82,11 +83,11 @@ interface MarqueeTextCardProps {
 
 const MarqueeTextCard: React.FC<MarqueeTextCardProps> = ({ value, label }) => (
   <div
-    className="shrink-0 rounded-2xl bg-gray-800 p-6 flex flex-col justify-center"
-    style={{ width: SQUARE_SIZE, height: SQUARE_SIZE, minWidth: SQUARE_SIZE, minHeight: SQUARE_SIZE }}
+    className="shrink-0 rounded-2xl bg-gray-800 p-6 flex flex-col items-center justify-center text-center"
+    style={{ width: UNIT_WIDTH, height: UNIT_HEIGHT, minWidth: UNIT_WIDTH, minHeight: UNIT_HEIGHT }}
   >
-    <span className="text-4xl font-bold text-[#e31337]">{value}</span>
-    <span className="text-gray-400 text-sm mt-2">{label}</span>
+    <span className="text-6xl font-bold text-[#e31337]">{value}</span>
+    <span className="text-gray-400 text-sm mt-3">{label}</span>
   </div>
 );
 
@@ -98,6 +99,16 @@ const MarqueeColumn: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 );
 
 export const LogoMarquee: React.FC<LogoMarqueeProps> = ({ className }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentWidth, setContentWidth] = useState(0);
+
+  // Measure the width of one content set for seamless animation
+  useEffect(() => {
+    if (contentRef.current) {
+      setContentWidth(contentRef.current.offsetWidth);
+    }
+  }, []);
+
   // Render a single item based on its type
   const renderItem = (item: MarqueeItem) => {
     if (item.type === 'text') {
@@ -168,10 +179,20 @@ export const LogoMarquee: React.FC<LogoMarqueeProps> = ({ className }) => {
       </div>
 
       {/* Animated Marquee - full width, shows ~half of one set at a time */}
-      <div className="relative overflow-hidden" style={{ height: SQUARE_SIZE * 2 + GAP }}>
-        <div className="flex gap-4 animate-marquee">
-          {columns}
-          {columns}
+      <div className="relative overflow-hidden" style={{ height: UNIT_HEIGHT * 2 + GAP }}>
+        <div
+          className="flex"
+          style={{
+            animation: contentWidth ? `marquee ${80}s linear infinite` : 'none',
+            ['--content-width' as string]: `${contentWidth}px`,
+          }}
+        >
+          <div ref={contentRef} className="flex gap-4 shrink-0 pr-4">
+            {columns}
+          </div>
+          <div className="flex gap-4 shrink-0 pr-4">
+            {columns}
+          </div>
         </div>
       </div>
 
@@ -181,12 +202,8 @@ export const LogoMarquee: React.FC<LogoMarqueeProps> = ({ className }) => {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translateX(calc(var(--content-width) * -1));
           }
-        }
-
-        .animate-marquee {
-          animation: marquee 15s linear infinite;
         }
       `}</style>
     </div>

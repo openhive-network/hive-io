@@ -32,23 +32,20 @@ export const RootEco: React.FC<RootEcoProps> = ({ full = true, className, ...pro
   return (
     <div className={`w-full py-24 px-6 sm:px-10 ${className || ''}`} {...props}>
       <ModalEco />
-      <div className="max-w-screen-2xl mx-auto">
-        {/* Title - centered like Governance */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
-            {t('root.ecoTitle')}<span className="text-[#e31337]">.</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            {t('root.ecoText')}
-          </p>
-        </div>
+      <div className="max-w-screen-2xl mx-auto min-h-[420px] flex justify-center items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left side - Title, Text, Stats and Button */}
+          <div>
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+              {t('root.ecoTitle')}<span className="text-[#e31337]">.</span>
+            </h2>
 
-        {/* Content grid */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-16">
-          {/* Left side - Stats and Button */}
-          <div className="flex flex-col items-center lg:items-start">
-            {/* Stats */}
-            <div className="flex gap-8 sm:gap-12 mb-8">
+            <p className="text-lg text-gray-700 leading-relaxed mb-8">
+              {t('root.ecoText')}
+            </p>
+
+            {/* Stats - above button on mobile */}
+            <div className="flex justify-center lg:justify-start gap-8 sm:gap-12 mb-8">
               <div>
                 <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,17 +67,19 @@ export const RootEco: React.FC<RootEcoProps> = ({ full = true, className, ...pro
             </div>
 
             {/* Button */}
-            <Button
-              className="min-w-[160px] text-base py-6 px-8 font-semibold"
-              onClick={() => router.push('/eco')}
-            >
-              {t('root.ecoButton')}
-            </Button>
+            <div className="flex justify-center lg:justify-start">
+              <Button
+                className="min-w-[160px] text-base py-6 px-8 font-semibold"
+                onClick={() => router.push('/eco')}
+              >
+                {t('root.ecoButton')}
+              </Button>
+            </div>
           </div>
 
           {/* Right side - Icons (hidden on mobile) */}
           <div className="hidden lg:flex justify-center">
-            <div className="relative h-[250px] w-[250px]">
+            <div className="relative h-[250px] w-[250px] mt-[86px]">
               {favs.map((app, index) => {
                 const getSizeForIndex = (idx: number) => {
                   const sizes = [110, 80, 85, 65, 80, 55, 60, 77];

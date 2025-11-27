@@ -371,13 +371,13 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
   return (
     <div className="w-full max-w-screen-2xl max-[600px]:px-6 mx-auto px-10">
       {/* Two column layout */}
-      <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center pb-10 gap-8 lg:gap-12 xl:gap-28">
+      <div className="flex flex-col xl:flex-row items-center xl:items-center justify-center pb-10 gap-8 xl:gap-12 2xl:gap-28">
         {/* Main Headlines - Left side on desktop */}
-        <div className="text-center lg:text-left mt-8 lg:mt-0 lg:flex-1 xl:flex-none">
+        <div className="text-center xl:text-left mt-8 xl:mt-0 xl:flex-1 2xl:flex-none">
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-1 max-[600px]:text-5xl max-[600px]:mb-2">
             Fast <span className="text-[#e31337]">&</span> Scalable<span className="text-[#e31337]">.</span>
           </h1>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 max-[600px]:text-2xl h-[1.2em] whitespace-nowrap max-[600px]:w-[280px] w-[450px] md:w-[550px] lg:w-[680px]">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 max-[600px]:text-2xl h-[1.2em] whitespace-nowrap max-[600px]:w-[280px] max-[600px]:mx-auto w-[450px] md:w-[550px] lg:w-[680px]">
             {displayedText}
           </h2>
           <p className="text-lg md:text-xl text-gray-600 mt-8 mb-8 max-w-[650px] max-[600px]:text-base max-[600px]:mb-6">
@@ -386,7 +386,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 max-[600px]:mb-8 lg:mt-12">
+          <div className="flex flex-wrap items-center justify-center xl:justify-start gap-4 max-[600px]:mb-8 xl:mt-12">
             <a
               href="https://developers.hive.io/"
               target="_blank"
@@ -408,7 +408,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
         </div>
 
         {/* Live Feed - Right side on desktop */}
-        <div className="w-full lg:w-[450px] lg:shrink-0 lg:mt-8">
+        <div className="w-full xl:w-[450px] xl:shrink-0 xl:mt-8">
 
           {/* Live Activities Feed */}
           {/* Height: min 4 activities (360px) on mobile, up to 6 (540px) on desktop based on viewport */}
@@ -636,7 +636,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
             <span className="font-medium">Accounts</span>
           </div>
           <div className={`text-4xl max-[600px]:text-2xl font-bold ${totalAccounts > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
-            {totalAccounts > 0 ? `${(totalAccounts / 1_000_000).toFixed(2)}M` : '---'}
+            {totalAccounts > 0 ? `${parseFloat((totalAccounts / 1_000_000).toFixed(2))}M` : '---'}
           </div>
         </div>
 

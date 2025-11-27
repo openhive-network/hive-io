@@ -12,12 +12,12 @@ export const RootHistory: React.FC<RootHistoryProps> = ({ className, ...props })
           {/* Left side - Bold statement */}
           <div>
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              We forked<span className="text-[#e31337]">.</span>
+              Our Origins<span className="text-[#e31337]">.</span>
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-4">
               In March 2020, a hostile takeover threatened to centralize a blockchain.
-              The community refused. They forked, taking their code, their content,
-              and their principles with them.
+              The community refused. We forked, taking our code, our content,
+              and our principles with us.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed">
               <span className="font-semibold text-gray-900">Hive was born</span>—a

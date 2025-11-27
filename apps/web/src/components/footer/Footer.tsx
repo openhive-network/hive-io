@@ -10,8 +10,8 @@ interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const Footer: React.FC<FooterProps> = ({ items = [], className, ...props }) => {
   return (
-    <div className={`w-full bg-black ${className || ''}`} {...props}>
-      <div className="py-10 px-20 flex flex-row justify-between max-[1250px]:px-[60px] max-[1000px]:flex-col max-[1000px]:items-center">
+    <div className={`w-full bg-black py-10 px-10 max-[600px]:px-6 ${className || ''}`} {...props}>
+      <div className="max-w-screen-2xl mx-auto flex flex-row justify-between max-[1000px]:flex-col max-[1000px]:items-center">
         <div className="flex flex-col max-[1000px]:items-center">
           <Logo className="h-[30px] w-[132px] max-[1000px]:mb-[15px]" dark={true} />
           <div className="flex flex-row items-center gap-3 mt-8">
@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({ items = [], className, ...props 
             ))}
           </div>
         </div>
-        <div className="flex flex-row flex-wrap justify-center w-full ml-[15px] max-[1000px]:mt-5 max-[1000px]:ml-0">
+        <div className="flex flex-row flex-wrap justify-end w-full ml-[15px] max-[1000px]:mt-5 max-[1000px]:ml-0">
           {items.map((subItems, index) => (
             <FooterNavigation
               key={index}

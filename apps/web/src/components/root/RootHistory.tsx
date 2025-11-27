@@ -14,6 +14,7 @@ export const RootHistory: React.FC<RootHistoryProps> = ({ className, ...props })
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
               Our Origins<span className="text-[#e31337]">.</span>
             </h2>
+
             <p className="text-lg text-gray-700 leading-relaxed mb-4">
               In March 2020, a hostile takeover threatened to centralize a blockchain.
               The community refused. We forked, taking our code, our content,

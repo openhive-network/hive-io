@@ -391,16 +391,17 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
               href="https://developers.hive.io/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-10 py-4 bg-gray-800 text-white font-semibold rounded-full hover:bg-[#252d3f] transition-colors duration-200 text-lg max-[600px]:text-base max-[600px]:px-8 max-[600px]:py-3"
+              className="group relative inline-flex items-center justify-center gap-3 w-[220px] max-[600px]:w-[180px] py-4 bg-gray-800 text-white font-semibold rounded-full overflow-hidden text-lg max-[600px]:text-base max-[600px]:py-3"
             >
-              Start Building
-              <span className="text-2xl transition-transform duration-200 group-hover:translate-x-1">→</span>
+              <span className="absolute inset-0 bg-[#e31337] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+              <span className="relative">Start Building</span>
+              <span className="relative text-2xl transition-transform duration-200 group-hover:translate-x-1">→</span>
             </a>
             <a
               href="https://peakd.com/trending"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-10 py-4 bg-white border-2 border-gray-200 text-gray-900 font-semibold rounded-full hover:border-gray-300 hover:bg-gray-50 transition-colors duration-200 text-lg max-[600px]:text-base max-[600px]:px-8 max-[600px]:py-3"
+              className="w-[220px] max-[600px]:w-[180px] py-4 bg-white border-2 border-gray-200 text-gray-900 font-semibold rounded-full hover:border-gray-300 hover:bg-gray-50 transition-colors duration-200 text-lg max-[600px]:text-base max-[600px]:py-3 text-center"
             >
               Explore
             </a>

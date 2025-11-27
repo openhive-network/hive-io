@@ -289,14 +289,14 @@ export default function HomePage() {
       {/* History Section */}
       <RootHistory className="bg-white" />
 
-      {/* DPoS Visualization */}
-      <RootDPoS ref={dposRef} />
+      {/* Community Section */}
+      <LogoMarquee />
 
       {/* Ecosystem */}
       <RootEco id="ecosystem-section" className="bg-white" />
 
-      {/* Community Section */}
-      <LogoMarquee />
+      {/* DPoS Visualization */}
+      <RootDPoS ref={dposRef} />
 
       {/* Exchanges */}
       <div id="exchanges" className="w-full bg-linear-to-b from-gray-900 to-black py-32 px-6 sm:px-10">

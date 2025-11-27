@@ -7,7 +7,7 @@ interface RootHistoryProps extends React.HTMLAttributes<HTMLDivElement> { }
 export const RootHistory: React.FC<RootHistoryProps> = ({ className, ...props }) => {
   return (
     <div className={`w-full py-24 px-6 sm:px-10 ${className || ''}`} {...props}>
-      <div className="max-w-screen-2xl mx-auto min-h-[420px] flex justify-center items-center">
+      <div className="max-w-screen-2xl mx-auto min-h-[480px] flex justify-center items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left side - Bold statement */}
           <div>

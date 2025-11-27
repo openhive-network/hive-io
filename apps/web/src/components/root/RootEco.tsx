@@ -32,7 +32,7 @@ export const RootEco: React.FC<RootEcoProps> = ({ full = true, className, ...pro
   return (
     <div className={`w-full py-24 px-6 sm:px-10 ${className || ''}`} {...props}>
       <ModalEco />
-      <div className="max-w-screen-2xl mx-auto min-h-[420px] flex justify-center items-center">
+      <div className="max-w-screen-2xl mx-auto min-h-[480px] flex justify-center items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left side - Title, Text, Stats and Button */}
           <div>

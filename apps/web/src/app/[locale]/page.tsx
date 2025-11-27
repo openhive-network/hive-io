@@ -188,7 +188,7 @@ export default function HomePage() {
 
       {/* Token Showcase Section */}
       <div className="w-full bg-linear-to-b from-gray-900 to-black py-24 px-6 sm:px-10">
-        <div className="max-w-screen-2xl mx-auto">
+        <div className="max-w-screen-2xl mx-auto min-h-[480px] flex flex-col justify-center">
           <h2 className="text-5xl md:text-6xl font-bold text-white text-center mb-16">
             Tokenomics<span className="text-[#e31337]">.</span>
           </h2>

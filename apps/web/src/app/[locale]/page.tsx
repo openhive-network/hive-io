@@ -183,7 +183,7 @@ export default function HomePage() {
         className="flex flex-1 flex-col items-center pt-[20px] max-[600px]:pt-0 pb-0 relative"
       >
         {/* Dynamic Hero with Live Block Number and Activities */}
-        <DynamicHero onNewBlock={handleNewBlock} onGlobalProps={handleGlobalProps} onHiveFundBalance={handleHiveFundBalance} />
+        <DynamicHero onNewBlock={handleNewBlock} onGlobalProps={handleGlobalProps} onHiveFundBalance={handleHiveFundBalance} tvl={tvl} />
       </div>
 
       {/* Token Showcase Section */}

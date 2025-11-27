@@ -28,7 +28,7 @@ const ACTIVITY_TEMPLATES = [
   {
     type: 'custom' as const,
     getMessage: (user: string) => `${user} powered up rewards`,
-    color: 'text-[#e31337]',
+    color: 'text-gray-700',
   },
   {
     type: 'custom' as const,

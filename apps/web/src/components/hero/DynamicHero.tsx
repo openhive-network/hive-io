@@ -3,15 +3,21 @@
 import { useBlockchainActivity } from '@/hooks/useBlockchainActivity';
 import { useTotalAccounts } from '@/hooks/useTotalAccounts';
 import { useTransactionStats } from '@/hooks/useTransactionStats';
-import { useTVL } from '@/hooks/useTVL';
 import { Link } from '@/i18n/routing';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { DynamicGlobalProperties } from '@hiveio/hive-lib';
+
+interface TVLData {
+  totalUSD: number;
+  hivePrice: number;
+  hbdPrice: number;
+}
 
 interface DynamicHeroProps {
   onNewBlock?: (blockNum: number, witness: string) => void;
   onGlobalProps?: (props: DynamicGlobalProperties) => void;
   onHiveFundBalance?: (balance: { hiveBalance: number; hbdBalance: number }) => void;
+  tvl?: TVLData | null;
 }
 
 // Calculate max activities based on screen dimensions
@@ -28,7 +34,7 @@ function calculateMaxActivities(): number {
   return Math.max(4, Math.min(calculated, 4));
 }
 
-export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: DynamicHeroProps) {
+export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl }: DynamicHeroProps) {
   const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const [maxActivities, setMaxActivities] = useState(() => calculateMaxActivities());
@@ -77,8 +83,25 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: Dy
   // Fetch total accounts (runs once on mount)
   const { totalAccounts } = useTotalAccounts();
 
-  // Fetch TVL data with live prices
-  const { tvl } = useTVL({ updateInterval: 60000 });
+  // Parse supply values from global props (format: "123.456 HIVE" or {amount, nai, precision})
+  const parseSupply = (supply: unknown): number => {
+    if (!supply) return 0;
+    if (typeof supply === 'string') {
+      return parseFloat(supply.split(' ')[0]) || 0;
+    }
+    if (typeof supply === 'object' && supply !== null && 'amount' in supply) {
+      const obj = supply as { amount: string; precision?: number };
+      const amount = parseInt(obj.amount, 10);
+      const precision = obj.precision ?? 3;
+      return amount / Math.pow(10, precision);
+    }
+    return 0;
+  };
+
+  // Calculate market cap (HIVE + HBD combined)
+  const hiveSupply = parseSupply(globalProps?.current_supply) - (hiveFundBalance?.hiveBalance ?? 0);
+  const hbdSupply = parseSupply(globalProps?.current_hbd_supply) - (hiveFundBalance?.hbdBalance ?? 0);
+  const marketCap = tvl ? (hiveSupply * tvl.hivePrice) + (hbdSupply * tvl.hbdPrice) : 0;
 
   const activities = LIMIT_TOTAL_ACTIVITIES > 0
     ? hookActivities.filter(activity => {
@@ -298,9 +321,9 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: Dy
   return (
     <div className="w-full max-w-screen-2xl max-[600px]:px-4 mx-auto px-10">
       {/* Two column layout */}
-      <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center gap-8 lg:gap-12">
+      <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center gap-8 lg:gap-12 xl:gap-28">
         {/* Main Headlines - Left side on desktop */}
-        <div className="text-center lg:text-left mt-8 lg:mt-0 lg:flex-1">
+        <div className="text-center lg:text-left mt-8 lg:mt-0 lg:flex-1 xl:flex-none">
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-1 max-[600px]:text-5xl max-[600px]:mb-2">
             Fast <span className="text-[#e31337]">&</span> Scalable<span className="text-[#e31337]">.</span>
           </h1>
@@ -313,7 +336,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: Dy
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 max-[600px]:mb-8">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 max-[600px]:mb-8 lg:mt-12">
             <a
               href="https://developers.hive.io/"
               target="_blank"
@@ -341,7 +364,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: Dy
           {/* Height: min 4 activities (360px) on mobile, up to 6 (540px) on desktop based on viewport */}
           <div
             ref={containerRef}
-            className="w-full relative mb-[50px] bg-white/80 backdrop-blur-xl shadow-[0_20px_50px_-12px_rgba(227,19,55,0.4)] border border-gray-300 rounded-3xl p-6 max-[600px]:bg-transparent max-[600px]:backdrop-blur-none max-[600px]:shadow-none max-[600px]:border-none max-[600px]:p-0"
+            className="w-full relative mb-[50px] bg-white/80 backdrop-blur-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] border border-gray-300 rounded-3xl p-6 max-[600px]:bg-transparent max-[600px]:backdrop-blur-none max-[600px]:shadow-none max-[600px]:border-none max-[600px]:p-0"
             onMouseLeave={() => setIsHoveringFeed(false)}
           >
             {/* Title and Live Indicator */}
@@ -517,15 +540,29 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: Dy
       </div>
 
       {/* Stats Bar - Full width below both columns */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 pt-8 max-[600px]:pt-4 border-t border-gray-200 mt-12 max-[600px]:mt-2 mb-16 max-[600px]:mb-10 max-[600px]:gap-4">
+      <div className="flex justify-between gap-8 lg:gap-12 pt-8 max-[600px]:pt-4 border-t border-gray-200 mt-12 max-[600px]:mt-2 mb-16 max-[600px]:mb-10 max-[600px]:gap-4">
+        <div className="">
+          <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+            <span className="font-medium">Transactions</span>
+          </div>
+          <div className={`text-4xl max-[600px]:text-2xl  lg:w-[255px] font-bold ${displayedTransactions > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
+            {displayedTransactions > 0 ? displayedTransactions.toLocaleString() : '---'}
+          </div>
+        </div>
+
         <div>
           <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
             </svg>
-            <span className="font-medium">Uptime (Years)</span>
+            <span className="font-medium">Market Cap</span>
           </div>
-          <div className="text-4xl max-[600px]:text-2xl font-bold text-gray-900">8+</div>
+          <div className={`text-4xl max-[600px]:text-2xl font-bold ${marketCap > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
+            {marketCap > 0 ? `$${(marketCap / 1_000_000).toFixed(2)}M` : '---'}
+          </div>
         </div>
 
         <div>
@@ -548,19 +585,19 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance }: Dy
             <span className="font-medium">Accounts</span>
           </div>
           <div className={`text-4xl max-[600px]:text-2xl font-bold ${totalAccounts > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
-            {totalAccounts > 0 ? `${(totalAccounts / 1_000_000).toFixed(1)}M` : '---'}
+            {totalAccounts > 0 ? `${(totalAccounts / 1_000_000).toFixed(2)}M` : '---'}
           </div>
         </div>
 
         <div>
           <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7h16M4 12h16M4 17h16" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span className="font-medium">Transactions</span>
+            <span className="font-medium">Uptime (Days)</span>
           </div>
-          <div className={`text-4xl max-[600px]:text-2xl font-bold ${displayedTransactions > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
-            {displayedTransactions > 0 ? displayedTransactions.toLocaleString() : '---'}
+          <div className="text-4xl max-[600px]:text-2xl font-bold text-gray-900">
+            {Math.floor((Date.now() - new Date('2016-03-24T16:00:00Z').getTime()) / (1000 * 60 * 60 * 24)).toLocaleString()}
           </div>
         </div>
       </div>

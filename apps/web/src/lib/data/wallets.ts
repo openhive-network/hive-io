@@ -68,13 +68,13 @@ export const WALLETS: IWallet[] = [
     github: 'https://gitlab.syncad.com/hive/vessel',
   },
   {
-    id: 'hivewallet',
-    name: 'HiveWallet',
-    image: 'hivewallet.png',
+    id: 'zypto',
+    name: 'Zypto',
+    image: 'zypto.png',
     os: [os.ios, os.android],
-    website: 'https://hivewallet.app',
+    website: 'https://zypto.com',
     types: ['wallet'],
-    github: 'https://github.com/roelandp/hivewallet',
+    closedSource: true,
   },
   {
     id: 'ecency',

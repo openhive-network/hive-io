@@ -155,7 +155,7 @@ export const EXCHANGES = [
   {
     id: 'simpleswap',
     name: 'SimpleSwap',
-    website: 'https://simpleswap.io',
+    website: 'https://simpleswap.io/exchange?from=btc-btc&to=hive-hive',
     image: 'simpleswap.png',
   },
   {

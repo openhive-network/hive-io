@@ -25,14 +25,14 @@ export const EcoDetailed: React.FC = () => {
 
   return (
     <div className="pt-6">
-      <div className="!m-0 py-[25px] px-10 !mb-[15px] bg-[#f0f0f8]">
+      <div className="!m-0 py-[25px] px-6 sm:px-10 !mb-[15px] bg-[#f0f0f8]">
         <App
           item={activeEco}
           detailed={true}
         />
       </div>
       <div>
-        <h3 className="text-2xl font-bold leading-normal mb-2.5 pl-10">Similar Apps</h3>
+        <h3 className="text-2xl font-bold leading-normal mb-2.5 pl-6 sm:pl-10">Similar Apps</h3>
         <div className="flex flex-row flex-wrap p-0 pr-10 pb-[5px] pl-[30px] [&>div]:!mx-2 [&>div]:!my-1 [&>div>div:last-child]:!hidden">
           {similarEco.map((eco) => (
             <App
@@ -54,7 +54,7 @@ export const EcoDetailed: React.FC = () => {
       {!isEcoPage && (
         <div>
           <div className="flex mb-2.5">
-            <h3 className="text-2xl font-bold leading-normal m-0 pl-10">
+            <h3 className="text-2xl font-bold leading-normal m-0 pl-6 sm:pl-10">
               Other Apps
             </h3>
             <Button

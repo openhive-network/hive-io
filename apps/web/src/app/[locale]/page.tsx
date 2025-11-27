@@ -180,14 +180,14 @@ export default function HomePage() {
   return (
     <div className="h-full">
       <div
-        className="flex flex-1 flex-col items-center pt-[20px] max-[600px]:pt-0 pb-0 relative"
+        className="flex flex-1 flex-col items-center pt-10 max-[600px]:pt-0 pb-0 relative"
       >
         {/* Dynamic Hero with Live Block Number and Activities */}
         <DynamicHero onNewBlock={handleNewBlock} onGlobalProps={handleGlobalProps} onHiveFundBalance={handleHiveFundBalance} tvl={tvl} />
       </div>
 
       {/* Token Showcase Section */}
-      <div className="w-full bg-linear-to-b from-gray-900 to-black py-24 px-10">
+      <div className="w-full bg-linear-to-b from-gray-900 to-black py-24 px-6 sm:px-10">
         <div className="max-w-screen-2xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-bold text-white text-center mb-16">
             Tokenomics<span className="text-[#e31337]">.</span>
@@ -281,20 +281,20 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Ecosystem */}
-      <RootEco id="ecosystem-section" className="bg-white" />
+      {/* History Section */}
+      <RootHistory className="bg-white" />
 
       {/* DPoS Visualization */}
       <RootDPoS ref={dposRef} />
 
-      {/* History Section */}
-      <RootHistory className="bg-white" />
+      {/* Ecosystem */}
+      <RootEco id="ecosystem-section" className="bg-white" />
 
       {/* Community Section */}
       <LogoMarquee />
 
       {/* Exchanges */}
-      <div id="exchanges" className="w-full bg-gradient-to-b from-gray-900 to-black py-32 px-10">
+      <div id="exchanges" className="w-full bg-linear-to-b from-gray-900 to-black py-32 px-6 sm:px-10">
         <div className="max-w-screen-2xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-5xl font-bold text-white mb-6">

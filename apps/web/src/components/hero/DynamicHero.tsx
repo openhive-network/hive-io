@@ -4,6 +4,7 @@ import { useBlockchainActivity } from '@/hooks/useBlockchainActivity';
 import { useTotalAccounts } from '@/hooks/useTotalAccounts';
 import { useTransactionStats } from '@/hooks/useTransactionStats';
 import { Link } from '@/i18n/routing';
+import { useMainStore } from '@/store/useMainStore';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { DynamicGlobalProperties } from '@hiveio/hive-lib';
 
@@ -19,6 +20,14 @@ interface DynamicHeroProps {
   onHiveFundBalance?: (balance: { hiveBalance: number; hbdBalance: number }) => void;
   tvl?: TVLData | null;
 }
+
+// Rotating slogans for the hero
+const SLOGANS = [
+  'Blockchain for the people.',
+  'Empowering communities.',
+  'Your Entrance to Crypto.',
+  'Digital Freedom.'
+];
 
 // Calculate max activities based on screen dimensions
 function calculateMaxActivities(): number {
@@ -38,9 +47,50 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
   const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const [maxActivities, setMaxActivities] = useState(() => calculateMaxActivities());
+  const isMobileMenuOpen = useMainStore(state => state.isMobileActive);
 
   const LIMIT_TOTAL_ACTIVITIES = 0; // Set to 0 to disable - stops accepting new activities after this many
   const ANIMATION_DELAY = 1300; // Delay between activity animations (ms)
+
+  // Typewriter animation state
+  const [sloganIndex, setSloganIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [phase, setPhase] = useState<'typing' | 'waiting' | 'deleting'>('typing');
+
+  // Typewriter animation effect
+  useEffect(() => {
+    const currentSlogan = SLOGANS[sloganIndex];
+    const typingSpeed = 50; // ms per character when typing
+    const deletingSpeed = 30; // ms per character when deleting
+    const waitTime = 2000; // ms to wait before deleting
+
+    let timeout: NodeJS.Timeout;
+
+    if (phase === 'typing') {
+      if (displayedText.length < currentSlogan.length) {
+        timeout = setTimeout(() => {
+          setDisplayedText(currentSlogan.slice(0, displayedText.length + 1));
+        }, typingSpeed);
+      } else {
+        // Finished typing, wait before deleting
+        timeout = setTimeout(() => {
+          setPhase('deleting');
+        }, waitTime);
+      }
+    } else if (phase === 'deleting') {
+      if (displayedText.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayedText(displayedText.slice(0, -1));
+        }, deletingSpeed);
+      } else {
+        // Finished deleting, move to next slogan
+        setSloganIndex((prev) => (prev + 1) % SLOGANS.length);
+        setPhase('typing');
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, phase, sloganIndex]);
 
   // Calculate maxActivities once on mount (no resize updates to avoid layout shifts)
   useEffect(() => {
@@ -56,7 +106,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
     maxActivities,
     updateInterval: 3000,
     enabled: true,
-    paused: isHoveringFeed,
+    paused: isHoveringFeed || isMobileMenuOpen || !isVisible,
     onNewBlock,
   });
 
@@ -287,7 +337,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
       console.log('   Current displayedActivities:', displayedActivities.map(a => a.id.substring(0, 10)));
       console.log('   finishedAnimatingIds:', Array.from(finishedAnimatingIds).map(id => id.substring(0, 10)));
       setAnimatingIds(new Set([firstId]));
-    } else if (queuedIds.length === 0 && animatingIds.size === 0 && !isHoveringFeed) {
+    } else if (queuedIds.length === 0 && animatingIds.size === 0 && !isHoveringFeed && !isMobileMenuOpen && isVisible) {
       // Queue is empty and no animation running - check for pending activities
       const displayedIds = new Set(displayedActivities.map(a => a.id));
       const pendingActivities = activities.filter(a => !displayedIds.has(a.id));
@@ -316,19 +366,19 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
         setDisplayedActivities(prev => [nextActivity, ...prev]);
       }
     }
-  }, [queuedIds, animatingIds, displayedActivities, finishedAnimatingIds, activities, isHoveringFeed]);
+  }, [queuedIds, animatingIds, displayedActivities, finishedAnimatingIds, activities, isHoveringFeed, isMobileMenuOpen, isVisible]);
 
   return (
-    <div className="w-full max-w-screen-2xl max-[600px]:px-4 mx-auto px-10">
+    <div className="w-full max-w-screen-2xl max-[600px]:px-6 mx-auto px-10">
       {/* Two column layout */}
-      <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center gap-8 lg:gap-12 xl:gap-28">
+      <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center pb-10 gap-8 lg:gap-12 xl:gap-28">
         {/* Main Headlines - Left side on desktop */}
         <div className="text-center lg:text-left mt-8 lg:mt-0 lg:flex-1 xl:flex-none">
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-1 max-[600px]:text-5xl max-[600px]:mb-2">
             Fast <span className="text-[#e31337]">&</span> Scalable<span className="text-[#e31337]">.</span>
           </h1>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 max-[600px]:text-2xl">
-            Blockchain for the people.
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 max-[600px]:text-2xl h-[1.2em] whitespace-nowrap max-[600px]:w-[280px] w-[450px] md:w-[550px] lg:w-[680px]">
+            {displayedText}
           </h2>
           <p className="text-lg md:text-xl text-gray-600 mt-8 mb-8 max-w-[650px] max-[600px]:text-base max-[600px]:mb-6">
             Battle-tested since 2016. Zero Downtime. Zero Gas Fees. Experience the power of Hive, the
@@ -485,8 +535,9 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
                   </div>
                 );
 
-                const animationClass = isAnimating && !isHoveringFeed ? 'animate-fade-in' : '';
-                const pausedClass = isHoveringFeed ? 'animation-paused' : '';
+                const isPaused = isHoveringFeed || isMobileMenuOpen || !isVisible;
+                const animationClass = isAnimating && !isPaused ? 'animate-fade-in' : '';
+                const pausedClass = isPaused ? 'animation-paused' : '';
 
                 // Track hovered activity - pause immediately if not animating,
                 // otherwise pause will trigger when animation completes
@@ -540,22 +591,22 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
       </div>
 
       {/* Stats Bar - Full width below both columns */}
-      <div className="flex justify-between gap-8 lg:gap-12 pt-8 max-[600px]:pt-4 border-t border-gray-200 mt-12 max-[600px]:mt-2 mb-16 max-[600px]:mb-10 max-[600px]:gap-4">
-        <div className="">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:justify-between gap-6 lg:gap-12 pt-8 max-[600px]:pt-4 border-t border-gray-200 mt-12 max-[600px]:mt-2 mb-12 max-[600px]:mb-10">
+        <div>
           <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 max-[600px]:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7h16M4 12h16M4 17h16" />
             </svg>
             <span className="font-medium">Transactions</span>
           </div>
-          <div className={`text-4xl max-[600px]:text-2xl  lg:w-[255px] font-bold ${displayedTransactions > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
+          <div className={`text-4xl max-[600px]:text-2xl lg:w-[255px] font-bold ${displayedTransactions > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
             {displayedTransactions > 0 ? displayedTransactions.toLocaleString() : '---'}
           </div>
         </div>
 
         <div>
           <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 max-[600px]:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
             </svg>
             <span className="font-medium">Market Cap</span>
@@ -567,10 +618,10 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
 
         <div>
           <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 max-[600px]:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span className="font-medium">Total Value Locked</span>
+            <span className="font-medium">TVL</span>
           </div>
           <div className={`text-4xl max-[600px]:text-2xl font-bold ${tvl ? 'text-gray-900' : 'text-gray-300'}`}>
             {tvl ? `$${(tvl.totalUSD / 1_000_000).toFixed(2)}M` : '---'}
@@ -579,7 +630,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
 
         <div>
           <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 max-[600px]:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
             <span className="font-medium">Accounts</span>
@@ -591,7 +642,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
 
         <div>
           <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 max-[600px]:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <span className="font-medium">Uptime (Days)</span>

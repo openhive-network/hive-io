@@ -69,7 +69,7 @@ export const RootDPoS = forwardRef<RootDPoSHandle, RootDPoSProps>(({ className, 
   }, [producers, latestProducer]);
 
   return (
-    <div className={`w-full py-24 px-10 bg-gradient-to-b from-gray-900 to-black ${className || ''}`} {...props}>
+    <div className={`w-full py-24 px-6 sm:px-10 bg-gradient-to-b from-gray-900 to-black ${className || ''}`} {...props}>
       <div className="max-w-screen-2xl mx-auto">
         {/* Title */}
         <div className="text-center mb-16">

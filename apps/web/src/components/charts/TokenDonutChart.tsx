@@ -37,19 +37,13 @@ export const TokenDonutChart: React.FC<TokenDonutChartProps> = ({
     <div className="flex flex-col items-center gap-4">
       <div className="relative" style={{ width: size, height: size }}>
         <svg width={size} height={size} className="transform -rotate-90">
-          <defs>
-            <linearGradient id={`gradient-${label}`} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#1f2937" />
-              <stop offset="100%" stopColor="#111827" />
-            </linearGradient>
-          </defs>
-
           {/* Filled center circle */}
           <circle
             cx={size / 2}
             cy={size / 2}
             r={innerRadius}
-            fill={`url(#gradient-${label})`}
+            fill={primaryColor}
+            fillOpacity={0.04}
           />
 
           {/* Background track */}

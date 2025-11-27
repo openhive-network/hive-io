@@ -199,6 +199,12 @@ export const App: React.FC<AppProps> = ({
           </div>
         )}
 
+        {'os' in item && (
+          <div className={`flex items-center mt-1 text-[0.75rem] font-semibold px-2 py-0.5 rounded-full ${'recommended' in item && item.recommended ? 'text-[#e31337] bg-[#e31337]/10' : 'opacity-0'}`}>
+            Recommended
+          </div>
+        )}
+
         {detailed && (
           <div className="py-2 px-5 cursor-pointer rounded-[5px] bg-[#757575] w-fit text-white mt-[14px] hover:bg-[#5f5f5f]">
             <a

@@ -9,12 +9,6 @@ export const EXCHANGES = [
     image: 'binance.svg',
   },
   {
-    id: 'bitay',
-    name: 'Bitay',
-    website: 'https://www.bitay.com/t/HIVEUSDT',
-    image: 'bitay.png',
-  },
-  {
     id: 'bitget',
     name: 'Bitget',
     website: 'https://www.bitget.com/spot/HIVEUSDT',
@@ -39,12 +33,6 @@ export const EXCHANGES = [
     image: 'bitrue.png',
   },
   {
-    id: 'btcc',
-    name: 'BTCC',
-    website: 'https://www.btcc.com/en-US/trade/perpetual/HIVEUSDT',
-    image: 'btcc.svg',
-  },
-  {
     id: 'bydfi',
     name: 'Bydfi',
     website: 'https://www.bydfi.com/en/spot/hive_usdt',
@@ -59,7 +47,7 @@ export const EXCHANGES = [
   {
     id: 'changenow',
     name: 'ChangeNow',
-    website: 'https://changenow.io/?from=hive&to=sol',
+    website: 'https://changenow.io/?from=usdc&to=hive',
     image: 'changenow.png',
   },
   {
@@ -97,12 +85,6 @@ export const EXCHANGES = [
     name: 'gate.io',
     website: 'https://www.gate.io/trade/HIVE_USDT',
     image: 'gateio.svg',
-  },
-  {
-    id: 'hotcoin',
-    name: 'Hotcoin',
-    website: 'https://www.hotcoin.com/en_US/trade/hive_usdt',
-    image: 'hotcoin.png',
   },
   {
     id: 'hitbtc',

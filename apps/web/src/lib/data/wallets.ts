@@ -59,6 +59,16 @@ const os = {
  */
 export const WALLETS: IWallet[] = [
   {
+    id: 'keychain',
+    name: 'Keychain',
+    image: 'keychain.svg',
+    os: [os.brave, os.chrome, os.firefox, os.ios, os.android],
+    website: 'https://hive-keychain.com',
+    types: ['wallet'],
+    github: 'https://github.com/stoodkev/hive-keychain',
+    recommended: true,
+  },
+  {
     id: 'vessel',
     name: 'Vessel',
     image: 'vessel.png',
@@ -86,20 +96,20 @@ export const WALLETS: IWallet[] = [
     github: 'https://github.com/ecency',
   },
   {
-    id: 'keychain',
-    name: 'Keychain',
-    image: 'keychain.svg',
-    os: [os.brave, os.chrome, os.firefox, os.ios, os.android],
-    website: 'https://hive-keychain.com',
-    types: ['wallet'],
-    github: 'https://github.com/stoodkev/hive-keychain',
-  },
-  {
     id: 'inleo',
     name: 'InLeo',
     image: 'inleo.avif',
     os: [os.web],
     website: 'https://inleo.io',
+    types: ['wallet'],
+    closedSource: true,
+  },
+  {
+    id: 'peakvault',
+    name: 'PeakVault',
+    image: 'peakvault.svg',
+    os: [os.brave, os.chrome, os.firefox],
+    website: 'https://peakd.com/peakvault',
     types: ['wallet'],
     closedSource: true,
   },

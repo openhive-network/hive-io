@@ -310,11 +310,11 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {EXCHANGES.map((exchange) => (
               <a
                 key={exchange.id}
-                className="flex items-center justify-center h-20 bg-white/5 border border-white/10 rounded-xl transition-colors duration-200 hover:bg-white/10 hover:border-white/20"
+                className="flex items-center justify-center h-20 w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-12px)] lg:w-[calc(20%-13px)] xl:w-[calc(16.666%-14px)] bg-white/5 border border-white/10 rounded-xl transition-colors duration-200 hover:bg-white/10 hover:border-white/20"
                 href={exchange.website}
                 target="_blank"
                 rel="nofollow noopener noreferrer"

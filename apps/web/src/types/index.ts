@@ -10,6 +10,7 @@ export interface IWallet extends IBaseApp {
   github?: string
   gitlab?: string
   closedSource?: boolean
+  recommended?: boolean
   types: Type[]
 }
 

@@ -27,7 +27,7 @@ type MarqueeItem = MarqueeImageItem | MarqueeTextItem;
 
 // Define images and text items with their grid sizes
 const MARQUEE_ITEMS: MarqueeItem[] = [
-  { type: 'image', src: '/images/community/hivefest_crimsonclad.png', size: 1 },
+  { type: 'image', src: '/images/community/hivefest_crimsonclad.png', size: 1, credit: 'crimsonclad' },
   { type: 'image', src: '/images/community/hivefest10_2.jpeg', size: 1, credit: 'louis88' },
   { type: 'image', src: '/images/community/hivefest9_1.webp', size: 4, credit: 'bil.prag' },
   { type: 'image', src: '/images/community/hivefest_mexico3.png', size: 1, credit: 'manuphotos' },
@@ -37,10 +37,10 @@ const MARQUEE_ITEMS: MarqueeItem[] = [
   { type: 'image', src: '/images/community/hivefest10_3.jpeg', size: 1, credit: 'louis88' },
   { type: 'image', src: '/images/community/hivefest_mexico2.webp', size: 4, credit: 'manuphotos' },
   { type: 'text', value: '10', label: 'Years of Hive Events', size: 1 },
-  { type: 'image', src: '/images/community/hivefest7_2.jpeg', size: 1 },
-  { type: 'image', src: '/images/community/african_community.webp', size: 'wide' },
-  { type: 'image', src: '/images/community/blockchainsummit_1.png', size: 1 },
-  { type: 'image', src: '/images/community/latinevent_1.jpeg', size: 1 },
+  { type: 'image', src: '/images/community/hivefest7_2.jpeg', size: 1, credit: 'rubencress' },
+  { type: 'image', src: '/images/community/african_community.webp', size: 'wide', credit: 'hivecreators' },
+  { type: 'image', src: '/images/community/blockchainsummit_1.png', size: 1, credit: 'hivecreators' },
+  { type: 'image', src: '/images/community/latinevent_1.jpeg', size: 1, credit: 'hivecreators' },
   { type: 'image', src: '/images/community/hivefest6_2.jpeg', size: 2, credit: 'celestal' },
 
 ];

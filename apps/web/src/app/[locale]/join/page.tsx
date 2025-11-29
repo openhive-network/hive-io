@@ -31,7 +31,7 @@ function JoinContent() {
           <RegistrationProviders className="pt-20" showTitle />
 
           {/* Divider */}
-          <div className="w-full bg-black py-16 px-5">
+          <div className="w-full bg-black pt-16 pb-8 px-5">
             <div className="max-w-[1000px] mx-auto">
               <div className="flex items-center gap-4">
                 <div className="flex-1 h-px bg-gray-800" />

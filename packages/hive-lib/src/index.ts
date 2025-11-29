@@ -75,25 +75,56 @@ export const checkAccountAvailability = async (
 export const validateAccountName = (
   accountName: string
 ): {isValid: boolean; error?: string} => {
+  if (!accountName) {
+    return {
+      isValid: false,
+      error: 'Account name should not be empty',
+    }
+  }
+
   if (accountName.length < 3) {
     return {
       isValid: false,
-      error: 'Account name must be at least 3 characters',
+      error: 'Account name should be longer',
     }
   }
 
   if (accountName.length > 16) {
     return {
       isValid: false,
-      error: 'Account name must be 16 characters or less',
+      error: 'Account name should be shorter',
     }
   }
 
-  if (!/^[a-z][a-z0-9.-]*$/.test(accountName)) {
-    return {
-      isValid: false,
-      error:
-        'Account name must start with a letter and contain only lowercase letters, numbers, dots, and hyphens',
+  const suffix = accountName.includes('.')
+    ? 'Each account segment should'
+    : 'Account name should'
+
+  const segments = accountName.split('.')
+  for (const segment of segments) {
+    if (!/^[a-z]/.test(segment)) {
+      return {
+        isValid: false,
+        error: `${suffix} start with a letter`,
+      }
+    }
+    if (!/^[a-z0-9-]*$/.test(segment)) {
+      return {
+        isValid: false,
+        error: `${suffix} have only letters, digits, or dashes`,
+      }
+    }
+    if (!/[a-z0-9]$/.test(segment)) {
+      return {
+        isValid: false,
+        error: `${suffix} end with a letter or digit`,
+      }
+    }
+    if (segment.length < 3) {
+      return {
+        isValid: false,
+        error: `${suffix} be longer`,
+      }
     }
   }
 

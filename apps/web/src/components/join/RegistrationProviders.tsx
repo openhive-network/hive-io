@@ -92,7 +92,7 @@ export function RegistrationProviders({ className, showTitle }: RegistrationProv
               Join Hive<span className="text-[#e31337]">.</span>
             </h1>
             <p className="text-base sm:text-xl text-gray-400 max-w-4xl mx-auto">
-              Choose a provider and join a thriving, decentralised community.
+              Choose a provider and join a thriving community.
             </p>
           </div>
         ) : (

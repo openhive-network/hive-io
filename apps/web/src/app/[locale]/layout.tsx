@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { LayoutContent } from '@/components/LayoutContent';
+import { GoogleAnalytics, GTMNoScript } from '@/components/analytics/GoogleAnalytics';
 import '../globals.css';
 import '@/lib/fontawesome';
 import 'tippy.js/dist/tippy.css';
@@ -60,6 +61,8 @@ export default async function LocaleLayout({
         <link rel="manifest" href="/favicons/site.webmanifest" />
       </head>
       <body>
+        <GTMNoScript />
+        <GoogleAnalytics />
         <NextIntlClientProvider messages={messages} locale={locale}>
           <LayoutContent>{children}</LayoutContent>
         </NextIntlClientProvider>

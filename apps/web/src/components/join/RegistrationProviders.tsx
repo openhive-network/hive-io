@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { ArrowUpRight, Check, Zap } from 'lucide-react'
 
@@ -13,7 +14,7 @@ interface Provider {
   payments?: string[]
 }
 
-const PROVIDERS: Provider[] = [
+const DEFAULT_PROVIDERS: Provider[] = [
   {
     name: 'InLeo',
     logo: '/images/apps/inleo.avif',
@@ -33,7 +34,7 @@ const PROVIDERS: Provider[] = [
   {
     name: 'Hivedex',
     logo: '/images/apps/hivedex.png',
-    price: '$1.49',
+    price: '$0.49', // Default fallback
     isFree: false,
     features: ['Anonymous signup', 'Crypto payments'],
     url: 'https://hivedex.io/signup',
@@ -50,11 +51,36 @@ const PROVIDERS: Provider[] = [
   },
 ]
 
+async function fetchHivedexPrice(): Promise<string | null> {
+  try {
+    const response = await fetch('https://api2.hivedex.io/price')
+    const data = await response.json()
+    if (data?.base) {
+      return `$${data.base}`
+    }
+    return null
+  } catch {
+    return null
+  }
+}
+
 interface RegistrationProvidersProps {
   className?: string
 }
 
 export function RegistrationProviders({ className }: RegistrationProvidersProps) {
+  const [providers, setProviders] = useState<Provider[]>(DEFAULT_PROVIDERS)
+
+  useEffect(() => {
+    fetchHivedexPrice().then((price) => {
+      if (price) {
+        setProviders((prev) =>
+          prev.map((p) => (p.name === 'Hivedex' ? { ...p, price } : p))
+        )
+      }
+    })
+  }, [])
+
   return (
     <div className={`w-full bg-black py-0 px-5 ${className || ''}`}>
       <div className="max-w-[1000px] mx-auto">
@@ -75,7 +101,7 @@ export function RegistrationProviders({ className }: RegistrationProvidersProps)
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {PROVIDERS.map((provider) => (
+          {providers.map((provider) => (
             <a
               key={provider.name}
               href={provider.url}

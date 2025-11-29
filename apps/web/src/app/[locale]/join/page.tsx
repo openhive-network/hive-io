@@ -17,18 +17,46 @@ function JoinContent() {
       {/* Community Bar */}
       <LogoMarquee compact showTitle={false} />
 
-      <div className="flex justify-center w-full py-12 pt-16 px-5 bg-linear-to-b from-gray-900 to-black text-white">
-        <div className="flex flex-col items-center w-full max-w-[900px]">
-          {joinData ? (
+      {joinData ? (
+        // JoinFlow view - when someone is completing an account creation request
+        <div className="flex justify-center w-full py-12 pt-16 px-5 bg-linear-to-b from-gray-900 to-black text-white flex-1">
+          <div className="flex flex-col items-center w-full max-w-[900px]">
             <JoinFlow encodedData={joinData} />
-          ) : (
-            <CreateHiveAccount />
-          )}
+          </div>
         </div>
-      </div>
+      ) : (
+        // Default view - providers first, then self-service
+        <>
+          {/* Community Providers - Primary option */}
+          <RegistrationProviders className="pt-20" showTitle />
 
-      {/* Alternative Registration Providers - grows to fill remaining space */}
-      <RegistrationProviders className="flex-1" />
+          {/* Divider */}
+          <div className="w-full bg-black py-16 px-5">
+            <div className="max-w-[1000px] mx-auto">
+              <div className="flex items-center gap-4">
+                <div className="flex-1 h-px bg-gray-800" />
+                <span className="text-gray-500 text-sm font-medium tracking-wider uppercase">Or</span>
+                <div className="flex-1 h-px bg-gray-800" />
+              </div>
+            </div>
+          </div>
+
+          {/* Self-service account creation - requires sponsorship */}
+          <div className="flex justify-center w-full py-8 pb-16 px-5 bg-black text-white flex-1">
+            <div className="flex flex-col items-center w-full max-w-[900px]">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                  Already know someone on Hive?
+                </h2>
+                <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
+                  Choose this option to get sponsored by an existing Hive member.
+                </p>
+              </div>
+              <CreateHiveAccount />
+            </div>
+          </div>
+        </>
+      )}
 
       <Toaster position="top-center" richColors theme="dark" />
     </div>

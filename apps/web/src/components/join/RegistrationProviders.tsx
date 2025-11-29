@@ -66,9 +66,10 @@ async function fetchHivedexPrice(): Promise<string | null> {
 
 interface RegistrationProvidersProps {
   className?: string
+  showTitle?: boolean
 }
 
-export function RegistrationProviders({ className }: RegistrationProvidersProps) {
+export function RegistrationProviders({ className, showTitle }: RegistrationProvidersProps) {
   const [providers, setProviders] = useState<Provider[]>(DEFAULT_PROVIDERS)
 
   useEffect(() => {
@@ -84,21 +85,34 @@ export function RegistrationProviders({ className }: RegistrationProvidersProps)
   return (
     <div className={`w-full bg-black py-0 px-5 ${className || ''}`}>
       <div className="max-w-[1000px] mx-auto">
-        {/* OR Divider */}
-        <div className="flex items-center gap-4 mb-10">
-          <div className="flex-1 h-px bg-gray-800" />
-          <span className="text-gray-500 text-sm font-medium tracking-wider uppercase">Or</span>
-          <div className="flex-1 h-px bg-gray-800" />
-        </div>
-
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Choose a Community Provider
-          </h2>
-          <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
-            Independent services with various signup methods and privacy options.
-          </p>
-        </div>
+        {showTitle ? (
+          // Main hero title when shown at top
+          <div className="text-center mb-10">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+              Join Hive<span className="text-[#e31337]">.</span>
+            </h1>
+            <p className="text-base sm:text-xl text-gray-400 max-w-4xl mx-auto">
+              Choose a provider and join a thriving, decentralised community.
+            </p>
+          </div>
+        ) : (
+          // Secondary section with divider
+          <>
+            <div className="flex items-center gap-4 mb-10">
+              <div className="flex-1 h-px bg-gray-800" />
+              <span className="text-gray-500 text-sm font-medium tracking-wider uppercase">Or</span>
+              <div className="flex-1 h-px bg-gray-800" />
+            </div>
+            <div className="text-center mb-10">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                Choose a Community Provider
+              </h2>
+              <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
+                Independent services with various signup methods and privacy options.
+              </p>
+            </div>
+          </>
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {providers.map((provider) => (

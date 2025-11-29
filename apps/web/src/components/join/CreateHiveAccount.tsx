@@ -452,7 +452,6 @@ export default function CreateHiveAccount() {
       {step === 1 ? (
         /* STEP 1: Choose username & password */
         <div className="space-y-8 sm:space-y-12">
-          <Hero />
 
           <div className="space-y-6 max-w-md mx-auto">
             {/* Username */}

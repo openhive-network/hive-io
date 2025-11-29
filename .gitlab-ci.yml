@@ -14,6 +14,8 @@ cache:
     - apps/web/.next/
     - packages/hive-lib/node_modules/
     - packages/hive-lib/dist/
+    - packages/auth-components/node_modules/
+    - packages/auth-components/dist/
 
 build:
   stage: build
@@ -48,7 +50,7 @@ deploy_staging:
     - pip install awscli --upgrade --user
     - export PATH=~/.local/bin:$PATH
     - aws s3 sync --acl public-read --delete apps/web/out $S3_BUCKET_NAME_STAGING
-    #- aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
+    - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
     - echo "DEPLOYED SUCCESSFULLY TO STAGING"
   environment:
     name: development

@@ -184,7 +184,7 @@ export function RegistrationProviders({ className, showTitle }: RegistrationProv
           ))}
         </div>
 
-        <p className="text-center text-gray-600 text-xs mt-8">
+        <p className="text-center text-gray-400 text-md mt-8 md:mb-5 mb-0">
           These are independent community services. Hive.io does not operate or endorse any specific provider.
         </p>
       </div>

@@ -472,7 +472,6 @@ export default function CreateHiveAccount() {
                     : accountError ? '' : 'border-gray-700'
                     }`}
                   autoComplete="off"
-                  autoFocus={!success}
                 />
                 {isCheckingAccount && (
                   <div className="absolute right-3 top-1/2 -translate-y-1/2">

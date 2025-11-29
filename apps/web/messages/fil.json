@@ -1,0 +1,117 @@
+{
+  "join": {
+    "common": {
+      "loading": "Naglo-load...",
+      "login": "Mag-login",
+      "logout": "Mag-logout",
+      "cancel": "Kanselahin",
+      "confirm": "Kumpirmahin",
+      "copy": "Kopyahin",
+      "download": "I-download"
+    },
+    "hero": {
+      "title": "Sumali sa",
+      "titleBold": "Hive",
+      "subtitle": "Gumawa ng iyong account sa Hive sa ilang simpleng hakbang."
+    },
+    "accountForm": {
+      "usernameLabel": "Ano ang gusto mong itawag namin sa iyo?",
+      "usernameHelper": "Hindi ito mababago pagkatapos. Pumili nang maingat.",
+      "usernameTaken": "Ginagamit na ang username na ito",
+      "usernameAvailable": "Maaaring gamitin ang username na ito!",
+      "usernameMinLength": "Ang pangalan ng account ay dapat may hindi bababa sa 3 karakter",
+      "usernameCheckError": "Hindi masuri ang availability ng account",
+      "passwordLabel": "Ang iyong password",
+      "passwordHelper": "Siguraduhing i-save ito nang ligtas at gumawa ng backup.",
+      "backupDownloaded": "Na-download ang backup",
+      "downloadBackup": "I-download ang backup",
+      "backupConfirmation": "Na-backup ko na ang aking password at keys",
+      "showKeys": "Ipakita ang keys"
+    },
+    "buttons": {
+      "createAccount": "Gumawa ng account",
+      "creatingAccount": "Gumagawa ng account...",
+      "shareLink": "Ibahagi ang link para gumawa ng account",
+      "advancedSignIn": "Advanced: Mag-login para gumawa ng account",
+      "restartProcess": "I-restart ang proseso ng paggawa ng account",
+      "advancedRestart": "Advanced: I-restart gamit ang parehong password",
+      "signInToCreate": "Mag-login para gumawa ng account",
+      "claimFreeToken": "Kunin ang libreng token",
+      "claiming": "Kumukuha...",
+      "addToKeychain": "Idagdag sa Hive Keychain",
+      "addingToKeychain": "Idinadagdag sa Keychain...",
+      "addedToKeychain": "Naidagdag sa Keychain"
+    },
+    "success": {
+      "accountCreated": "Matagumpay na nagawa ang account!",
+      "accountLive": "ay aktibo na sa Hive",
+      "welcome": "Maligayang pagdating sa Hive,",
+      "tokenClaimed": "Matagumpay na nakuha ang account token!",
+      "keychainAdded": "Matagumpay na naidagdag ang account sa Keychain!"
+    },
+    "errors": {
+      "loginRequired": "Mag-login muna.",
+      "tokenRequired": "Kailangan mo munang kunin ang account token.",
+      "createFailed": "Hindi nagawa ang account. Pakisubukang muli.",
+      "claimFailed": "Hindi nakuha ang account token. Pakisubukang muli.",
+      "keychainRequired": "Hindi makita ang Hive Keychain extension. I-install muna ito.",
+      "keychainFailed": "Hindi ma-idagdag ang account sa Keychain",
+      "encodingError": "Error: Hindi tugma ang keys pagkatapos ng encoding. Pakisubukang muli.",
+      "invalidShareLink": "Di-wasto o sira ang share link",
+      "missingInfo": "Kulang ang kinakailangang impormasyon"
+    },
+    "loginModal": {
+      "title": "Mag-login",
+      "description": "Ilagay ang iyong Hive username at piliin ang iyong gustong paraan ng authentication.",
+      "usernameLabel": "Hive username",
+      "usernamePlaceholder": "Ilagay ang iyong Hive username",
+      "signInButton": "Mag-login gamit ang Keychain",
+      "signingIn": "Naglo-login...",
+      "keychainInfo": "Kinakailangan ang Hive Keychain upang mapatunayan ang iyong pagkakakilanlan at makagawa ng accounts nang ligtas. Siguraduhing naka-install at naka-enable ang extension.",
+      "keychainRequiredTitle": "Kailangang may Keychain",
+      "keychainRequiredDesc": "I-install at i-activate ang Hive Keychain extension upang mag-login nang ligtas.",
+      "installKeychain": "I-install ang Keychain",
+      "keychainSignatureFailed": "Nabigo ang Keychain signature",
+      "welcome": "Maligayang pagdating,"
+    },
+    "keysModal": {
+      "title": "Ang iyong keys",
+      "owner": "May-ari",
+      "active": "Aktibo",
+      "posting": "Posting",
+      "memo": "Memo"
+    },
+    "shareDialog": {
+      "title": "Ibahagi ang link",
+      "infoText": "Ibahagi ang link na ito sa taong makakagawa ng iyong account. Naglalaman lamang ito ng iyong username at public keys—ang iyong password at private keys ay ligtas.",
+      "helpText": "Kailangan ng tulong? Sumali sa aming Discord para makahanap ng mapagkakatiwalaang miyembro.",
+      "joinDiscord": "Sumali sa Hive Discord"
+    },
+    "joinFlow": {
+      "title": "Gumawa ng Hive account",
+      "inviteText": "Naanyayahan kang gumawa ng Hive account para kay",
+      "inviteDescription": "Gamitin ang iyong Hive account na may creation tokens upang matapos ang hakbang na ito. May private keys na ang bagong user at tinutulungan mo itong mailagay sa blockchain.",
+      "username": "Username",
+      "ownerPubkey": "Owner public key",
+      "activePubkey": "Active public key",
+      "postingPubkey": "Posting public key",
+      "memoPubkey": "Memo public key",
+      "signInToCreate": "Mag-login para gumawa ng account",
+      "tokenRequired": "Kinakailangan ang account token",
+      "creatingAccount": "Gumagawa ng account...",
+      "createAccount": "Gumawa ng account",
+      "accountCreated": "Matagumpay na nagawa ang account!",
+      "accountLive": "ay aktibo na sa Hive",
+      "createAnother": "Gumawa ng isa pang account",
+      "noAccountData": "Walang nakitang account data. Gumamit ng wastong share link.",
+      "showKeys": "Mga Public Key"
+    },
+    "notifications": {
+      "needTokens": "Kailangan mo ng creation tokens upang gumawa ng account",
+      "copiedToClipboard": "nakopya sa clipboard!",
+      "accountCreatedSuccess": "Matagumpay na nagawa ang account!",
+      "checkingAccount": "Sinusuri ang paggawa ng account...",
+      "backupCopied": "Nakopya ang backup sa clipboard!"
+    }
+  }
+}

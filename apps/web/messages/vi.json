@@ -1,0 +1,117 @@
+{
+  "join": {
+    "common": {
+      "loading": "Đang tải...",
+      "login": "Đăng nhập",
+      "logout": "Đăng xuất",
+      "cancel": "Hủy",
+      "confirm": "Xác nhận",
+      "copy": "Sao chép",
+      "download": "Tải xuống"
+    },
+    "hero": {
+      "title": "Tham gia",
+      "titleBold": "Hive",
+      "subtitle": "Tạo tài khoản Hive của bạn chỉ trong vài bước."
+    },
+    "accountForm": {
+      "usernameLabel": "Chúng tôi nên gọi bạn là gì?",
+      "usernameHelper": "Không thể thay đổi sau này. Hãy chọn cẩn thận.",
+      "usernameTaken": "Tên người dùng này đã được sử dụng",
+      "usernameAvailable": "Tên người dùng này có sẵn!",
+      "usernameMinLength": "Tên tài khoản phải có ít nhất 3 ký tự",
+      "usernameCheckError": "Không thể kiểm tra khả năng sử dụng của tài khoản",
+      "passwordLabel": "Mật khẩu của bạn",
+      "passwordHelper": "Hãy đảm bảo sao lưu và lưu trữ an toàn.",
+      "backupDownloaded": "Đã tải bản sao lưu",
+      "downloadBackup": "Tải bản sao lưu",
+      "backupConfirmation": "Tôi đã sao lưu mật khẩu và khóa của mình",
+      "showKeys": "Hiển thị khóa"
+    },
+    "buttons": {
+      "createAccount": "Tạo tài khoản",
+      "creatingAccount": "Đang tạo tài khoản...",
+      "shareLink": "Chia sẻ liên kết tạo tài khoản",
+      "advancedSignIn": "Nâng cao: Đăng nhập để tạo tài khoản",
+      "restartProcess": "Khởi động lại quá trình tạo tài khoản",
+      "advancedRestart": "Nâng cao: Khởi động lại với cùng mật khẩu",
+      "signInToCreate": "Đăng nhập để tạo tài khoản",
+      "claimFreeToken": "Nhận token miễn phí",
+      "claiming": "Đang nhận...",
+      "addToKeychain": "Thêm vào Hive Keychain",
+      "addingToKeychain": "Đang thêm vào Keychain...",
+      "addedToKeychain": "Đã thêm vào Keychain"
+    },
+    "success": {
+      "accountCreated": "Tạo tài khoản thành công!",
+      "accountLive": "đã hoạt động trên Hive",
+      "welcome": "Chào mừng đến với Hive,",
+      "tokenClaimed": "Nhận token tài khoản thành công!",
+      "keychainAdded": "Tài khoản đã được thêm vào Keychain thành công!"
+    },
+    "errors": {
+      "loginRequired": "Vui lòng đăng nhập trước.",
+      "tokenRequired": "Bạn cần nhận token tài khoản trước.",
+      "createFailed": "Không thể tạo tài khoản. Vui lòng thử lại.",
+      "claimFailed": "Không thể nhận token tài khoản. Vui lòng thử lại.",
+      "keychainRequired": "Không tìm thấy tiện ích mở rộng Hive Keychain. Vui lòng cài đặt trước.",
+      "keychainFailed": "Không thể thêm tài khoản vào Keychain",
+      "encodingError": "Lỗi: Khóa không khớp sau khi mã hóa. Vui lòng thử lại.",
+      "invalidShareLink": "Liên kết chia sẻ không hợp lệ hoặc bị hỏng",
+      "missingInfo": "Thiếu thông tin cần thiết"
+    },
+    "loginModal": {
+      "title": "Đăng nhập",
+      "description": "Nhập tên người dùng Hive và chọn phương thức xác thực ưa thích của bạn.",
+      "usernameLabel": "Tên người dùng Hive",
+      "usernamePlaceholder": "Nhập tên người dùng Hive của bạn",
+      "signInButton": "Đăng nhập với Keychain",
+      "signingIn": "Đang đăng nhập...",
+      "keychainInfo": "Hive Keychain cần thiết để xác minh danh tính và tạo tài khoản an toàn. Hãy đảm bảo tiện ích đã được cài đặt và kích hoạt.",
+      "keychainRequiredTitle": "Yêu cầu Keychain",
+      "keychainRequiredDesc": "Vui lòng cài đặt và bật tiện ích Hive Keychain để đăng nhập an toàn.",
+      "installKeychain": "Cài đặt Keychain",
+      "keychainSignatureFailed": "Ký Keychain thất bại",
+      "welcome": "Chào mừng,"
+    },
+    "keysModal": {
+      "title": "Khóa của bạn",
+      "owner": "Chủ sở hữu",
+      "active": "Hoạt động",
+      "posting": "Đăng bài",
+      "memo": "Ghi chú"
+    },
+    "shareDialog": {
+      "title": "Chia sẻ liên kết",
+      "infoText": "Chia sẻ liên kết này với người có thể tạo tài khoản của bạn. Chỉ bao gồm tên người dùng và khóa công khai—mật khẩu và khóa riêng tư của bạn vẫn an toàn.",
+      "helpText": "Cần giúp đỡ? Tham gia Discord của chúng tôi để tìm các thành viên đáng tin cậy.",
+      "joinDiscord": "Tham gia Hive Discord"
+    },
+    "joinFlow": {
+      "title": "Tạo tài khoản Hive",
+      "inviteText": "Bạn đã được mời tạo tài khoản Hive cho",
+      "inviteDescription": "Sử dụng tài khoản Hive có token tạo để hoàn thành bước này. Người dùng mới đã có khóa riêng tư của họ, và bạn đang giúp đưa nó lên chuỗi khối.",
+      "username": "Tên người dùng",
+      "ownerPubkey": "Khóa công khai chủ sở hữu",
+      "activePubkey": "Khóa công khai hoạt động",
+      "postingPubkey": "Khóa công khai đăng bài",
+      "memoPubkey": "Khóa công khai ghi chú",
+      "signInToCreate": "Đăng nhập để tạo tài khoản",
+      "tokenRequired": "Cần token tài khoản",
+      "creatingAccount": "Đang tạo tài khoản...",
+      "createAccount": "Tạo tài khoản",
+      "accountCreated": "Tạo tài khoản thành công!",
+      "accountLive": "đã hoạt động trên Hive",
+      "createAnother": "Tạo tài khoản khác",
+      "noAccountData": "Không tìm thấy dữ liệu tài khoản. Vui lòng sử dụng liên kết chia sẻ hợp lệ.",
+      "showKeys": "Public Keys"
+    },
+    "notifications": {
+      "needTokens": "Bạn cần token tạo để tạo tài khoản",
+      "copiedToClipboard": "đã sao chép vào clipboard!",
+      "accountCreatedSuccess": "Tạo tài khoản thành công!",
+      "checkingAccount": "Đang kiểm tra quá trình tạo tài khoản...",
+      "backupCopied": "Đã sao chép bản sao lưu vào clipboard!"
+    }
+  }
+}

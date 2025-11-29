@@ -1,4 +1,119 @@
 {
+  "join": {
+    "common": {
+      "loading": "Wird geladen...",
+      "login": "Login",
+      "logout": "Logout",
+      "cancel": "Abbrechen",
+      "confirm": "Bestätigen",
+      "copy": "Kopieren",
+      "download": "Download"
+    },
+    "hero": {
+      "title": "Join",
+      "titleBold": "Hive",
+      "subtitle": "Erstelle deinen Hive Account in nur wenigen Schritten."
+    },
+    "accountForm": {
+      "usernameLabel": "Wie sollen wir dich nennen?",
+      "usernameHelper": "Dies kann später nicht geändert werden. Wähle weise.",
+      "usernameTaken": "Dieser Username ist bereits vergeben.",
+      "usernameAvailable": "Dieser Username ist verfügbar!",
+      "usernameMinLength": "Der Account-Name muss mindestens 3 Zeichen lang sein.",
+      "usernameCheckError": "Account-Verfügbarkeit konnte nicht überprüft werden.",
+      "passwordLabel": "Dein Passwort",
+      "passwordHelper": "Stelle sicher, dass du es sicher speicherst und ein Backup anlegst.",
+      "backupDownloaded": "Backup heruntergeladen",
+      "downloadBackup": "Backup herunterladen",
+      "backupConfirmation": "Ich habe mein Passwort und meine Keys gesichert.",
+      "showKeys": "Keys anzeigen"
+    },
+    "buttons": {
+      "createAccount": "Account erstellen",
+      "creatingAccount": "Account wird erstellt...",
+      "shareLink": "Link zur Account-Erstellung teilen",
+      "advancedSignIn": "Advanced: Login zur Account-Erstellung",
+      "restartProcess": "Account-Erstellungsprozess neu starten",
+      "advancedRestart": "Advanced: Mit gleichem Passwort neu starten",
+      "signInToCreate": "Login zur Account-Erstellung",
+      "claimFreeToken": "Free Token claimen",
+      "claiming": "Claiming...",
+      "addToKeychain": "Zu Hive Keychain hinzufügen",
+      "addingToKeychain": "Wird zu Keychain hinzugefügt...",
+      "addedToKeychain": "Zu Keychain hinzugefügt"
+    },
+    "success": {
+      "accountCreated": "Account erfolgreich erstellt!",
+      "accountLive": "ist jetzt live auf Hive.",
+      "welcome": "Willkommen bei Hive,",
+      "tokenClaimed": "Account Token erfolgreich geclaimt!",
+      "keychainAdded": "Account erfolgreich zur Keychain hinzugefügt!"
+    },
+    "errors": {
+      "loginRequired": "Bitte logge dich zuerst ein.",
+      "tokenRequired": "Du musst zuerst ein Account Token claimen.",
+      "createFailed": "Account konnte nicht erstellt werden. Bitte versuche es erneut.",
+      "claimFailed": "Account Token konnte nicht geclaimt werden. Bitte versuche es erneut.",
+      "keychainRequired": "Hive Keychain Extension nicht gefunden. Bitte installiere sie zuerst.",
+      "keychainFailed": "Account konnte nicht zur Keychain hinzugefügt werden.",
+      "encodingError": "Fehler: Keys stimmen nach der Kodierung nicht überein. Bitte versuche es erneut.",
+      "invalidShareLink": "Ungültiger oder beschädigter Share Link.",
+      "missingInfo": "Fehlende erforderliche Informationen."
+    },
+    "loginModal": {
+      "title": "Anmelden",
+      "description": "Gib deinen Hive-Benutzernamen ein und wähle deine bevorzugte Authentifizierungsmethode.",
+      "usernameLabel": "Hive Username",
+      "usernamePlaceholder": "Gib deinen Hive Username ein",
+      "signInButton": "Mit Keychain einloggen",
+      "signingIn": "Login läuft...",
+      "keychainInfo": "Hive Keychain ist erforderlich, um deine Identität zu verifizieren und Accounts sicher zu erstellen. Stelle sicher, dass die Extension installiert und aktiviert ist.",
+      "keychainRequiredTitle": "Keychain erforderlich",
+      "keychainRequiredDesc": "Bitte installiere und aktiviere die Hive Keychain Extension, um dich sicher einzuloggen.",
+      "installKeychain": "Keychain installieren",
+      "keychainSignatureFailed": "Keychain-Signatur fehlgeschlagen",
+      "welcome": "Willkommen,"
+    },
+    "keysModal": {
+      "title": "Deine Keys",
+      "owner": "Owner",
+      "active": "Active",
+      "posting": "Posting",
+      "memo": "Memo"
+    },
+    "shareDialog": {
+      "title": "Link teilen",
+      "infoText": "Teile diesen Link mit jemandem, der deinen Account erstellen kann. Er enthält nur deinen Username und Public Keys – dein Passwort und Private Keys bleiben sicher.",
+      "helpText": "Brauchst du Hilfe? Tritt unserem Discord bei, um vertrauenswürdige Community-Mitglieder zu finden.",
+      "joinDiscord": "Dem Hive Discord beitreten"
+    },
+    "joinFlow": {
+      "title": "Hive Account erstellen",
+      "inviteText": "Du wurdest eingeladen, einen Hive Account zu erstellen für",
+      "inviteDescription": "Verwende deinen Hive Account mit Creation Tokens, um diesen Schritt abzuschließen. Der neue Benutzer kontrolliert bereits seine Private Keys und du hilfst, ihn onchain zu bringen.",
+      "username": "Username",
+      "ownerPubkey": "Owner Public Key",
+      "activePubkey": "Active Public Key",
+      "postingPubkey": "Posting Public Key",
+      "memoPubkey": "Memo Public Key",
+      "signInToCreate": "Login zur Account-Erstellung",
+      "tokenRequired": "Account Token erforderlich",
+      "creatingAccount": "Account wird erstellt...",
+      "createAccount": "Account erstellen",
+      "accountCreated": "Account erfolgreich erstellt!",
+      "accountLive": "ist jetzt live auf Hive.",
+      "createAnother": "Weiteren Account erstellen",
+      "noAccountData": "Keine Account-Daten gefunden. Bitte verwende einen gültigen Share Link.",
+      "showKeys": "Public Keys"
+    },
+    "notifications": {
+      "needTokens": "Du benötigst Creation Tokens, um einen Account zu erstellen.",
+      "copiedToClipboard": "In Zwischenablage kopiert!",
+      "accountCreatedSuccess": "Account erfolgreich erstellt!",
+      "checkingAccount": "Account-Erstellung wird überprüft...",
+      "backupCopied": "Backup in Zwischenablage kopiert!"
+    }
+  },
   "welcome": "Wilkommen",
   "test": "de",
   "root": {

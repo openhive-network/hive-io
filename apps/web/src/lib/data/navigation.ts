@@ -108,7 +108,7 @@ export const NAVIGATION_HEADER_DROPDOWN = [
     ],
   },
   {
-    to: 'https://signup.hive.io',
+    to: 'join',
     name: 'Join',
     isButton: true,
   },
@@ -139,7 +139,7 @@ export const NAVIGATION_HEADER = [
     name: 'Developers',
   },
   {
-    to: 'https://signup.hive.io',
+    to: 'join',
     name: 'Join',
     isButton: true,
   },
@@ -156,7 +156,7 @@ export const NAVIGATION_FOOTER = [
       name: 'Learn More',
     },
     {
-      to: 'https://signup.hive.io',
+      to: 'join',
       name: 'Create Account',
     },
     {

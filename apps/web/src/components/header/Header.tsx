@@ -1,12 +1,15 @@
 'use client';
 
 import React, { useLayoutEffect, useEffect, useRef } from 'react';
-import { Link } from '@/i18n/routing';
+import { Link, usePathname } from '@/i18n/routing';
 import { Logo } from '@/components/logo/Logo';
 import { Navigation } from '@/components/navigation/Navigation';
 import { MobileMenu } from '@/components/mobile-menu/MobileMenu';
-import { LanguageSelector } from '@/components/LanguageSelector';
+// import { LanguageSelector } from '@/components/LanguageSelector';
 import { InfobarCompact } from '@/components/infobar/InfobarCompact';
+import { useAuth } from '@/lib/auth';
+import { LogOut, User } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface HeaderProps {
   items?: any[];
@@ -14,10 +17,15 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ items = [] }) => {
   const headerRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const { user, isAuthenticated, pendingClaimedAccounts, logout } = useAuth();
+
+  const isOnJoinPage = pathname === '/join' || pathname.startsWith('/join');
 
   // Split items into navigation items and button items
   const navigationItems = items.filter(item => !item.isButton);
-  const buttonItems = items.filter(item => item.isButton);
+  // Hide Join button on join page
+  const buttonItems = items.filter(item => item.isButton && !(isOnJoinPage && item.to === 'join'));
 
   // Use useLayoutEffect to update header height before browser paint
   useLayoutEffect(() => {
@@ -56,7 +64,29 @@ export const Header: React.FC<HeaderProps> = ({ items = [] }) => {
         </div>
 
         <div className="flex flex-row items-center gap-4 ml-auto max-[600px]:!hidden">
-          <Navigation items={buttonItems} />
+          {isOnJoinPage && isAuthenticated && user ? (
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-gray-100 border border-gray-200">
+                <User className="h-4 w-4 text-gray-500" />
+                <span className="text-sm text-gray-700">@{user.username}</span>
+                {pendingClaimedAccounts !== null && (
+                  <span className="text-xs text-gray-500">
+                    ({pendingClaimedAccounts} {pendingClaimedAccounts === 1 ? 'token' : 'tokens'})
+                  </span>
+                )}
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => logout()}
+                className="h-8 px-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+              >
+                <LogOut className="h-4 w-4" />
+              </Button>
+            </div>
+          ) : (
+            <Navigation items={buttonItems} />
+          )}
           {/* <LanguageSelector /> */}
         </div>
         <MobileMenu className="hidden max-[600px]:!block ml-auto" items={items} />

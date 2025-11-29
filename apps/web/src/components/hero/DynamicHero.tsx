@@ -369,7 +369,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
   }, [queuedIds, animatingIds, displayedActivities, finishedAnimatingIds, activities, isHoveringFeed, isMobileMenuOpen, isVisible]);
 
   return (
-    <div className="w-full max-w-screen-2xl max-[600px]:px-6 mx-auto px-10">
+    <div className="w-full max-w-screen-2xl max-[600px]:px-6 mx-auto px-10 ">
       {/* Two column layout */}
       <div className="flex flex-col xl:flex-row items-center xl:items-center justify-center pb-10 gap-8 xl:gap-12 2xl:gap-28">
         {/* Main Headlines - Left side on desktop */}

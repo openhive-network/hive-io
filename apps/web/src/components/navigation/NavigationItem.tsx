@@ -50,8 +50,8 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
     );
   }
 
-  // Regular button
-  if (isButton && to && !to.includes('whyhive.co')) {
+  // Regular button - external
+  if (isButton && to && !to.includes('whyhive.co') && (to.includes('https://') || to.includes('http://'))) {
     return (
       <div className={`py-[5px] px-[5px] ${className || ''}`} {...props}>
         <Button
@@ -64,6 +64,22 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
         >
           {name}
         </Button>
+      </div>
+    );
+  }
+
+  // Regular button - internal link
+  if (isButton && to && !to.includes('https://') && !to.includes('http://')) {
+    return (
+      <div className={`py-[5px] px-[5px] ${className || ''}`} {...props}>
+        <Link href={`/${to}` as any} onClick={handleClick}>
+          <Button
+            size="lg"
+            className="min-w-[110px] bg-gray-800 hover:bg-[#e31337] text-white font-semibold text-base rounded-full transition-colors duration-200"
+          >
+            {name}
+          </Button>
+        </Link>
       </div>
     );
   }

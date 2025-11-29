@@ -1,0 +1,117 @@
+{
+  "join": {
+    "common": {
+      "loading": "로딩 중...",
+      "login": "Login",
+      "logout": "Logout",
+      "cancel": "취소",
+      "confirm": "확인",
+      "copy": "복사",
+      "download": "다운로드"
+    },
+    "hero": {
+      "title": "Join",
+      "titleBold": "Hive",
+      "subtitle": "몇 단계만으로 Hive Account를 생성하세요."
+    },
+    "accountForm": {
+      "usernameLabel": "어떤 이름으로 불리고 싶으신가요?",
+      "usernameHelper": "이후에는 변경할 수 없습니다. 신중하게 선택하세요.",
+      "usernameTaken": "이미 사용 중인 Username입니다.",
+      "usernameAvailable": "사용 가능한 Username입니다!",
+      "usernameMinLength": "Account 이름은 최소 3자 이상이어야 합니다.",
+      "usernameCheckError": "Account 사용 가능 여부를 확인할 수 없습니다.",
+      "passwordLabel": "비밀번호",
+      "passwordHelper": "안전하게 저장하고 Backup을 만들어 두세요.",
+      "backupDownloaded": "Backup 다운로드 완료",
+      "downloadBackup": "Backup 다운로드",
+      "backupConfirmation": "비밀번호와 Keys를 백업했습니다.",
+      "showKeys": "Keys 보기"
+    },
+    "buttons": {
+      "createAccount": "Account 생성",
+      "creatingAccount": "Account 생성 중...",
+      "shareLink": "Account 생성 링크 공유",
+      "advancedSignIn": "Advanced: Account 생성을 위한 Login",
+      "restartProcess": "Account 생성 프로세스 다시 시작",
+      "advancedRestart": "Advanced: 같은 비밀번호로 다시 시작",
+      "signInToCreate": "Account 생성을 위한 Login",
+      "claimFreeToken": "무료 Token 받기",
+      "claiming": "받는 중...",
+      "addToKeychain": "Hive Keychain에 추가",
+      "addingToKeychain": "Keychain에 추가 중...",
+      "addedToKeychain": "Keychain에 추가 완료"
+    },
+    "success": {
+      "accountCreated": "Account가 성공적으로 생성되었습니다!",
+      "accountLive": "이제 Hive에서 활성화되었습니다.",
+      "welcome": "Hive에 오신 것을 환영합니다,",
+      "tokenClaimed": "Account Token이 성공적으로 Claim되었습니다!",
+      "keychainAdded": "Account가 Keychain에 성공적으로 추가되었습니다!"
+    },
+    "errors": {
+      "loginRequired": "먼저 로그인하세요.",
+      "tokenRequired": "먼저 Account Token을 Claim해야 합니다.",
+      "createFailed": "Account 생성에 실패했습니다. 다시 시도해주세요.",
+      "claimFailed": "Account Token Claim에 실패했습니다. 다시 시도해주세요.",
+      "keychainRequired": "Hive Keychain 확장 프로그램을 찾을 수 없습니다. 먼저 설치하세요.",
+      "keychainFailed": "Account를 Keychain에 추가하지 못했습니다.",
+      "encodingError": "오류: Keys 인코딩 후 불일치. 다시 시도하세요.",
+      "invalidShareLink": "유효하지 않거나 손상된 Share Link입니다.",
+      "missingInfo": "필수 정보가 누락되었습니다."
+    },
+    "loginModal": {
+      "title": "로그인",
+      "description": "Hive 사용자명을 입력하고 원하는 인증 방법을 선택하세요.",
+      "usernameLabel": "Hive Username",
+      "usernamePlaceholder": "Hive Username 입력",
+      "signInButton": "Keychain으로 Login",
+      "signingIn": "로그인 중...",
+      "keychainInfo": "Hive Keychain은 신원을 확인하고 안전하게 Account를 생성하는 데 필요합니다. 확장 프로그램이 설치되고 활성화되어 있는지 확인하세요.",
+      "keychainRequiredTitle": "Keychain 필요",
+      "keychainRequiredDesc": "Hive Keychain 확장 프로그램을 설치하고 활성화하여 안전하게 로그인하세요.",
+      "installKeychain": "Keychain 설치",
+      "keychainSignatureFailed": "Keychain 서명 실패",
+      "welcome": "환영합니다,"
+    },
+    "keysModal": {
+      "title": "당신의 Keys",
+      "owner": "Owner",
+      "active": "Active",
+      "posting": "Posting",
+      "memo": "Memo"
+    },
+    "shareDialog": {
+      "title": "링크 공유",
+      "infoText": "당신의 Account를 생성할 수 있는 사람과 이 링크를 공유하세요. Username과 Public Keys만 포함하며—비밀번호와 Private Keys는 안전하게 유지됩니다.",
+      "helpText": "도움이 필요하신가요? 저희 Discord에 참여하여 신뢰할 수 있는 멤버를 찾으세요.",
+      "joinDiscord": "Hive Discord 참여하기"
+    },
+    "joinFlow": {
+      "title": "Hive Account 생성",
+      "inviteText": "당신은 다음을 위한 Hive Account 생성을 초대받았습니다:",
+      "inviteDescription": "Creation Tokens이 있는 Hive Account를 사용해 이 단계를 완료하세요. 새 사용자는 이미 자신의 Private Keys를 가지고 있으며, 당신은 그것을 onchain으로 가져오도록 돕고 있습니다.",
+      "username": "Username",
+      "ownerPubkey": "Owner Public Key",
+      "activePubkey": "Active Public Key",
+      "postingPubkey": "Posting Public Key",
+      "memoPubkey": "Memo Public Key",
+      "signInToCreate": "Account 생성을 위한 Login",
+      "tokenRequired": "Account Token 필요",
+      "creatingAccount": "Account 생성 중...",
+      "createAccount": "Account 생성",
+      "accountCreated": "Account가 성공적으로 생성되었습니다!",
+      "accountLive": "이제 Hive에서 활성화되었습니다.",
+      "createAnother": "다른 Account 생성",
+      "noAccountData": "Account 데이터를 찾을 수 없습니다. 올바른 Share Link를 사용하세요.",
+      "showKeys": "공개 키"
+    },
+    "notifications": {
+      "needTokens": "Account를 생성하려면 Creation Tokens이 필요합니다.",
+      "copiedToClipboard": "클립보드에 복사되었습니다!",
+      "accountCreatedSuccess": "Account가 성공적으로 생성되었습니다!",
+      "checkingAccount": "Account 생성 확인 중...",
+      "backupCopied": "백업이 클립보드에 복사되었습니다!"
+    }
+  }
+}

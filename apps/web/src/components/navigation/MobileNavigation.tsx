@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Link } from '@/i18n/routing';
+import { Link, useRouter } from '@/i18n/routing';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -33,6 +33,7 @@ interface MobileNavigationProps {
 export const MobileNavigation: React.FC<MobileNavigationProps> = ({ items, onClicked }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [openSubmenuIndex, setOpenSubmenuIndex] = useState<number | null>(null);
+  const router = useRouter();
 
   const toggleSection = (index: number) => {
     if (openIndex === index) {
@@ -200,11 +201,19 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ items, onCli
 
         // Regular button items
         if (item.isButton && item.to) {
+          const isExternal = item.to.includes('https://') || item.to.includes('mailto');
           return (
             <div key={index} className="py-4 border-b border-gray-200">
               <Button
                 className="w-full"
-                onClick={() => go(item.to!)}
+                onClick={() => {
+                  if (isExternal) {
+                    go(item.to!);
+                  } else {
+                    router.push(`/${item.to}` as any);
+                    if (onClicked) onClicked();
+                  }
+                }}
               >
                 {item.name}
               </Button>

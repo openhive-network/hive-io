@@ -189,9 +189,14 @@ export default function HomePage() {
       {/* Token Showcase Section */}
       <div className="w-full bg-linear-to-b from-gray-900 to-black py-24 px-6 sm:px-10">
         <div className="max-w-screen-2xl mx-auto min-h-[480px] flex flex-col justify-center">
-          <h2 className="text-5xl md:text-6xl font-bold text-white text-center mb-16">
-            Tokenomics<span className="text-[#e31337]">.</span>
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-bold text-white">
+              Tokenomics<span className="text-[#e31337]">.</span>
+            </h2>
+            <p className="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
+              A dual-coin economy built for real utility. HIVE powers the network and rewards participation. HBD provides stability for commerce and savings.
+            </p>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* HIVE Token Card */}
             <TokenCard

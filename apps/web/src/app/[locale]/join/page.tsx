@@ -48,10 +48,10 @@ function JoinContent() {
         // Default view - providers first, then self-service
         <>
           {/* Community Providers - Primary option */}
-          <RegistrationProviders className="pt-20" showTitle />
+          <RegistrationProviders className="pt-10 md:pt-20 pb-10 md:pb-0" showTitle />
 
           {/* FAQ Section */}
-          <div className="w-full bg-black pt-16 px-5">
+          <div className="w-full bg-black md:pt-5 pt-16 px-5">
             <div className="max-w-[800px] mx-auto">
 
               <Accordion type="single" collapsible className="w-full">
@@ -88,7 +88,7 @@ function JoinContent() {
           <div className="flex justify-center w-full py-8 pb-16 px-5 bg-black text-white flex-1">
             <div className="flex flex-col items-center w-full max-w-[900px]">
               <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                <h2 className="text-xl md:text-3xl font-bold text-white mb-3">
                   Already know someone on Hive?
                 </h2>
                 <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">

@@ -152,8 +152,11 @@ export const NAVIGATION_HEADER = [
 export const NAVIGATION_FOOTER = [
   [
     {
+      name: 'Learn',
+    },
+    {
       to: 'about',
-      name: 'Learn More',
+      name: 'About',
     },
     {
       to: 'join',
@@ -192,44 +195,7 @@ export const NAVIGATION_FOOTER = [
   ],
   [
     {
-      to: 'eco',
-      name: 'Ecosystem',
-    },
-    {
-      to: 'roadmap',
-      name: 'Roadmap',
-    },
-    {
-      to: 'hbd',
-      name: 'Hive Dollar (HBD)',
-    },
-    {
-      to: 'https://explore.openhive.network',
-      name: 'Block Explorer',
-    },
-    {
-      to: 'https://explore.openhive.network/witnesses',
-      name: 'Governance',
-    },
-    //  {
-    //     to: 'https://whyhive.co/',
-    //     name: 'Why Hive',
-    //  },
-    /* {
-      to: 'eco',
-      name: 'dApps Statistics'
-    }, */
-  ],
-  [
-    {
-      to: 'wallets',
-      name: 'Wallets',
-    },
-  ],
-  [
-    {
-      to: 'developers',
-      name: 'Developer',
+      name: 'Build',
     },
     {
       to: 'https://developers.hive.io',
@@ -250,6 +216,35 @@ export const NAVIGATION_FOOTER = [
     {
       to: 'https://gitlab.hive.io',
       name: 'GitLab',
+    },
+  ],
+  [
+    {
+      name: 'Ecosystem',
+    },
+    {
+      to: 'eco',
+      name: 'Overview',
+    },
+    {
+      to: 'roadmap',
+      name: 'Roadmap',
+    },
+    {
+      to: 'hbd',
+      name: 'Hive Dollar (HBD)',
+    },
+    {
+      to: 'https://explore.openhive.network',
+      name: 'Block Explorer',
+    },
+    {
+      to: 'https://explore.openhive.network/witnesses',
+      name: 'Governance',
+    },
+    {
+      to: 'wallets',
+      name: 'Wallets',
     },
   ],
 ]

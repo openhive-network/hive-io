@@ -116,5 +116,16 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
     );
   }
 
+  // Plain text (no link) - used for section titles
+  if (!isButton && !to && name) {
+    return (
+      <div className={`py-[5px] px-[5px] ${className || ''}`} {...props}>
+        <span className={`font-bold ${dark ? 'text-white' : ''}`}>
+          {name}
+        </span>
+      </div>
+    );
+  }
+
   return null;
 };

@@ -305,7 +305,7 @@ export default function HomePage() {
       <RootDPoS ref={dposRef} />
 
       {/* Voices of Hive */}
-      <RootVoicesOfHive className="bg-white" excludeAuthors={['kgakakillerg', 'hivebuzz']} excludePermlinks={['re-therealwolf-t6cqqg']} />
+      <RootVoicesOfHive className="bg-white" />
 
       {/* Exchanges */}
       <div id="exchanges" className="w-full bg-linear-to-b from-gray-900 to-black py-32 px-6 sm:px-10">

@@ -5,10 +5,41 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useVoicesOfHive } from '@/hooks/useVoicesOfHive';
 
+// Whitelist of approved voices
+const VOICES_WHITELIST = [
+  { author: 'fermionico', permlink: 're-therealwolf-t6couu' },
+  { author: 'starkerz', permlink: 're-therealwolf-t6cqv4' },
+  { author: 'jza', permlink: 're-therealwolf-20251126t14421725z' },
+  { author: 'meno', permlink: 're-therealwolf-t6cq3v' },
+  { author: 'vikisecrets', permlink: 're-therealwolf-t6cnr3' },
+  { author: 'condeas', permlink: 're-therealwolf-t6cpsz' },
+  { author: 'eddiespino', permlink: 're-therealwolf-t6ctt9' },
+  { author: 'themarkymark', permlink: 're-therealwolf-t6dd0j' },
+  { author: 'sagarkothari88', permlink: 're-therealwolf-t6d7vv' },
+  { author: 'neuropoeta', permlink: 're-therealwolf-20251126t1640601z' },
+  { author: 'niallon11', permlink: 're-therealwolf-t6cnef' },
+  { author: 'sofathana', permlink: 're-therealwolf-t6cpby' },
+  { author: 'roundbeargames', permlink: 're-therealwolf-t6d7j1' },
+  { author: 'spiritabsolute', permlink: 're-therealwolf-20251127t91213712z' },
+  { author: 'davideownzall', permlink: 're-therealwolf-t6ctiw' },
+  { author: 'michealb', permlink: 're-therealwolf-t6d2k0' },
+  { author: 'zusi78', permlink: 're-therealwolf-20251127t7554254z' },
+  { author: 'ben.haase', permlink: 're-therealwolf-2cc1qvawv' },
+  { author: 'stresskiller', permlink: 're-therealwolf-t6dsi6' },
+  { author: 'ph1102', permlink: 're-therealwolf-t6dtbj' },
+  { author: 'shiftrox', permlink: 're-therealwolf-t6dvjx' },
+  { author: 'jfuji', permlink: 're-therealwolf-20251127t7121657z' },
+  { author: 'palomap3', permlink: 're-therealwolf-t6e7o1' },
+  { author: 'meyateingi', permlink: 're-therealwolf-t6ep0f' },
+  { author: 'abdullahkr', permlink: 're-therealwolf-t6eugs' },
+  { author: 'olagod', permlink: 're-therealwolf-20251128t94315702z' },
+  { author: 'steevc', permlink: 're-therealwolf-t6g3t5' },
+  { author: 'therealwolf', permlink: 're-therealwolf-t6j8e8' },
+  { author: 'relf87', permlink: 're-therealwolf-t6jn6t' },
+];
+
 interface RootVoicesOfHiveProps {
   className?: string;
-  excludeAuthors?: string[];
-  excludePermlinks?: string[];
   postAuthor?: string;
   postPermlink?: string;
   rotationInterval?: number;
@@ -16,8 +47,6 @@ interface RootVoicesOfHiveProps {
 
 export function RootVoicesOfHive({
   className = '',
-  excludeAuthors = [],
-  excludePermlinks = [],
   postAuthor = 'therealwolf',
   postPermlink = 'what-is-hive-to-you',
   rotationInterval = 6000,
@@ -25,8 +54,7 @@ export function RootVoicesOfHive({
   const { voices, isLoading, error } = useVoicesOfHive({
     postAuthor,
     postPermlink,
-    excludeAuthors,
-    excludePermlinks,
+    whitelist: VOICES_WHITELIST,
     maxExcerptLength: 400,
   });
 
@@ -70,7 +98,7 @@ export function RootVoicesOfHive({
   // Don't render if loading or error or no voices
   if (isLoading) {
     return (
-      <div ref={sectionRef} className={`w-full py-24 px-6 sm:px-10 ${className}`}>
+      <div ref={sectionRef} className={`w-full py-24 px-6 sm:px-10 min-h-screen sm:min-h-0 ${className}`}>
         <div className="max-w-screen-xl mx-auto">
           <div className="text-center">
             <div className="animate-pulse">
@@ -90,7 +118,7 @@ export function RootVoicesOfHive({
   const currentVoice = voices[currentIndex];
 
   return (
-    <div ref={sectionRef} className={`w-full py-24 px-6 sm:px-10 ${className}`}>
+    <div ref={sectionRef} className={`w-full py-24 px-6 sm:px-10 min-h-screen sm:min-h-0 ${className}`}>
       <div className="max-w-screen-xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-10">

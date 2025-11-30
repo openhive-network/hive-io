@@ -13,11 +13,15 @@ interface Voice {
   url: string
 }
 
+interface WhitelistEntry {
+  author: string
+  permlink: string
+}
+
 interface UseVoicesOfHiveOptions {
   postAuthor?: string
   postPermlink?: string
-  excludeAuthors?: string[]
-  excludePermlinks?: string[]
+  whitelist?: WhitelistEntry[]
   maxExcerptLength?: number
 }
 
@@ -59,8 +63,7 @@ export function useVoicesOfHive(
   const {
     postAuthor = 'therealwolf',
     postPermlink = 'what-is-hive-to-you',
-    excludeAuthors = [],
-    excludePermlinks = [],
+    whitelist = [],
     maxExcerptLength = 200,
   } = options
 
@@ -68,9 +71,8 @@ export function useVoicesOfHive(
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Serialize arrays for stable dependency comparison
-  const excludeAuthorsKey = JSON.stringify(excludeAuthors)
-  const excludePermlinksKey = JSON.stringify(excludePermlinks)
+  // Serialize whitelist for stable dependency comparison
+  const whitelistKey = JSON.stringify(whitelist)
 
   useEffect(() => {
     const fetchVoices = async () => {
@@ -87,20 +89,16 @@ export function useVoicesOfHive(
           throw new Error('No discussion found')
         }
 
-        const parsedExcludeAuthors: string[] = JSON.parse(excludeAuthorsKey)
-        const parsedExcludePermlinks: string[] = JSON.parse(excludePermlinksKey)
+        const parsedWhitelist: WhitelistEntry[] = JSON.parse(whitelistKey)
 
-        // Filter for first-level comments only
-        const firstLevelComments = Object.values(discussion).filter((post) => {
-          return (
-            post.parent_author === postAuthor &&
-            post.parent_permlink === postPermlink &&
-            !parsedExcludeAuthors.includes(post.author) &&
-            !parsedExcludePermlinks.includes(post.permlink)
+        // Filter for whitelisted comments only
+        const whitelistedComments = Object.values(discussion).filter((post) => {
+          return parsedWhitelist.some(
+            (entry) => entry.author === post.author && entry.permlink === post.permlink
           )
         })
 
-        const voicesData: Voice[] = firstLevelComments.map((post) => {
+        const voicesData: Voice[] = whitelistedComments.map((post) => {
           return {
             author: post.author,
             permlink: post.permlink,
@@ -128,13 +126,7 @@ export function useVoicesOfHive(
     }
 
     fetchVoices()
-  }, [
-    postAuthor,
-    postPermlink,
-    excludeAuthorsKey,
-    excludePermlinksKey,
-    maxExcerptLength,
-  ])
+  }, [postAuthor, postPermlink, whitelistKey, maxExcerptLength])
 
   return {voices, isLoading, error}
 }

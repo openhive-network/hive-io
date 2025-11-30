@@ -142,10 +142,10 @@ export function RootVoicesOfHive({
                   setIsFading(false);
                 }, 300);
               }}
-              className="p-2 sm:p-3 rounded-full bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200"
+              className="p-2 sm:p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
               aria-label="Previous voice"
             >
-              <ChevronLeft className="w-5 h-5 text-gray-400" />
+              <ChevronLeft className="w-5 h-5 text-gray-500" />
             </button>
           )}
 
@@ -155,7 +155,7 @@ export function RootVoicesOfHive({
             className={`max-w-3xl w-full min-h-[280px] sm:min-h-[300px] transition-opacity duration-300 ${isFading ? 'opacity-0' : 'opacity-100'}`}
           >
             {/* Message Bubble with Author inside */}
-            <div className="relative bg-gray-50 rounded-2xl px-6 py-5 sm:px-8 sm:py-6">
+            <div className="relative bg-gray-100 rounded-2xl px-6 py-5 sm:px-8 sm:py-6">
               {/* Author - Inside bubble */}
               <div className="flex items-center gap-3 mb-4">
                 <div className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-white">
@@ -203,10 +203,10 @@ export function RootVoicesOfHive({
                   setIsFading(false);
                 }, 300);
               }}
-              className="p-2 sm:p-3 rounded-full bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200"
+              className="p-2 sm:p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
               aria-label="Next voice"
             >
-              <ChevronRight className="w-5 h-5 text-gray-400" />
+              <ChevronRight className="w-5 h-5 text-gray-500" />
             </button>
           )}
         </div>

@@ -14,7 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ items = [], className, ...props 
       <div className="max-w-screen-2xl mx-auto flex flex-row justify-between max-[1000px]:flex-col max-[1000px]:items-center">
         <div className="flex flex-col max-[1000px]:items-center">
           <Logo className="h-[30px] w-[132px] max-[1000px]:mb-[15px]" dark={true} />
-          <div className="flex flex-row items-center gap-3 mt-8">
+          <div className="flex flex-row items-center gap-3 mt-8 mb-6 max-[1000px]:mb-8">
             {SOCIAL_MEDIAS.map((social, index) => (
               <React.Fragment key={social.icon}>
                 <a

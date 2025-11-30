@@ -126,29 +126,29 @@ export function RootVoicesOfHive({
             onMouseLeave={() => setIsHovering(false)}
             className={`max-w-3xl w-full min-h-[280px] sm:min-h-[300px] transition-opacity duration-300 ${isFading ? 'opacity-0' : 'opacity-100'}`}
           >
-            {/* Author - Top */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-gray-100">
-                <Image
-                  src={currentVoice.avatarUrl}
-                  alt={currentVoice.author}
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
+            {/* Message Bubble with Author inside */}
+            <div className="relative bg-gray-50 rounded-2xl px-6 py-5 sm:px-8 sm:py-6">
+              {/* Author - Inside bubble */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-white">
+                  <Image
+                    src={currentVoice.avatarUrl}
+                    alt={currentVoice.author}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+                <a
+                  href={`https://peakd.com/@${currentVoice.author}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-base font-semibold text-gray-900 hover:text-[#e31337] transition-colors"
+                >
+                  @{currentVoice.author}
+                </a>
               </div>
-              <a
-                href={`https://peakd.com/@${currentVoice.author}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-base font-semibold text-gray-900 hover:text-[#e31337] transition-colors"
-              >
-                @{currentVoice.author}
-              </a>
-            </div>
 
-            {/* Message Bubble */}
-            <div className="relative bg-gray-50 rounded-2xl rounded-tl-sm px-6 py-5 sm:px-8 sm:py-6">
               <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                 {currentVoice.excerpt}
               </p>

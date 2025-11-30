@@ -183,15 +183,12 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
   isTabHiddenRef.current = isTabHidden; // Keep ref in sync for callbacks
   const displayedActivitiesRef = useRef(displayedActivities);
   displayedActivitiesRef.current = displayedActivities; // Always keep ref in sync
-  const prevPositionsRef = useRef<Map<string, number>>(new Map());
   const lastAnimationEndRef = useRef<number>(0);
   const cooldownTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Handle animation completion
   const handleAnimationEnd = useCallback((activityId: string, event: React.AnimationEvent) => {
     if (event.animationName === 'fadeIn') {
-      console.log('✅ Animation complete:', activityId.substring(0, 10));
-
       // Record when animation ended for cooldown calculation
       lastAnimationEndRef.current = Date.now();
 
@@ -201,27 +198,19 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
       // Add to finished set (keep only last 5)
       setFinishedAnimatingIds((prev) => {
         const arr = [...prev, activityId];
-        const updated = new Set(arr.slice(-maxActivities));
-        console.log('   Updated finishedAnimatingIds:', Array.from(updated).map(id => id.substring(0, 10)));
-        return updated;
+        return new Set(arr.slice(-maxActivities));
       });
 
       // Remove from queue (next animation will be started by the queue effect)
-      setQueuedIds((prev) => {
-        const remaining = prev.slice(1);
-        console.log('   Queue remaining:', remaining.length);
-        return remaining;
-      });
+      setQueuedIds((prev) => prev.slice(1));
 
       // If user was hovering this activity while it was animating, pause now
       if (hoveredActivityIdRef.current === activityId) {
-        console.log('⏸️ Pausing after animation complete (was hovered)');
         setIsHoveringFeed(true);
       }
 
       // If tab was hidden while animating, pause now
       if (isTabHiddenRef.current) {
-        console.log('⏸️ Pausing after animation complete (tab hidden)');
         setIsHoveringFeed(true);
       }
     }
@@ -230,7 +219,6 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
   // Handle transition end for exit animations
   const handleTransitionEnd = useCallback((activityId: string, event: React.TransitionEvent) => {
     if (event.propertyName === 'opacity' && fadingOutIds.has(activityId)) {
-      console.log('🚪 Exit complete:', activityId);
       // Remove from fading and displayed
       setFadingOutIds((prev) => {
         const next = new Set(prev);
@@ -270,7 +258,6 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
-        console.log('👁️ Tab hidden, pausing');
         setIsTabHidden(true);
         // If no animation is currently running, pause immediately
         if (animatingIds.size === 0) {
@@ -278,7 +265,6 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
         }
         // If animation is running, it will pause after completion (handled in handleAnimationEnd)
       } else if (document.visibilityState === 'visible') {
-        console.log('👁️ Tab visible, resuming');
         setIsTabHidden(false);
         // Clear hover state - user is no longer hovering after returning from another tab
         // This is especially important on mobile where touch "hover" gets stuck
@@ -316,7 +302,6 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
       const oldestActivity = nonFadingActivities[nonFadingActivities.length - 1];
 
       if (oldestActivity) {
-        console.log('🚪 Exiting oldest:', oldestActivity.id.substring(0, 10));
         setFadingOutIds((prev) => new Set([...prev, oldestActivity.id]));
       }
     }
@@ -333,9 +318,6 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
     if (queuedIds.length > 0 && animatingIds.size === 0) {
       // Queue has an item ready - start its animation
       const firstId = queuedIds[0];
-      console.log('🎬 Starting animation:', firstId);
-      console.log('   Current displayedActivities:', displayedActivities.map(a => a.id.substring(0, 10)));
-      console.log('   finishedAnimatingIds:', Array.from(finishedAnimatingIds).map(id => id.substring(0, 10)));
       setAnimatingIds(new Set([firstId]));
     } else if (queuedIds.length === 0 && animatingIds.size === 0 && !isHoveringFeed && !isMobileMenuOpen && isVisible) {
       // Queue is empty and no animation running - check for pending activities
@@ -351,7 +333,6 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
         if (lastAnimationEndRef.current > 0 && timeSinceLastAnimation < cooldownNeeded) {
           // Not enough time passed - schedule a re-check
           const remainingCooldown = cooldownNeeded - timeSinceLastAnimation;
-          console.log(`⏳ Cooldown: waiting ${remainingCooldown}ms before next animation`);
           cooldownTimerRef.current = setTimeout(() => {
             // Force re-render to trigger this effect again
             setQueuedIds(prev => [...prev]);
@@ -361,7 +342,6 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
 
         // Cooldown complete - queue the first pending activity
         const nextActivity = pendingActivities[0];
-        console.log('➕ Picking up pending activity:', nextActivity.id.substring(0, 10));
         setQueuedIds([nextActivity.id]);
         setDisplayedActivities(prev => [nextActivity, ...prev]);
       }
@@ -468,22 +448,6 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
                   : hasFinishedAnimating || isFadingOut
                     ? { opacity: isFadingOut ? 0 : 1, transform: baseTransform, top: 0, left: 0, right: 0 }
                     : { opacity: 0, transform: `${baseTransform} translateX(50px)`, top: 0, left: 0, right: 0 };
-
-                // Log position changes
-                const prevPosition = prevPositionsRef.current.get(activity.id);
-                if (prevPosition !== yPosition) {
-                  console.log(`📐 ${activity.id.substring(0, 10)}:`, {
-                    prevPos: prevPosition ?? 'new',
-                    newPos: yPosition,
-                    actualIndex,
-                    isAnimating,
-                    hasFinishedAnimating,
-                    isFadingOut,
-                    displayedArray: displayedActivities.map(a => a.id.substring(0, 10)),
-                    transform: isAnimating ? `var(--y-pos: ${yPosition}px)` : style.transform
-                  });
-                  prevPositionsRef.current.set(activity.id, yPosition);
-                }
 
                 // Activities are clickable if they have a txId AND are not hardcoded defaults
                 // Hardcoded defaults have IDs starting with "default-"

@@ -361,7 +361,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
             {displayedText}
           </h2>
           <p className="text-lg md:text-xl text-gray-600 mt-8 mb-8 max-w-[650px] max-[600px]:text-base max-[600px]:mb-6 text-justify md:text-left">
-            Hive is a decentralized, high-speed blockchain with zero fees and near-instant transactions—powering social apps, games, and financial tools built for everyone.
+            Hive is a decentralized, scalable, high-speed blockchain with zero fees and near-instant transactions—powering social apps, games, and financial tools built for everyone.
           </p>
 
           {/* CTA Buttons */}

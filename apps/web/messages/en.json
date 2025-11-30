@@ -1,0 +1,196 @@
+{
+  "join": {
+    "common": {
+      "loading": "Loading...",
+      "login": "Login",
+      "logout": "Logout",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "copy": "Copy",
+      "download": "Download"
+    },
+    "hero": {
+      "title": "Join",
+      "titleBold": "Hive",
+      "subtitle": "Create your Hive account in just a few steps."
+    },
+    "accountForm": {
+      "usernameLabel": "What should we call you?",
+      "usernameHelper": "This cannot be changed later. Choose wisely.",
+      "usernameTaken": "This username is already taken",
+      "usernameAvailable": "This username is available!",
+      "usernameMinLength": "Account name must be at least 3 characters",
+      "usernameCheckError": "Unable to check account availability",
+      "passwordLabel": "Your password",
+      "passwordHelper": "Make sure to back up and save this securely.",
+      "backupDownloaded": "Backup Downloaded",
+      "downloadBackup": "Download Backup",
+      "backupConfirmation": "I have backed up my password and keys",
+      "showKeys": "Show Keys"
+    },
+    "buttons": {
+      "createAccount": "Create Account",
+      "creatingAccount": "Creating Account...",
+      "shareLink": "Share Link to Create Account",
+      "advancedSignIn": "Advanced: Sign In to Create Account",
+      "restartProcess": "Restart Account Process",
+      "advancedRestart": "Advanced: Restart with Same Password",
+      "signInToCreate": "Sign In to Create Account",
+      "claimFreeToken": "Claim Free Token",
+      "claiming": "Claiming...",
+      "addToKeychain": "Add to Hive Keychain",
+      "addingToKeychain": "Adding to Keychain...",
+      "addedToKeychain": "Added to Keychain"
+    },
+    "success": {
+      "accountCreated": "Account created successfully!",
+      "accountLive": "is now live on Hive",
+      "welcome": "Welcome to Hive,",
+      "tokenClaimed": "Account token claimed successfully!",
+      "keychainAdded": "Account added to Keychain successfully!"
+    },
+    "errors": {
+      "loginRequired": "Please log in first.",
+      "tokenRequired": "You need to claim an account token first.",
+      "createFailed": "Failed to create account. Please try again.",
+      "claimFailed": "Failed to claim account token. Please try again.",
+      "keychainRequired": "Hive Keychain extension not found. Please install it first.",
+      "keychainFailed": "Failed to add account to Keychain",
+      "encodingError": "Error: Keys mismatch after encoding. Please try again.",
+      "invalidShareLink": "Invalid or corrupted share link",
+      "missingInfo": "Missing required information"
+    },
+    "loginModal": {
+      "title": "Sign in",
+      "description": "Enter your Hive username and choose your preferred authentication method.",
+      "usernameLabel": "Hive Username",
+      "usernamePlaceholder": "Enter your Hive username",
+      "signInButton": "Sign in with Keychain",
+      "signingIn": "Signing in...",
+      "keychainInfo": "Hive Keychain is required to verify your identity and create accounts securely. Make sure the extension is installed and enabled.",
+      "keychainRequiredTitle": "Keychain Required",
+      "keychainRequiredDesc": "Please install and enable Hive Keychain extension to log in securely.",
+      "installKeychain": "Install Keychain",
+      "keychainSignatureFailed": "Keychain signature failed",
+      "welcome": "Welcome,",
+      "chooseMethod": "Choose authentication method",
+      "cancel": "Cancel"
+    },
+    "keysModal": {
+      "title": "Your Keys",
+      "owner": "Owner",
+      "active": "Active",
+      "posting": "Posting",
+      "memo": "Memo"
+    },
+    "shareDialog": {
+      "title": "Share Link",
+      "infoText": "Share this link with someone who can create your account. It only contains your username and public keys—your password and private keys remain secure.",
+      "linkLabel": "Link",
+      "helpText": "Need help? Join us on Discord or Telegram to find trusted community members.",
+      "joinDiscord": "Join Hive Discord"
+    },
+    "joinFlow": {
+      "title": "Create Hive Account",
+      "inviteText": "You've been invited to create a Hive account for",
+      "inviteDescription": "Use your Hive account with creation tokens to complete this step. The new user already controls their private keys and you're helping to bring it onchain.",
+      "username": "Username",
+      "ownerPubkey": "Owner Public Key",
+      "activePubkey": "Active Public Key",
+      "postingPubkey": "Posting Public Key",
+      "memoPubkey": "Memo Public Key",
+      "signInToCreate": "Sign In to Create Account",
+      "tokenRequired": "Account Token Required",
+      "creatingAccount": "Creating Account...",
+      "createAccount": "Create Account",
+      "accountCreated": "Account created successfully!",
+      "accountLive": "is now live on Hive",
+      "createAnother": "Create Another Account",
+      "noAccountData": "No account data found. Please use a valid share link.",
+      "showKeys": "Public Keys"
+    },
+    "notifications": {
+      "needTokens": "You need creation tokens to create an account",
+      "copiedToClipboard": "copied to clipboard!",
+      "accountCreatedSuccess": "Account created successfully!",
+      "checkingAccount": "Checking account creation...",
+      "backupCopied": "Backup copied to clipboard!"
+    }
+  },
+  "root": {
+    "learnMore": "Learn More",
+    "whyHive": "Why Hive?",
+    "ecoTitle": "Our Ecosystem",
+    "ecoText": "Hive is not a shiny new toy. We've been around for a while, and have grown a thriving ecosystem of hundreds of dapps, communities & projects. We are home to some of the most used Web3 dapps in the world, such as Splinterlands, PeakD, and Ecency.",
+    "ecoButton": "Explore",
+    "walletsTitle": "Wallets",
+    "walletsText": "Wallets are incredibly important to securely store your cryptocurrencies and to interact with Web3 apps.\nHive has multiple community-owned and open-source wallets available for Windows, macOS, Linux, iOS, Android & Web.",
+    "walletsButton": "Choose wallet",
+    "dafTitle": "Decentralized Hive Fund",
+    "dafText": "The development of Hive and its ecosystem is made possible by the community. To incentivize crucial work, the same community can engage in stake-weighted voting to fund proposals via the Decentralised Hive Fund (DHF).",
+    "dafButton": "Learn more",
+    "exchanges": {
+      "title": "Listed Exchanges",
+      "subtitle": "Trade HIVE on 40+ exchanges worldwide. Maximum liquidity, maximum accessibility."
+    },
+    "hbdTitle": "Hive Backed Dollar",
+    "hbdText": "HBD is a USD-pegged algorithmic stablecoin backed by HIVE. We currently provide one of the highest interest rates in the crypto space for holding HBD in savings.",
+    "hbdAPR": "The interest rate is variable and is voted by the Witnesses.",
+    "hbdButton": "Learn more",
+    "fastTitle": "Fast",
+    "fastText": "Transactions are processed and confirmed in 3 seconds. Hive is using OBI (one-block irreversibility) meaning that transactions become irreversible in less than 3 seconds. No need to wait for confirmations.",
+    "fastButton": "Learn more",
+    "feeTitle": "Fast with No Fees",
+    "feeText": "Experience lightning-fast 3-second transactions with zero gas fees. Our Delegated Proof of Stake technology empowers users and communities, not intermediaries.",
+    "feeText2": "",
+    "decTitle": "Decentralized",
+    "decText": "Hive is one of the most decentralized blockchains. There is no single entity or organization that controlls the network. Everything is run by the community members.",
+    "decText2": "",
+    "usernameTitle": "Readable Wallet Addresses",
+    "usernameText": "Wallet addresses in Hive are easy to remember. They look and act just like usernames in traditional applications. In other words, a username is a wallet address and a social media handle at the same time."
+  },
+  "about": {
+    "title": "Built for Web",
+    "text": "Hive is an innovative and forward-looking decentralized blockchain and ecosystem, designed to scale with widespread adoption of the currency and platforms in mind. By combining the lightning-fast processing times and fee-less transactions, Hive is one of the leading Web3 blockchains used by people around the world.",
+    "featureFast": "Fast",
+    "featureFastText": "Hive has 3 second block times with transactions confirmed within milliseconds due to one-block irreversibility, allowing for a seamless experience.",
+    "featureScalable": "Scalable",
+    "featureScalableText": "Efficiency is key. Hive is optimized for sustainability and flexibility with layered solutions. Nodes can run on modest hardware, keeping the network accessible to all.",
+    "featurePowerful": "Powerful",
+    "featurePowerfulText": "Hive is a global decentralized network. It is battle-tested by hundreds of apps, communities & projects around the world."
+  },
+  "eco": {
+    "title": "Hive Ecosystem",
+    "text": "Below is a selection of dapps, games and tools built on Hive.",
+    "subTitle": "Interested in statistics?",
+    "subText": "Thousands of people across numerous dapps are using Hive every day."
+  },
+  "wallets": {
+    "title": "Choose Your Wallet",
+    "text": "Hive wallets are available for Windows, MacOS, Linux, iOS, Android & Web."
+  },
+  "hbd": {
+    "title": "Hive Backed Dollar",
+    "text": "HBD is a native stablecoin on the Hive blockchain. HBD is built to hold $1USD value in the most decentralized ways. It benefits from the fee-less and fast transactions of the Hive blockchain.",
+    "howTitle": "How does it maintain the $1USD peg?",
+    "howText": "There are two decentralized conversion operations designed to achieve this goal. HIVE to HBD conversion and HBD to HIVE conversion. These two operations keep the price at $1USD with a tight margin.",
+    "hbdToHiveTitle": "HBD to HIVE conversion",
+    "hbdToHiveText": "This operation converts set amounts of HBD to $1USD worth of HIVE with no extra fees. It takes 3.5 days for the conversion to finalize. The price in this conversion is the median price of the coming 3.5 days to prevent market manipulations.",
+    "hiveToHbdTitle": "HIVE to HBD conversion",
+    "hiveToHbdText": "This operation is a collateral-based conversion. After initialazing the conversion of the X amount of HIVE to HBD, the user gets Y amount of HBD immediately. The Y is equivilent of the value of X/2 of the HIVE. The cost for Y amount of HBD is calculated after 3.5 days and the remaining HIVE is returned to the user. The price is the median price of the 3.5 days. This conversion has a 5% fee which is burned in the process.",
+    "supportedWallets": "Supported wallets",
+    "interestTitle": "Savings account APR",
+    "interestText": "Placing your HBD savings in a Savings Account on Hive will generate returns. Saving is an action that locks the HBD with a unlock time of only 3 days. The interest rate is voted by the witnesses and is variable. It is currently at 15% APR.",
+    "whereToBuyTitle": "Where to buy",
+    "moreInfoTitle": "Statistics, market cap, and more",
+    "moreInfoText": "You can grab the latest figures at ",
+    "risksTitle": "Risks",
+    "risksText": "HBD has a security mechanism built into it called haircut rule. The haircut rule makes sure that debt ratio of HBD to HIVE is always less than 30%. Haircut rule gets activated when the debt ratio is greater or equal to 30%. It stops printing HBD and breaks the $1 peg. The HBD to HIVE conversion will return slightly lower value than $1.",
+    "risksText2": "The haircut rule has happened a few times in the past and is proven to be effective in preventing over debt while maintaining a healthy price for both HIVE and HBD tokens."
+  },
+  "brand": {
+    "title": "Brand Assets",
+    "text": "The branding of Hive is created by the community, for the community. For graphical representation of Hive, the correct & newest assets shall be used."
+  },
+  "moreDetails": "More Details Soon"
+}

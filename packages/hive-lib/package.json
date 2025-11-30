@@ -1,0 +1,23 @@
+{
+  "name": "@hiveio/hive-lib",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@hiveio/dhive": "^1.3.2",
+    "@hiveio/wax": "1.27.11-rc0",
+    "@hiveio/wax-api-jsonrpc": "^1.28.4",
+    "@hiveio/wax-signers-keychain": "1.27.11-rc0",
+    "@noble/hashes": "^1.3.3",
+    "hive-auth-wrapper": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}

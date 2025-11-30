@@ -1,0 +1,117 @@
+{
+  "join": {
+    "common": {
+      "loading": "กำลังโหลด...",
+      "login": "เข้าสู่ระบบ",
+      "logout": "ออกจากระบบ",
+      "cancel": "ยกเลิก",
+      "confirm": "ยืนยัน",
+      "copy": "คัดลอก",
+      "download": "ดาวน์โหลด"
+    },
+    "hero": {
+      "title": "เข้าร่วม",
+      "titleBold": "Hive",
+      "subtitle": "สร้างบัญชี Hive ของคุณในไม่กี่ขั้นตอน"
+    },
+    "accountForm": {
+      "usernameLabel": "เราควรเรียกคุณว่าอะไร?",
+      "usernameHelper": "ไม่สามารถเปลี่ยนแปลงได้ในภายหลัง กรุณาเลือกอย่างรอบคอบ",
+      "usernameTaken": "ชื่อผู้ใช้นี้ถูกใช้ไปแล้ว",
+      "usernameAvailable": "ชื่อผู้ใช้นี้สามารถใช้ได้!",
+      "usernameMinLength": "ชื่อบัญชีต้องมีอย่างน้อย 3 ตัวอักษร",
+      "usernameCheckError": "ไม่สามารถตรวจสอบความพร้อมใช้งานของบัญชีได้",
+      "passwordLabel": "รหัสผ่านของคุณ",
+      "passwordHelper": "กรุณาสำรองข้อมูลและเก็บรักษาไว้อย่างปลอดภัย",
+      "backupDownloaded": "ดาวน์โหลดข้อมูลสำรองแล้ว",
+      "downloadBackup": "ดาวน์โหลดข้อมูลสำรอง",
+      "backupConfirmation": "ฉันได้สำรองรหัสผ่านและคีย์แล้ว",
+      "showKeys": "แสดงคีย์"
+    },
+    "buttons": {
+      "createAccount": "สร้างบัญชี",
+      "creatingAccount": "กำลังสร้างบัญชี...",
+      "shareLink": "แชร์ลิงก์สร้างบัญชี",
+      "advancedSignIn": "ขั้นสูง: เข้าสู่ระบบเพื่อสร้างบัญชี",
+      "restartProcess": "เริ่มกระบวนการสร้างบัญชีใหม่",
+      "advancedRestart": "ขั้นสูง: เริ่มใหม่ด้วยรหัสผ่านเดียวกัน",
+      "signInToCreate": "เข้าสู่ระบบเพื่อสร้างบัญชี",
+      "claimFreeToken": "รับโทเค็นฟรี",
+      "claiming": "กำลังรับ...",
+      "addToKeychain": "เพิ่มใน Hive Keychain",
+      "addingToKeychain": "กำลังเพิ่มใน Keychain...",
+      "addedToKeychain": "เพิ่มใน Keychain แล้ว"
+    },
+    "success": {
+      "accountCreated": "สร้างบัญชีสำเร็จ!",
+      "accountLive": "พร้อมใช้งานบน Hive แล้ว",
+      "welcome": "ยินดีต้อนรับสู่ Hive,",
+      "tokenClaimed": "รับโทเค็นบัญชีสำเร็จ!",
+      "keychainAdded": "เพิ่มบัญชีลงใน Keychain สำเร็จ!"
+    },
+    "errors": {
+      "loginRequired": "กรุณาเข้าสู่ระบบก่อน",
+      "tokenRequired": "คุณต้องรับโทเค็นบัญชีก่อน",
+      "createFailed": "ไม่สามารถสร้างบัญชีได้ กรุณาลองอีกครั้ง",
+      "claimFailed": "ไม่สามารถรับโทเค็นบัญชีได้ กรุณาลองอีกครั้ง",
+      "keychainRequired": "ไม่พบส่วนขยาย Hive Keychain กรุณาติดตั้งก่อน",
+      "keychainFailed": "ไม่สามารถเพิ่มบัญชีลงใน Keychain ได้",
+      "encodingError": "ข้อผิดพลาด: คีย์ไม่ตรงกันหลังการเข้ารหัส กรุณาลองอีกครั้ง",
+      "invalidShareLink": "ลิงก์แชร์ไม่ถูกต้องหรือเสียหาย",
+      "missingInfo": "ข้อมูลที่จำเป็นหายไป"
+    },
+    "loginModal": {
+      "title": "เข้าสู่ระบบ",
+      "description": "กรอกชื่อผู้ใช้ Hive ของคุณและเลือกวิธีการยืนยันตัวตนที่ต้องการ",
+      "usernameLabel": "ชื่อผู้ใช้ Hive",
+      "usernamePlaceholder": "กรอกชื่อผู้ใช้ Hive ของคุณ",
+      "signInButton": "เข้าสู่ระบบด้วย Keychain",
+      "signingIn": "กำลังเข้าสู่ระบบ...",
+      "keychainInfo": "Hive Keychain จำเป็นสำหรับการยืนยันตัวตนและสร้างบัญชีอย่างปลอดภัย กรุณาตรวจสอบว่าได้ติดตั้งและเปิดใช้งานส่วนขยายแล้ว",
+      "keychainRequiredTitle": "ต้องการ Keychain",
+      "keychainRequiredDesc": "กรุณาติดตั้งและเปิดใช้งานส่วนขยาย Hive Keychain เพื่อเข้าสู่ระบบอย่างปลอดภัย",
+      "installKeychain": "ติดตั้ง Keychain",
+      "keychainSignatureFailed": "การเซ็นชื่อ Keychain ล้มเหลว",
+      "welcome": "ยินดีต้อนรับ,"
+    },
+    "keysModal": {
+      "title": "คีย์ของคุณ",
+      "owner": "เจ้าของ",
+      "active": "ใช้งาน",
+      "posting": "โพสต์",
+      "memo": "บันทึก"
+    },
+    "shareDialog": {
+      "title": "แชร์ลิงก์",
+      "infoText": "แชร์ลิงก์นี้กับผู้ที่สามารถสร้างบัญชีให้คุณได้ มีเพียงชื่อผู้ใช้และคีย์สาธารณะเท่านั้น—รหัสผ่านและคีย์ส่วนตัวของคุณยังคงปลอดภัย",
+      "helpText": "ต้องการความช่วยเหลือ? เข้าร่วม Discord ของเราเพื่อค้นหาสมาชิกที่น่าเชื่อถือ",
+      "joinDiscord": "เข้าร่วม Hive Discord"
+    },
+    "joinFlow": {
+      "title": "สร้างบัญชี Hive",
+      "inviteText": "คุณได้รับเชิญให้สร้างบัญชี Hive สำหรับ",
+      "inviteDescription": "ใช้บัญชี Hive ของคุณที่มีโทเค็นสร้างเพื่อทำขั้นตอนนี้ให้เสร็จสมบูรณ์ ผู้ใช้ใหม่ควบคุมคีย์ส่วนตัวของพวกเขาแล้ว และคุณกำลังช่วยนำมันขึ้นบล็อกเชน",
+      "username": "ชื่อผู้ใช้",
+      "ownerPubkey": "คีย์สาธารณะเจ้าของ",
+      "activePubkey": "คีย์สาธารณะใช้งาน",
+      "postingPubkey": "คีย์สาธารณะโพสต์",
+      "memoPubkey": "คีย์สาธารณะบันทึก",
+      "signInToCreate": "เข้าสู่ระบบเพื่อสร้างบัญชี",
+      "tokenRequired": "ต้องการโทเค็นบัญชี",
+      "creatingAccount": "กำลังสร้างบัญชี...",
+      "createAccount": "สร้างบัญชี",
+      "accountCreated": "สร้างบัญชีสำเร็จ!",
+      "accountLive": "พร้อมใช้งานบน Hive แล้ว",
+      "createAnother": "สร้างบัญชีอื่น",
+      "noAccountData": "ไม่พบข้อมูลบัญชี กรุณาใช้ลิงก์แชร์ที่ถูกต้อง",
+      "showKeys": "Public Keys"
+    },
+    "notifications": {
+      "needTokens": "คุณต้องการโทเค็นสร้างเพื่อสร้างบัญชี",
+      "copiedToClipboard": "คัดลอกไปยังคลิปบอร์ดแล้ว!",
+      "accountCreatedSuccess": "สร้างบัญชีสำเร็จ!",
+      "checkingAccount": "กำลังตรวจสอบการสร้างบัญชี...",
+      "backupCopied": "คัดลอกการสำรองข้อมูลไปยังคลิปบอร์ดแล้ว!"
+    }
+  }
+}

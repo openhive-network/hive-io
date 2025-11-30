@@ -1,0 +1,117 @@
+{
+  "join": {
+    "common": {
+      "loading": "Ładowanie...",
+      "login": "Zaloguj się",
+      "logout": "Wyloguj się",
+      "cancel": "Anuluj",
+      "confirm": "Potwierdź",
+      "copy": "Kopiuj",
+      "download": "Pobierz"
+    },
+    "hero": {
+      "title": "Dołącz do",
+      "titleBold": "Hive",
+      "subtitle": "Utwórz swoje konto Hive w kilku prostych krokach."
+    },
+    "accountForm": {
+      "usernameLabel": "Jak mamy Cię nazywać?",
+      "usernameHelper": "Nie będzie można tego później zmienić. Wybierz mądrze.",
+      "usernameTaken": "Ta nazwa użytkownika jest już zajęta",
+      "usernameAvailable": "Ta nazwa użytkownika jest dostępna!",
+      "usernameMinLength": "Nazwa konta musi mieć co najmniej 3 znaki",
+      "usernameCheckError": "Nie można sprawdzić dostępności konta",
+      "passwordLabel": "Twoje hasło",
+      "passwordHelper": "Upewnij się, że zapisałeś i zrobiłeś kopię zapasową w bezpiecznym miejscu.",
+      "backupDownloaded": "Pobrano kopię zapasową",
+      "downloadBackup": "Pobierz kopię zapasową",
+      "backupConfirmation": "Zrobiłem kopię zapasową hasła i kluczy",
+      "showKeys": "Pokaż klucze"
+    },
+    "buttons": {
+      "createAccount": "Utwórz konto",
+      "creatingAccount": "Tworzenie konta...",
+      "shareLink": "Udostępnij link do utworzenia konta",
+      "advancedSignIn": "Zaawansowane: Zaloguj się, aby utworzyć konto",
+      "restartProcess": "Uruchom proces tworzenia ponownie",
+      "advancedRestart": "Zaawansowane: Uruchom ponownie z tym samym hasłem",
+      "signInToCreate": "Zaloguj się, aby utworzyć konto",
+      "claimFreeToken": "Odbierz darmowy token",
+      "claiming": "Odbieranie...",
+      "addToKeychain": "Dodaj do Hive Keychain",
+      "addingToKeychain": "Dodawanie do Keychain...",
+      "addedToKeychain": "Dodano do Keychain"
+    },
+    "success": {
+      "accountCreated": "Konto zostało pomyślnie utworzone!",
+      "accountLive": "jest teraz aktywne na Hive",
+      "welcome": "Witaj w Hive,",
+      "tokenClaimed": "Token konta został pomyślnie odebrany!",
+      "keychainAdded": "Konto zostało pomyślnie dodane do Keychain!"
+    },
+    "errors": {
+      "loginRequired": "Najpierw zaloguj się.",
+      "tokenRequired": "Najpierw musisz odebrać token konta.",
+      "createFailed": "Nie udało się utworzyć konta. Spróbuj ponownie.",
+      "claimFailed": "Nie udało się odebrać tokena konta. Spróbuj ponownie.",
+      "keychainRequired": "Nie znaleziono rozszerzenia Hive Keychain. Zainstaluj je najpierw.",
+      "keychainFailed": "Nie udało się dodać konta do Keychain",
+      "encodingError": "Błąd: Klucze nie pasują po kodowaniu. Spróbuj ponownie.",
+      "invalidShareLink": "Nieprawidłowy lub uszkodzony link udostępniania",
+      "missingInfo": "Brak wymaganych informacji"
+    },
+    "loginModal": {
+      "title": "Zaloguj się",
+      "description": "Wpisz swoją nazwę użytkownika Hive i wybierz preferowaną metodę uwierzytelniania.",
+      "usernameLabel": "Nazwa użytkownika Hive",
+      "usernamePlaceholder": "Wpisz swoją nazwę użytkownika Hive",
+      "signInButton": "Zaloguj się przez Keychain",
+      "signingIn": "Logowanie...",
+      "keychainInfo": "Hive Keychain jest wymagana do potwierdzenia tożsamości i bezpiecznego tworzenia kont. Upewnij się, że rozszerzenie jest zainstalowane i aktywne.",
+      "keychainRequiredTitle": "Wymagana Keychain",
+      "keychainRequiredDesc": "Zainstaluj i aktywuj rozszerzenie Hive Keychain, aby bezpiecznie się zalogować.",
+      "installKeychain": "Zainstaluj Keychain",
+      "keychainSignatureFailed": "Błąd podpisu Keychain",
+      "welcome": "Witaj,"
+    },
+    "keysModal": {
+      "title": "Twoje klucze",
+      "owner": "Właściciel",
+      "active": "Aktywny",
+      "posting": "Publikowanie",
+      "memo": "Notatka"
+    },
+    "shareDialog": {
+      "title": "Udostępnij link",
+      "infoText": "Udostępnij ten link osobie, która może utworzyć Twoje konto. Zawiera tylko Twoją nazwę użytkownika i klucze publiczne—Twoje hasło i klucze prywatne pozostają bezpieczne.",
+      "helpText": "Potrzebujesz pomocy? Dołącz do naszego Discord, aby znaleźć zaufanych członków społeczności.",
+      "joinDiscord": "Dołącz do Hive Discord"
+    },
+    "joinFlow": {
+      "title": "Utwórz konto Hive",
+      "inviteText": "Zostałeś zaproszony do utworzenia konta Hive dla",
+      "inviteDescription": "Użyj swojego konta Hive z tokenami tworzenia, aby zakończyć ten krok. Nowy użytkownik ma już swoje klucze prywatne, a Ty pomagasz wprowadzić go do blockchaina.",
+      "username": "Nazwa użytkownika",
+      "ownerPubkey": "Klucz publiczny właściciela",
+      "activePubkey": "Klucz publiczny aktywny",
+      "postingPubkey": "Klucz publiczny publikowania",
+      "memoPubkey": "Klucz publiczny notatki",
+      "signInToCreate": "Zaloguj się, aby utworzyć konto",
+      "tokenRequired": "Wymagany token konta",
+      "creatingAccount": "Tworzenie konta...",
+      "createAccount": "Utwórz konto",
+      "accountCreated": "Konto zostało pomyślnie utworzone!",
+      "accountLive": "jest teraz aktywne na Hive",
+      "createAnother": "Utwórz kolejne konto",
+      "noAccountData": "Nie znaleziono danych konta. Użyj prawidłowego linku udostępniania.",
+      "showKeys": "Klucze Publiczne"
+    },
+    "notifications": {
+      "needTokens": "Potrzebujesz tokenów tworzenia, aby utworzyć konto",
+      "copiedToClipboard": "skopiowano do schowka!",
+      "accountCreatedSuccess": "Konto zostało pomyślnie utworzone!",
+      "checkingAccount": "Sprawdzanie tworzenia konta...",
+      "backupCopied": "Kopia zapasowa skopiowana do schowka!"
+    }
+  }
+}

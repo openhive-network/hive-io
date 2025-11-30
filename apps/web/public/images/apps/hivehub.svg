@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="17.431mm"
+   height="17.431mm"
+   viewBox="0 0 17.430999 17.430999"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="hivehub_icon.svg"
+   inkscape:export-filename="/home/sergio/projects/workspace/hivehub.dev/public/apple-touch-icon.png"
+   inkscape:export-xdpi="279.78"
+   inkscape:export-ydpi="279.78">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="-4.3565507"
+     inkscape:cy="45.2863"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-bottom="0"
+     fit-margin-right="0"
+     fit-margin-left="0"
+     inkscape:window-width="2560"
+     inkscape:window-height="1376"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid829"
+       originx="-25.207181"
+       originy="-139.26246" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-25.207188,-140.30649)">
+    <rect
+       style="fill:#1e293b;fill-opacity:1;stroke-width:0.33724886"
+       id="rect825"
+       width="17.431"
+       height="17.431"
+       x="25.207188"
+       y="140.30649"
+       rx="0.47954908"
+       ry="0.84699571" />
+    <g
+       id="g858"
+       transform="translate(-2.2712707e-7,2.3566122)">
+      <g
+         aria-label="HH"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         id="text817">
+        <path
+           d="m 31.991236,141.14173 h 1.7145 v 7.40833 h -1.7145 z m -3.3655,7.40833 h -1.7145 v -7.40833 h 1.7145 z m 3.4925,-3.03741 h -3.6195 v -1.44992 h 3.6195 z"
+           style="letter-spacing:-1.32291663px;fill:#10b981;fill-opacity:1;stroke-width:0.26458332"
+           id="path822"
+           inkscape:connector-curvature="0" />
+        <path
+           d="m 39.219639,141.14173 h 1.7145 v 7.40833 h -1.7145 z m -3.3655,7.40833 h -1.7145 v -7.40833 h 1.7145 z m 3.4925,-3.03741 h -3.6195 v -1.44992 h 3.6195 z"
+           style="letter-spacing:-1.32291663px;fill:#10b981;fill-opacity:1;stroke-width:0.26458332"
+           id="path824"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         aria-label="DEV"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.58611107px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         id="text852">
+        <path
+           d="m 28.969694,152.18903 v -3.21028 h 1.458383 q 0.522817,0 0.921808,0.20179 0.398992,0.1972 0.623711,0.55492 0.22472,0.35771 0.22472,0.84843 0,0.48612 -0.22472,0.84843 -0.224719,0.35771 -0.623711,0.5595 -0.398991,0.19721 -0.921808,0.19721 z m 0.74295,-0.60996 h 0.678744 q 0.321028,0 0.55492,-0.11924 0.238477,-0.12382 0.366888,-0.34854 0.132998,-0.22472 0.132998,-0.5274 0,-0.30727 -0.132998,-0.52741 -0.128411,-0.22472 -0.366888,-0.34395 -0.233892,-0.12383 -0.55492,-0.12383 h -0.678744 z"
+           style="fill:#ffffff;stroke-width:0.26458332"
+           id="path827"
+           inkscape:connector-curvature="0" />
+        <path
+           d="m 33.441144,150.27203 h 1.54552 v 0.57785 h -1.54552 z m 0.05503,1.3208 h 1.747308 v 0.5962 H 32.75781 v -3.21028 h 2.426052 v 0.59619 h -1.687688 z"
+           style="fill:#ffffff;stroke-width:0.26458332"
+           id="path829"
+           inkscape:connector-curvature="0" />
+        <path
+           d="m 36.752313,152.18903 -1.385005,-3.21028 h 0.802569 l 1.210733,2.84339 h -0.472369 l 1.229078,-2.84339 h 0.738364 l -1.389592,3.21028 z"
+           style="fill:#ffffff;stroke-width:0.26458332"
+           id="path831"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+  </g>
+</svg>

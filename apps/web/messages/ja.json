@@ -1,0 +1,117 @@
+{
+  "join": {
+    "common": {
+      "loading": "読み込み中...",
+      "login": "ログイン",
+      "logout": "ログアウト",
+      "cancel": "キャンセル",
+      "confirm": "確認",
+      "copy": "コピー",
+      "download": "ダウンロード"
+    },
+    "hero": {
+      "title": "参加する",
+      "titleBold": "Hive",
+      "subtitle": "数ステップでHiveアカウントを作成しましょう。"
+    },
+    "accountForm": {
+      "usernameLabel": "あなたの名前を入力してください",
+      "usernameHelper": "後から変更できません。慎重に選んでください。",
+      "usernameTaken": "このユーザー名はすでに使用されています",
+      "usernameAvailable": "このユーザー名は使用可能です！",
+      "usernameMinLength": "アカウント名は3文字以上である必要があります",
+      "usernameCheckError": "アカウントの利用可否を確認できませんでした",
+      "passwordLabel": "パスワード",
+      "passwordHelper": "安全に保管し、バックアップを作成してください。",
+      "backupDownloaded": "バックアップをダウンロードしました",
+      "downloadBackup": "バックアップをダウンロード",
+      "backupConfirmation": "パスワードとキーをバックアップしました",
+      "showKeys": "キーを表示"
+    },
+    "buttons": {
+      "createAccount": "アカウントを作成",
+      "creatingAccount": "アカウント作成中...",
+      "shareLink": "アカウント作成リンクを共有",
+      "advancedSignIn": "上級者向け：ログインしてアカウント作成",
+      "restartProcess": "アカウント作成プロセスを再開",
+      "advancedRestart": "上級者向け：同じパスワードで再開",
+      "signInToCreate": "ログインしてアカウント作成",
+      "claimFreeToken": "無料トークンを受け取る",
+      "claiming": "受け取り中...",
+      "addToKeychain": "Hive Keychainに追加",
+      "addingToKeychain": "Keychainに追加中...",
+      "addedToKeychain": "Keychainに追加完了"
+    },
+    "success": {
+      "accountCreated": "アカウントが正常に作成されました！",
+      "accountLive": "がHive上でアクティブになりました",
+      "welcome": "Hiveへようこそ、",
+      "tokenClaimed": "アカウントトークンを正常に受け取りました！",
+      "keychainAdded": "アカウントがKeychainに正常に追加されました！"
+    },
+    "errors": {
+      "loginRequired": "まずログインしてください。",
+      "tokenRequired": "アカウントトークンを先に受け取ってください。",
+      "createFailed": "アカウント作成に失敗しました。もう一度お試しください。",
+      "claimFailed": "アカウントトークンの受け取りに失敗しました。再試行してください。",
+      "keychainRequired": "Hive Keychain拡張機能が見つかりません。まずインストールしてください。",
+      "keychainFailed": "アカウントをKeychainに追加できませんでした",
+      "encodingError": "エラー：エンコード後にキーが一致しません。もう一度お試しください。",
+      "invalidShareLink": "無効または破損した共有リンクです",
+      "missingInfo": "必要な情報が不足しています"
+    },
+    "loginModal": {
+      "title": "ログイン",
+      "description": "Hiveユーザー名を入力し、お好みの認証方法を選択してください。",
+      "usernameLabel": "Hiveユーザー名",
+      "usernamePlaceholder": "Hiveユーザー名を入力",
+      "signInButton": "Keychainでログイン",
+      "signingIn": "ログイン中...",
+      "keychainInfo": "Hive Keychainは身元確認と安全なアカウント作成に必要です。拡張機能がインストールされ、有効になっているか確認してください。",
+      "keychainRequiredTitle": "Keychainが必要です",
+      "keychainRequiredDesc": "Hive Keychain拡張機能をインストールして有効にしてください。",
+      "installKeychain": "Keychainをインストール",
+      "keychainSignatureFailed": "Keychain署名に失敗しました",
+      "welcome": "ようこそ、"
+    },
+    "keysModal": {
+      "title": "あなたのキー",
+      "owner": "オーナー",
+      "active": "アクティブ",
+      "posting": "ポスティング",
+      "memo": "メモ"
+    },
+    "shareDialog": {
+      "title": "リンクを共有",
+      "infoText": "あなたのアカウントを作成できる人にこのリンクを共有してください。ユーザー名と公開キーのみを含み、パスワードと秘密キーは安全に保管されます。",
+      "helpText": "助けが必要ですか？私たちのDiscordに参加して信頼できるメンバーを見つけてください。",
+      "joinDiscord": "Hive Discordに参加"
+    },
+    "joinFlow": {
+      "title": "Hiveアカウントを作成",
+      "inviteText": "あなたは次のユーザーのHiveアカウント作成に招待されています",
+      "inviteDescription": "作成トークンを持つHiveアカウントを使用してこの手順を完了してください。新しいユーザーはすでに秘密キーを所有しており、あなたはオンチェーンへの登録を手伝っています。",
+      "username": "ユーザー名",
+      "ownerPubkey": "オーナー公開キー",
+      "activePubkey": "アクティブ公開キー",
+      "postingPubkey": "ポスティング公開キー",
+      "memoPubkey": "メモ公開キー",
+      "signInToCreate": "ログインしてアカウント作成",
+      "tokenRequired": "アカウントトークンが必要です",
+      "creatingAccount": "アカウント作成中...",
+      "createAccount": "アカウントを作成",
+      "accountCreated": "アカウントが正常に作成されました！",
+      "accountLive": "がHive上でアクティブになりました",
+      "createAnother": "別のアカウントを作成",
+      "noAccountData": "アカウントデータが見つかりません。有効な共有リンクを使用してください。",
+      "showKeys": "公開鍵"
+    },
+    "notifications": {
+      "needTokens": "アカウントを作成するには作成トークンが必要です",
+      "copiedToClipboard": "クリップボードにコピーされました！",
+      "accountCreatedSuccess": "アカウントが正常に作成されました！",
+      "checkingAccount": "アカウント作成を確認中...",
+      "backupCopied": "バックアップがクリップボードにコピーされました！"
+    }
+  }
+}

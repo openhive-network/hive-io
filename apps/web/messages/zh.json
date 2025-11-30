@@ -1,0 +1,117 @@
+{
+  "join": {
+    "common": {
+      "loading": "加载中...",
+      "login": "Login",
+      "logout": "Logout",
+      "cancel": "取消",
+      "confirm": "确认",
+      "copy": "复制",
+      "download": "下载"
+    },
+    "hero": {
+      "title": "加入",
+      "titleBold": "Hive",
+      "subtitle": "几步之内创建你的 Hive Account。"
+    },
+    "accountForm": {
+      "usernameLabel": "我们应该怎么称呼你？",
+      "usernameHelper": "此名称以后无法更改，请谨慎选择。",
+      "usernameTaken": "该 Username 已被使用。",
+      "usernameAvailable": "该 Username 可用！",
+      "usernameMinLength": "Account 名称至少需要 3 个字符。",
+      "usernameCheckError": "无法检查 Account 可用性。",
+      "passwordLabel": "你的密码",
+      "passwordHelper": "请确保安全保存，并做好 Backup。",
+      "backupDownloaded": "Backup 已下载",
+      "downloadBackup": "下载 Backup",
+      "backupConfirmation": "我已备份密码和 Keys。",
+      "showKeys": "显示 Keys"
+    },
+    "buttons": {
+      "createAccount": "创建 Account",
+      "creatingAccount": "正在创建 Account...",
+      "shareLink": "分享创建 Account 的链接",
+      "advancedSignIn": "Advanced：登录以创建 Account",
+      "restartProcess": "重新开始创建流程",
+      "advancedRestart": "Advanced：使用相同密码重新开始",
+      "signInToCreate": "登录以创建 Account",
+      "claimFreeToken": "领取免费 Token",
+      "claiming": "领取中...",
+      "addToKeychain": "添加到 Hive Keychain",
+      "addingToKeychain": "正在添加到 Keychain...",
+      "addedToKeychain": "已添加到 Keychain"
+    },
+    "success": {
+      "accountCreated": "Account 创建成功！",
+      "accountLive": "现已在 Hive 上激活。",
+      "welcome": "欢迎加入 Hive，",
+      "tokenClaimed": "Account Token 领取成功！",
+      "keychainAdded": "Account 已成功添加到 Keychain！"
+    },
+    "errors": {
+      "loginRequired": "请先登录。",
+      "tokenRequired": "你需要先领取 Account Token。",
+      "createFailed": "创建 Account 失败，请重试。",
+      "claimFailed": "领取 Account Token 失败，请重试。",
+      "keychainRequired": "未检测到 Hive Keychain 扩展，请先安装。",
+      "keychainFailed": "无法将 Account 添加到 Keychain。",
+      "encodingError": "错误：Keys 编码后不匹配，请重试。",
+      "invalidShareLink": "无效或损坏的 Share Link。",
+      "missingInfo": "缺少必要信息。"
+    },
+    "loginModal": {
+      "title": "登录",
+      "description": "输入你的 Hive 用户名并选择你偏好的认证方式。",
+      "usernameLabel": "Hive Username",
+      "usernamePlaceholder": "输入你的 Hive Username",
+      "signInButton": "使用 Keychain 登录",
+      "signingIn": "正在登录...",
+      "keychainInfo": "Hive Keychain 用于验证你的身份并安全地创建 Accounts。请确保扩展已安装并启用。",
+      "keychainRequiredTitle": "需要 Keychain",
+      "keychainRequiredDesc": "请安装并启用 Hive Keychain 扩展以安全登录。",
+      "installKeychain": "安装 Keychain",
+      "keychainSignatureFailed": "Keychain 签名失败",
+      "welcome": "欢迎,"
+    },
+    "keysModal": {
+      "title": "你的 Keys",
+      "owner": "Owner",
+      "active": "Active",
+      "posting": "Posting",
+      "memo": "Memo"
+    },
+    "shareDialog": {
+      "title": "分享链接",
+      "infoText": "将此链接分享给可以帮你创建 Account 的人。它仅包含你的 Username 和 Public Keys—你的密码和 Private Keys 保持安全。",
+      "helpText": "需要帮助吗？加入我们的 Discord 寻找可信赖的社区成员。",
+      "joinDiscord": "加入 Hive Discord"
+    },
+    "joinFlow": {
+      "title": "创建 Hive Account",
+      "inviteText": "你已被邀请创建一个 Hive Account，用于",
+      "inviteDescription": "使用你的 Hive Account 和 Creation Tokens 完成此步骤。新用户已掌控他们的 Private Keys，而你在帮助将其上线。",
+      "username": "Username",
+      "ownerPubkey": "Owner Public Key",
+      "activePubkey": "Active Public Key",
+      "postingPubkey": "Posting Public Key",
+      "memoPubkey": "Memo Public Key",
+      "signInToCreate": "登录以创建 Account",
+      "tokenRequired": "需要 Account Token",
+      "creatingAccount": "正在创建 Account...",
+      "createAccount": "创建 Account",
+      "accountCreated": "Account 创建成功！",
+      "accountLive": "现已在 Hive 上激活。",
+      "createAnother": "创建另一个 Account",
+      "noAccountData": "未找到 Account 数据。请使用有效的 Share Link。",
+      "showKeys": "公钥"
+    },
+    "notifications": {
+      "needTokens": "你需要 Creation Tokens 来创建 Account。",
+      "copiedToClipboard": "已复制到剪贴板！",
+      "accountCreatedSuccess": "Account 创建成功！",
+      "checkingAccount": "正在检查 Account 创建...",
+      "backupCopied": "备份已复制到剪贴板！"
+    }
+  }
+}

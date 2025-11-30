@@ -1,0 +1,117 @@
+{
+  "join": {
+    "common": {
+      "loading": "Chargement...",
+      "login": "Connexion",
+      "logout": "Déconnexion",
+      "cancel": "Annuler",
+      "confirm": "Confirmer",
+      "copy": "Copier",
+      "download": "Télécharger"
+    },
+    "hero": {
+      "title": "Rejoindre",
+      "titleBold": "Hive",
+      "subtitle": "Crée ton compte Hive en quelques étapes seulement."
+    },
+    "accountForm": {
+      "usernameLabel": "Comment veux-tu être appelé ?",
+      "usernameHelper": "Ce nom ne pourra pas être changé plus tard. Choisis bien.",
+      "usernameTaken": "Ce nom d'utilisateur est déjà pris",
+      "usernameAvailable": "Ce nom d'utilisateur est disponible !",
+      "usernameMinLength": "Le nom de compte doit contenir au moins 3 caractères",
+      "usernameCheckError": "Impossible de vérifier la disponibilité du compte",
+      "passwordLabel": "Ton mot de passe",
+      "passwordHelper": "Assure-toi de le sauvegarder et d'en faire une copie de sécurité.",
+      "backupDownloaded": "Sauvegarde téléchargée",
+      "downloadBackup": "Télécharger la sauvegarde",
+      "backupConfirmation": "J'ai sauvegardé mon mot de passe et mes clés",
+      "showKeys": "Afficher les clés"
+    },
+    "buttons": {
+      "createAccount": "Créer un compte",
+      "creatingAccount": "Création du compte...",
+      "shareLink": "Partager le lien de création de compte",
+      "advancedSignIn": "Avancé : Se connecter pour créer un compte",
+      "restartProcess": "Redémarrer le processus de création",
+      "advancedRestart": "Avancé : Redémarrer avec le même mot de passe",
+      "signInToCreate": "Se connecter pour créer un compte",
+      "claimFreeToken": "Réclamer un token gratuit",
+      "claiming": "Réclamation...",
+      "addToKeychain": "Ajouter à Hive Keychain",
+      "addingToKeychain": "Ajout à Keychain...",
+      "addedToKeychain": "Ajouté à Keychain"
+    },
+    "success": {
+      "accountCreated": "Compte créé avec succès !",
+      "accountLive": "est maintenant actif sur Hive",
+      "welcome": "Bienvenue sur Hive,",
+      "tokenClaimed": "Token de compte réclamé avec succès !",
+      "keychainAdded": "Compte ajouté à Keychain avec succès !"
+    },
+    "errors": {
+      "loginRequired": "Veuillez vous connecter d'abord.",
+      "tokenRequired": "Tu dois d'abord réclamer un token de compte.",
+      "createFailed": "Échec de la création du compte. Réessaye.",
+      "claimFailed": "Échec de la réclamation du token de compte. Réessaye.",
+      "keychainRequired": "Extension Hive Keychain non trouvée. Installe-la d'abord.",
+      "keychainFailed": "Impossible d'ajouter le compte à Keychain",
+      "encodingError": "Erreur : Clés non correspondantes après encodage. Réessaye.",
+      "invalidShareLink": "Lien de partage invalide ou corrompu",
+      "missingInfo": "Informations requises manquantes"
+    },
+    "loginModal": {
+      "title": "Se connecter",
+      "description": "Entre ton nom d'utilisateur Hive et choisis ta méthode d'authentification préférée.",
+      "usernameLabel": "Nom d'utilisateur Hive",
+      "usernamePlaceholder": "Entre ton nom d'utilisateur Hive",
+      "signInButton": "Se connecter avec Keychain",
+      "signingIn": "Connexion...",
+      "keychainInfo": "Hive Keychain est requise pour vérifier ton identité et créer des comptes en toute sécurité. Assure-toi que l'extension est installée et activée.",
+      "keychainRequiredTitle": "Keychain requise",
+      "keychainRequiredDesc": "Installe et active l'extension Hive Keychain pour te connecter en toute sécurité.",
+      "installKeychain": "Installer Keychain",
+      "keychainSignatureFailed": "Signature Keychain échouée",
+      "welcome": "Bienvenue,"
+    },
+    "keysModal": {
+      "title": "Tes clés",
+      "owner": "Propriétaire",
+      "active": "Active",
+      "posting": "Publication",
+      "memo": "Mémo"
+    },
+    "shareDialog": {
+      "title": "Partager le lien",
+      "infoText": "Partage ce lien avec quelqu'un qui peut créer ton compte. Il contient seulement ton nom d'utilisateur et tes clés publiques—ton mot de passe et tes clés privées restent sécurisés.",
+      "helpText": "Besoin d'aide ? Rejoins notre Discord pour trouver des membres de confiance de la communauté.",
+      "joinDiscord": "Rejoindre le Hive Discord"
+    },
+    "joinFlow": {
+      "title": "Créer un compte Hive",
+      "inviteText": "Tu as été invité à créer un compte Hive pour",
+      "inviteDescription": "Utilise ton compte Hive avec des tokens de création pour compléter cette étape. Le nouvel utilisateur contrôle déjà ses clés privées et tu l'aides à les mettre sur la blockchain.",
+      "username": "Nom d'utilisateur",
+      "ownerPubkey": "Clé publique propriétaire",
+      "activePubkey": "Clé publique active",
+      "postingPubkey": "Clé publique de publication",
+      "memoPubkey": "Clé publique mémo",
+      "signInToCreate": "Se connecter pour créer un compte",
+      "tokenRequired": "Token de compte requis",
+      "creatingAccount": "Création du compte...",
+      "createAccount": "Créer un compte",
+      "accountCreated": "Compte créé avec succès !",
+      "accountLive": "est maintenant actif sur Hive",
+      "createAnother": "Créer un autre compte",
+      "noAccountData": "Aucune donnée de compte trouvée. Utilise un lien de partage valide.",
+      "showKeys": "Clés Publiques"
+    },
+    "notifications": {
+      "needTokens": "Tu as besoin de tokens de création pour créer un compte",
+      "copiedToClipboard": "copié dans le presse-papiers !",
+      "accountCreatedSuccess": "Compte créé avec succès !",
+      "checkingAccount": "Vérification de la création du compte...",
+      "backupCopied": "Sauvegarde copiée dans le presse-papiers !"
+    }
+  }
+}

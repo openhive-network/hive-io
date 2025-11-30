@@ -2,20 +2,28 @@
 
 import KeychainProvider from '@hiveio/wax-signers-keychain'
 import {createHiveChain, IHiveChainInterface, operation} from '@hiveio/wax'
+import WaxExtendedData from '@hiveio/wax-api-jsonrpc'
 import {PrivateKey, Asset} from '@hiveio/dhive'
 import {randomBytes, bytesToHex} from '@noble/hashes/utils'
 
 export let hive: IHiveChainInterface = null as any
+let hiveExtended: ReturnType<typeof hive.extend<typeof WaxExtendedData>> | null = null
 
 const initHiveChain = async () => {
   if (!hive) {
     hive = await createHiveChain()
+    hiveExtended = hive.extend(WaxExtendedData)
   }
   return hive
 }
 
 export const getHiveChain = async (): Promise<IHiveChainInterface> => {
   return initHiveChain()
+}
+
+export const getHiveChainExtended = async () => {
+  await initHiveChain()
+  return hiveExtended!
 }
 
 // Re-export activity utilities

@@ -8,6 +8,7 @@ import { ScrollIndicator } from '@/components/ScrollIndicator';
 import { RootDPoS, RootDPoSHandle } from '@/components/root/RootDPoS';
 import { RootEco } from '@/components/root/RootEco';
 import { RootHistory } from '@/components/root/RootHistory';
+import { RootVoicesOfHive } from '@/components/root/RootVoicesOfHive';
 import { LogoMarquee } from '@/components/root/LogoMarquee';
 import { TokenCard } from '@/components/cards/TokenCard';
 import { useAssets } from '@/hooks/useAssets';
@@ -302,6 +303,9 @@ export default function HomePage() {
 
       {/* DPoS Visualization */}
       <RootDPoS ref={dposRef} />
+
+      {/* Voices of Hive */}
+      <RootVoicesOfHive className="bg-white" excludeAuthors={['kgakakillerg', 'hivebuzz']} excludePermlinks={['re-therealwolf-t6cqqg']} />
 
       {/* Exchanges */}
       <div id="exchanges" className="w-full bg-linear-to-b from-gray-900 to-black py-32 px-6 sm:px-10">

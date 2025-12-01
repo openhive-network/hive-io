@@ -1,0 +1,86 @@
+graph TB
+    %% Main source - Blockchain inflation
+    INFLATION["🏭 HIVE BLOCKCHAIN INFLATION<br/>New HIVE tokens<br/>(currently 5.74% annually, decreasing by 0.42%/year)"]
+    
+    %% Split of inflation into 4 main streams
+    INFLATION -->|65%| REWARD_POOL["💰 REWARD POOL<br/>65% of inflation"]
+    INFLATION -->|15%| HP_HOLDERS["⚡ HIVE POWER HOLDERS<br/>15% of inflation"]
+    INFLATION -->|10%| WITNESSES["👥 WITNESSES<br/>(Block Producers)<br/>10% of inflation"]
+    INFLATION -->|10%| DHF_INFLATION["🏛️ DECENTRALIZED HIVE FUND<br/>(DHF / @hive.fund)<br/>10% of inflation"]
+    
+    %% Reward pool details
+    REWARD_POOL -->|50%| AUTHORS["✍️ CONTENT AUTHORS<br/>(Content Creators)<br/>32.5% of total inflation"]
+    REWARD_POOL -->|50%| CURATORS["👍 CURATORS<br/>(Voters/Curators)<br/>32.5% of total inflation"]
+    
+    %% Payouts for authors and curators
+    AUTHORS -->|HP/HBD/HIVE| USERS1["👤 Users<br/>Author accounts"]
+    CURATORS -->|HP| USERS2["👤 Users<br/>Curator accounts"]
+    
+    %% Witnesses
+    WITNESSES -->|HP| WITNESS_ACCOUNTS["🔐 Witness Accounts<br/>For signing blocks"]
+    
+    %% HP Holders
+    HP_HOLDERS -->|HP| STAKERS["💎 Stakers<br/>Proportional to stake"]
+    
+    %% === DETAILED DHF FLOW ===
+    
+    HBD_STABILIZER["🔄 HBD STABILIZER<br/>(@hbdstabilizer)<br/>HBD price stabilization"]
+    HBD_STABILIZER -->|Surplus HIVE/HBD<br/>from trading| DHF_MAIN
+    
+    %% Main DHF node
+    DHF_INFLATION -->|Conversion<br/>HIVE → HBD| DHF_MAIN
+    
+    DHF_MAIN["🏛️ DECENTRALIZED HIVE FUND<br/>Account: @hive.fund<br/><br/>💰 New Resources:<br/>• HBD from inflation (10%)<br/><br/>💰 Returned Resources:• HBD/HIVE from stabilizer<br/>• Return proposal<br/>• Post beneficiaries"]
+    
+    %% HIVE to HBD conversion in DHF
+    DHF_MAIN --> HBD_POOL["💵 HBD POOL<br/>in DHF<br/><br/>Only 1% daily<br/>available for payouts"]
+    
+    %% Proposal voting system
+    STAKEHOLDERS["🗳️ STAKEHOLDERS<br/>(HP Holders)<br/><br/>Vote on proposals<br/>with their stake weight"]
+    
+    STAKEHOLDERS -.->|Vote| PROPOSAL_SYSTEM
+    
+    PROPOSAL_SYSTEM["📋 PROPOSAL SYSTEM<br/><br/>Mechanism:<br/>• Proposals compete for funding<br/>• Return Proposal = benchmark<br/>• Proposals above benchmark<br/>  receive funding"]
+    
+    %% Return Proposal
+    HBD_POOL -->|Unused<br/>funds| RETURN_PROPOSAL["↩️ RETURN PROPOSAL<br/>(@gtg)<br/><br/>Benchmark for other proposals<br/>Returns unspent HBD to DHF"]
+    RETURN_PROPOSAL -->|Fund return| DHF_MAIN
+    
+    %% Payouts for approved proposals
+    HBD_POOL -->|Hourly payouts<br/>for approved proposals| APPROVED_PROPOSALS
+    
+    APPROVED_PROPOSALS["✅ APPROVED PROPOSALS<br/><br/>Proposals with sufficient<br/>HP support exceeding<br/>Return Proposal"]
+    
+    %% Example proposal categories
+    APPROVED_PROPOSALS -->|HBD| DEV_PROJECTS["💻 SOFTWARE DEVELOPMENT PROJECTS/Libraries<br/>API Infrastructure"]
+    
+    APPROVED_PROPOSALS -->|HBD| MARKETING["📢 MARKETING & PROMOTION<br/>ValuePlan<br/>Ad campaigns<br/>Onboarding"]
+    
+    APPROVED_PROPOSALS -->|HBD| INFRASTRUCTURE["🖥️ INFRASTRUCTURE<br/>API nodes<br/>Witness servers<br/>Developer tools"]
+    
+    %% HBD Stabilizer - detailed flow
+    HBD_POOL -->|Budget for<br/>stabilizer| HBD_STABILIZER
+    
+    HBD_STABILIZER <-->|When HBD > $1:<br/>Sells HBD| INTERNAL_MARKET["🏪 INTERNAL MARKET<br/>Hive DEX"]
+    
+    HBD_STABILIZER <-->|When HBD < $0.97:<br/>Buys HBD| INTERNAL_MARKET
+    
+    %% End recipients of projects
+    DEV_PROJECTS -->|Compensation| DEVELOPERS["👨‍💻 DEVELOPERS<br/>Software creators"]
+    MARKETING -->|Budgets| MARKETERS["📱 MARKETERS<br/>Campaign creators"]
+    INFRASTRUCTURE -->|Operating costs| NODE_OPERATORS["🖥️ NODE OPERATORS<br/>Infrastructure providers"]
+    
+    %% Styling
+    classDef inflationNode fill:#ff6b6b,stroke:#c92a2a,stroke-width:3px,color:#fff
+    classDef dhfNode fill:#4c6ef5,stroke:#364fc7,stroke-width:3px,color:#fff
+    classDef proposalNode fill:#51cf66,stroke:#2f9e44,stroke-width:2px,color:#000
+    classDef userNode fill:#ffd43b,stroke:#f59f00,stroke-width:2px,color:#000
+    classDef rewardNode fill:#ff922b,stroke:#e8590c,stroke-width:2px,color:#fff
+    classDef stabilizerNode fill:#9775fa,stroke:#6741d9,stroke-width:2px,color:#fff
+    
+    class INFLATION inflationNode
+    class DHF_INFLATION,DHF_MAIN,HBD_POOL,NINJA_STAKE dhfNode
+    class PROPOSAL_SYSTEM,APPROVED_PROPOSALS,RETURN_PROPOSAL proposalNode
+    class USERS1,USERS2,WITNESS_ACCOUNTS,STAKERS,DEVELOPERS,MARKETERS,NODE_OPERATORS,GAME_DEVS,TOOL_DEVS userNode
+    class REWARD_POOL,AUTHORS,CURATORS,HP_HOLDERS,WITNESSES rewardNode
+    class HBD_STABILIZER,INTERNAL_MARKET stabilizerNode

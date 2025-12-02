@@ -232,8 +232,9 @@ export default function HomePage() {
                     </svg>
                   ),
                   text: (
-                    <span className="flex items-center gap-2">
-                      Up to <span className="text-2xl font-bold mt-[-2px] text-hive-red">20%</span> Staking Rewards
+                    <span className="flex items-center gap-2 flex-wrap">
+                      <span className="whitespace-nowrap flex items-center gap-2">Up to <span className="text-2xl font-bold mt-[-2px] text-hive-red">20%</span></span>
+                      <span className="whitespace-nowrap">Staking Rewards</span>
                     </span>
                   ),
                 },

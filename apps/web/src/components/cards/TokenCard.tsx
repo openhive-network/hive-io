@@ -50,7 +50,7 @@ export const TokenCard = forwardRef<HTMLDivElement, TokenCardProps>(
     return (
       <div
         ref={ref}
-        className="group relative rounded-3xl p-10 overflow-hidden transition-all duration-500"
+        className="group relative rounded-3xl p-5 sm:p-10 overflow-hidden transition-all duration-500"
         style={{
           background: `linear-gradient(to bottom right, ${color}1a, ${color}0d)`,
           border: `1px solid ${color}4d`,
@@ -79,7 +79,7 @@ export const TokenCard = forwardRef<HTMLDivElement, TokenCardProps>(
           <div className="flex-1">
             {/* Token icon and name */}
             <div className="flex items-center gap-6 mb-8">
-              <div className="relative">
+              <div className="relative flex-shrink-0">
                 <div
                   className="absolute inset-0 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity"
                   style={{ backgroundColor: color }}
@@ -87,7 +87,7 @@ export const TokenCard = forwardRef<HTMLDivElement, TokenCardProps>(
                 <img
                   src={iconSrc}
                   alt={name}
-                  className="relative w-20 h-20 drop-shadow-lg"
+                  className="relative w-20 h-20 min-w-20 min-h-20 drop-shadow-lg object-contain"
                 />
               </div>
               <div>
@@ -129,7 +129,7 @@ export const TokenCard = forwardRef<HTMLDivElement, TokenCardProps>(
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center gap-4">
                   <div
-                    className="flex items-center justify-center w-10 h-10 rounded-full"
+                    className="flex items-center justify-center w-10 h-10 min-w-10 min-h-10 rounded-full flex-shrink-0"
                     style={{ backgroundColor: `${color}33` }}
                   >
                     <div style={{ color }}>{feature.icon}</div>

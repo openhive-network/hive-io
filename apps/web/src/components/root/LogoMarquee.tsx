@@ -289,21 +289,21 @@ export const LogoMarquee: React.FC<LogoMarqueeProps> = ({ className, compact = f
   const columns = buildColumns();
 
   return (
-    <div className={`w-full bg-gradient-to-b from-gray-900 to-black ${compact ? 'py-0' : 'py-24'} overflow-hidden ${className || ''}`}>
+    <div className={`w-full bg-gradient-to-b from-gray-900 to-black ${compact ? 'py-0' : 'py-12 sm:py-24'} overflow-hidden ${className || ''}`}>
       {showTitle && (
-        <div className="max-w-screen-2xl mx-auto mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold text-white text-center">
+        <div className="max-w-screen-2xl mx-auto mb-8 sm:mb-16">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white text-center">
             Join a Thriving Community<span className="text-[#e31337]">.</span>
           </h2>
         </div>
       )}
 
       {/* Animated Marquee - full width, shows ~half of one set at a time */}
-      <div className={`relative overflow-hidden ${compact ? 'flex items-center' : ''}`} style={{ height: totalHeight }}>
+      <div className={`relative overflow-hidden ${compact ? 'flex items-center' : 'max-h-[280px] sm:max-h-none'}`} style={{ height: compact ? totalHeight : undefined }}>
         {/* Dark overlay for compact mode */}
         {compact && <div className="absolute inset-0 bg-black/15 z-10 pointer-events-none" />}
         <div
-          className={`flex ${compact ? 'justify-center w-full' : ''}`}
+          className={`flex ${compact ? 'justify-center w-full' : 'origin-top-left scale-[0.5] sm:scale-100'}`}
           style={{
             animation: !compact && contentWidth ? `marquee ${80}s linear infinite` : 'none',
             ['--content-width' as string]: `${contentWidth}px`,

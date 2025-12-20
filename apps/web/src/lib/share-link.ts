@@ -71,5 +71,5 @@ export function decodeAccountData(encoded: string): ShareableAccountData | null 
  */
 export function generateShareableLink(data: ShareableAccountData, baseUrl: string = window.location.origin): string {
   const encoded = encodeAccountData(data)
-  return `${baseUrl}?join=${encoded}`
+  return `${baseUrl}/join?code=${encoded}`
 }

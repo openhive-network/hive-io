@@ -30,7 +30,7 @@ const FAQ_ITEMS = [
 
 function JoinContent() {
   const searchParams = useSearchParams()
-  const joinData = searchParams.get('join')
+  const joinData = searchParams.get('code')
 
   return (
     <div className="flex flex-col min-h-screen">

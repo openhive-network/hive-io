@@ -15,14 +15,14 @@ interface Provider {
 }
 
 const DEFAULT_PROVIDERS: Provider[] = [
-  {
-    name: 'InLeo',
-    logo: '/images/apps/inleo.avif',
-    price: 'Free',
-    isFree: true,
-    features: ['Email, Google or X signup', 'Instant activation'],
-    url: 'https://inleo.io/signup',
-  },
+  // {
+  //   name: 'InLeo',
+  //   logo: '/images/apps/inleo.avif',
+  //   price: 'Free',
+  //   isFree: true,
+  //   features: ['Email, Google or X signup', 'Instant activation'],
+  //   url: 'https://inleo.io/signup',
+  // },
   {
     name: 'Ecency',
     logo: '/images/apps/ecency.svg',
@@ -55,8 +55,8 @@ async function fetchHivedexPrice(): Promise<string | null> {
   try {
     const response = await fetch('https://api2.hivedex.io/price')
     const data = await response.json()
-    if (data?.base) {
-      return `$${data.base}`
+    if (data?.price) {
+      return `$${data.price}`
     }
     return null
   } catch {
@@ -114,7 +114,7 @@ export function RegistrationProviders({ className, showTitle }: RegistrationProv
           </>
         )}
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
           {providers.map((provider) => (
             <a
               key={provider.name}

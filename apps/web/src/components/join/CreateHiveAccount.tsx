@@ -331,7 +331,7 @@ export default function CreateHiveAccount() {
     const link = generateShareableLink(shareData)
 
     // Verify encoding/decoding without logging sensitive data
-    const encoded = link.split('?join=')[1]
+    const encoded = link.split('?code=')[1]
     if (encoded) {
       const decoded = decodeAccountData(encoded)
 

@@ -546,11 +546,11 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game],
   },
   {
-    id: 'hive-inbox',
-    name: 'Hive Inbox',
+    id: 'hreplier',
+    name: 'hReplier',
     description: "Helps you manage Hive Blog's replies.",
     image: 'hive-inbox.png',
-    website: 'https://hive-inbox.the-hive-mobile.app',
+    website: 'https://hreplier.sagarkothari88.one',
     types: [EcoType.social],
   },
   {

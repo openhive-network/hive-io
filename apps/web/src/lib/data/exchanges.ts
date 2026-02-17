@@ -3,6 +3,12 @@
  */
 export const EXCHANGES = [
   {
+    id: 'biconomy',
+    name: 'Biconomy',
+    website: 'https://www.biconomy.com/exchange/HIVE_USDT',
+    image: 'biconomy.png',
+  },
+  {
     id: 'binance',
     name: 'Binance',
     website: 'https://www.binance.com/en/trade/HIVE_USDT',
@@ -79,6 +85,12 @@ export const EXCHANGES = [
     name: 'EasyBit',
     website: 'https://easybit.com/en/coin-specs/HIVE',
     image: 'easybit.svg',
+  },
+  {
+    id: 'exolix',
+    name: 'Exolix',
+    website: 'https://exolix.com/currencies/hive',
+    image: 'exolix.png',
   },
   {
     id: 'gateio',
@@ -211,5 +223,5 @@ export const EXCHANGES = [
     name: 'XT',
     website: 'https://www.xt.com/en/trade/hive_usdt',
     image: 'xt.png',
-  },
+  }
 ]

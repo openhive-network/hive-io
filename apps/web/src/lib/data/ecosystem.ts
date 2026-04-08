@@ -549,8 +549,43 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'hreplier',
     name: 'hReplier',
     description: "Helps you manage Hive Blog's replies.",
-    image: 'hive-inbox.png',
+    image: 'hReplier.png',
     website: 'https://hreplier.sagarkothari88.one',
+    types: [EcoType.social],
+  },
+  {
+    id: 'hsnaps',
+    name: 'hSnaps',
+    description:
+      'Short Content Social Media powered by Hive. Includes all - snaps, threads, waves, moments.',
+    image: 'hSnaps.png',
+    website: 'https://hsnaps.sagarkothari88.one',
+    types: [EcoType.social],
+  },
+  {
+    id: 'hfestfacts',
+    name: 'hFestFacts',
+    description: 'Discover, submit, and manage exclusive HiveFest facts.',
+    image: 'hFestFacts.png',
+    website: 'https://hivefestfacts.sagarkothari88.one',
+    types: [EcoType.social],
+  },
+  {
+    id: 'hstats',
+    name: 'hStats',
+    description:
+      'For any hive user, view analytics, wallet, activities, voting & more.',
+    image: 'hStats.png',
+    website: 'https://hive-stats.sagarkothari88.one',
+    types: [EcoType.tools],
+  },
+  {
+    id: 'hpolls',
+    name: 'hPolls',
+    description:
+      'Create polls. Vote together. Keep everything on-chain, powered by Hive',
+    image: 'hPolls.png',
+    website: 'https://hpolls.sagarkothari88.one',
     types: [EcoType.social],
   },
   {
@@ -570,14 +605,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://snapie.xyz/',
     types: [EcoType.social],
   },
-//  {
-//    id: 'hive-analytics',
-//   name: 'Hive Analytics',
-//    description: 'Real-time blockchain intelligence for the Hive ecosystem.',
-//    image: 'hiveanalytics.png',
-//    website: 'https://hiveanalytics.usehive.com/',
-//    types: [EcoType.tools],
-//  },
+  //  {
+  //    id: 'hive-analytics',
+  //   name: 'Hive Analytics',
+  //    description: 'Real-time blockchain intelligence for the Hive ecosystem.',
+  //    image: 'hiveanalytics.png',
+  //    website: 'https://hiveanalytics.usehive.com/',
+  //    types: [EcoType.tools],
+  //  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

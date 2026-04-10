@@ -195,7 +195,7 @@ export default function JoinFlow({ encodedData }: JoinFlowProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => window.open(`https://hiveblocks.com/tx/${transactionId}`, '_blank')}
+                    onClick={() => window.open(`https://hivescan.info/tx/${transactionId}`, '_blank')}
                     className="text-gray-400 hover:text-white"
                   >
                     <ExternalLink className="h-4 w-4" />

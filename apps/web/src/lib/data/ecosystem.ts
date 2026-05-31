@@ -83,33 +83,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game, EcoType.nft],
     featured: true,
   },
-  // {
-  //  id: 'splinterroyale',
-  //  name: 'Splinter Royale',
-  //  description: 'Web3 Trading Card Game meets fast-paced Auto Chess Battler.',
-  //  image: 'splinterroyale.png',
-  //  website: 'https://splinterroyale.com',
-  //  types: [EcoType.game, EcoType.nft],
-  //  featured: true,
-  // },
-  // {
-  //   id: 'rabona',
-  //   name: 'Rabona',
-  //   description: 'Soccer manager built on the Hive blockchain.',
-  //   image: 'rabona.png',
-  //   website: 'https://rabona.io',
-  //   types: [EcoType.game, EcoType.sport],
-  //   featured: true,
-  // },
-  // {
-  //   id: 'cryptobrewmaster',
-  //   name: 'Brewmaster',
-  //   description: 'Craft beer brewing business card game.',
-  //   image: 'cryptobrewmaster.png',
-  //   website: 'https://www.cryptobrewmaster.io/',
-  //   types: [EcoType.game],
-  //   featured: true,
-  // },
   {
     id: 'worldmappin',
     name: 'Worldmappin',
@@ -126,15 +99,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'A visual social network for the web of tomorrow.',
     image: 'liketu.png',
     website: 'https://www.liketu.org',
-    types: [EcoType.social],
-    featured: true,
-  },
-  {
-    id: 'dbuzz',
-    name: 'D.Buzz',
-    description: 'Micro-blogging for Hive.',
-    image: 'dbuzz.png',
-    website: 'https://d.buzz',
     types: [EcoType.social],
     featured: true,
   },
@@ -176,23 +140,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
     featured: false,
   },
-  // {
-  //   id: 'stemsocial',
-  //   name: 'STEMsocial',
-  //   description: '',
-  //   image: 'stemsocial.png',
-  //   website: 'https://stem.openhive.network',
-  //   types: ['app'],
-  // },
-  // {
-  //   id: 'exxp',
-  //   name: 'Exxp',
-  //   description: 'Power your wordpress blog with blockchain technology.',
-  //   image: 'exxp.png',
-  //   website: 'https://exxp.io',
-  //   types: [EcoType.social],
-  //   featured: false,
-  // },
   {
     id: 'actifit',
     name: 'Actifit',
@@ -212,15 +159,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
     featured: false,
   },
-
-  // {
-  //   id: 'fullalt',
-  //   name: 'FullAlt',
-  //   description: 'A set of tools to help tokenise the web.',
-  //   image: 'fullalt.png',
-  //   website: 'https://www.fullalt.com',
-  //   types: [EcoType.tools],
-  // },
   {
     id: 'leodex',
     name: 'LeoDex',
@@ -249,16 +187,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game, EcoType.nft],
     featured: false,
   },
-  //  {
-  //    id: 'lucksacks',
-  //    name: 'Lucksacks Poker',
-  //    description:
-  //      'Host a custom poker league, tournament, ring game or sit-n-go.',
-  //    image: 'lucksacks.png',
-  //    website: 'https://lucksacks.com',
-  //    types: [EcoType.game],
-  //  },
-
   {
     id: 'stemgeeks',
     name: 'STEMGeeks',
@@ -269,17 +197,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     featured: false,
   },
   {
-    id: 'beeswap',
-    name: 'BeeSwap',
-    description:
-      'A Hive browser wallet and Hive Engine DeFi application for inexpensive deposits and withdrawals to Hive Engine.',
-    image: 'beeswap.png',
-    website: 'https://beeswap.dcity.io/convert',
-    types: [EcoType.defi],
-    featured: true,
-  },
-
-  {
     id: 'risingstar',
     name: 'Rising Star',
     description:
@@ -289,15 +206,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game],
     featured: false,
   },
-  // {
-  //   id: 'nftmart',
-  //   name: 'NFTMart',
-  //   description: 'An NFT market for Hive. Mostly card games.',
-  //   image: 'nftmart.png',
-  //   website: 'https://nftm.art/',
-  //   types: [EcoType.nft],
-  //   featured: false,
-  // },
   {
     id: 'vimm',
     name: 'Vimm',
@@ -305,16 +213,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'vimm.png',
     website: 'https://www.vimm.tv/',
     types: [EcoType.social, EcoType.video],
-    featured: false,
-  },
-  {
-    id: 'dlux',
-    name: 'DLux',
-    description:
-      'Build, post, and monetize virtual reality experiences without needing to know any code.',
-    image: 'dlux.svg',
-    website: 'https://www.dlux.io/',
-    types: [EcoType.nft, EcoType.tools],
     featured: false,
   },
   {
@@ -353,14 +251,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.defi],
     featured: false,
   },
-  //  {
-  //    id: 'hashkings',
-  //    name: 'Hash Kings',
-  //    description: 'Cannabis Farming Simulator on the Hive blockchain.',
-  //    image: 'hashkings.png',
-  //    website: 'https://www.hashkings.app',
-  //    types: [EcoType.game],
-  //  },
   {
     id: 'skatehype',
     name: 'Skate Hype',
@@ -379,25 +269,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'hivelist.png',
     website: 'https://hivelist.io/',
     types: [EcoType.nft, EcoType.defi],
-    featured: false,
-  },
-  // {
-  //   id: 'dlease',
-  //   name: 'DLease',
-  //   description:
-  //     'Invest with confidence using our state of the art Digital Asset Leasing platform.',
-  //   image: 'dlease.png',
-  //   website: 'https://dlease.io',
-  //   types: [EcoType.defi],
-  // },
-  {
-    id: 'waivio',
-    name: 'Waivio',
-    description:
-      'Waivio is an open distributed attention marketplace for business.',
-    image: 'waivio.png',
-    website: 'https://www.waivio.com/',
-    types: [EcoType.defi, EcoType.social],
     featured: false,
   },
   {
@@ -449,15 +320,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game],
     featured: false,
   },
-  // {
-  //   id: 'psyberx',
-  //   name: 'PsyberX',
-  //   description: 'FPS+TPS game where gamers strike fear into their opponents.',
-  //   image: 'psyberx.png',
-  //   website: 'https://www.psyber-x.com',
-  //   types: [EcoType.game],
-  //   featured: false,
-  // },
   {
     id: 'hivetube',
     name: 'Hive Tube',
@@ -468,26 +330,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social, EcoType.video],
     featured: false,
   },
-  {
-    id: 'kod',
-    name: 'King Of Duels',
-    description:
-      'King of Duels brings players a complete PvP gaming experience from day one.',
-    image: 'king-of-duels.svg',
-    website: 'https://www.kingofduels.online/',
-    types: [EcoType.game],
-    featured: false,
-  },
-  // {
-  //   id: 'reverio',
-  //   name: 'Reverio',
-  //   description:
-  //     'Earn rewards on Hive by asking and answering questions on Reverio.',
-  //   image: 'reverio.svg',
-  //   website: 'https://reverio.io/',
-  //   types: [EcoType.social],
-  //   featured: false,
-  // },
   {
     id: 'hivedex',
     name: 'Hivedex.io',
@@ -516,15 +358,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://vsc.eco',
     types: [EcoType.tools, EcoType.defi, EcoType.nft],
     featured: false,
-  },
-  {
-    id: 'arcadecolony',
-    name: 'Arcade Colony',
-    description: 'A platform for Web2 games to augment into Web3.',
-    image: 'arcadecolony.svg',
-    website: 'https://www.arcadecolony.com',
-    types: [EcoType.tools, EcoType.nft],
-    featured: true,
   },
   {
     id: 'genesisleaguesports',
@@ -570,14 +403,34 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://snapie.xyz/',
     types: [EcoType.social],
   },
-//  {
-//    id: 'hive-analytics',
-//   name: 'Hive Analytics',
-//    description: 'Real-time blockchain intelligence for the Hive ecosystem.',
-//    image: 'hiveanalytics.png',
-//    website: 'https://hiveanalytics.usehive.com/',
-//    types: [EcoType.tools],
-//  },
+  {
+    id: 'dungeoncities',
+    name: 'Dungeon Cities',
+    description: 'A blockchain-based dungeon building and battling game on Hive.',
+    image: 'dungeoncities.png',
+    website: 'https://dungeoncities.com/',
+    types: [EcoType.game],
+    featured: false,
+  },
+  {
+    id: 'beatbrawls',
+    name: 'Beat Brawls',
+    description: 'A competitive, music-reactive card battler on the Hive blockchain.',
+    image: 'beatbrawls.png',
+    website: 'https://beatbrawls.com/',
+    types: [EcoType.game],
+    featured: false,
+  },
+  {
+    id: 'kod',
+    name: 'King Of Duels',
+    description:
+      'King of Duels brings players a complete PvP gaming experience from day one.',
+    image: 'king-of-duels.svg',
+    website: 'https://www.kingofduels.online/',
+    types: [EcoType.game],
+    featured: false,
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

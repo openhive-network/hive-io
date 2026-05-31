@@ -27,6 +27,12 @@ export const EXCHANGES = [
     image: 'bithumb.png',
   },
   {
+    id: 'bitmart',
+    name: 'Bitmart',
+    website: 'https://www.bitmart.com/trade/HIVE_USDT',
+    image: 'bitmart.png',
+  },
+  {
     id: 'bitpanda',
     name: 'Bitpanda',
     website: 'https://www.bitpanda.com/en/prices/hive-hive',
@@ -145,6 +151,12 @@ export const EXCHANGES = [
     name: 'MEXC',
     website: 'https://www.mexc.com/exchange/HIVE_USDT?_from=market',
     image: 'mxc.png',
+  },
+  {
+    id: 'mgbx',
+    name: 'MGBX',
+    website: 'https://www.mgbx.com/contract/trade/hive_usdt',
+    image: 'mgbx.png',
   },
   {
     id: 'namiexchange',

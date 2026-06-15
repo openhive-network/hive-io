@@ -10,5 +10,15 @@
   },
   "devDependencies": {
     "typescript": "^5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core",
+      "core-js",
+      "secp256k1",
+      "sharp",
+      "unrs-resolver"
+    ]
   }
 }

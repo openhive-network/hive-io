@@ -2,10 +2,10 @@ packages:
   - 'packages/*'
   - 'apps/*'
 
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - '@swc/core'
-  - core-js
-  - secp256k1
-  - sharp
-  - unrs-resolver
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+  core-js: true
+  secp256k1: true
+  sharp: true
+  unrs-resolver: true

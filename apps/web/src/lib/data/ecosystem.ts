@@ -379,11 +379,11 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game],
   },
   {
-    id: 'hreplier',
-    name: 'hReplier',
-    description: "Helps you manage Hive Blog's replies.",
-    image: 'hive-inbox.png',
-    website: 'https://hreplier.sagarkothari88.one',
+    id: 'hive-suite',
+    name: 'HiveSuite',
+    description: 'All in one - blogs, videos, shorts, polls, snaps & games',
+    image: 'hive-suite-logo.png',
+    website: 'https://hivesuite.app',
     types: [EcoType.social],
   },
   {
@@ -403,6 +403,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://snapie.xyz/',
     types: [EcoType.social],
   },
+  //  {
+  //    id: 'hive-analytics',
+  //   name: 'Hive Analytics',
+  //    description: 'Real-time blockchain intelligence for the Hive ecosystem.',
+  //    image: 'hiveanalytics.png',
+  //    website: 'https://hiveanalytics.usehive.com/',
+  //    types: [EcoType.tools],
+  //  },
   {
     id: 'dungeoncities',
     name: 'Dungeon Cities',

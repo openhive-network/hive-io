@@ -63,14 +63,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
     featured: true,
   },
-  {
-    id: 'inleo',
-    name: 'InLeo',
+    {
+    id: 'magi',
+    name: 'Magi Network',
     description:
-      'A social media platform focused on use-owned content and decentralized monetization.',
-    image: 'inleo.avif',
-    website: 'https://inleo.io',
-    types: [EcoType.social],
+      'Next generation L2 smart contracts and wrapping technology on the Hive Blockchain.',
+    image: 'magi.png',
+    website: 'https://magi.eco/',
+    types: [EcoType.tools, EcoType.defi, EcoType.nft],
     featured: true,
   },
   {
@@ -102,6 +102,16 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
     featured: true,
   },
+    {
+    id: 'inleo',
+    name: 'InLeo',
+    description:
+      'A social media platform focused on use-owned content and decentralized monetization.',
+    image: 'inleo.avif',
+    website: 'https://inleo.io',
+    types: [EcoType.social],
+    featured: false,
+  },
   {
     id: 'woo',
     name: 'Wrestling Organization',
@@ -120,6 +130,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'engage.png',
     website: 'https://engage.hivechain.app',
     types: [EcoType.social],
+    featured: false,
   },
   {
     id: 'travelfeed',
@@ -160,15 +171,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     featured: false,
   },
   {
-    id: 'leodex',
-    name: 'LeoDex',
-    description:
-      'Trade HIVE to and from the top crypto assets in the world like BTC, ETH, DASH and more. LeoDex is a DEX Web app for cross-chain trading that prioritizes a seamless User Experience with a clean and intuitive Interface as a non-custodial decentralized exchange. Trading across blockchains on LeoDex is extremely easy and can be done using Maya Protocol and Hive Aggregation Technology.',
-    image: 'LeoDex_Logo_no_Name.png',
-    website: 'https://leodex.io/',
-    types: [EcoType.defi],
-    featured: false,
-  },
+  //   id: 'leodex',
+  //   name: 'LeoDex',
+  //   description:
+  //     'Trade HIVE to and from the top crypto assets in the world like BTC, ETH, DASH and more. LeoDex is a DEX Web app for cross-chain trading that prioritizes a seamless User Experience with a clean and intuitive Interface as a non-custodial decentralized exchange. Trading across blockchains on LeoDex is extremely easy and can be done using Maya Protocol and Hive Aggregation Technology.',
+  //   image: 'LeoDex_Logo_no_Name.png',
+  //   website: 'https://leodex.io/',
+  //   types: [EcoType.defi],
+  //   featured: false,
+  // },
   {
     id: 'nfttunz',
     name: 'NFTTunz',
@@ -186,6 +197,14 @@ export const ECOSYSTEM: IEcoItem[] = [
     website: 'https://dcrops.com',
     types: [EcoType.game, EcoType.nft],
     featured: false,
+  },
+  {
+    id: 'snapie',
+    name: 'Snapie',
+    description: 'Snapie brings social media to the blockchain.',
+    image: 'snapie.png',
+    website: 'https://snapie.xyz/',
+    types: [EcoType.social],
   },
   {
     id: 'stemgeeks',
@@ -206,15 +225,15 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game],
     featured: false,
   },
-  {
-    id: 'vimm',
-    name: 'Vimm',
-    description: 'Web3 video platform for gamers and independent creators.',
-    image: 'vimm.png',
-    website: 'https://www.vimm.tv/',
-    types: [EcoType.social, EcoType.video],
-    featured: false,
-  },
+  // {
+  //   id: 'vimm',
+  //   name: 'Vimm',
+  //   description: 'Web3 video platform for gamers and independent creators.',
+  //   image: 'vimm.png',
+  //   website: 'https://www.vimm.tv/',
+  //   types: [EcoType.social, EcoType.video],
+  //   featured: false,
+  // },
   {
     id: 'hivebuzz',
     name: 'HiveBuzz',
@@ -261,16 +280,16 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social, EcoType.video, EcoType.sport],
     featured: false,
   },
-  {
-    id: 'hivelist',
-    name: 'HiveLIST',
-    description:
-      'An Honest Place To Buy Products And Services Using Cryptocurrency.',
-    image: 'hivelist.png',
-    website: 'https://hivelist.io/',
-    types: [EcoType.nft, EcoType.defi],
-    featured: false,
-  },
+  // {
+  //   id: 'hivelist',
+  //   name: 'HiveLIST',
+  //   description:
+  //     'An Honest Place To Buy Products And Services Using Cryptocurrency.',
+  //   image: 'hivelist.png',
+  //   website: 'https://hivelist.io/',
+  //   types: [EcoType.nft, EcoType.defi],
+  //   featured: false,
+  // },
   {
     id: 'cryptoshots',
     name: 'Crypto Shots',
@@ -311,25 +330,25 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.defi, EcoType.nft],
     featured: false,
   },
-  {
-    id: 'muterra',
-    name: 'Muterra',
-    description: 'RPG+TCG game on Hive set in a post-apocalyptic world.',
-    image: 'muterra.png',
-    website: 'https://muterra.in',
-    types: [EcoType.game],
-    featured: false,
-  },
-  {
-    id: 'hivetube',
-    name: 'Hive Tube',
-    description:
-      'Hive-Tube is the best alternative to Youtube. P2P, Fediverse syndicated, no fees and no KYC.',
-    image: 'hive-tube.svg',
-    website: 'https://hive-tube.com',
-    types: [EcoType.social, EcoType.video],
-    featured: false,
-  },
+  // {
+  //   id: 'muterra',
+  //   name: 'Muterra',
+  //   description: 'RPG+TCG game on Hive set in a post-apocalyptic world.',
+  //   image: 'muterra.png',
+  //   website: 'https://muterra.in',
+  //   types: [EcoType.game],
+  //   featured: false,
+  // },
+  // {
+  //   id: 'hivetube',
+  //   name: 'Hive Tube',
+  //   description:
+  //     'Hive-Tube is the best alternative to Youtube. P2P, Fediverse syndicated, no fees and no KYC.',
+  //   image: 'hive-tube.svg',
+  //   website: 'https://hive-tube.com',
+  //   types: [EcoType.social, EcoType.video],
+  //   featured: false,
+  // },
   {
     id: 'hivedex',
     name: 'Hivedex.io',
@@ -350,22 +369,12 @@ export const ECOSYSTEM: IEcoItem[] = [
     featured: false,
   },
   {
-    id: 'vsc',
-    name: 'VSC Network',
-    description:
-      'Next generation L2 smart contracts and wrapping technology on the Hive Blockchain.',
-    image: 'vsc.png',
-    website: 'https://vsc.eco',
-    types: [EcoType.tools, EcoType.defi, EcoType.nft],
-    featured: false,
-  },
-  {
     id: 'genesisleaguesports',
     name: 'Genesis League Sports',
     description:
       'A blockchain-based, play2earn gaming platform and ecosystem specifically designed for sports games and NFTs.',
     image: 'genesisleaguesports.png',
-    website: 'https://genesisleaguesports.com',
+    website: 'https://genesisleaguesports.com/',
     types: [EcoType.game, EcoType.nft],
     featured: true,
   },
@@ -377,6 +386,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'riseofthepixels.png',
     website: 'https://riseofthepixels.com/',
     types: [EcoType.game],
+    featured: false,
   },
   {
     id: 'hive-suite',
@@ -385,6 +395,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'hive-suite-logo.png',
     website: 'https://hivesuite.app',
     types: [EcoType.social],
+    featured: false,
   },
   {
     id: 'astral-wars',
@@ -394,15 +405,9 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'AstralWars.png',
     website: 'https://surgent-gaming-marketplace.vercel.app/',
     types: [EcoType.game],
+    featured: false,
   },
-  {
-    id: 'snapie',
-    name: 'Snapie',
-    description: 'Snapie brings social media to the blockchain.',
-    image: 'snapie.png',
-    website: 'https://snapie.xyz/',
-    types: [EcoType.social],
-  },
+
   //  {
   //    id: 'hive-analytics',
   //   name: 'Hive Analytics',
@@ -437,6 +442,26 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'king-of-duels.svg',
     website: 'https://www.kingofduels.online/',
     types: [EcoType.game],
+    featured: false,
+  },
+  {
+    id: 'pevo',
+    name: 'Pevo',
+    description:
+      'Publish, review, and evaluate research on a transparent, open platform.',
+    image: 'pevo.png',
+    website: 'https://pevo.science/',
+    types: [EcoType.social],
+    featured: true,
+  },
+  {
+    id: 'decentmemes',
+    name: 'Decent Memes',
+    description:
+      'Submit your meme template and earn forever.',
+    image: 'decentmemes.svg',
+    website: 'https://decentmemes.com/home/',
+    types: [EcoType.social],
     featured: false,
   },
 ].concat(BLOCKEXPLORERS as any)

@@ -63,7 +63,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
     featured: true,
   },
-    {
+  {
     id: 'magi',
     name: 'Magi Network',
     description:
@@ -170,7 +170,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
     featured: false,
   },
-  {
+  //{
   //   id: 'leodex',
   //   name: 'LeoDex',
   //   description:

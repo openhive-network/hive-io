@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" height="200" width="200">
+  
+  <g transform="rotate(-8 100 100)">
+    <rect fill="#FF1493" rx="28" height="160" width="164" y="20" x="18"></rect>
+  </g>
+
+  
+  <text text-anchor="middle" paint-order="stroke fill" stroke-width="16" stroke="#111" fill="#111" font-weight="900" font-size="98" font-family="Impact, Arial Black, sans-serif" y="92" x="100">D</text>
+
+  
+  <text text-anchor="middle" paint-order="stroke fill" stroke-width="16" stroke="#111" fill="#111" font-weight="900" font-size="98" font-family="Impact, Arial Black, sans-serif" y="148" x="100">M</text>
+
+  
+  <text text-anchor="middle" paint-order="stroke fill" stroke-width="5" stroke="#111" fill="#22FF88" font-weight="900" font-size="98" font-family="Impact, Arial Black, sans-serif" y="92" x="100">D</text>
+
+  
+  <text text-anchor="middle" paint-order="stroke fill" stroke-width="5" stroke="#111" fill="#FFD700" font-weight="900" font-size="98" font-family="Impact, Arial Black, sans-serif" y="148" x="100">M</text>
+
+  
+  <text text-anchor="middle" opacity="0.25" fill="#FFFFFF" font-weight="900" font-size="98" font-family="Impact, Arial Black, sans-serif" y="89" x="100">D</text>
+
+  
+  <text text-anchor="middle" opacity="0.25" fill="#FFFFFF" font-weight="900" font-size="98" font-family="Impact, Arial Black, sans-serif" y="145" x="100">M</text>
+</svg>

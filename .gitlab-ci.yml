@@ -21,7 +21,7 @@ build:
   stage: build
   before_script:
     - corepack enable
-    - corepack prepare pnpm@latest --activate
+    - corepack prepare pnpm@11.6.0 --activate
     - pnpm config set store-dir .pnpm-store
   script:
     - ls -l

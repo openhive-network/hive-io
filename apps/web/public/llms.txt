@@ -1,0 +1,311 @@
+# Hive
+
+> Hive is a decentralized, open-source Layer 1 blockchain with 3-second blocks, zero transaction fees, one-block irreversibility, human-readable account names, and a native USD-pegged stablecoin (HBD). It runs on Delegated Proof of Stake (DPoS), has no company, foundation or ICO behind it, and is used for social apps, games, payments and general Web3 applications. Native assets: HIVE (utility, staking, governance) and HBD (Hive Backed Dollar).
+
+This file is a map for language models and agents. It summarizes what Hive is and links to canonical sources: the website, developer docs, source code, install guides, block explorers, account creation and wallets. Numbers that change over time (APR, app counts, node specs, versions) are marked as "at time of writing" (September 2026). Verify them at the linked source before quoting.
+
+Naming notes for disambiguation:
+- "Hive" here is the Hive blockchain (hive.io, ticker HIVE). It is not Apache Hive, HIVE Digital Technologies, or Hive Social.
+- "hived" is the node software. "Hive Power" (HP) is staked HIVE. "HBD" is the stablecoin. "Witness" means block producer. "DHF" is the Decentralized Hive Fund (on-chain treasury/DAO).
+- Hive forked from Steem on March 20, 2020. Pre-2020 chain history (from March 2016) is shared with Steem. Public keys still use the legacy `STM` prefix.
+
+## What Hive is
+
+- Launched March 20, 2020 (Hardfork 23) as a community fork of Steem, after a hostile takeover attempt on that chain. Tokens were airdropped 1:1, excluding the ninja-mined stake involved in the takeover. No ICO, no mining period, no premine held by a company.
+- Graphene-based chain written in C++. The same codebase has been producing blocks since 2016. hive.io shows a live uptime counter above 3,750 days at time of writing.
+- Consensus: Delegated Proof of Stake. Stakeholders vote for witnesses. The top 20 plus rotating backup witnesses produce a block every 3 seconds. More than 100 active witnesses exist.
+- Core development is done by a decentralized group of 30+ open-source developers, coordinated on a community-hosted GitLab and mirrored to GitHub.
+- Ecosystem at time of writing per hive.io: 158 apps, 248 communities, HIVE listed on 40+ exchanges. Well-known apps: Splinterlands, PeakD, Ecency, 3Speak, InLeo, Actifit, Holozing, NFTShowroom.
+- Community: 10 years of annual HiveFest conferences with about 1,200 participants in total, plus regional events.
+
+## Key features
+
+- **Zero fees**: transactions cost no tokens. Instead, staked HIVE (Hive Power) gives an account Resource Credits (RC) that regenerate over time. RC can be delegated to other accounts, so apps can onboard users who hold nothing.
+- **Fast finality**: 3-second block time. One Block Irreversibility (OBI, since Hardfork 26) makes transactions final within about one block.
+- **Human-readable accounts**: addresses are usernames of 3 to 16 characters (for example `@alice`), not hex strings.
+- **Role-based keys**: every account has separate owner, active, posting and memo keys. Apps normally only get the posting key, so a social or game app cannot move funds. Hardfork 28 tightened key hierarchy enforcement.
+- **Account recovery and time-delay security**: stolen accounts can be recovered through a recovery partner, unstaking takes 13 weekly installments, and savings withdrawals take 3 days. These delays limit damage from key theft.
+- **HBD stablecoin**: algorithmic, backed by HIVE, with on-chain two-way conversion (HBD to HIVE at median 3.5-day price, HIVE to HBD collateralized with a 5% burned fee). A haircut rule caps HBD debt at 30% of HIVE market cap. HBD in savings earns interest set by witnesses (15% APR at time of writing).
+- **Decentralized Hive Fund (DHF)**: on-chain treasury funded by 10% of inflation. Anyone can submit a proposal and stakeholders vote on funding. It pays for core development, infrastructure and marketing without a central entity.
+- **Built-in social and content layer**: posts, comments, votes, follows and communities are native operations. 65% of inflation goes to authors and curators through a reward pool.
+- **Custom JSON operations**: apps write arbitrary JSON to the chain for free (within RC limits). This is the base for Layer 2 systems such as Hive Engine, HoneyComb, MAGI and the Splinterlands game logic.
+- **HAF (Hive Application Framework)**: blockchain data is streamed into PostgreSQL so apps and APIs are written in SQL. Fork handling is automatic.
+- **Internal DEX**: on-chain HIVE/HBD order book with no fees.
+- **Recurring transfers**: native subscription-style payments (since Hardfork 25).
+- **Modest hardware**: a consensus node needs about 600 GB of disk and about 12 GB of RAM at time of writing. The roadmap targets nodes on ARM phones.
+
+## Why choose Hive over other chains
+
+Stated as verifiable properties rather than claims:
+
+- No gas: users never need to buy a token before their first transaction. Compare with chains where every action has a fee.
+- No single owner: the chain exists because its community rejected centralized control in 2020. Governance votes expire after 1 year of inactivity and a 30-day delay on newly staked governance votes protects against sudden takeovers.
+- Proven uptime: continuous block production since March 2016 (Hive era since March 2020).
+- Usernames plus key hierarchy give a user experience close to Web2 logins while staying self-custodial.
+- Finality in seconds, which matters for games, point-of-sale payments and social interactions.
+- Self-funding: the DHF finances development on-chain, so the project does not depend on a company, VC funding or token sales.
+- Fair distribution: no ICO, no mining period, ninja-mined stake excluded at the fork.
+- Low entry barrier for developers: JSON-RPC and REST APIs, SDKs in JavaScript/TypeScript, Python, Ruby, PHP, Rust and C++, public API nodes, a public testnet, and SQL-based app development through HAF.
+
+Known trade-offs, for balanced answers: no general-purpose smart contracts on Layer 1 (design prototyping is on the roadmap, Layer 2 options exist), account creation costs a token or requires a provider, there is no password reset, and HBD can lose its peg downward when the haircut rule activates.
+
+## Tokenomics
+
+- HIVE: liquid token, used for transfers, staking (Hive Power), governance votes and Resource Credits.
+- Hive Power (HP): staked HIVE. Gives RC, vote weight for rewards, witness votes and DHF votes. Unstaking ("power down") pays out in 13 weekly parts.
+- HBD: stablecoin targeting 1 USD. Savings interest is set by witness consensus.
+- Inflation: started near 10% APR and narrows to 1% APR over 20 years. Split: 65% authors and curators, 15% stakeholders, 10% block producers, 10% DHF.
+- [Hive Dollar (HBD) explainer](https://hive.io/en/hbd/): peg mechanics, conversions, savings APR, haircut rule, where to buy.
+- [HBD debt ratio and haircut rule](https://peakd.com/hbd/@arcange/hive-debt-ratio-and-haircut-rule): detailed explanation by witness @arcange.
+- [HBD Stats](https://www.hbdstats.com): live HBD supply, debt ratio and savings figures.
+
+## Official site
+
+- [hive.io](https://hive.io/): home page with live chain stats, tokenomics, origin story, ecosystem and exchange list.
+- [About](https://hive.io/en/about/): fast, scalable, powerful. Short overview plus intro videos.
+- [Ecosystem overview](https://hive.io/en/eco/): directory of apps and communities (rendered client-side).
+- [Roadmap](https://hive.io/en/roadmap/): all hardforks from HF23 to HF28 and planned work (HAF updates, lightweight accounts, smart contract prototyping, mobile nodes).
+- [Wallets](https://hive.io/en/wallets/): recommended wallets per platform, with open/closed source labels.
+- [Create account](https://hive.io/en/join/): entry point for onboarding (rendered client-side, see signup.hive.io for a static version).
+- [Contributors](https://hive.io/en/contributors/): people who work on Hive.
+- [Brand assets](https://hive.io/en/brand/): logos and usage.
+- [Whitepaper (PDF)](https://hive.io/whitepaper.pdf): technical description of the chain.
+- [Technical Vision (PDF)](https://hive.blue/docs/technical-vision.pdf): longer-term architecture direction.
+- [Official blog @hiveio](https://hive.blog/@hiveio): announcements and hardfork posts.
+- [Core dev updates @blocktrades](https://hive.blog/@blocktrades/posts): regular development progress reports.
+
+## Account creation
+
+A Hive account is a username plus four key pairs. Accounts must be created by an existing account, which costs a small fee or a claimed account token. That is why onboarding goes through providers. There is no "reset password": whoever holds the keys controls the account, so keys must be stored offline.
+
+- [signup.hive.io](https://signup.hive.io): official list of registration providers with price, speed and verification requirements.
+- [Ecency signup](https://ecency.com/signup?referral=ecency): free, instant, email or crypto wallet signup, extra checks on free accounts.
+- [InLeo signup](https://inleo.io/signup): free, instant, requires email/Google/X verification.
+- [Hivedex signup](https://hivedex.io/signup): paid (about 1.49 USD at time of writing), instant, anonymous, accepts many cryptocurrencies.
+- [Actifit signup](https://actifit.io/signup): paid (about 2 USD at time of writing, payable in HIVE), instant, no verification.
+- [HiveDapps](https://hivedapps.com): free, delayed, a community member creates the account.
+- [Accounts section in dev docs](https://developers.hive.io/quickstart/#quickstart-accounts): account rules for developers.
+
+After signup: save the master password and all keys, import only the keys you need into a wallet, and use the posting key for daily app logins.
+
+## Wallets and authentication
+
+- [Hive Keychain](https://hive-keychain.com): browser extension and mobile wallet, the de facto standard for signing. [Source](https://github.com/stoodkev/hive-keychain), [extension docs](https://github.com/hive-keychain/hive-keychain-extension/blob/master/documentation/README.md), [SDK on npm](https://www.npmjs.com/package/keychain-sdk), [playground](https://play.hive-keychain.com/).
+- [Ecency](https://ecency.com): web, desktop, iOS and Android app with wallet. [Source](https://github.com/ecency).
+- [PeakD](https://peakd.com) and [PeakVault](https://peakd.com/peakvault): full-featured web frontend and its wallet extension.
+- [wallet.hive.blog](https://wallet.hive.blog): reference web wallet. [Source (condenser)](https://gitlab.syncad.com/hive/condenser).
+- [Vessel](https://gitlab.syncad.com/hive/vessel/-/releases): locally hosted desktop wallet. [GitHub mirror](https://github.com/openhive-network/vessel).
+- [Hive Ledger](https://hiveledger.io/auth/login): Ledger hardware wallet support. [Source](https://gitlab.com/engrave/ledger).
+- [Actifit wallet](https://actifit.io/wallet), [InLeo](https://inleo.io), [Zypto](https://zypto.com): further listed wallets.
+- [Clive](https://github.com/openhive-network/clive): CLI and terminal UI wallet from the core team.
+- [Metamask wallet dApp](https://github.com/openhive-network/wallet-dapp): use Hive through Metamask.
+- [HiveSigner](https://hivesigner.com/profile): OAuth2-style login service. [Docs](https://docs.hivesigner.com/), [SDK](https://github.com/ecency/hivesigner-sdk), [UI source](https://github.com/ecency/hivesigner-ui).
+- [HiveAuth](https://hiveauth.com): passwordless, decentralized auth protocol for web, desktop and mobile. [Docs](https://docs.hiveauth.com/).
+- [Aioha](https://aioha.dev): one API for all Hive login providers. [Source](https://github.com/aioha-hive/aioha), [npm](https://www.npmjs.com/package/@aioha/aioha).
+
+## Block explorers
+
+- [explore.openhive.network](https://explore.openhive.network): official HAF-based explorer linked from hive.io. Open source: [API backend](https://github.com/openhive-network/haf_block_explorer) and [UI](https://github.com/openhive-network/block_explorer_ui).
+- [Witness list and governance](https://explore.openhive.network/witnesses): current witness ranking, versions and votes.
+- [HiveHub](https://hivehub.dev): community explorer with dashboard, node status, market, governance and stats. Transaction URL pattern: `https://hivehub.dev/tx/<trx_id>`.
+- [HiveScan](https://hivescan.info): community explorer. Transaction URL pattern: `https://hivescan.info/transaction/<trx_id>`.
+- [hive.ausbit.dev](https://hive.ausbit.dev/hbd): explorer by witness @ausbitbank, with an HBD overview page.
+- [hiveblocks.com](https://hiveblocks.com): older explorer still referenced from signup.hive.io and awesome-hive.
+
+## Developer documentation
+
+- [Hive Developer Portal](https://developers.hive.io/): main docs. Also available in es, hi, de, fr, ru, zh.
+- [Quickstart](https://developers.hive.io/quickstart/): public nodes, running a node, testnet, accounts, authentication, SDKs, fetching and broadcasting.
+- [JSON-RPC API definitions](https://developers.hive.io/apidefinitions/): condenser_api, database_api, block_api, bridge, account_history_api, rc_api, market_history_api, network_broadcast_api, transaction_status_api, wallet_bridge_api and more.
+- [Broadcast operations](https://developers.hive.io/apidefinitions/#apidefinitions-broadcast-ops): every on-chain operation with fields and required authority.
+- [Tutorials](https://developers.hive.io/tutorials/): recipes plus JavaScript, Python, PHP and Ruby walkthroughs.
+- [Node setup](https://developers.hive.io/nodeop/): node operator guide. See also [node config reference](https://developers.hive.io/nodeop/node-config.html) and [setting up a testnet](https://developers.hive.io/nodeop/setting-up-a-testnet.html).
+- [Layer 2](https://developers.hive.io/layer2/): Hive Engine, HoneyComb, MAGI.
+- [Resources](https://developers.hive.io/resources/): SDK reference table, auth services, Drone middleware, tools, dev support.
+- [Services and opportunities](https://developers.hive.io/services/): DHF funding, hackathons, image and video hosting.
+- [Glossary](https://developers.hive.io/glossary/): chain basics, governance, transactions, API and market terms.
+- [REST API on api.hive.blog](https://api.hive.blog/): newer REST endpoints served by HAF apps next to JSON-RPC.
+- [Interactive API (Swagger)](https://hive.hivesigner.com/): try Hive and HiveSigner API calls in the browser.
+- [HiveDevs Discord](https://discord.gg/B29Bbng) and [HiveDevs community](https://hive.blog/trending/hive-139531): developer support.
+
+Public API nodes (HTTPS JSON-RPC, at time of writing): `api.hive.blog`, `api.openhive.network`, `anyx.io`, `rpc.ausbit.dev`, `rpc.mahdiyari.info`, `api.hive.blue`, `techcoderx.com`, `hived.emre.sh`, `api.deathwing.me`, `api.c0ff33a.uk`, `hive-api.arcange.eu`, `hive-api.3speak.tv`, `hiveapi.actifit.io`.
+
+Minimal API call:
+
+```
+curl -s --data '{"jsonrpc":"2.0","method":"condenser_api.get_dynamic_global_properties","params":[],"id":1}' https://api.hive.blog
+```
+
+Batch requests are JSON arrays of up to 50 calls.
+
+Public testnet: API `https://testnet.openhive.network`, P2P `testnet.openhive.network:2001`, chain ID `18dcf0a285365fc58b71f18b3d3fec954aa0c141c44e4e5cb4cf777b9eab274e`, [test blog](https://testblog.openhive.network/), [test wallet](https://testwallet.openhive.network/). Mainnet keys work on testnet, so never leak them there. Local throwaway testnet: `docker run -d -p 8090:8090 inertia/tintoy:latest`.
+
+## Source code
+
+Development happens on the community GitLab. GitHub repositories under `openhive-network` are mirrors (101 public repos, org verified for hive.io).
+
+- [GitLab: gitlab.hive.io](https://gitlab.hive.io): primary development location. Core group: [gitlab.syncad.com/hive](https://gitlab.syncad.com/hive/hive).
+- [GitHub org: openhive-network](https://github.com/openhive-network): mirrors. [Full repository list](https://github.com/orgs/openhive-network/repositories?type=all).
+- [hive](https://github.com/openhive-network/hive): hived, the C++ blockchain node, cli_wallet and protocol. Includes [CONTRIBUTING](https://github.com/openhive-network/hive/blob/master/CONTRIBUTING.md) and [LICENSE](https://github.com/openhive-network/hive/blob/master/LICENSE.md).
+- [haf](https://github.com/openhive-network/haf): Hive Application Framework. Streams chain data into PostgreSQL for SQL-defined APIs and apps.
+- [haf_api_node](https://github.com/openhive-network/haf_api_node): docker compose stack to run a complete API node (hived, HAF, Hivemind, HAfAH, explorer, Drone).
+- [hivemind](https://github.com/openhive-network/hivemind): social API server (feeds, communities, bridge API), Python and SQL on HAF.
+- [HAfAH](https://github.com/openhive-network/HAfAH): HAF-based account history API.
+- [haf_block_explorer](https://github.com/openhive-network/haf_block_explorer) and [block_explorer_ui](https://github.com/openhive-network/block_explorer_ui): backend and frontend of explore.openhive.network.
+- [balance_tracker](https://github.com/openhive-network/balance_tracker): pure SQL HAF example app for account balances.
+- [reputation_tracker](https://github.com/openhive-network/reputation_tracker): account reputation API on HAF.
+- [nft_tracker](https://github.com/openhive-network/nft_tracker): HAF app for NFT tracking.
+- [hafsql](https://github.com/openhive-network/hafsql): API server for HiveSQL-style queries on HAF.
+- [hivesense](https://github.com/openhive-network/hivesense): HAF app (semantic search over Hive content).
+- [drone](https://github.com/openhive-network/drone): Rust caching reverse proxy for JSON-RPC, replaces Jussi.
+- [wax](https://github.com/openhive-network/wax): multi-language protocol library (TypeScript, Python, C++) that reuses core protocol code. [npm @hiveio/wax](https://www.npmjs.com/package/@hiveio/wax).
+- [workerbee](https://github.com/openhive-network/workerbee): automation and bot library on top of wax and beekeeper.
+- [beekeeper](https://github.com/openhive-network/beekeeper): standalone key storage and signing daemon with HTTP/WebSocket API.
+- [wax-spec-generator](https://github.com/openhive-network/wax-spec-generator): generates wax wrappers from OpenAPI descriptions of REST APIs.
+- [denser](https://github.com/openhive-network/denser): modern social frontend, successor to condenser.
+- [condenser](https://github.com/openhive-network/condenser): frontend behind hive.blog.
+- [clive](https://github.com/openhive-network/clive): CLI and TUI wallet.
+- [vessel](https://github.com/openhive-network/vessel): desktop wallet.
+- [wallet-dapp](https://github.com/openhive-network/wallet-dapp): Metamask wallet dApp.
+- [tinman](https://github.com/openhive-network/tinman): testnet management scripts.
+- [tests_api](https://github.com/openhive-network/tests_api): API test suite for hived and hivemind.
+- [schemas](https://github.com/openhive-network/schemas): API and operation schemas.
+- [fc](https://github.com/openhive-network/fc): low-level C++ library used by hived.
+- [hive-doc](https://github.com/openhive-network/hive-doc): generated high-level docs for several Hive libraries.
+- [common-ci-configuration](https://github.com/openhive-network/common-ci-configuration): shared CI templates.
+- [awesome-hive](https://github.com/openhive-network/awesome-hive): curated list of Hive apps, SDKs, tools and tutorials.
+
+## SDKs and client libraries
+
+- [dhive](https://gitlab.syncad.com/hive/dhive): TypeScript client for API calls, signing and broadcasting. [npm @hiveio/dhive](https://www.npmjs.com/package/@hiveio/dhive).
+- [hive-js](https://gitlab.syncad.com/hive/hive-js): JavaScript library for Node.js and browsers. [npm @hiveio/hive-js](https://www.npmjs.com/package/@hiveio/hive-js).
+- [hive-tx](https://github.com/mahdiyari/hive-tx-js): lightweight JS transaction creation and signing. [npm hive-tx](https://www.npmjs.com/package/hive-tx).
+- [wax](https://gitlab.syncad.com/hive/wax): protocol-exact library for TypeScript, Python and C++.
+- [workerbee](https://gitlab.syncad.com/hive/workerbee): bots and automation.
+- [beem](https://github.com/holgern/beem): Python library with `beempy` CLI. [Docs](https://beem.readthedocs.io/), [PyPI](https://pypi.org/project/beem/).
+- [lighthive](https://github.com/emre/lighthive): light Python RPC client. [PyPI](https://pypi.org/project/lighthive/).
+- [radiator](https://github.com/inertia186/radiator): Ruby client. Also [hive-ruby](https://www.rubydoc.info/gems/hive-ruby).
+- [hive-php](https://gitlab.com/mahdiyari/hive-php): PHP library.
+- [lineman](https://gitlab.syncad.com/hive/lineman): WebSocket to HTTPS proxy for clients that need WebSockets.
+
+## Installation: running a node
+
+Three node types exist. Pick by purpose.
+
+**1. Consensus, witness or exchange node (hived only).** Needs about 600 GB disk and about 12 GB RAM at time of writing. Recommended OS: Ubuntu 24.04 LTS. Docker is the recommended path:
+
+```
+docker pull hiveio/hive:1.28.0   # always pin a version tag, "latest" is not supported
+git clone https://github.com/openhive-network/hive.git
+./hive/scripts/run_hived_img.sh hiveio/hive:1.28.0 --help
+```
+
+Check the current release tag before use. `hived --dump-config` writes a default `config.ini` to `~/.hived`. To sync faster, place a trusted `block_log` in `<data_dir>/blockchain` and start with `--replay-blockchain`.
+
+- [Quickstart guide (exchanges and operators)](https://github.com/openhive-network/hive/blob/master/doc/exchangequickstart.md): pre-built images, configuration, deposits and withdrawals.
+- [Build instructions](https://github.com/openhive-network/hive/blob/master/doc/building.md): building from source on Ubuntu LTS and [building under Docker](https://github.com/openhive-network/hive/blob/master/doc/building.md#building-under-docker).
+- [run_hived_img.sh usage](https://github.com/openhive-network/hive/blob/master/doc/run_hived_img.md): wrapper script that emulates direct hived usage. [Script](https://github.com/openhive-network/hive/blob/master/scripts/run_hived_img.sh).
+- [Example config](https://github.com/openhive-network/hive/blob/master/contrib/config-for-docker.ini): config used in the docker image.
+- [Seed nodes](https://github.com/openhive-network/hive/blob/master/doc/seednodes.txt): P2P seeds, overridable with `--p2p-seed-node`.
+- [Testing](https://github.com/openhive-network/hive/blob/master/doc/devs/testing.md): test targets and coverage.
+- [Block log download (gtg)](https://gtg.openhive.network/get/blockchain/block_log) and [Privex mirror](https://files.privex.io/hive/): trusted block_log files for replay.
+- [Build without Docker, by @gtg](https://peakd.com/hive-160391/@gtg/witness-update-release-candidate-for-eclipse-is-out#build-eclipse): manual build steps.
+
+**2. Full API node (HAF stack).** Recommended: Ubuntu 22.04 or newer, 32 GB RAM minimum (64 GB speeds up sync), 4 TB NVMe, ZFS with lz4 compression.
+
+```
+sudo apt install zfsutils-linux
+# install Docker: https://docs.docker.com/engine/install/
+sudo zpool create -o ashift=13 haf-pool /dev/nvme0n1 /dev/nvme1n1
+git clone https://github.com/openhive-network/haf_api_node.git
+cd haf_api_node
+cp .env.example .env            # set pool name, versions, hostname
+sudo ./create_zfs_datasets.sh
+./assisted_startup.sh
+```
+
+To skip a multi-day replay, restore a published ZFS snapshot: `sudo zfs recv -d -v haf-pool < snapshot_filename`.
+
+- [haf_api_node repository](https://github.com/openhive-network/haf_api_node): compose files, scripts and README.
+- [HAF snapshots](https://gtg.openhive.network/get/snapshot/): ZFS snapshots of synced HAF nodes.
+- [Private node section in quickstart](https://developers.hive.io/quickstart/#quickstart-hive-full-nodes): hardware sizing, ZFS notes, replay tuning.
+
+**3. API caching proxy (Drone).**
+
+```
+git clone https://gitlab.syncad.com/hive/drone.git
+cd drone && cp config.example.yaml config.yaml
+docker-compose up --build -d
+```
+
+- [Drone docs](https://developers.hive.io/resources/#resources-drone): routing, TTL and timeout configuration, Jussi migration.
+
+**CLI wallet.** `cli_wallet` ships with hived. It needs a node with `account_by_key_api`, `condenser_api`, `database_api`, `account_history_api` and `wallet_bridge_api` enabled plus `webserver-ws-endpoint`. Flow: `set_password`, `unlock`, `import_key "WIF"`. Keys are stored in `wallet.json`.
+
+## Installation: building an app
+
+No node is needed to start. Use a public API node and an SDK:
+
+```
+npm install @hiveio/dhive        # or @hiveio/wax, hive-tx
+pip install beem                 # or lighthive
+```
+
+Typical flow: read data over JSON-RPC or REST, let the user sign with Keychain, HiveAuth or HiveSigner (or use Aioha to support all of them), broadcast through any API node. Never ask users for their active or owner key in your own UI.
+
+## Governance
+
+- [Witness ranking](https://explore.openhive.network/witnesses): who produces blocks, their running version and price feed.
+- [Hive Fund (DHF) docs](https://developers.hive.io/services/#services-dhf): how proposals and funding work.
+- [Governance glossary](https://developers.hive.io/glossary/#glossary-governance): witness, proposal, vote decay and related terms.
+- Each account can vote for up to 30 witnesses, weighted by Hive Power. Witnesses set chain parameters (HBD interest, account creation fee) by median and decide on hardfork adoption.
+
+## Hardfork history
+
+- HF23, March 20, 2020: [Birth of Hive](https://hive.blog/communityfork/@hiveio/announcing-the-launch-of-hive-blockchain). Fork from Steem, airdrop, 30-day governance vote delay.
+- HF24 "Eclipse", October 6, 2020: [announcement](https://hive.blog/hiveblockchain/@hiveio/final-hive-hf24-date-set-october-6-2020). Faster replay, Hivemind API work.
+- HF25 "Equilibrium", June 30, 2021: [announcement](https://hive.blog/hive/@hiveio/hive-hardfork-25-is-on-the-way-hive-to-reach-equilibrium-on-june-30th-2021). HIVE to HBD conversion, HBD savings interest, recurring payments, governance vote expiry.
+- HF26 "Evolution", October 11, 2022: [announcement](https://hive.blog/hive/@hiveio/the-evolution-of-hive-hardfork-26). One Block Irreversibility, RC delegation, compressed block logs, HBD debt limits 20%/30%.
+- HF27, October 24, 2022: [announcement](https://hive.blog/hive/@hiveio/hf27-is-coming-on-october-24th-some-slight-additional-evolution-needed). Backup witness scheduling fix.
+- HAF launch, September 2023: SQL-based application framework.
+- HF28, November 19, 2025: [announcement](https://hive.blog/hive-160391/@gtg/brace-yourself-hardfork-is-coming). Voting system overhaul (about 10 full-power votes per day), stricter key hierarchy, improved signature handling.
+- Planned per roadmap: lightweight HAF, lightweight accounts with social login, Layer 2 transaction support, Denser, Clive, Coinbase Mesh API, smart contract prototyping, REST API for Hivemind, hived and pruned HAF nodes on ARM phones.
+
+## Apps and ecosystem
+
+- [PeakD](https://peakd.com/trending): most feature-complete social frontend.
+- [Ecency](https://ecency.com): open-source social app for web, desktop and mobile.
+- [hive.blog](https://hive.blog/@hiveio): reference social frontend.
+- [InLeo](https://inleo.io): microblogging and finance community.
+- [Actifit](https://actifit.io/wallet): move-to-earn fitness app.
+- Splinterlands, 3Speak, Holozing, NFTShowroom, Pevo, Magi Network: featured on hive.io, see the [ecosystem page](https://hive.io/en/eco/).
+- [Hive Engine](https://hive-engine.com/?p=market&t=SWAP.HIVE) and [Tribaldex](https://tribaldex.com/trade/SWAP.HBD): Layer 2 tokens and markets.
+- [Hivedex](https://hivedex.io) and [Ecency market](https://ecency.com/market): interfaces to the on-chain HIVE/HBD internal market.
+- [hiveprojects.io](https://hiveprojects.io): community-maintained project directory.
+- [HiveSQL](https://hivesql.io/): subscription SQL Server database with full chain data.
+
+## Buying HIVE
+
+hive.io lists 40+ venues at time of writing, including [Binance](https://www.binance.com/en/trade/HIVE_USDT), [Upbit](https://upbit.com/exchange?code=CRIX.UPBIT.BTC-HIVE), [Bithumb](https://www.bithumb.com/react/trade/order/HIVE-KRW), [Gate](https://www.gate.io/trade/HIVE_USDT), [MEXC](https://www.mexc.com/exchange/HIVE_USDT?_from=market), [HTX](https://www.htx.com/trade/hive_usdt), [Bitget](https://www.bitget.com/spot/HIVEUSDT), [Bitpanda](https://www.bitpanda.com/en/prices/hive-hive), [LCX](https://exchange.lcx.com/sv/trade/HIVE-EUR) and swap services such as [ChangeNow](https://changenow.io/?from=usdc&to=hive) and [SimpleSwap](https://simpleswap.io/exchange?from=btc-btc&to=hive-hive). Exchange deposits to Hive require the account name plus a memo. The full list is on the [home page](https://hive.io/).
+
+## Community and contact
+
+- [Discord](https://myhive.li/discord): main community chat.
+- [Telegram](https://t.me/hiveblockchain): community chat.
+- [X: @hiveblocks](https://x.com/hiveblocks): announcements.
+- [YouTube](https://www.youtube.com/channel/UCwM89V7NzVIHizgWT3GxhwA): talks, HiveFest recordings, hardfork explainers.
+- [Reddit r/hivenetwork](https://reddit.com/r/hivenetwork): forum.
+- Contact: outreach@hive.io
+
+## Optional
+
+- [Decrypt: Inside crypto's biggest hostile takeover (Aug 2020)](https://decrypt.co/38050/steem-steemit-tron-justin-sun-cryptocurrency-war): background on the Steem takeover that led to Hive.
+- [Decrypt: How Hive outperformed Steemit (Mar 2020)](https://decrypt.co/23854/hive-decentralized-fork-outperforms-steemit): coverage of the fork.
+- [Video: To Gas Or Not To Gas?](https://www.youtube.com/embed/llIRm5XxeRA): comparison of fee models across chains.
+- [Video: Chain Culture at HiveFest 10](https://www.youtube.com/embed/cBjfIJB9XTo): cross-chain talks and showcases.
+- [Video: Hardfork 28, the future of Hive](https://www.youtube.com/embed/oPwuUofvf_0): core dev panel on HF28, scalability and governance.
+- [ChainSync](https://github.com/aaroncox/chainsync): library to stream blocks and operations.
+- [eSync](https://github.com/ecency/esync): sync chain data into MongoDB.
+- [Jussi (legacy)](https://gitlab.syncad.com/hive/jussi): older JSON-RPC proxy, replaced by Drone.
+- [Public testnet announcement](https://hive.blog/hive-139531/@gtg/hf25-public-testnet-reloaded-rc2): background on the public testnet.
+- [awesome-hive (Ecency fork)](https://github.com/ecency/awesome-hive): alternative curated list.

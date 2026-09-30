@@ -23,7 +23,8 @@ export const NAVIGATION_HEADER_DROPDOWN = [
       {
         to: 'hbd',
         name: 'Hive Dollar (HBD)',
-        description: 'Stablecoin with 15% APR',
+        // Witnesses vote hbd_interest_rate (scale 0–10000). Live chain ~10% APR as of 2026-09-30.
+        description: 'Stablecoin with 10% APR',
       },
     ],
   },

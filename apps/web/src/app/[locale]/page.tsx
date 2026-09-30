@@ -85,6 +85,9 @@ export default function HomePage() {
   const hbdSupply = parseSupply(globalProps?.current_hbd_supply) - (hiveFundBalance?.hbdBalance ?? 0);
   const hiveLocked = tvl ? tvl.hpAmount + tvl.hiveSavings : 0;
   const hbdLocked = tvl?.hbdSavings || 0;
+  // Protocol scale is 0–10000 (10000 = 100%). Witnesses vote hbd_interest_rate.
+  const hbdAprPercent =
+    globalProps?.hbd_interest_rate != null ? globalProps.hbd_interest_rate / 100 : null;
 
   const go = (link: string) => {
     window.open(link, '_blank');
@@ -278,7 +281,11 @@ export default function HomePage() {
                   ),
                   text: (
                     <span className="flex items-center gap-2">
-                      Earn <span className="text-2xl font-bold mt-[-2px] text-emerald-400">15%</span> APR
+                      Earn{' '}
+                      <span className="text-2xl font-bold mt-[-2px] text-emerald-400">
+                        {hbdAprPercent != null ? `${hbdAprPercent}%` : '—'}
+                      </span>{' '}
+                      APR
                     </span>
                   ),
                 },

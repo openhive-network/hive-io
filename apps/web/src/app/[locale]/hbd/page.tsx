@@ -1,10 +1,65 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+
+/**
+ * Protocol percent scale is 0–10000 (10000 = 100%).
+ * Witnesses vote hbd_interest_rate and hbd_stop_percent / hbd_start_percent.
+ * Fallbacks match live chain values verified 2026-09-30 (APR 10%, haircut 20%).
+ */
+const FALLBACK_APR_PERCENT = 10;
+const FALLBACK_HAIRCUT_PERCENT = 20;
+
+async function fetchHbdRates(): Promise<{ aprPercent: number; haircutPercent: number }> {
+  const response = await fetch('https://api.hive.blog', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      method: 'condenser_api.get_dynamic_global_properties',
+      params: [],
+      id: 1,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`Hive API HTTP ${response.status}`);
+  }
+  const payload = await response.json();
+  const props = payload?.result;
+  if (!props || typeof props.hbd_interest_rate !== 'number') {
+    throw new Error('Missing hbd_interest_rate in global properties');
+  }
+  const aprPercent = props.hbd_interest_rate / 100;
+  const haircutPercent =
+    typeof props.hbd_stop_percent === 'number'
+      ? props.hbd_stop_percent / 100
+      : FALLBACK_HAIRCUT_PERCENT;
+  return { aprPercent, haircutPercent };
+}
 
 export default function HbdPage() {
   const t = useTranslations();
+  // Witness-voted rates; replace hardcoded copy with live chain values when available.
+  const [aprPercent, setAprPercent] = useState(FALLBACK_APR_PERCENT);
+  const [haircutPercent, setHaircutPercent] = useState(FALLBACK_HAIRCUT_PERCENT);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchHbdRates()
+      .then((rates) => {
+        if (!cancelled) {
+          setAprPercent(rates.aprPercent);
+          setHaircutPercent(rates.haircutPercent);
+        }
+      })
+      .catch(() => {
+        // Keep witness-rate fallbacks if the public API is unreachable.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <div className="flex justify-center w-full min-h-[calc(100vh-80px)] py-20 px-5">
@@ -68,7 +123,9 @@ export default function HbdPage() {
               {t('hbd.interestTitle')}<span className="text-[#e31337]">.</span>
               <div className="absolute bottom-0 left-0 h-[5px] w-[60px] bg-[#e31337]"></div>
             </h2>
-            <p className="text-[1.1rem] text-[#555] leading-relaxed">{t('hbd.interestText')}</p>
+            <p className="text-[1.1rem] text-[#555] leading-relaxed">
+              {t('hbd.interestText', { aprPercent })}
+            </p>
           </div>
 
           <div>
@@ -76,7 +133,9 @@ export default function HbdPage() {
               {t('hbd.risksTitle')}<span className="text-[#e31337]">.</span>
               <div className="absolute bottom-0 left-0 h-[5px] w-[60px] bg-[#e31337]"></div>
             </h2>
-            <p className="text-[1.1rem] text-[#555] leading-relaxed mb-3">{t('hbd.risksText')}</p>
+            <p className="text-[1.1rem] text-[#555] leading-relaxed mb-3">
+              {t('hbd.risksText', { haircutPercent })}
+            </p>
             <p className="text-[1.1rem] text-[#555] leading-relaxed mb-3">{t('hbd.risksText2')}</p>
             <p className="text-[1.1rem] font-semibold">
               <a

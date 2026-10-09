@@ -30,6 +30,11 @@ export const metadata: Metadata = {
     icon: "/favicons/favicon.ico",
     apple: "/favicons/apple-touch-icon.png",
   },
+  // Non-production CI builds (staging, branch builds) set SITE_NOINDEX=1 so
+  // search engines drop them. Unset (local and master builds) emits no tag.
+  ...(process.env.SITE_NOINDEX === "1" && {
+    robots: { index: false, follow: false },
+  }),
 };
 
 export function generateStaticParams() {

@@ -136,7 +136,12 @@ function EcoContent() {
 
 export default function EcoPage() {
   return (
-    <Suspense fallback={<div className="text-center py-20">Loading...</div>}>
+    // Reserve the page height until the client renders, as on /join, so the
+    // footer does not start next to the header and jump down (layout shift)
+    <Suspense
+      fallback={
+        <div className="text-center py-20 min-h-screen">Loading...</div>
+      }>
       <EcoContent />
     </Suspense>
   );

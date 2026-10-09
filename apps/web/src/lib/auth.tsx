@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
-import { getHiveChain } from '@hiveio/hive-lib'
 
 export type AuthMethod = 'keychain' | 'hiveauth'
 
@@ -69,6 +68,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       setLoadingAccountInfo(true)
       try {
+        const { getHiveChain } = await import('@hiveio/hive-lib')
         const chain = await getHiveChain()
         const { accounts } = await chain.api.database_api.find_accounts({
           accounts: [user.username]
@@ -94,6 +94,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     setLoadingAccountInfo(true)
     try {
+      const { getHiveChain } = await import('@hiveio/hive-lib')
       const chain = await getHiveChain()
       const { accounts } = await chain.api.database_api.find_accounts({
         accounts: [user.username]

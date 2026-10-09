@@ -1,7 +1,7 @@
 'use client'
 
 import {useEffect, useState} from 'react'
-import {getHiveChainExtended} from '@hiveio/hive-lib'
+import {hiveRpc} from '@hiveio/hive-lib'
 
 interface Voice {
   author: string
@@ -16,6 +16,13 @@ interface Voice {
 interface WhitelistEntry {
   author: string
   permlink: string
+}
+
+interface DiscussionPost {
+  author: string
+  permlink: string
+  body: string
+  created: string
 }
 
 interface UseVoicesOfHiveOptions {
@@ -77,13 +84,14 @@ export function useVoicesOfHive(
   useEffect(() => {
     const fetchVoices = async () => {
       try {
-        const chain = await getHiveChainExtended()
-
-        const discussion = await chain.api.bridge.get_discussion({
-          author: postAuthor,
-          permlink: postPermlink,
-          observer: 'therealwolf',
-        })
+        const discussion = await hiveRpc<Record<string, DiscussionPost> | null>(
+          'bridge.get_discussion',
+          {
+            author: postAuthor,
+            permlink: postPermlink,
+            observer: 'therealwolf',
+          },
+        )
 
         if (!discussion) {
           throw new Error('No discussion found')

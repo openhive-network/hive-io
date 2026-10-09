@@ -108,7 +108,9 @@ function JoinContent() {
 
 export default function JoinPage() {
   return (
-    <Suspense fallback={null}>
+    // Reserve the page height until the client renders, so the footer does not
+    // start next to the header and jump down (layout shift)
+    <Suspense fallback={<div className="min-h-screen" />}>
       <JoinContent />
     </Suspense>
   )

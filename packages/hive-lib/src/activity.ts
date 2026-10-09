@@ -1,5 +1,5 @@
-import {ApiOperation, operation} from '@hiveio/wax'
-import {getHiveChain} from './index'
+import type {ApiBlock, ApiOperation, operation} from '@hiveio/wax'
+import {hiveRpc, parseNaiAsset, type NaiAmount} from './rpc'
 
 /**
  * Format time ago (e.g., "2s ago", "5m ago")
@@ -57,7 +57,6 @@ export function getUserAvatar(username?: string): string {
  * Parse a Hive operation into a readable activity item
  */
 export function parseOperation(
-  hive: any,
   op: ApiOperation,
   blockNum: number,
   txIndex: number,
@@ -74,7 +73,7 @@ export function parseOperation(
 
       if (!data) return null
 
-      const asset = hive.getAsset(data!.amount!)
+      const asset = parseNaiAsset(data!.amount!)
       return {
         id,
         txId,
@@ -186,7 +185,7 @@ export function parseOperation(
 
       if (!data) return null
 
-      const asset = hive.getAsset(data!.amount!)
+      const asset = parseNaiAsset(data!.amount!)
       const user = data.to || data.from
 
       return {
@@ -509,24 +508,28 @@ export async function fetchBlockchainActivity(
   globalProps: DynamicGlobalProperties | null
   hiveFundBalance: { hiveBalance: number; hbdBalance: number } | null
 }> {
-  const hive = await getHiveChain()
-
   // Only check dynamic props on first call or every 10 blocks
   if (lastBlock === 0 || blockCheckCounter % 10 === 0) {
     // Fetch global props and hive.fund account in parallel
     const [props, hiveFundResult] = await Promise.all([
-      hive.api.database_api.get_dynamic_global_properties({}),
-      hive.api.database_api.find_accounts({ accounts: ['hive.fund'] }),
+      hiveRpc<{head_block_number: number}>(
+        'database_api.get_dynamic_global_properties',
+        {},
+      ),
+      hiveRpc<{accounts: {balance: NaiAmount; hbd_balance: NaiAmount}[]}>(
+        'database_api.find_accounts',
+        {accounts: ['hive.fund']},
+      ),
     ])
 
     cachedGlobalProps = props as unknown as DynamicGlobalProperties
     assumedHeadBlock = props.head_block_number
 
-    // Cache hive.fund balance using hive.getAsset
+    // Cache hive.fund balance using parseNaiAsset
     if (hiveFundResult.accounts && hiveFundResult.accounts.length > 0) {
       const account = hiveFundResult.accounts[0]
-      const hiveAsset = hive.getAsset(account.balance)
-      const hbdAsset = hive.getAsset(account.hbd_balance)
+      const hiveAsset = parseNaiAsset(account.balance)
+      const hbdAsset = parseNaiAsset(account.hbd_balance)
       cachedHiveFundBalance = {
         hiveBalance: parseFloat(hiveAsset.amount),
         hbdBalance: parseFloat(hbdAsset.amount),
@@ -570,7 +573,10 @@ export async function fetchBlockchainActivity(
     if (blockNum > assumedHeadBlock) break
 
     try {
-      const result = await hive.api.block_api.get_block({block_num: blockNum})
+      const result = await hiveRpc<{block?: ApiBlock}>(
+        'block_api.get_block',
+        {block_num: blockNum},
+      )
 
       if (!result?.block?.transactions) {
         // Block doesn't exist yet, we've caught up
@@ -599,7 +605,7 @@ export async function fetchBlockchainActivity(
         const interestingOps = filterInterestingOperations(operations)
 
         interestingOps.forEach((op) => {
-          const activity = parseOperation(hive, op, blockNum, txIndex, txId)
+          const activity = parseOperation(op, blockNum, txIndex, txId)
           if (activity) {
             newActivities.push(activity)
           }

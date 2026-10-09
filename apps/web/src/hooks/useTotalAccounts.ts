@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getHiveChainExtended } from '@hiveio/hive-lib';
+import { hiveRpc } from '@hiveio/hive-lib';
 
 interface UseTotalAccountsResult {
   totalAccounts: number;
@@ -17,8 +17,10 @@ export function useTotalAccounts(): UseTotalAccountsResult {
   useEffect(() => {
     const fetchTotalAccounts = async () => {
       try {
-        const chain = await getHiveChainExtended();
-        const count = await chain.api.condenser_api.get_account_count([]);
+        const count = await hiveRpc<number>(
+          'condenser_api.get_account_count',
+          [],
+        );
         setTotalAccounts(count);
         setIsLoading(false);
       } catch (err) {

@@ -52,8 +52,8 @@ export const Header: React.FC<HeaderProps> = ({ items = [] }) => {
     <div id="header" ref={headerRef} className="max-w-screen-2xl w-full">
       <div className="py-5 px-6 sm:px-10 flex flex-row items-center relative">
         <div className="flex flex-row items-center gap-16">
-          <Link href="/">
-            <Logo className="h-[33px] max-[600px]:z-[100]" />
+          <Link href="/" aria-label="Hive">
+            <Logo aria-hidden className="h-[33px] max-[600px]:z-[100]" />
           </Link>
           <Navigation className="max-[600px]:!hidden" items={navigationItems} />
         </div>

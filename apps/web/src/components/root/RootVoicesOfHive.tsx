@@ -185,7 +185,7 @@ export function RootVoicesOfHive({
                   href={currentVoice.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 mt-4 text-sm text-gray-400 hover:text-gray-600 transition-colors"
+                  className="inline-flex items-center gap-1 mt-4 text-sm text-gray-600 hover:text-gray-600 transition-colors"
                 >
                   Read more <ChevronRight className="w-4 h-4" />
                 </a>

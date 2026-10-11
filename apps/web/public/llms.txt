@@ -1,6 +1,6 @@
 # Hive
 
-> Hive is a decentralized, open-source Layer 1 blockchain with 3-second blocks, zero transaction fees, one-block irreversibility, human-readable account names, and a native USD-pegged stablecoin (HBD). It runs on Delegated Proof of Stake (DPoS), has no company, foundation or ICO behind it, and is used for social apps, games, payments and general Web3 applications. Native assets: HIVE (utility, staking, governance) and HBD (Hive Backed Dollar).
+> Hive is a feeless, community-owned blockchain and a public social and identity layer for the open web. It is a decentralized, open-source Layer 1 blockchain with 3-second blocks, zero transaction fees, one-block irreversibility, human-readable account names, and a native USD-pegged stablecoin (HBD). It runs on Delegated Proof of Stake (DPoS), has no company, foundation or ICO behind it, and is used for social apps, games, payments and general Web3 applications. Native assets: HIVE (utility, staking, governance) and HBD (Hive Backed Dollar).
 
 This file is a map for language models and agents. It summarizes what Hive is and links to canonical sources: the website, developer docs, source code, install guides, block explorers, account creation and wallets. Numbers that change over time (APR, app counts, node specs, versions) are marked as "at time of writing" (September 2026). Verify them at the linked source before quoting.
 
@@ -25,7 +25,7 @@ Naming notes for disambiguation:
 - **Human-readable accounts**: addresses are usernames of 3 to 16 characters (for example `@alice`), not hex strings.
 - **Role-based keys**: every account has separate owner, active, posting and memo keys. Apps normally only get the posting key, so a social or game app cannot move funds. Hardfork 28 tightened key hierarchy enforcement.
 - **Account recovery and time-delay security**: stolen accounts can be recovered through a recovery partner, unstaking takes 13 weekly installments, and savings withdrawals take 3 days. These delays limit damage from key theft.
-- **HBD stablecoin**: algorithmic, backed by HIVE, with on-chain two-way conversion (HBD to HIVE at median 3.5-day price, HIVE to HBD collateralized with a 5% burned fee). A haircut rule caps HBD debt at 30% of HIVE market cap. HBD in savings earns interest set by witnesses (15% APR at time of writing).
+- **HBD stablecoin**: algorithmic, backed by HIVE, with on-chain two-way conversion (HBD to HIVE at median 3.5-day price, HIVE to HBD collateralized with a 5% burned fee). A haircut rule caps HBD debt at 30% of the combined market value of HIVE and HBD. HBD in savings earns interest at a rate set by witnesses (current rate: https://explore.openhive.network/).
 - **Decentralized Hive Fund (DHF)**: on-chain treasury funded by 10% of inflation. Anyone can submit a proposal and stakeholders vote on funding. It pays for core development, infrastructure and marketing without a central entity.
 - **Built-in social and content layer**: posts, comments, votes, follows and communities are native operations. 65% of inflation goes to authors and curators through a reward pool.
 - **Custom JSON operations**: apps write arbitrary JSON to the chain for free (within RC limits). This is the base for Layer 2 systems such as Hive Engine, HoneyComb, MAGI and the Splinterlands game logic.

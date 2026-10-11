@@ -240,7 +240,7 @@ export default function RoadmapPage() {
             <a
               href="https://hive.blog/@blocktrades/posts"
               target="_blank"
-              rel="nofollow noopener noreferrer"
+              rel="noopener noreferrer"
               className="text-[#e31337] hover:underline font-medium"
             >
               @blocktrades
@@ -295,7 +295,7 @@ export default function RoadmapPage() {
                       <a
                         href={milestone.link}
                         target="_blank"
-                        rel="nofollow noopener noreferrer"
+                        rel="noopener noreferrer"
                         className="flex items-center gap-2 text-[#e31337] hover:text-[#c12a2f] font-medium transition-colors"
                       >
                         Read More

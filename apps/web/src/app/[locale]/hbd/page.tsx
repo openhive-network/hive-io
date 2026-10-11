@@ -46,7 +46,7 @@ export default function HbdPage() {
               <a
                 href="https://peakd.com"
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel="noopener noreferrer"
                 className="text-[#e31337] hover:underline"
               >
                 Peakd
@@ -55,7 +55,7 @@ export default function HbdPage() {
               <a
                 href="https://hive-keychain.com"
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel="noopener noreferrer"
                 className="text-[#e31337] hover:underline"
               >
                 Hive Keychain
@@ -82,7 +82,7 @@ export default function HbdPage() {
               <a
                 href="https://peakd.com/hbd/@arcange/hive-debt-ratio-and-haircut-rule"
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel="noopener noreferrer"
                 className="text-[#e31337] hover:underline"
               >
                 Read more
@@ -149,7 +149,7 @@ export default function HbdPage() {
               <a
                 href="https://www.hbdstats.com"
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel="noopener noreferrer"
                 className="text-[#e31337] hover:underline"
               >
                 HBD Stats
@@ -158,7 +158,7 @@ export default function HbdPage() {
               <a
                 href="https://hive.ausbit.dev/hbd"
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel="noopener noreferrer"
                 className="text-[#e31337] hover:underline"
               >
                 Block Explorer

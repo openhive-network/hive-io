@@ -117,7 +117,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ items, onCli
                                     <a
                                       href={subItem.to}
                                       target="_blank"
-                                      rel="nofollow noopener noreferrer"
+                                      rel="noopener noreferrer"
                                       onClick={handleLinkClick}
                                       className="block no-underline"
                                     >
@@ -161,7 +161,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ items, onCli
                           <a
                             href={child.to}
                             target="_blank"
-                            rel="nofollow noopener noreferrer"
+                            rel="noopener noreferrer"
                             onClick={handleLinkClick}
                             className="block no-underline"
                           >
@@ -228,7 +228,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ items, onCli
               <a
                 href={item.to}
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel="noopener noreferrer"
                 onClick={handleLinkClick}
                 className="block py-4 text-lg font-medium text-black no-underline hover:text-[#e31337] transition-colors"
               >

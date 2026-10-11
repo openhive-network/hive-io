@@ -191,5 +191,9 @@
     "title": "Brand Assets",
     "text": "The branding of Hive is created by the community, for the community. For graphical representation of Hive, the correct & newest assets shall be used."
   },
-  "moreDetails": "More Details Soon"
+  "moreDetails": "More Details Soon",
+  "footer": {
+    "hook": "Meet the commons of the open web: your public identity, community, and assets come together in one account controlled only by you, with no transaction fees.",
+    "definition": "Hive is a feeless, community-owned blockchain and a public social and identity layer for the open web. Build on Hive's open-source full stack, or extend cross-chain and web apps with Hive accounts, posts and payments that confirm in less than 3 seconds."
+  }
 }

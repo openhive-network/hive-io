@@ -1,24 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-
-// Placeholder data - TODO: Replace with actual API call
-const PLACEHOLDER_LOCKED = {
-  hive_savings: 2320515.702,
-  hbd_savings: 8383879.033,
-  hp: 197821486.215,
-};
-
-interface PriceData {
-  hive: {
-    usd: number;
-    usd_24h_change: number;
-  };
-  hive_dollar: {
-    usd: number;
-    usd_24h_change: number;
-  };
-}
+import {fetchChainSnapshot} from '@/lib/hive-rates'
 
 interface TVLData {
   totalUSD: number;
@@ -27,8 +10,6 @@ interface TVLData {
   hpUSD: number;
   hivePrice: number;
   hbdPrice: number;
-  hive24hChange: number;
-  hbd24hChange: number;
   // Raw token amounts
   hiveSavings: number;
   hbdSavings: number;
@@ -47,17 +28,22 @@ interface UseTVLResult {
   refetch: () => void;
 }
 
-const COINGECKO_API = 'https://api.coingecko.com/api/v3/simple/price?ids=hive,hive_dollar&vs_currencies=usd&include_24hr_change=true';
+// Balance Tracker on the Hive API node (CORS open). Integer strings:
+// savings_hive and savings_hbd carry 3 decimals, total_vests carries 6.
+const TVL_API = 'https://api.hive.blog/balance-api/total-value-locked'
 
-// Fallback prices when API fails
-const FALLBACK_PRICES = {
-  hive: 0.1,
-  hbd: 1.0,
-};
+interface BalanceTrackerTVL {
+  total_vests: string
+  savings_hive: string
+  savings_hbd: string
+}
 
 /**
  * Hook to fetch Total Value Locked (TVL) data
- * Uses placeholder locked amounts and fetches prices from CoinGecko
+ * Locked amounts come from the Balance Tracker, prices from the witness
+ * median feed (HBD is treated as 1 USD, as the chain does). `tvl` is null
+ * until the first success, so the UI never shows a made-up value. A later
+ * failed poll keeps the last good `tvl` and only sets `error`.
  */
 export function useTVL(options: UseTVLOptions = {}): UseTVLResult {
   const { updateInterval = 60000, enabled = true } = options;
@@ -71,21 +57,35 @@ export function useTVL(options: UseTVLOptions = {}): UseTVLResult {
     if (!enabled) return;
 
     try {
-      const response = await fetch(COINGECKO_API);
+      const [response, chain] = await Promise.all([
+        fetch(TVL_API),
+        fetchChainSnapshot(),
+      ])
 
       if (!response.ok) {
-        throw new Error('Failed to fetch price data from CoinGecko');
+        throw new Error(`Balance Tracker HTTP ${response.status}`)
       }
 
-      const priceData: PriceData = await response.json();
+      const locked: BalanceTrackerTVL = await response.json()
 
-      const hivePrice = priceData.hive.usd;
-      const hbdPrice = priceData.hive_dollar.usd;
+      const hiveSavings = Number(locked.savings_hive) / 1000
+      const hbdSavings = Number(locked.savings_hbd) / 1000
+      const vests = Number(locked.total_vests) / 1e6
+      // VESTS to HIVE at the current vesting fund ratio
+      const hpAmount =
+        (vests * chain.totalVestingFundHive) / chain.totalVestingShares
 
-      // Calculate USD values
-      const hiveSavingsUSD = PLACEHOLDER_LOCKED.hive_savings * hivePrice;
-      const hbdSavingsUSD = PLACEHOLDER_LOCKED.hbd_savings * hbdPrice;
-      const hpUSD = PLACEHOLDER_LOCKED.hp * hivePrice; // HP uses HIVE price
+      if (![hiveSavings, hbdSavings, hpAmount].every(Number.isFinite)) {
+        throw new Error('Invalid Balance Tracker response')
+      }
+
+      // Witness median feed gives HBD per HIVE, and the chain treats HBD as $1
+      const hivePrice = chain.hbdPerHive
+      const hbdPrice = 1
+
+      const hiveSavingsUSD = hiveSavings * hivePrice
+      const hbdSavingsUSD = hbdSavings * hbdPrice
+      const hpUSD = hpAmount * hivePrice // HP uses HIVE price
 
       const totalUSD = hiveSavingsUSD + hbdSavingsUSD + hpUSD;
 
@@ -96,42 +96,16 @@ export function useTVL(options: UseTVLOptions = {}): UseTVLResult {
         hpUSD,
         hivePrice,
         hbdPrice,
-        hive24hChange: priceData.hive.usd_24h_change,
-        hbd24hChange: priceData.hive_dollar.usd_24h_change,
         // Raw token amounts
-        hiveSavings: PLACEHOLDER_LOCKED.hive_savings,
-        hbdSavings: PLACEHOLDER_LOCKED.hbd_savings,
-        hpAmount: PLACEHOLDER_LOCKED.hp,
+        hiveSavings,
+        hbdSavings,
+        hpAmount,
       });
       setIsLoading(false);
       setError(null);
     } catch (err) {
-      console.error('Failed to fetch TVL data, using fallback prices:', err);
-
-      // Use fallback prices
-      const hivePrice = FALLBACK_PRICES.hive;
-      const hbdPrice = FALLBACK_PRICES.hbd;
-
-      const hiveSavingsUSD = PLACEHOLDER_LOCKED.hive_savings * hivePrice;
-      const hbdSavingsUSD = PLACEHOLDER_LOCKED.hbd_savings * hbdPrice;
-      const hpUSD = PLACEHOLDER_LOCKED.hp * hivePrice;
-
-      const totalUSD = hiveSavingsUSD + hbdSavingsUSD + hpUSD;
-
-      setTVL({
-        totalUSD,
-        hiveSavingsUSD,
-        hbdSavingsUSD,
-        hpUSD,
-        hivePrice,
-        hbdPrice,
-        hive24hChange: 0,
-        hbd24hChange: 0,
-        hiveSavings: PLACEHOLDER_LOCKED.hive_savings,
-        hbdSavings: PLACEHOLDER_LOCKED.hbd_savings,
-        hpAmount: PLACEHOLDER_LOCKED.hp,
-      });
-      setError(null);
+      console.error('Failed to fetch TVL data:', err)
+      setError(err instanceof Error ? err.message : 'Unknown error')
       setIsLoading(false);
     }
   }, [enabled]);

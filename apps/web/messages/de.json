@@ -184,8 +184,7 @@
     "moreInfoTitle": "Statistics, market cap, and more",
     "moreInfoText": "You can grab the latest figures at ",
     "risksTitle": "Risks",
-    "risksText": "HBD has a security mechanism built into it called haircut rule. The haircut rule makes sure that debt ratio of HBD to HIVE is always less than {haircutPercent}%. Haircut rule gets activated when the debt ratio is greater or equal to {haircutPercent}%. It stops printing HBD and breaks the $1 peg. The HBD to HIVE conversion will return slightly lower value than $1.",
-    "risksText2": "The haircut rule has happened a few times in the past and is proven to be effective in preventing over debt while maintaining a healthy price for both HIVE and HBD tokens."
+    "risksText": "HBD has two safety limits based on how much currently exists compared with the total combined value of HIVE and HBD. When existing HBD reaches {stopPercent}% of that value, new HBD stops being created for rewards and conversions. At a 30% debt ratio, the haircut rule activates automatically and HBD converts to less than $1 of HIVE, which caps the debt."
   },
   "brand": {
     "title": "Brand Assets",

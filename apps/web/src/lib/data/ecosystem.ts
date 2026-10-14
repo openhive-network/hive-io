@@ -464,6 +464,16 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
     featured: false,
   },
+  {
+    id: 'hivegrove',
+    name: 'Hive Grove',
+    description:
+      'Plant and Connect: a cozy social game where you grow trees and friendships.',
+    image: 'hivegrove.png',
+    website: 'https://playhivegrove.com/',
+    types: [EcoType.game, EcoType.social],
+    featured: false,
+  },
 ].concat(BLOCKEXPLORERS as any)
 
 export const TYPE_COLORS = {

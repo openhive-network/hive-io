@@ -1,10 +1,69 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+
+/**
+ * Protocol percent scale is 0–10000 (10000 = 100%).
+ * Witnesses vote hbd_interest_rate. hbd_start_percent and hbd_stop_percent
+ * are HF26 protocol constants, both 20% (hive config.hpp:342-343). The 30%
+ * haircut threshold is HIVE_HBD_HARD_LIMIT (config.hpp:345), which the API
+ * does not expose, so it is written into the copy.
+ * There is no APR fallback: until the chain answers, or if it cannot be
+ * reached, the page links to a live source instead of showing a number.
+ * The stop percent fallback (20) is the protocol constant (config.hpp:343).
+ */
+const FALLBACK_STOP_PERCENT = 20;
+
+async function fetchHbdRates(): Promise<{ aprPercent: number; stopPercent: number }> {
+  const response = await fetch('https://api.hive.blog', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      method: 'condenser_api.get_dynamic_global_properties',
+      params: [],
+      id: 1,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`Hive API HTTP ${response.status}`);
+  }
+  const payload = await response.json();
+  const props = payload?.result;
+  if (!props || typeof props.hbd_interest_rate !== 'number') {
+    throw new Error('Missing hbd_interest_rate in global properties');
+  }
+  const aprPercent = props.hbd_interest_rate / 100;
+  const stopPercent =
+    typeof props.hbd_stop_percent === 'number'
+      ? props.hbd_stop_percent / 100
+      : FALLBACK_STOP_PERCENT;
+  return { aprPercent, stopPercent };
+}
 
 export default function HbdPage() {
   const t = useTranslations();
+  // Witness-voted rates; replace hardcoded copy with live chain values when available.
+  const [aprPercent, setAprPercent] = useState<number | null>(null)
+  const [stopPercent, setStopPercent] = useState(FALLBACK_STOP_PERCENT);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchHbdRates()
+      .then((rates) => {
+        if (!cancelled) {
+          setAprPercent(rates.aprPercent);
+          setStopPercent(rates.stopPercent);
+        }
+      })
+      .catch(() => {
+        // Leave the APR unset (link to live rates) if the public API is unreachable.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <div className="flex justify-center w-full min-h-[calc(100vh-80px)] py-20 px-5">
@@ -68,7 +127,26 @@ export default function HbdPage() {
               {t('hbd.interestTitle')}<span className="text-[#e31337]">.</span>
               <div className="absolute bottom-0 left-0 h-[5px] w-[60px] bg-[#e31337]"></div>
             </h2>
-            <p className="text-[1.1rem] text-[#555] leading-relaxed">{t('hbd.interestText')}</p>
+            <p className="text-[1.1rem] text-[#555] leading-relaxed">
+              {t.rich(
+                aprPercent != null
+                  ? 'hbd.interestText'
+                  : 'hbd.interestTextWitnesses',
+                {
+                  aprPercent: aprPercent ?? '',
+                  link: (chunks) => (
+                    <a
+                      href="https://explore.openhive.network/witnesses"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#e31337] hover:underline"
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                },
+              )}
+            </p>
           </div>
 
           <div>
@@ -76,8 +154,9 @@ export default function HbdPage() {
               {t('hbd.risksTitle')}<span className="text-[#e31337]">.</span>
               <div className="absolute bottom-0 left-0 h-[5px] w-[60px] bg-[#e31337]"></div>
             </h2>
-            <p className="text-[1.1rem] text-[#555] leading-relaxed mb-3">{t('hbd.risksText')}</p>
-            <p className="text-[1.1rem] text-[#555] leading-relaxed mb-3">{t('hbd.risksText2')}</p>
+            <p className="text-[1.1rem] text-[#555] leading-relaxed mb-3">
+              {t('hbd.risksText', { stopPercent })}
+            </p>
             <p className="text-[1.1rem] font-semibold">
               <a
                 href="https://peakd.com/hbd/@arcange/hive-debt-ratio-and-haircut-rule"

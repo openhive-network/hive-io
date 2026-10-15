@@ -13,6 +13,10 @@ import { LogoMarquee } from '@/components/root/LogoMarquee';
 import { TokenCard } from '@/components/cards/TokenCard';
 import { useAssets } from '@/hooks/useAssets';
 import { useTVL } from '@/hooks/useTVL';
+import {useStakingApr} from '@/hooks/useStakingApr'
+import {formatPercent} from '@/lib/hive-rates'
+import {ExplorerLink} from '@/components/ui/explorer-link'
+import {Skeleton} from '@/components/ui/skeleton'
 import { EXCHANGES } from '@/lib/data/var';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import type { DynamicGlobalProperties } from '@hiveio/hive-lib';
@@ -46,7 +50,15 @@ export default function HomePage() {
   const [hiveFundBalance, setHiveFundBalance] = useState<{ hiveBalance: number; hbdBalance: number } | null>(null);
 
   // Fetch TVL data for locked amounts
-  const { tvl } = useTVL({ updateInterval: 60000 });
+  const { tvl, error: tvlError } = useTVL({ updateInterval: 60000 });
+  // Failed only while there is no value; a later failed poll keeps the last one
+  const tvlFailed = tvl == null && tvlError != null
+
+  // Live base staking APR from chain data (null while loading or on failure)
+  const {apr: stakingApr, failed: stakingAprFailed} = useStakingApr()
+
+  // True while the Hive API gave no global properties (supply, HBD rate)
+  const [chainFailed, setChainFailed] = useState(false)
 
   // Callback to pass new block info from DynamicHero to RootDPoS
   const handleNewBlock = useCallback((blockNum: number, witness: string) => {
@@ -83,8 +95,21 @@ export default function HomePage() {
   // Calculate token supply data (subtract hive.fund balance for circulating supply)
   const hiveSupply = parseSupply(globalProps?.current_supply) - (hiveFundBalance?.hiveBalance ?? 0);
   const hbdSupply = parseSupply(globalProps?.current_hbd_supply) - (hiveFundBalance?.hbdBalance ?? 0);
-  const hiveLocked = tvl ? tvl.hpAmount + tvl.hiveSavings : 0;
-  const hbdLocked = tvl?.hbdSavings || 0;
+  const donutStatus = (
+    locked: number | null,
+    supply: number,
+  ): 'loading' | 'ready' | 'failed' => {
+    if (locked != null && supply > 0) return 'ready'
+    if ((locked == null && tvlFailed) || (supply <= 0 && chainFailed)) {
+      return 'failed'
+    }
+    return 'loading'
+  }
+  const hiveLocked = tvl ? tvl.hpAmount + tvl.hiveSavings : null
+  const hbdLocked = tvl ? tvl.hbdSavings : null
+  // Protocol scale is 0–10000 (10000 = 100%). Witnesses vote hbd_interest_rate.
+  const hbdAprPercent =
+    globalProps?.hbd_interest_rate != null ? globalProps.hbd_interest_rate / 100 : null;
 
   const go = (link: string) => {
     window.open(link, '_blank');
@@ -184,7 +209,7 @@ export default function HomePage() {
         className="flex flex-1 flex-col items-center pt-10 max-[600px]:pt-0 pb-0 relative"
       >
         {/* Dynamic Hero with Live Block Number and Activities */}
-        <DynamicHero onNewBlock={handleNewBlock} onGlobalProps={handleGlobalProps} onHiveFundBalance={handleHiveFundBalance} tvl={tvl} />
+        <DynamicHero onNewBlock={handleNewBlock} onGlobalProps={handleGlobalProps} onHiveFundBalance={handleHiveFundBalance} tvl={tvl} tvlFailed={tvlFailed} onChainFailed={setChainFailed} />
       </div>
 
       {/* Token Showcase Section */}
@@ -232,15 +257,31 @@ export default function HomePage() {
                     </svg>
                   ),
                   text: (
-                    <span className="flex items-center gap-2 flex-wrap">
-                      <span className="whitespace-nowrap flex items-center gap-2">Up to <span className="text-2xl font-bold mt-[-2px] text-hive-red">20%</span></span>
-                      <span className="whitespace-nowrap">Staking Rewards</span>
-                    </span>
+                    stakingApr == null && stakingAprFailed ? (
+                      <span>
+                        Base staking APR, plus curation:{' '}
+                        <ExplorerLink className="text-hive-red">
+                          View on chain
+                        </ExplorerLink>
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-2 flex-wrap">
+                        <span className="whitespace-nowrap flex items-center gap-2">
+                          {stakingApr != null ? (
+                            <span className="text-2xl font-bold mt-[-2px] text-hive-red">{formatPercent(stakingApr)}</span>
+                          ) : (
+                            <Skeleton className="h-7 w-16 bg-gray-800" />
+                          )}
+                        </span>
+                        <span className="whitespace-nowrap">base staking APR, plus curation</span>
+                      </span>
+                    )
                   ),
                 },
               ]}
               totalSupply={hiveSupply}
               lockedAmount={hiveLocked}
+              chartStatus={donutStatus(hiveLocked, hiveSupply)}
               chartLabel="Staked"
               onBuyHover={(rect) => spawnParticleBurst(rect, 'hive')}
             />
@@ -277,14 +318,35 @@ export default function HomePage() {
                     </svg>
                   ),
                   text: (
-                    <span className="flex items-center gap-2">
-                      Earn <span className="text-2xl font-bold mt-[-2px] text-emerald-400">15%</span> APR
-                    </span>
+                    hbdAprPercent == null && chainFailed ? (
+                      <span>
+                        Earn APR, as{' '}
+                        <ExplorerLink
+                          href="https://explore.openhive.network/witnesses"
+                          className="text-emerald-400">
+                          set by witnesses
+                        </ExplorerLink>
+                        .
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-2">
+                        Earn{' '}
+                        {hbdAprPercent != null ? (
+                          <span className="text-2xl font-bold mt-[-2px] text-emerald-400">
+                            {`${hbdAprPercent}%`}
+                          </span>
+                        ) : (
+                          <Skeleton className="h-7 w-14 bg-gray-800" />
+                        )}{' '}
+                        APR
+                      </span>
+                    )
                   ),
                 },
               ]}
               totalSupply={hbdSupply}
               lockedAmount={hbdLocked}
+              chartStatus={donutStatus(hbdLocked, hbdSupply)}
               chartLabel="Staked"
               onBuyHover={(rect) => spawnParticleBurst(rect, 'hbd')}
               buyUrl="https://hivedex.io/"

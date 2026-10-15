@@ -23,7 +23,7 @@ export const NAVIGATION_HEADER_DROPDOWN = [
       {
         to: 'hbd',
         name: 'Hive Dollar (HBD)',
-        description: 'Stablecoin with 15% APR',
+        description: 'Non-Custodial Savings and Yield',
       },
     ],
   },

@@ -1,19 +1,45 @@
 'use client';
 
 import React from 'react';
+import {ExplorerLink} from '@/components/ui/explorer-link'
+import {Skeleton} from '@/components/ui/skeleton'
 
 interface TokenDonutChartProps {
   total: number;
-  locked: number;
+  locked: number | null // null until live locked amounts load
+  // loading: pulsing placeholder, failed: link to the chain explorer
+  status: 'loading' | 'ready' | 'failed'
   size?: number;
   primaryColor: string;
   secondaryColor: string;
   label?: string;
 }
 
+// Fixed-height legend value: skeleton while loading, empty on failure
+function LegendValue({
+  isReady,
+  status,
+  children,
+}: {
+  isReady: boolean
+  status: 'loading' | 'ready' | 'failed'
+  children: React.ReactNode
+}) {
+  return (
+    <span className="block h-5 text-white font-semibold">
+      {isReady ? (
+        children
+      ) : status === 'loading' ? (
+        <Skeleton className="mt-0.5 h-4 w-10 bg-gray-800" />
+      ) : null}
+    </span>
+  )
+}
+
 export const TokenDonutChart: React.FC<TokenDonutChartProps> = ({
   total,
   locked,
+  status,
   size = 160,
   primaryColor,
   secondaryColor,
@@ -23,7 +49,9 @@ export const TokenDonutChart: React.FC<TokenDonutChartProps> = ({
   const radius = (size - strokeWidth) / 2;
   const innerRadius = radius - strokeWidth / 2 - 8;
   const circumference = 2 * Math.PI * radius;
-  const lockedPercentage = total > 0 ? (locked / total) * 100 : 0;
+  const isReady = status === 'ready' && locked != null
+  const lockedPercentage =
+    locked != null && total > 0 ? (locked / total) * 100 : 0
   const lockedOffset = circumference - (lockedPercentage / 100) * circumference;
 
   const formatNumber = (num: number) => {
@@ -77,9 +105,21 @@ export const TokenDonutChart: React.FC<TokenDonutChartProps> = ({
 
         {/* Center content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-3xl font-bold text-white">
-            {lockedPercentage.toFixed(0)}%
-          </span>
+          <div className="flex h-9 items-center">
+            {isReady ? (
+              <span className="text-3xl font-bold text-white">
+                {`${lockedPercentage.toFixed(0)}%`}
+              </span>
+            ) : status === 'failed' ? (
+              <ExplorerLink
+                className="text-sm font-semibold"
+                style={{color: primaryColor}}>
+                View on chain
+              </ExplorerLink>
+            ) : (
+              <Skeleton className="h-8 w-16 bg-gray-800" />
+            )}
+          </div>
           <span className="text-sm text-gray-400 font-medium">{label || 'Locked'}</span>
         </div>
       </div>
@@ -93,7 +133,9 @@ export const TokenDonutChart: React.FC<TokenDonutChartProps> = ({
           />
           <div className="flex flex-col">
             <span className="text-gray-500 text-xs">{label || 'Locked'}</span>
-            <span className="text-white font-semibold">{formatNumber(locked)}</span>
+            <LegendValue isReady={isReady} status={status}>
+              {locked != null ? formatNumber(locked) : ''}
+            </LegendValue>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -103,7 +145,9 @@ export const TokenDonutChart: React.FC<TokenDonutChartProps> = ({
           />
           <div className="flex flex-col">
             <span className="text-gray-500 text-xs">Liquid</span>
-            <span className="text-white font-semibold">{formatNumber(total - locked)}</span>
+            <LegendValue isReady={isReady} status={status}>
+              {locked != null ? formatNumber(total - locked) : ''}
+            </LegendValue>
           </div>
         </div>
       </div>

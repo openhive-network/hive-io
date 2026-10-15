@@ -16,7 +16,8 @@ interface TokenCardProps {
   colorRgb: string; // For shadow: "227,19,55" or "16,185,129"
   features: TokenFeature[];
   totalSupply: number;
-  lockedAmount: number;
+  lockedAmount: number | null // null until live locked amounts load
+  chartStatus: 'loading' | 'ready' | 'failed'
   chartLabel: string;
   onBuyHover?: (rect: DOMRect) => void;
   buyUrl?: string; // If provided, opens this URL in new tab instead of scrolling to exchanges
@@ -33,6 +34,7 @@ export const TokenCard = forwardRef<HTMLDivElement, TokenCardProps>(
       features,
       totalSupply,
       lockedAmount,
+      chartStatus,
       chartLabel,
       onBuyHover,
       buyUrl,
@@ -141,17 +143,16 @@ export const TokenCard = forwardRef<HTMLDivElement, TokenCardProps>(
           </div>
 
           {/* Right side - Donut chart */}
-          {totalSupply > 0 && (
-            <div className="flex flex-col items-center justify-center md:items-end">
-              <TokenDonutChart
-                total={totalSupply}
-                locked={lockedAmount}
-                primaryColor={color}
-                secondaryColor={color}
-                label={chartLabel}
-              />
-            </div>
-          )}
+          <div className="flex flex-col items-center justify-center md:items-end">
+            <TokenDonutChart
+              total={totalSupply}
+              locked={lockedAmount}
+              status={chartStatus}
+              primaryColor={color}
+              secondaryColor={color}
+              label={chartLabel}
+            />
+          </div>
         </div>
       </div>
     );

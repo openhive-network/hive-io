@@ -4,6 +4,8 @@ import { useBlockchainActivity } from '@/hooks/useBlockchainActivity';
 import { useTotalAccounts } from '@/hooks/useTotalAccounts';
 import { useTransactionStats } from '@/hooks/useTransactionStats';
 import { Link } from '@/i18n/routing';
+import {ExplorerLink} from '@/components/ui/explorer-link'
+import {Skeleton} from '@/components/ui/skeleton'
 import { useMainStore } from '@/store/useMainStore';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { DynamicGlobalProperties } from '@hiveio/hive-lib';
@@ -19,6 +21,37 @@ interface DynamicHeroProps {
   onGlobalProps?: (props: DynamicGlobalProperties) => void;
   onHiveFundBalance?: (balance: { hiveBalance: number; hbdBalance: number }) => void;
   tvl?: TVLData | null;
+  tvlFailed?: boolean // TVL could not be loaded and there is no earlier value
+  // true while the Hive API gave no global properties and the fetch failed
+  onChainFailed?: (failed: boolean) => void
+}
+
+// Stat bar value: the number, a pulsing placeholder, or a link on failure
+function HeroStatValue({
+  value,
+  failed,
+}: {
+  value: string | null
+  failed: boolean
+}) {
+  if (value) {
+    return (
+      <div className="text-4xl max-[600px]:text-2xl font-bold text-gray-900">
+        {value}
+      </div>
+    )
+  }
+  return (
+    <div className="flex h-10 max-[600px]:h-8 items-center">
+      {failed ? (
+        <ExplorerLink className="text-lg max-[600px]:text-base font-semibold text-[#e31337]">
+          View on chain
+        </ExplorerLink>
+      ) : (
+        <Skeleton className="h-8 max-[600px]:h-6 w-28 bg-gray-200" />
+      )}
+    </div>
+  )
 }
 
 // Rotating slogans for the hero
@@ -43,7 +76,7 @@ function calculateMaxActivities(): number {
   return Math.max(4, Math.min(calculated, 4));
 }
 
-export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl }: DynamicHeroProps) {
+export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl, tvlFailed = false, onChainFailed }: DynamicHeroProps) {
   const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const [maxActivities, setMaxActivities] = useState(() => calculateMaxActivities());
@@ -102,7 +135,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
   const [shouldStopPolling, setShouldStopPolling] = useState(false);
   const [isHoveringFeed, setIsHoveringFeed] = useState(false);
 
-  const { activities: hookActivities, currentBlock, globalProps, hiveFundBalance } = useBlockchainActivity({
+  const { activities: hookActivities, currentBlock, globalProps, hiveFundBalance, error: chainError } = useBlockchainActivity({
     maxActivities,
     updateInterval: 3000,
     enabled: true,
@@ -116,6 +149,12 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
       onGlobalProps(globalProps);
     }
   }, [globalProps, onGlobalProps]);
+
+  // Tell the parent when the chain data cannot be loaded (never after a success)
+  const chainFailed = globalProps == null && chainError != null
+  useEffect(() => {
+    onChainFailed?.(chainFailed)
+  }, [chainFailed, onChainFailed])
 
   // Pass hive.fund balance to parent when updated
   useEffect(() => {
@@ -575,9 +614,10 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
             </svg>
             <span className="font-medium">Market Cap</span>
           </div>
-          <div className={`text-4xl max-[600px]:text-2xl font-bold ${marketCap > 0 ? 'text-gray-900' : 'text-gray-300'}`}>
-            {marketCap > 0 ? `$${(marketCap / 1_000_000).toFixed(2)}M` : '---'}
-          </div>
+          <HeroStatValue
+            value={marketCap > 0 ? `$${(marketCap / 1_000_000).toFixed(2)}M` : null}
+            failed={tvlFailed || chainFailed}
+          />
         </div>
 
         <div>
@@ -587,9 +627,10 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl 
             </svg>
             <span className="font-medium">TVL</span>
           </div>
-          <div className={`text-4xl max-[600px]:text-2xl font-bold ${tvl ? 'text-gray-900' : 'text-gray-300'}`}>
-            {tvl ? `$${(tvl.totalUSD / 1_000_000).toFixed(2)}M` : '---'}
-          </div>
+          <HeroStatValue
+            value={tvl ? `$${(tvl.totalUSD / 1_000_000).toFixed(2)}M` : null}
+            failed={tvlFailed}
+          />
         </div>
 
         <div>

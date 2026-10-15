@@ -12,10 +12,10 @@ import 'tippy.js/dist/tippy.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://hive.io'),
   title: "Hive - The Blockchain & Cryptocurrency for Web3",
-  description: "Hive is an innovative and forward-looking decentralized blockchain and ecosystem, designed to scale with widespread adoption of the currency and platforms in mind.",
+  description: "Hive is a feeless, community-owned blockchain and a public social and identity layer for the open web.",
   openGraph: {
     title: "Hive - The Blockchain & Cryptocurrency for Web3",
-    description: "Hive is an innovative and forward-looking decentralized blockchain and ecosystem",
+    description: "Hive is a feeless, community-owned blockchain and a public social and identity layer for the open web.",
     url: "https://hive.io",
     siteName: "Hive",
     images: [

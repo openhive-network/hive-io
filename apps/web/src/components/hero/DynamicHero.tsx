@@ -445,7 +445,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl,
                     href={`https://hivehub.dev/b/${currentBlock}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-semibold text-gray-400 max-[600px]:text-gray-600 hover:text-[#e31337] transition-colors"
+                    className="text-sm font-semibold text-gray-500 max-[600px]:text-gray-600 hover:text-[#e31337] transition-colors"
                   >
                     #{currentBlock.toLocaleString()}
                   </a>
@@ -458,7 +458,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl,
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#22c55e]"></span>
                 </div>
-                <span className="text-sm font-semibold text-[#22c55e] uppercase tracking-wide">Live</span>
+                <span className="text-sm font-semibold text-[#15803d] uppercase tracking-wide">Live</span>
               </div>
             </div>
 
@@ -527,7 +527,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl,
                     </div>
                     <div className="flex items-center gap-1 shrink-0">
                       {activity.txId && (
-                        <span className="text-xs text-gray-400 group-hover:text-[#e31337] font-mono transition-colors">
+                        <span className="text-xs text-gray-500 group-hover:text-[#e31337] font-mono transition-colors">
                           {activity.txId.substring(0, 4)}...{activity.txId.substring(activity.txId.length - 4)}
                         </span>
                       )}

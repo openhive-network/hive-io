@@ -19,6 +19,7 @@ export const Footer: React.FC<FooterProps> = ({ items = [], className, ...props 
               <React.Fragment key={social.icon}>
                 <a
                   href={social.link}
+                  aria-label={social.name}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors"

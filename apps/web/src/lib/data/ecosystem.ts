@@ -78,7 +78,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     name: 'Holozing',
     description:
       'A roleplaying adventure game for both casual and competitive players.',
-    image: 'holozing.png',
+    image: 'holozing.webp',
     website: 'https://holozing.com/',
     types: [EcoType.game, EcoType.nft],
     featured: true,
@@ -402,7 +402,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     name: 'Astral Wars',
     description:
       'Astral Wars is a fast-paced digital trading card game where players use programs, units, deterrents and structures to outsmart opponents in epic duels set in the Astranian universe.',
-    image: 'AstralWars.png',
+    image: 'AstralWars.webp',
     website: 'https://surgent-gaming-marketplace.vercel.app/',
     types: [EcoType.game],
     featured: false,
@@ -420,7 +420,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     id: 'dungeoncities',
     name: 'Dungeon Cities',
     description: 'A blockchain-based dungeon building and battling game on Hive.',
-    image: 'dungeoncities.png',
+    image: 'dungeoncities.webp',
     website: 'https://dungeoncities.com/',
     types: [EcoType.game],
     featured: false,
@@ -449,7 +449,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     name: 'Pevo',
     description:
       'Publish, review, and evaluate research on a transparent, open platform.',
-    image: 'pevo.png',
+    image: 'pevo.webp',
     website: 'https://pevo.science/',
     types: [EcoType.social],
     featured: true,

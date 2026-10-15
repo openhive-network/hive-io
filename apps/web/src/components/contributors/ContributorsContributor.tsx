@@ -34,7 +34,7 @@ export const ContributorsContributor: React.FC<ContributorsContributorProps> = (
       <a
         href={`${links.hive}${contributor.social?.hive}`}
         target="_blank"
-        rel="nofollow noopener noreferrer"
+        rel="noopener noreferrer"
         className="block"
       >
         <img
@@ -47,7 +47,7 @@ export const ContributorsContributor: React.FC<ContributorsContributorProps> = (
         className="mt-2 text-[0.8rem] max-[600px]:text-[0.7rem] font-semibold text-[#555] text-center leading-tight hover:text-[#e31337] transition-colors truncate w-full"
         href={`${links.hive}${contributor.social?.hive}`}
         target="_blank"
-        rel="nofollow noopener noreferrer"
+        rel="noopener noreferrer"
       >
         {contributor.name}
       </a>
@@ -60,7 +60,7 @@ export const ContributorsContributor: React.FC<ContributorsContributorProps> = (
             key={platform}
             href={`${links[platform]}${handle}`}
             target="_blank"
-            rel="nofollow noopener noreferrer"
+            rel="noopener noreferrer"
             className="text-[#787885] hover:text-[#e31337] transition-colors"
           >
             <FontAwesomeIcon

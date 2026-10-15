@@ -96,7 +96,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                                 <NavigationMenuLink
                                   href={child.to}
                                   target="_blank"
-                                  rel="nofollow noopener noreferrer"
+                                  rel="noopener noreferrer"
                                   onClick={onClicked}
                                   className="group/link block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
                                 >
@@ -158,7 +158,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                                     <NavigationMenuLink
                                       href={subItem.to}
                                       target="_blank"
-                                      rel="nofollow noopener noreferrer"
+                                      rel="noopener noreferrer"
                                       onClick={onClicked}
                                       className="group/link block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
                                     >

@@ -107,7 +107,7 @@ export const App: React.FC<AppProps> = ({
         <a
           href={getWebsiteUrl()}
           target="_blank"
-          rel="nofollow noopener noreferrer"
+          rel="noopener noreferrer"
           className={innerClasses}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
@@ -131,7 +131,7 @@ export const App: React.FC<AppProps> = ({
             <a
               href={getWebsiteUrl()}
               target="_blank"
-              rel="nofollow noopener noreferrer"
+              rel="noopener noreferrer"
               className={`flex items-center mt-0.5 mb-1.5 transition-all ease-in duration-100 ${compact ? 'text-[0.8rem]' : 'text-base'
                 } ${move && !detailed && hover ? 'text-[#e31337]' : ''} ${detailed ? 'text-2xl font-semibold' : ''}`}
               onMouseEnter={() => setHover(true)}
@@ -181,7 +181,7 @@ export const App: React.FC<AppProps> = ({
           <a
             href={item.github || item.gitlab}
             target="_blank"
-            rel="nofollow noopener noreferrer"
+            rel="noopener noreferrer"
             className={`flex items-center mt-1 ${compact ? 'text-[0.7rem]' : 'text-[0.88rem]'} opacity-50 transition-all ease-in duration-100 hover:text-[#e31337]`}
           >
             Open Source
@@ -210,7 +210,7 @@ export const App: React.FC<AppProps> = ({
             <a
               href={getWebsiteUrl()}
               target="_blank"
-              rel="nofollow noopener noreferrer"
+              rel="noopener noreferrer"
               className="text-white"
             >
               Website

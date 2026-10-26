@@ -177,20 +177,24 @@
     "hbdToHiveTitle": "HBD to HIVE conversion",
     "hbdToHiveText": "This operation converts set amounts of HBD to $1USD worth of HIVE with no extra fees. It takes 3.5 days for the conversion to finalize. The price in this conversion is the median price of the coming 3.5 days to prevent market manipulations.",
     "hiveToHbdTitle": "HIVE to HBD conversion",
-    "hiveToHbdText": "This operation is a collateral-based conversion. After initialazing the conversion of the X amount of HIVE to HBD, the user gets Y amount of HBD immediately. The Y is equivilent of the value of X/2 of the HIVE. The cost for Y amount of HBD is calculated after 3.5 days and the remaining HIVE is returned to the user. The price is the median price of the 3.5 days. This conversion has a 5% fee which is burned in the process.",
+    "hiveToHbdText": "This operation is a collateral-based conversion. After initializing the conversion of the X amount of HIVE to HBD, the user gets Y amount of HBD immediately. The Y is equivalent of the value of X/2 of the HIVE. The cost for Y amount of HBD is calculated after 3.5 days and the remaining HIVE is returned to the user. The price is the median price of the 3.5 days. This conversion has a 5% fee which is burned in the process.",
     "supportedWallets": "Supported wallets",
     "interestTitle": "Savings account APR",
-    "interestText": "Placing your HBD savings in a Savings Account on Hive will generate returns. Saving is an action that locks the HBD with a unlock time of only 3 days. The interest rate is voted by the witnesses and is variable. It is currently at 15% APR.",
+    "interestText": "HBD you move into savings stays in your own Hive account, with no custodian, and earns interest. Withdrawals take 3 days. The rate is variable and <link>set by witnesses</link>, currently {aprPercent}% APR.",
+    "interestTextWitnesses": "HBD you move into savings stays in your own Hive account, with no custodian, and earns interest. Withdrawals take 3 days. The rate is variable and <link>set by witnesses</link>.",
     "whereToBuyTitle": "Where to buy",
     "moreInfoTitle": "Statistics, market cap, and more",
     "moreInfoText": "You can grab the latest figures at ",
     "risksTitle": "Risks",
-    "risksText": "HBD has a security mechanism built into it called haircut rule. The haircut rule makes sure that debt ratio of HBD to HIVE is always less than 30%. Haircut rule gets activated when the debt ratio is greater or equal to 30%. It stops printing HBD and breaks the $1 peg. The HBD to HIVE conversion will return slightly lower value than $1.",
-    "risksText2": "The haircut rule has happened a few times in the past and is proven to be effective in preventing over debt while maintaining a healthy price for both HIVE and HBD tokens."
+    "risksText": "HBD has two safety limits based on how much currently exists compared with the total combined value of HIVE and HBD. When existing HBD reaches {stopPercent}% of that value, new HBD stops being created for rewards and conversions. At a 30% debt ratio, the haircut rule activates automatically and HBD converts to less than $1 of HIVE, which caps the debt."
   },
   "brand": {
     "title": "Brand Assets",
     "text": "The branding of Hive is created by the community, for the community. For graphical representation of Hive, the correct & newest assets shall be used."
   },
-  "moreDetails": "More Details Soon"
+  "moreDetails": "More Details Soon",
+  "footer": {
+    "hook": "Meet the commons of the open web: your public identity, community, and assets come together in one account controlled only by you, with no transaction fees.",
+    "definition": "Hive is a feeless, community-owned blockchain and a public social and identity layer for the open web. Build on Hive's open-source full stack, or extend cross-chain and web apps with Hive accounts, posts and payments that confirm in less than 3 seconds."
+  }
 }

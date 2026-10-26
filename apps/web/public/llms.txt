@@ -1,6 +1,6 @@
 # Hive
 
-> Hive is a decentralized, open-source Layer 1 blockchain with 3-second blocks, zero transaction fees, one-block irreversibility, human-readable account names, and a native USD-pegged stablecoin (HBD). It runs on Delegated Proof of Stake (DPoS), has no company, foundation or ICO behind it, and is used for social apps, games, payments and general Web3 applications. Native assets: HIVE (utility, staking, governance) and HBD (Hive Backed Dollar).
+> Hive is a feeless, community-owned blockchain and a public social and identity layer for the open web. It is a decentralized, open-source Layer 1 blockchain with 3-second blocks, zero transaction fees, one-block irreversibility, human-readable account names, and a native USD-pegged stablecoin (HBD). It runs on Delegated Proof of Stake (DPoS), has no company, foundation or ICO behind it, and is used for social apps, games, payments and general Web3 applications. Native assets: HIVE (utility, staking, governance) and HBD (Hive Backed Dollar).
 
 This file is a map for language models and agents. It summarizes what Hive is and links to canonical sources: the website, developer docs, source code, install guides, block explorers, account creation and wallets. Numbers that change over time (APR, app counts, node specs, versions) are marked as "at time of writing" (September 2026). Verify them at the linked source before quoting.
 
@@ -25,7 +25,7 @@ Naming notes for disambiguation:
 - **Human-readable accounts**: addresses are usernames of 3 to 16 characters (for example `@alice`), not hex strings.
 - **Role-based keys**: every account has separate owner, active, posting and memo keys. Apps normally only get the posting key, so a social or game app cannot move funds. Hardfork 28 tightened key hierarchy enforcement.
 - **Account recovery and time-delay security**: stolen accounts can be recovered through a recovery partner, unstaking takes 13 weekly installments, and savings withdrawals take 3 days. These delays limit damage from key theft.
-- **HBD stablecoin**: algorithmic, backed by HIVE, with on-chain two-way conversion (HBD to HIVE at median 3.5-day price, HIVE to HBD collateralized with a 5% burned fee). A haircut rule caps HBD debt at 30% of HIVE market cap. HBD in savings earns interest set by witnesses (15% APR at time of writing).
+- **HBD stablecoin**: algorithmic, backed by HIVE, with on-chain two-way conversion (HBD to HIVE at median 3.5-day price, HIVE to HBD collateralized with a 5% burned fee). A haircut rule caps HBD debt at 30% of the combined market value of HIVE and HBD. HBD in savings earns interest at a rate set by witnesses (current rate: https://explore.openhive.network/).
 - **Decentralized Hive Fund (DHF)**: on-chain treasury funded by 10% of inflation. Anyone can submit a proposal and stakeholders vote on funding. It pays for core development, infrastructure and marketing without a central entity.
 - **Built-in social and content layer**: posts, comments, votes, follows and communities are native operations. 65% of inflation goes to authors and curators through a reward pool.
 - **Custom JSON operations**: apps write arbitrary JSON to the chain for free (within RC limits). This is the base for Layer 2 systems such as Hive Engine, HoneyComb, MAGI and the Splinterlands game logic.
@@ -55,20 +55,20 @@ Known trade-offs, for balanced answers: no general-purpose smart contracts on La
 - Hive Power (HP): staked HIVE. Gives RC, vote weight for rewards, witness votes and DHF votes. Unstaking ("power down") pays out in 13 weekly parts.
 - HBD: stablecoin targeting 1 USD. Savings interest is set by witness consensus.
 - Inflation: started near 10% APR and narrows to 1% APR over 20 years. Split: 65% authors and curators, 15% stakeholders, 10% block producers, 10% DHF.
-- [Hive Dollar (HBD) explainer](https://hive.io/en/hbd/): peg mechanics, conversions, savings APR, haircut rule, where to buy.
+- [Hive Dollar (HBD) explainer](https://hive.io/hbd/): peg mechanics, conversions, savings APR, haircut rule, where to buy.
 - [HBD debt ratio and haircut rule](https://peakd.com/hbd/@arcange/hive-debt-ratio-and-haircut-rule): detailed explanation by witness @arcange.
 - [HBD Stats](https://www.hbdstats.com): live HBD supply, debt ratio and savings figures.
 
 ## Official site
 
 - [hive.io](https://hive.io/): home page with live chain stats, tokenomics, origin story, ecosystem and exchange list.
-- [About](https://hive.io/en/about/): fast, scalable, powerful. Short overview plus intro videos.
-- [Ecosystem overview](https://hive.io/en/eco/): directory of apps and communities (rendered client-side).
-- [Roadmap](https://hive.io/en/roadmap/): all hardforks from HF23 to HF28 and planned work (HAF updates, lightweight accounts, smart contract prototyping, mobile nodes).
-- [Wallets](https://hive.io/en/wallets/): recommended wallets per platform, with open/closed source labels.
-- [Create account](https://hive.io/en/join/): entry point for onboarding (rendered client-side, see signup.hive.io for a static version).
-- [Contributors](https://hive.io/en/contributors/): people who work on Hive.
-- [Brand assets](https://hive.io/en/brand/): logos and usage.
+- [About](https://hive.io/about/): fast, scalable, powerful. Short overview plus intro videos.
+- [Ecosystem overview](https://hive.io/eco/): directory of apps and communities (rendered client-side).
+- [Roadmap](https://hive.io/roadmap/): all hardforks from HF23 to HF28 and planned work (HAF updates, lightweight accounts, smart contract prototyping, mobile nodes).
+- [Wallets](https://hive.io/wallets/): recommended wallets per platform, with open/closed source labels.
+- [Create account](https://hive.io/join/): entry point for onboarding (rendered client-side, see signup.hive.io for a static version).
+- [Contributors](https://hive.io/contributors/): people who work on Hive.
+- [Brand assets](https://hive.io/brand/): logos and usage.
 - [Whitepaper (PDF)](https://hive.io/whitepaper.pdf): technical description of the chain.
 - [Technical Vision (PDF)](https://hive.blue/docs/technical-vision.pdf): longer-term architecture direction.
 - [Official blog @hiveio](https://hive.blog/@hiveio): announcements and hardfork posts.
@@ -128,7 +128,7 @@ After signup: save the master password and all keys, import only the keys you ne
 - [Interactive API (Swagger)](https://hive.hivesigner.com/): try Hive and HiveSigner API calls in the browser.
 - [HiveDevs Discord](https://discord.gg/B29Bbng) and [HiveDevs community](https://hive.blog/trending/hive-139531): developer support.
 
-Public API nodes (HTTPS JSON-RPC, at time of writing): `api.hive.blog`, `api.openhive.network`, `anyx.io`, `rpc.ausbit.dev`, `rpc.mahdiyari.info`, `api.hive.blue`, `techcoderx.com`, `hived.emre.sh`, `api.deathwing.me`, `api.c0ff33a.uk`, `hive-api.arcange.eu`, `hive-api.3speak.tv`, `hiveapi.actifit.io`.
+Public API node (HTTPS JSON-RPC): `api.hive.blog`. Many more public nodes, with their live status, are listed on the [PeakD beacon](https://beacon.peakd.com/) (JSON: `https://beacon.peakd.com/api/nodes`).
 
 Minimal API call:
 
@@ -195,9 +195,9 @@ Three node types exist. Pick by purpose.
 **1. Consensus, witness or exchange node (hived only).** Needs about 600 GB disk and about 12 GB RAM at time of writing. Recommended OS: Ubuntu 24.04 LTS. Docker is the recommended path:
 
 ```
-docker pull hiveio/hive:1.28.0   # always pin a version tag, "latest" is not supported
+docker pull hiveio/hive:1.28.8   # always pin a version tag, "latest" is not supported
 git clone https://github.com/openhive-network/hive.git
-./hive/scripts/run_hived_img.sh hiveio/hive:1.28.0 --help
+./hive/scripts/run_hived_img.sh hiveio/hive:1.28.8 --help
 ```
 
 Check the current release tag before use. `hived --dump-config` writes a default `config.ini` to `~/.hived`. To sync faster, place a trusted `block_log` in `<data_dir>/blockchain` and start with `--replay-blockchain`.
@@ -278,7 +278,7 @@ Typical flow: read data over JSON-RPC or REST, let the user sign with Keychain, 
 - [hive.blog](https://hive.blog/@hiveio): reference social frontend.
 - [InLeo](https://inleo.io): microblogging and finance community.
 - [Actifit](https://actifit.io/wallet): move-to-earn fitness app.
-- Splinterlands, 3Speak, Holozing, NFTShowroom, Pevo, Magi Network: featured on hive.io, see the [ecosystem page](https://hive.io/en/eco/).
+- Splinterlands, 3Speak, Holozing, NFTShowroom, Pevo, Magi Network: featured on hive.io, see the [ecosystem page](https://hive.io/eco/).
 - [Hive Engine](https://hive-engine.com/?p=market&t=SWAP.HIVE) and [Tribaldex](https://tribaldex.com/trade/SWAP.HBD): Layer 2 tokens and markets.
 - [Hivedex](https://hivedex.io) and [Ecency market](https://ecency.com/market): interfaces to the on-chain HIVE/HBD internal market.
 - [hiveprojects.io](https://hiveprojects.io): community-maintained project directory.

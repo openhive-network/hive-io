@@ -9,12 +9,25 @@ import {randomBytes, bytesToHex} from '@noble/hashes/utils'
 export let hive: IHiveChainInterface = null as any
 let hiveExtended: ReturnType<typeof hive.extend<typeof WaxExtendedData>> | null = null
 
-const initHiveChain = async () => {
-  if (!hive) {
-    hive = await createHiveChain()
-    hiveExtended = hive.extend(WaxExtendedData)
+// One shared init promise: createHiveChain() fetches the ~4.4 MB wax wasm, so
+// concurrent callers must await the same promise instead of each starting one.
+let hiveInit: Promise<IHiveChainInterface> | null = null
+
+const initHiveChain = (): Promise<IHiveChainInterface> => {
+  if (!hiveInit) {
+    hiveInit = createHiveChain()
+      .then((chain) => {
+        hive = chain
+        hiveExtended = chain.extend(WaxExtendedData)
+        return chain
+      })
+      .catch((error) => {
+        // Let a later call retry after a failed init
+        hiveInit = null
+        throw error
+      })
   }
-  return hive
+  return hiveInit
 }
 
 export const getHiveChain = async (): Promise<IHiveChainInterface> => {
@@ -28,6 +41,7 @@ export const getHiveChainExtended = async () => {
 
 // Re-export activity utilities
 export * from './activity'
+export * from './rpc'
 
 // ==========================================
 // Account Creation Types

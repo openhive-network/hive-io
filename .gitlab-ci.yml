@@ -26,6 +26,7 @@ build:
   script:
     - ls -l
     - pnpm install --frozen-lockfile
+    - if [ -n "$CI_COMMIT_BRANCH" ] && [ "$CI_COMMIT_BRANCH" != "master" ]; then export SITE_NOINDEX=1; unset NEXT_PUBLIC_GA_ID NEXT_PUBLIC_GTM_ID; fi
     - pnpm build
     - echo "BUILD SUCCESSFULLY"
   artifacts:

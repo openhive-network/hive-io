@@ -30,7 +30,7 @@ export const EXCHANGES = [
     id: 'bitpanda',
     name: 'Bitpanda',
     website: 'https://www.bitpanda.com/en/prices/hive-hive',
-    image: 'bitpanda.png',
+    image: 'bitpanda.webp',
   },
   {
     id: 'bitrue',
@@ -90,7 +90,7 @@ export const EXCHANGES = [
     id: 'exolix',
     name: 'Exolix',
     website: 'https://exolix.com/currencies/hive',
-    image: 'exolix.png',
+    image: 'exolix.webp',
   },
   {
     id: 'gateio',

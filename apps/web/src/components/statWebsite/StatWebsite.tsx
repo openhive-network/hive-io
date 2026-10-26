@@ -29,7 +29,7 @@ export const StatWebsite: React.FC<StatWebsiteProps> = ({
       <a
         href={item.website}
         target="_blank"
-        rel="nofollow noopener noreferrer"
+        rel="noopener noreferrer"
         className={`flex justify-center items-center rounded-[10px] h-[60px] w-[250px] p-3 mb-2 transition-transform duration-500 shadow-[0px_0px_15px_rgba(0,0,0,0.03)] hover:-translate-y-[10%] ${hover ? '-translate-y-[10%]' : ''
           } ${transparent
             ? 'bg-transparent shadow-[0px_0px_15px_rgba(0,0,0,0.2)]'
@@ -50,7 +50,7 @@ export const StatWebsite: React.FC<StatWebsiteProps> = ({
       <a
         href={item.website}
         target="_blank"
-        rel="nofollow noopener noreferrer"
+        rel="noopener noreferrer"
         className={`flex items-center mt-0.5 mb-1.5 text-xl transition-all ease-in duration-100 hover:text-[#e31337] ${hover ? 'text-[#e31337]' : ''
           }`}
         onMouseEnter={() => setHover(true)}
@@ -67,7 +67,7 @@ export const StatWebsite: React.FC<StatWebsiteProps> = ({
         <a
           href={item.github || item.gitlab}
           target="_blank"
-          rel="nofollow noopener noreferrer"
+          rel="noopener noreferrer"
           className="flex items-center mt-1 text-[0.88rem] transition-all ease-in duration-100 hover:text-[#e31337]"
         >
           {item.github ? 'Github' : 'Gitlab'}

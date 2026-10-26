@@ -92,7 +92,7 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
           className={`transition-all ease-in duration-100 hover:text-[#e31337] ${dark ? 'text-white' : ''}`}
           href={to}
           target="_blank"
-          rel="nofollow noopener noreferrer"
+          rel="noopener noreferrer"
           onClick={handleClick}
         >
           {name}

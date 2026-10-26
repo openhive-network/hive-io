@@ -7,34 +7,58 @@
 
 <url>
   <loc>https://hive.io/</loc>
-  <lastmod>2020-03-27T21:43:41+00:00</lastmod>
+  <lastmod>2026-09-30</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://hive.io/about/</loc>
-  <lastmod>2020-03-27T21:43:41+00:00</lastmod>
+  <lastmod>2026-09-30</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://hive.io/eco/</loc>
-  <lastmod>2020-03-27T21:43:41+00:00</lastmod>
+  <lastmod>2026-09-30</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://hive.io/wallets/</loc>
-  <lastmod>2020-03-27T21:43:41+00:00</lastmod>
+  <lastmod>2026-09-30</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://hive.io/brand/</loc>
-  <lastmod>2020-03-27T21:43:41+00:00</lastmod>
+  <lastmod>2026-09-30</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://hive.io/developer/</loc>
-  <lastmod>2020-03-27T21:43:41+00:00</lastmod>
+  <loc>https://hive.io/developers/</loc>
+  <lastmod>2026-09-30</lastmod>
   <priority>0.80</priority>
 </url>
-
+<url>
+  <loc>https://hive.io/hbd/</loc>
+  <lastmod>2026-09-30</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hive.io/join/</loc>
+  <lastmod>2026-09-30</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hive.io/roadmap/</loc>
+  <lastmod>2026-09-30</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hive.io/contributors/</loc>
+  <lastmod>2026-09-30</lastmod>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://hive.io/core-dev-meetings/</loc>
+  <lastmod>2026-09-30</lastmod>
+  <priority>0.70</priority>
+</url>
 
 </urlset>

@@ -23,7 +23,7 @@ export const NAVIGATION_HEADER_DROPDOWN = [
       {
         to: 'hbd',
         name: 'Hive Dollar (HBD)',
-        description: 'Stablecoin with 15% APR',
+        description: 'Non-Custodial Savings and Yield',
       },
     ],
   },
@@ -180,18 +180,14 @@ export const NAVIGATION_FOOTER = [
       name: 'Blog',
     },
 
-    /* {
-      to: 'https://hive.wiki',
-      name: 'Wiki'
-    }, */
+    {
+      to: 'https://propol.is/wiki/Welcome-To-Propolis-Wiki',
+      name: 'Wiki',
+    },
     {
       to: 'mailto:outreach@hive.io',
       name: 'Contact',
     },
-    /* {
-      to: 'contributors',
-      name: 'Contributors'
-    } */
   ],
   [
     {

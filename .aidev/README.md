@@ -56,7 +56,8 @@ put the printed `repo@sha256:…` into `environment.image`.
 
 ## Known state at onboarding (2026-10-26)
 
-On Node v24.22.1, offline: `install`, `typecheck` and `build` pass, so every slot passes
+On ccc's Node, offline: `install`, `typecheck` and `build` pass, so every slot passes
 except `static`, whose `lint` fails on the existing code (60 errors, 47 warnings, mostly
-`@typescript-eslint/no-explicit-any`). `.gitlab-ci.yml` runs on the floating `node:24` image
-rather than ccc's Node; that is the open Node issue.
+`@typescript-eslint/no-explicit-any`). `.gitlab-ci.yml`'s `build` job runs on ccc's
+`${NODE_TEST_TOOLS_IMAGE}` (included from ccc's `templates/base.gitlab-ci.yml`), so CI and the
+test runtime share ccc's Node.

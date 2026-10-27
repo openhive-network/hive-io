@@ -1,4 +1,8 @@
-image: node:24
+include:
+  - project: 'hive/common-ci-configuration'
+    ref: develop
+    file:
+      - '/templates/base.gitlab-ci.yml'
 
 stages:
   - build
@@ -19,6 +23,7 @@ cache:
 
 build:
   stage: build
+  image: ${NODE_TEST_TOOLS_IMAGE}
   before_script:
     - corepack enable
     - corepack prepare pnpm@11.6.0 --activate
@@ -41,6 +46,7 @@ build:
 deploy_staging:
   stage: deploy_staging
   image: python:3.5
+  interruptible: false
   dependencies:
     - build
   script:
@@ -61,6 +67,7 @@ deploy_staging:
 deploy_master:
   stage: deploy_master
   image: python:3.5
+  interruptible: false
   dependencies:
     - build
   script:

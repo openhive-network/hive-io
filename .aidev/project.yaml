@@ -1,0 +1,81 @@
+# Profile for hive/hive-io, written by `aidev project scaffold` (#13561)
+# and edited by hand.
+#
+# Schema reference: docs/architecture/project-profile.md
+# Onboarding procedure: the `onboard-external-project` skill.
+# Guide: docs/operations/onboarding-an-external-project.md
+#
+# The generator writes a starting point, not a governed answer: every
+# binding below is the command a maintainer said this project runs, and it
+# is reviewed and edited like any other declaration.
+version: 2
+project: hive-io
+
+gitlab:
+  host: "gitlab.syncad.com"
+  path: "hive/hive-io"
+  id: 211
+
+# Automated work integrates into aidev/integration (protected; never deleted on
+# merge) and reaches master by the project's own merge requests (`aidev handoff`).
+branches:
+  integration: "aidev/integration"
+  handoff: "master"
+
+# How this project's suites execute (#13892): one kind, stated once.
+# Built by .aidev/runtime/build.sh --push on common-ci-configuration's
+# node-test-tools:develop (the hive-wide Node); see .aidev/README.md.
+environment:
+  kind: "container"
+  image: "registry.gitlab.syncad.com/hive/hive-io/aidev-tests@sha256:2c72a00508e427c66a787c50212eb3b5e49d2256627712784441ad1d47921abc"
+  inputs: ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml"]
+
+issues:
+  intake_label: todo
+  taxonomy: ".aidev/labels.yaml"
+  decompose:
+    # `never` is where an external project starts: nothing marks work
+    # approved on this project's behalf until there is a track record.
+    auto_todo: never
+  # Reports about this project's work are filed against this project.
+  watcher_reports: self
+
+# Verification slots. Each binding is what this project genuinely runs for
+# that slot — never one selection repeated under seven names, which makes
+# seven gates report on the same evidence while claiming to check seven
+# different things. The repository has no test suite:
+# the slots run CI's build (pnpm build), typecheck (tsc --noEmit of the
+# workspace packages) and, in static only, lint (60 existing errors; CI does
+# not run it). See .aidev/README.md.
+verification:
+  quick:
+    adapter: command
+    args: [".aidev/run-checks.sh", "quick", "typecheck", "build"]
+    artifacts: ["test-results/quick/"]
+  full:
+    adapter: command
+    args: [".aidev/run-checks.sh", "full", "typecheck", "build"]
+    artifacts: ["test-results/full/"]
+  baseline:
+    adapter: command
+    args: [".aidev/run-checks.sh", "baseline", "build"]
+    artifacts: ["test-results/baseline/"]
+  canary:
+    adapter: command
+    args: [".aidev/run-checks.sh", "canary", "typecheck", "build"]
+    artifacts: ["test-results/canary/"]
+  static:
+    adapter: command
+    args: [".aidev/run-checks.sh", "static", "typecheck", "lint"]
+    artifacts: ["test-results/static/"]
+  coverage:
+    adapter: command
+    args: [".aidev/run-checks.sh", "coverage", "typecheck", "build"]
+    artifacts: ["test-results/coverage/"]
+  system:
+    adapter: command
+    args: [".aidev/run-checks.sh", "system", "build"]
+    artifacts: ["test-results/system/"]
+
+# Capability grants for target-side code. Empty until this project needs one.
+capabilities: []

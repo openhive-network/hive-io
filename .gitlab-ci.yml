@@ -29,6 +29,9 @@ build:
     - if [ -n "$CI_COMMIT_BRANCH" ] && [ "$CI_COMMIT_BRANCH" != "master" ]; then export SITE_NOINDEX=1; unset NEXT_PUBLIC_GA_ID NEXT_PUBLIC_GTM_ID; fi
     - pnpm build
     - echo "BUILD SUCCESSFULLY"
+  # Full history so scripts/sitemap.mjs can date every page (lastmod)
+  variables:
+    GIT_DEPTH: '0'
   artifacts:
     paths:
       - apps/web/out/
@@ -70,8 +73,12 @@ deploy_master:
     - export DISTRIBUTION_ID=$DISTRIBUTION_ID
     - pip install awscli --upgrade --user
     - export PATH=~/.local/bin:$PATH
+    - python apps/web/scripts/indexnow.py snapshot /tmp/live-sitemap.xml
     - aws s3 sync --acl public-read --cache-control "max-age=2592000, public" --delete apps/web/out $S3_BUCKET_NAME_PRODUCTION
-    - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
+    - INVALIDATION_ID=$(aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*' --query Invalidation.Id --output text)
+    # Bing fetches the submitted URLs right away: let the edge serve fresh HTML first
+    - aws cloudfront wait invalidation-completed --distribution-id $DISTRIBUTION_ID --id $INVALIDATION_ID || echo "Invalidation wait failed, submitting anyway"
+    - python apps/web/scripts/indexnow.py submit apps/web/out/sitemap.xml /tmp/live-sitemap.xml
     - echo "DEPLOYED SUCCESSFULLY TO PRODUCTION"
   environment:
     name: production

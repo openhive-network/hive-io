@@ -2,6 +2,7 @@
 
 import {useEffect, useState} from 'react'
 import {computeBaseStakingApr, fetchChainSnapshot} from '@/lib/hive-rates'
+import {trackOnce} from '@/lib/analytics'
 
 const REFRESH_MS = 5 * 60 * 1000
 
@@ -44,6 +45,7 @@ export function useStakingApr(): StakingAprState {
         })
         .catch((err) => {
           console.error('Failed to fetch staking APR:', err)
+          trackOnce('data_fallback', {fallback_source: 'staking_apr'})
           if (!cancelled) {
             setState((prev) =>
               prev.apr == null ? {apr: null, failed: true} : prev,

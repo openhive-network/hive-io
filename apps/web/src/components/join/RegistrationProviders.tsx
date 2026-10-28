@@ -119,6 +119,9 @@ export function RegistrationProviders({ className, showTitle }: RegistrationProv
             <a
               key={provider.name}
               href={provider.url}
+              data-track="sign_up_start"
+              data-track-provider={provider.name}
+              data-track-placement="join_providers"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative bg-linear-to-b from-gray-900 to-gray-900/50 border border-gray-800 rounded-xl sm:rounded-2xl p-3 sm:p-5 hover:border-gray-600 hover:from-gray-800 hover:to-gray-900/80 transition-all duration-300"

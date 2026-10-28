@@ -2,6 +2,7 @@
 
 import {useEffect, useState} from 'react'
 import {hiveRpc} from '@hiveio/hive-lib'
+import {trackOnce} from '@/lib/analytics'
 
 interface Voice {
   author: string
@@ -128,6 +129,7 @@ export function useVoicesOfHive(
         setIsLoading(false)
       } catch (err) {
         console.error('Error fetching voices:', err)
+        trackOnce('data_fallback', {fallback_source: 'voices_of_hive'})
         setError(err instanceof Error ? err.message : 'Unknown error')
         setIsLoading(false)
       }

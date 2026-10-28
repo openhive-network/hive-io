@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { LayoutContent } from '@/components/LayoutContent';
-import { GoogleAnalytics, GTMNoScript } from '@/components/analytics/GoogleAnalytics';
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { SOCIAL_MEDIAS } from '@/lib/data/socialmedias';
 import '../globals.css';
 import '@/lib/fontawesome';
@@ -115,7 +115,6 @@ export default async function LocaleLayout({
         />
       </head>
       <body>
-        <GTMNoScript />
         <GoogleAnalytics />
         <NextIntlClientProvider messages={messages} locale={locale}>
           <LayoutContent>{children}</LayoutContent>

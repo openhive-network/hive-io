@@ -13,6 +13,7 @@ import {
   DEFAULT_BLOCK,
   DEFAULT_TX_COUNT,
 } from './defaultActivities'
+import {trackOnce} from '@/lib/analytics'
 
 interface UseBlockchainActivityOptions {
   maxActivities: number
@@ -238,6 +239,7 @@ export function useBlockchainActivity(
       setError(null)
     } catch (err) {
       console.error('Failed to fetch blockchain activity:', err)
+      trackOnce('data_fallback', {fallback_source: 'blockchain_activity'})
       setError(err instanceof Error ? err.message : 'Unknown error')
       setIsLoading(false)
     }

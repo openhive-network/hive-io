@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { hiveRpc } from '@hiveio/hive-lib';
+import { trackOnce } from '@/lib/analytics';
 
 interface UseTotalAccountsResult {
   totalAccounts: number;
@@ -25,6 +26,7 @@ export function useTotalAccounts(): UseTotalAccountsResult {
         setIsLoading(false);
       } catch (err) {
         console.error('Error fetching total accounts:', err);
+        trackOnce('data_fallback', { fallback_source: 'total_accounts' });
         setError(err instanceof Error ? err.message : 'Unknown error');
         setIsLoading(false);
       }

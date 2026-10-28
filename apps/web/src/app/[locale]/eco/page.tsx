@@ -11,6 +11,7 @@ import { App } from '@/components/app/App';
 import { AppType } from '@/components/app/AppType';
 import { StatWebsite } from '@/components/statWebsite/StatWebsite';
 import { ModalEco } from '@/components/modal/ModalEco';
+import { track } from '@/lib/analytics';
 
 function EcoContent() {
   const router = useRouter();
@@ -49,6 +50,7 @@ function EcoContent() {
   }, [filterParam]);
 
   const filterEco = (key: string) => {
+    track('eco_filter', { filter_name: key, toggle_state: filterParam === key ? 'off' : 'on' });
     if (filterParam === key) {
       router.push('/eco');
     } else {
@@ -89,7 +91,9 @@ function EcoContent() {
         <ModalEco />
 
         {/* Apps Grid */}
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] justify-items-center w-full gap-x-3 gap-y-5 mb-16">
+        <div
+          className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] justify-items-center w-full gap-x-3 gap-y-5 mb-16"
+          data-track-placement="eco_grid">
           {filteredEco.map((eco) => (
             <App
               key={eco.id}

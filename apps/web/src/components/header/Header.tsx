@@ -49,7 +49,7 @@ export const Header: React.FC<HeaderProps> = ({ items = [] }) => {
   }, []);
 
   return (
-    <div id="header" ref={headerRef} className="max-w-screen-2xl w-full">
+    <div id="header" ref={headerRef} className="max-w-screen-2xl w-full" data-track-nav="header">
       <div className="py-5 px-6 sm:px-10 flex flex-row items-center relative">
         <div className="flex flex-row items-center gap-16">
           <Link href="/" aria-label="Hive">

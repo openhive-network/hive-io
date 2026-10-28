@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({ items = [], className, ...props 
   const t = useTranslations('footer');
 
   return (
-    <div className={`w-full bg-black py-10 px-10 max-[600px]:px-6 ${className || ''}`} {...props}>
+    <div className={`w-full bg-black py-10 px-10 max-[600px]:px-6 ${className || ''}`} data-track-nav="footer" {...props}>
       <div className="max-w-screen-2xl mx-auto flex flex-row justify-between max-[1000px]:flex-col max-[1000px]:items-center">
         <div className="flex flex-col max-[1000px]:items-center">
           <Logo className="h-[30px] w-[132px] max-[1000px]:mb-[15px]" dark={true} />

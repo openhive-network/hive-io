@@ -27,8 +27,8 @@ branches:
 # node-test-tools:develop (the hive-wide Node); see .aidev/README.md.
 environment:
   kind: "container"
-  image: "registry.gitlab.syncad.com/hive/hive-io/aidev-tests@sha256:2c72a00508e427c66a787c50212eb3b5e49d2256627712784441ad1d47921abc"
-  inputs: ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml"]
+  image: "registry.gitlab.syncad.com/hive/hive-io/aidev-tests@sha256:ef8f5bcdfbae4c532ef1e2ae739bab15e430fc49ac25ad8029b84b4602eabdd4"
+  inputs: ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml", ".npmrc"]
 
 issues:
   intake_label: todo

@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "@hiveio/dhive": "^1.3.2",
-    "@hiveio/wax": "1.27.11-rc0",
+    "@hiveio/wax": "catalog:hiveio-toolset",
     "@hiveio/wax-api-jsonrpc": "^1.28.4",
-    "@hiveio/wax-signers-keychain": "1.27.11-rc0",
+    "@hiveio/wax-signers-keychain": "catalog:hiveio-toolset",
     "@noble/hashes": "^1.3.3",
     "hive-auth-wrapper": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "typescript": "^5"
+    "typescript": "catalog:typescript-toolset"
   }
 }

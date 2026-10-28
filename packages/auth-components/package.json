@@ -24,11 +24,11 @@
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
-    "@types/react": "^19.2.2",
-    "react": "^19.2.0",
-    "typescript": "^5.3.3"
+    "@types/react": "catalog:react-toolset",
+    "react": "catalog:react-toolset",
+    "typescript": "catalog:typescript-toolset"
   },
   "peerDependencies": {
-    "react": "^19.2.0"
+    "react": "catalog:react-toolset"
   }
 }

@@ -11,12 +11,16 @@
 # * make and g++ (the base has python3), and node-gyp's Node headers for that
 #   Node in /opt/node-gyp (npm_config_devdir): pnpm-workspace.yaml's
 #   `allowBuilds` packages (secp256k1) build from source, offline in the sandbox;
-# * a pnpm store filled from pnpm-lock.yaml (`pnpm fetch`) in /opt/pnpm-store,
+# * a pnpm store filled from pnpm-lock.yaml (`pnpm fetch`, with .npmrc's
+#   @hiveio registry: ccc's hiveio-toolset builds are only in GitLab's) in /opt/pnpm-store,
 #   so `pnpm install --offline --frozen-lockfile` works in the sandbox. pnpm 11
 #   verifies the lockfile against its release-age policy by asking the registry
 #   for every package's metadata, which an offline install cannot do:
 #   pnpm_config_minimum_release_age=0 turns that check off in the image (the
-#   `pnpm fetch` that filled the store ran it with the network).
+#   `pnpm fetch` that filled the store ran it with the network). For the same
+#   reason pnpm_config_trust_lockfile=true skips pnpm 11's check of the
+#   lockfile's non-npmjs tarball URLs (the @hiveio GitLab registry) against
+#   registry metadata; `pnpm fetch` and CI's online install still run it.
 #
 # Build and pin it with .aidev/runtime/build.sh --push; see .aidev/README.md.
 ARG BASE_IMAGE=registry.gitlab.syncad.com/hive/common-ci-configuration/node-test-tools:develop
@@ -37,8 +41,10 @@ RUN apt-get update \
     && hash -r && pnpm --version \
     && npx --yes node-gyp@11 install \
     && ls /opt/node-gyp
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /tmp/pnpm-fetch/
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc /tmp/pnpm-fetch/
 RUN cd /tmp/pnpm-fetch \
     && pnpm fetch \
     && cd / && rm -rf /tmp/pnpm-fetch /tmp/.npm /tmp/.cache \
     && chmod -R a+rwX /opt/pnpm-store /opt/node-gyp
+# Last, so the store layers above stay cached when only this changes
+ENV pnpm_config_trust_lockfile=true

@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState, useSyncExternalStore } from 'react'
 import Cookies from 'js-cookie'
 
 export type AuthMethod = 'keychain' | 'hiveauth'
@@ -29,34 +29,60 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
+function readUserFromCookies(): User | null {
+  const savedUsername = Cookies.get('hive_username')
+  const savedAuthMethod = Cookies.get('hive_auth_method') as AuthMethod | undefined
+  const savedHiveAuthSession = Cookies.get('hive_auth_session')
+
+  if (!savedUsername) {
+    return null
+  }
+
+  const user: User = {
+    username: savedUsername,
+    authMethod: savedAuthMethod || 'keychain',
+  }
+
+  if (savedAuthMethod === 'hiveauth' && savedHiveAuthSession) {
+    try {
+      user.hiveAuthSession = JSON.parse(savedHiveAuthSession)
+    } catch (e) {
+      console.error('Failed to parse HiveAuth session:', e)
+    }
+  }
+
+  return user
+}
+
+// The signed-in user, read from the cookies on first client access. Kept
+// outside React so the static export renders signed out (server snapshot) and
+// the client switches to the cookie's user right after hydration.
+let sessionUser: User | null | undefined
+const sessionListeners = new Set<() => void>()
+
+function getSessionUser(): User | null {
+  if (sessionUser === undefined) {
+    sessionUser = readUserFromCookies()
+  }
+  return sessionUser
+}
+
+function setSessionUser(user: User | null) {
+  sessionUser = user
+  sessionListeners.forEach((listener) => listener())
+}
+
+function subscribeSessionUser(listener: () => void) {
+  sessionListeners.add(listener)
+  return () => {
+    sessionListeners.delete(listener)
+  }
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
+  const user = useSyncExternalStore(subscribeSessionUser, getSessionUser, () => null)
   const [pendingClaimedAccounts, setPendingClaimedAccounts] = useState<number | null>(null)
   const [loadingAccountInfo, setLoadingAccountInfo] = useState(false)
-
-  // Initialize user from cookies
-  useEffect(() => {
-    const savedUsername = Cookies.get('hive_username')
-    const savedAuthMethod = Cookies.get('hive_auth_method') as AuthMethod | undefined
-    const savedHiveAuthSession = Cookies.get('hive_auth_session')
-
-    if (savedUsername) {
-      const user: User = {
-        username: savedUsername,
-        authMethod: savedAuthMethod || 'keychain',
-      }
-
-      if (savedAuthMethod === 'hiveauth' && savedHiveAuthSession) {
-        try {
-          user.hiveAuthSession = JSON.parse(savedHiveAuthSession)
-        } catch (e) {
-          console.error('Failed to parse HiveAuth session:', e)
-        }
-      }
-
-      setUser(user)
-    }
-  }, [])
 
   // Fetch account info when user changes
   useEffect(() => {
@@ -116,7 +142,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       authMethod,
       hiveAuthSession
     }
-    setUser(userData)
+    setSessionUser(userData)
 
     const cookieOptions = {
       expires: 7, // 7 days
@@ -134,7 +160,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const logout = () => {
-    setUser(null)
+    setSessionUser(null)
     setPendingClaimedAccounts(null)
     Cookies.remove('hive_username', { path: '/' })
     Cookies.remove('hive_auth_method', { path: '/' })

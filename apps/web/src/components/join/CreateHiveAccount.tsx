@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import { SOCIAL_MEDIAS } from '@/lib/data/socialmedias'
 import { Button } from '@/components/ui/button'
@@ -37,8 +37,9 @@ export default function CreateHiveAccount() {
   const tHero = useTranslations('join.hero')
   const tCommon = useTranslations('join.common')
   const [account, setAccount] = useState('')
-  const [password, setPassword] = useState('')
-  const [privateKeys, setPrivateKeys] = useState<PrivateKeys | null>(null)
+  // The join page renders this only on the client (useSearchParams under
+  // Suspense), so browser-only initial state cannot mismatch prerendered HTML
+  const [password, setPassword] = useState(generatePassword)
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(false)
   const [acceptedBackup, setAcceptedBackup] = useState(false)
@@ -58,26 +59,13 @@ export default function CreateHiveAccount() {
   const [showShareDialog, setShowShareDialog] = useState(false)
   const [shareableLink, setShareableLink] = useState('')
   const [hasBeenValidOnce, setHasBeenValidOnce] = useState(false)
-  const [devMode, setDevMode] = useState(false)
+  const [devMode, setDevMode] = useState(
+    () => localStorage.getItem('hive-account-creator-dev-mode') === 'true'
+  )
   const [checkingAccountCreation, setCheckingAccountCreation] = useState(false)
   const [addingToKeychain, setAddingToKeychain] = useState(false)
   const [addedToKeychain, setAddedToKeychain] = useState(false)
   const [qrExpanded, setQrExpanded] = useState(false)
-
-  // Initialize dev mode from localStorage
-  useEffect(() => {
-    const savedDevMode = localStorage.getItem('hive-account-creator-dev-mode')
-    if (savedDevMode === 'true') {
-      setDevMode(true)
-    }
-  }, [])
-
-  // Generate password on component mount
-  useEffect(() => {
-    if (!password) {
-      setPassword(generatePassword())
-    }
-  }, [password])
 
   // Periodic check for account creation after sharing link
   useEffect(() => {
@@ -112,12 +100,10 @@ export default function CreateHiveAccount() {
     return () => clearInterval(interval)
   }, [checkingAccountCreation, account])
 
-  // Generate keys whenever account or password changes
-  useEffect(() => {
-    if (account && password) {
-      setPrivateKeys(generateKeys(account, password))
-    }
-  }, [account, password])
+  const privateKeys = useMemo<PrivateKeys | null>(
+    () => (account && password ? generateKeys(account, password) : null),
+    [account, password]
+  )
 
 
   const checkIfAccountExists = useCallback(async (accountName: string): Promise<boolean> => {
@@ -187,7 +173,6 @@ export default function CreateHiveAccount() {
     setStep(1)
     setAccount('')
     setSuccess(false)
-    setPrivateKeys(null)
     setAcceptedBackup(false)
     setTransactionId(null)
     setHasBeenValidOnce(false)
@@ -605,7 +590,7 @@ export default function CreateHiveAccount() {
                               variant="outline"
                               size="sm"
                               onClick={() => {
-                                setPassword(tempPassword)
+                                setPassword(tempPassword || generatePassword())
                                 setIsEditingPassword(false)
                                 setBackupDownloaded(false)
                                 setAcceptedBackup(false)

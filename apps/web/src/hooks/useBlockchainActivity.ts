@@ -71,8 +71,10 @@ export function useBlockchainActivity(
   const onNewBlockRef = useRef(onNewBlock)
 
   // Keep refs in sync
-  pausedRef.current = paused
-  onNewBlockRef.current = onNewBlock
+  useEffect(() => {
+    pausedRef.current = paused
+    onNewBlockRef.current = onNewBlock
+  }, [paused, onNewBlock])
 
   /**
    * Preload an image to ensure it's cached before display

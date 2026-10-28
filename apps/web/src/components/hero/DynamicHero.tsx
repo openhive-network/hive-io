@@ -7,7 +7,7 @@ import { Link } from '@/i18n/routing';
 import {ExplorerLink} from '@/components/ui/explorer-link'
 import {Skeleton} from '@/components/ui/skeleton'
 import { useMainStore } from '@/store/useMainStore';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { DynamicGlobalProperties } from '@hiveio/hive-lib';
 
 interface TVLData {
@@ -79,10 +79,9 @@ function calculateMaxActivities(): number {
 export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl, tvlFailed = false, onChainFailed }: DynamicHeroProps) {
   const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [maxActivities, setMaxActivities] = useState(() => calculateMaxActivities());
+  const [maxActivities] = useState(() => calculateMaxActivities());
   const isMobileMenuOpen = useMainStore(state => state.isMobileActive);
 
-  const LIMIT_TOTAL_ACTIVITIES = 0; // Set to 0 to disable - stops accepting new activities after this many
   const ANIMATION_DELAY = 1300; // Delay between activity animations (ms)
 
   // Typewriter animation state
@@ -117,25 +116,19 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl,
         }, deletingSpeed);
       } else {
         // Finished deleting, move to next slogan
-        setSloganIndex((prev) => (prev + 1) % SLOGANS.length);
-        setPhase('typing');
+        timeout = setTimeout(() => {
+          setSloganIndex((prev) => (prev + 1) % SLOGANS.length);
+          setPhase('typing');
+        }, deletingSpeed);
       }
     }
 
     return () => clearTimeout(timeout);
   }, [displayedText, phase, sloganIndex]);
 
-  // Calculate maxActivities once on mount (no resize updates to avoid layout shifts)
-  useEffect(() => {
-    const calculated = calculateMaxActivities();
-    setMaxActivities(calculated);
-  }, []);
-
-  const seenActivitiesRef = useRef<Set<string>>(new Set());
-  const [shouldStopPolling, setShouldStopPolling] = useState(false);
   const [isHoveringFeed, setIsHoveringFeed] = useState(false);
 
-  const { activities: hookActivities, currentBlock, globalProps, hiveFundBalance, error: chainError } = useBlockchainActivity({
+  const { activities, currentBlock, globalProps, hiveFundBalance, error: chainError } = useBlockchainActivity({
     maxActivities,
     updateInterval: 3000,
     enabled: true,
@@ -169,6 +162,10 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl,
     enabled: true,
   });
 
+  const [uptimeDays] = useState(() =>
+    Math.floor((Date.now() - new Date('2016-03-24T16:00:00Z').getTime()) / (1000 * 60 * 60 * 24))
+  );
+
   // Fetch total accounts (runs once on mount)
   const { totalAccounts } = useTotalAccounts();
 
@@ -192,36 +189,23 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl,
   const hbdSupply = parseSupply(globalProps?.current_hbd_supply) - (hiveFundBalance?.hbdBalance ?? 0);
   const marketCap = tvl ? (hiveSupply * tvl.hivePrice) + (hbdSupply * tvl.hbdPrice) : 0;
 
-  const activities = LIMIT_TOTAL_ACTIVITIES > 0
-    ? hookActivities.filter(activity => {
-      if (seenActivitiesRef.current.has(activity.id)) {
-        return true; // Keep already seen activities
-      }
-      if (seenActivitiesRef.current.size < LIMIT_TOTAL_ACTIVITIES) {
-        seenActivitiesRef.current.add(activity.id);
-        // Stop polling once we've reached the limit
-        if (seenActivitiesRef.current.size === LIMIT_TOTAL_ACTIVITIES) {
-          setShouldStopPolling(true);
-        }
-        return true;
-      }
-      return false; // Reject new activities once limit reached
-    })
-    : hookActivities;
-
-  const [animatingIds, setAnimatingIds] = useState<Set<string>>(new Set());
   const [finishedAnimatingIds, setFinishedAnimatingIds] = useState<Set<string>>(new Set());
   const [queuedIds, setQueuedIds] = useState<string[]>([]);
+  // The queue holds at most one activity, and it animates while queued
+  const animatingIds = useMemo(() => new Set(queuedIds.slice(0, 1)), [queuedIds]);
   const [fadingOutIds, setFadingOutIds] = useState<Set<string>>(new Set());
   const [displayedActivities, setDisplayedActivities] = useState<typeof activities>([]);
   const [hoveredActivityId, setHoveredActivityId] = useState<string | null>(null);
   const hoveredActivityIdRef = useRef<string | null>(null);
-  hoveredActivityIdRef.current = hoveredActivityId; // Keep ref in sync for callbacks
   const [isTabHidden, setIsTabHidden] = useState(false);
   const isTabHiddenRef = useRef(false);
-  isTabHiddenRef.current = isTabHidden; // Keep ref in sync for callbacks
   const displayedActivitiesRef = useRef(displayedActivities);
-  displayedActivitiesRef.current = displayedActivities; // Always keep ref in sync
+  // Keep refs in sync for callbacks
+  useEffect(() => {
+    hoveredActivityIdRef.current = hoveredActivityId;
+    isTabHiddenRef.current = isTabHidden;
+    displayedActivitiesRef.current = displayedActivities;
+  }, [hoveredActivityId, isTabHidden, displayedActivities]);
   const lastAnimationEndRef = useRef<number>(0);
   const cooldownTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -231,17 +215,23 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl,
       // Record when animation ended for cooldown calculation
       lastAnimationEndRef.current = Date.now();
 
-      // Clear animating state
-      setAnimatingIds(new Set());
-
       // Add to finished set (keep only last 5)
       setFinishedAnimatingIds((prev) => {
         const arr = [...prev, activityId];
         return new Set(arr.slice(-maxActivities));
       });
 
-      // Remove from queue (next animation will be started by the queue effect)
+      // Remove from queue, which ends its animation (next animation will be
+      // started by the queue effect)
       setQueuedIds((prev) => prev.slice(1));
+
+      // With no animation running, exit the oldest activities over capacity
+      const displayed = displayedActivitiesRef.current;
+      setFadingOutIds((prev) => {
+        const active = displayed.filter((a) => !prev.has(a.id));
+        if (active.length <= maxActivities) return prev;
+        return new Set([...prev, ...active.slice(maxActivities).map((a) => a.id)]);
+      });
 
       // If user was hovering this activity while it was animating, pause now
       if (hoveredActivityIdRef.current === activityId) {
@@ -325,27 +315,6 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl,
     };
   }, []);
 
-  // Handle activities leaving (fading out)
-  // Only exit when we're over capacity and no animation is in progress
-  useEffect(() => {
-    // Don't exit while an animation is running
-    if (animatingIds.size > 0) return;
-
-    // Count non-fading activities
-    const activeCount = displayedActivities.filter(a => !fadingOutIds.has(a.id)).length;
-
-    // Only exit if we're over max capacity
-    if (activeCount > maxActivities) {
-      // Exit the last (oldest) non-fading activity
-      const nonFadingActivities = displayedActivities.filter(a => !fadingOutIds.has(a.id));
-      const oldestActivity = nonFadingActivities[nonFadingActivities.length - 1];
-
-      if (oldestActivity) {
-        setFadingOutIds((prev) => new Set([...prev, oldestActivity.id]));
-      }
-    }
-  }, [displayedActivities, fadingOutIds, animatingIds, maxActivities]);
-
   // Start animation when queue has items, or pick up pending activities when queue is empty
   useEffect(() => {
     // Clear any existing cooldown timer when effect runs
@@ -354,11 +323,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl,
       cooldownTimerRef.current = null;
     }
 
-    if (queuedIds.length > 0 && animatingIds.size === 0) {
-      // Queue has an item ready - start its animation
-      const firstId = queuedIds[0];
-      setAnimatingIds(new Set([firstId]));
-    } else if (queuedIds.length === 0 && animatingIds.size === 0 && !isHoveringFeed && !isMobileMenuOpen && isVisible) {
+    if (queuedIds.length === 0 && !isHoveringFeed && !isMobileMenuOpen && isVisible) {
       // Queue is empty and no animation running - check for pending activities
       const displayedIds = new Set(displayedActivities.map(a => a.id));
       const pendingActivities = activities.filter(a => !displayedIds.has(a.id));
@@ -653,7 +618,7 @@ export function DynamicHero({ onNewBlock, onGlobalProps, onHiveFundBalance, tvl,
             <span className="font-medium">Uptime (Days)</span>
           </div>
           <div className="text-4xl max-[600px]:text-2xl font-bold text-gray-900">
-            {Math.floor((Date.now() - new Date('2016-03-24T16:00:00Z').getTime()) / (1000 * 60 * 60 * 24)).toLocaleString()}
+            {uptimeDays.toLocaleString()}
           </div>
         </div>
       </div>

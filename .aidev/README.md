@@ -49,9 +49,10 @@ which carries the hive-wide Node version (ccc's `NODE_VERSION`); this repository
 Node version for it. It adds pnpm 11.6.0 (the version `.gitlab-ci.yml` activates),
 `make`/`g++`, node-gyp's headers for that Node and a pnpm store filled from
 `pnpm-lock.yaml` (`/opt/pnpm-store`). pnpm 11's release-age check of the lockfile needs the
-registry, so the image sets `pnpm_config_minimum_release_age=0` for the offline install.
+registry, so the image sets `pnpm_config_minimum_release_age=0` for the offline install, and
+`pnpm_config_trust_lockfile=true` for its check of the `@hiveio` GitLab tarball URLs.
 Rebuild and re-pin it with `.aidev/runtime/build.sh --push` when the Dockerfile,
-`package.json`, `pnpm-lock.yaml` or `pnpm-workspace.yaml` changes, or ccc's image moves, and
+`package.json`, `pnpm-lock.yaml`, `pnpm-workspace.yaml` or `.npmrc` changes, or ccc's image moves, and
 put the printed `repo@sha256:…` into `environment.image`.
 
 ## Known state at onboarding (2026-10-26)

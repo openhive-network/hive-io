@@ -14,6 +14,18 @@ const nextConfig: NextConfig = {
 
   // Add trailing slashes for better static hosting
   trailingSlash: true,
+
+  turbopack: {
+    rules: {
+      // @hiveio/wax's web entry has a Vite-only `import('….wasm?url')` (dead
+      // under Next) that Turbopack would otherwise compile as a wasm module;
+      // give it Vite's `?url` meaning: emit the file and return its URL
+      '*.wasm': {
+        condition: {query: '?url'},
+        type: 'asset',
+      },
+    },
+  },
 }
 
 export default withNextIntl(nextConfig)

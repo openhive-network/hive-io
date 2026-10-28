@@ -4,7 +4,7 @@
 # `environment.image`. See .aidev/README.md.
 #
 # The tag is `aidev-<hash>`, the hash of the image inputs (the Dockerfile,
-# pnpm-lock.yaml, pnpm-workspace.yaml, package.json, and the digest the followed base
+# pnpm-lock.yaml, pnpm-workspace.yaml, package.json, .npmrc, and the digest the followed base
 # tag names now); the registry cleanup policy keeps `aidev-*` tags. When
 # <repository>:aidev-<hash> is already in the registry nothing is built: the script
 # prints that image's digest.
@@ -20,13 +20,13 @@ REPOSITORY="${AIDEV_RUNTIME_REPOSITORY:-registry.gitlab.syncad.com/hive/hive-io/
 # The base .aidev/project.yaml follows (`environment.base`), the Dockerfile's default.
 BASE_IMAGE="$(sed -n 's/^ARG BASE_IMAGE=//p' .aidev/runtime/Dockerfile)"
 
-# `pnpm fetch` reads the lockfile and the workspace file (package.json rides along).
+# `pnpm fetch` reads the lockfile, the workspace file and .npmrc (package.json rides along).
 input_hash() {
     local base_digest
     base_digest="$(docker buildx imagetools inspect "$BASE_IMAGE" --format '{{json .Manifest}}' \
         | grep -o '"digest": *"sha256:[0-9a-f]*"' | head -1 | grep -o 'sha256:[0-9a-f]*')"
     {
-        sha256sum .aidev/runtime/Dockerfile package.json pnpm-lock.yaml pnpm-workspace.yaml
+        sha256sum .aidev/runtime/Dockerfile package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc
         echo "${base_digest:?cannot resolve $BASE_IMAGE}"
     } | sha256sum | cut -c1-16
 }
@@ -55,7 +55,7 @@ echo "$REPOSITORY:$TAG is not in the registry; building it" >&2
 # Only the files the Dockerfile copies: the repository root holds node_modules.
 context="$(mktemp -d)"
 trap 'rm -rf "$context"' EXIT
-cp package.json pnpm-lock.yaml pnpm-workspace.yaml "$context/"
+cp package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc "$context/"
 
 # buildx so it works with any builder (CI's docker-container builder keeps no local
 # image); no provenance, so the pushed digest is a plain image manifest.

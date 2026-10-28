@@ -35,7 +35,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   };
 
   return (
-    <div className={className} {...props}>
+    <div className={className} data-track-nav="mobile_menu" {...props}>
       {/* Navigation overlay */}
       <div className={`${isMobileActive ? 'fixed' : 'hidden'} top-0 bottom-0 right-0 left-0 w-full bg-white z-98 overflow-y-auto pt-24 px-6`}>
         {isOnJoinPage && isAuthenticated && user && (

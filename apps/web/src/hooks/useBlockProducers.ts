@@ -1,6 +1,7 @@
 'use client'
 
 import {useState, useEffect, useCallback, useRef} from 'react'
+import {trackOnce} from '@/lib/analytics'
 
 export interface BlockProducer {
   block_num: number
@@ -77,6 +78,7 @@ export function useBlockProducers(
       setError(null)
     } catch (err) {
       console.error('Failed to fetch block producers:', err)
+      trackOnce('data_fallback', {fallback_source: 'block_producers'})
       setError(err instanceof Error ? err.message : 'Unknown error')
       setIsLoading(false)
     }

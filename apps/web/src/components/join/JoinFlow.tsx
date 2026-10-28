@@ -13,6 +13,7 @@ import { LoginModal } from '@/components/join/LoginModal'
 import { decodeAccountData, type ShareableAccountData } from '@/lib/share-link'
 import { createHiveAccount, type PrivateKeys } from '@hiveio/hive-lib'
 import { useTranslations } from 'next-intl'
+import { track } from '@/lib/analytics'
 
 interface JoinFlowProps {
   encodedData: string
@@ -44,11 +45,13 @@ export default function JoinFlow({ encodedData }: JoinFlowProps) {
   const createAccount = async () => {
     if (!user?.username || !accountData) {
       toast.error(tErrors('missingInfo'))
+      track('sign_up_error', { method: 'sponsored', error_type: 'missing_info' })
       return
     }
 
     if (pendingClaimedAccounts !== null && pendingClaimedAccounts <= 0) {
       toast.error(tErrors('tokenRequired'))
+      track('sign_up_error', { method: 'sponsored', error_type: 'no_token' })
       return
     }
 
@@ -79,6 +82,7 @@ export default function JoinFlow({ encodedData }: JoinFlowProps) {
 
       if (result.success) {
         setSuccess(true)
+        track('sign_up', { method: 'sponsored', auth_method: user.authMethod })
         setTransactionId((result as any).txId || null)
         toast.success(`${tSuccess('accountCreated')} @${accountData.username}!`)
 
@@ -86,9 +90,11 @@ export default function JoinFlow({ encodedData }: JoinFlowProps) {
         await refreshAccountInfo()
       } else {
         toast.error(result.error || tErrors('createFailed'))
+        track('sign_up_error', { method: 'sponsored', error_type: 'create_failed' })
       }
     } catch (error) {
       console.error('Error creating account:', error)
+      track('sign_up_error', { method: 'sponsored', error_type: 'exception' })
       toast.error(tErrors('createFailed'))
     } finally {
       setLoading(false)

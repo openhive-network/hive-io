@@ -22,7 +22,7 @@ export const ModalEco: React.FC = () => {
 
   return (
     <Dialog open={showModal} onOpenChange={handleOpenChange}>
-      <DialogContent className="bg-[#f8f8f9] pb-[15px] w-[calc(100%-2rem)] sm:w-[calc(100%-4rem)] sm:!max-w-[750px] max-h-[90vh] overflow-y-auto p-0">
+      <DialogContent data-track-placement="eco_modal" className="bg-[#f8f8f9] pb-[15px] w-[calc(100%-2rem)] sm:w-[calc(100%-4rem)] sm:!max-w-[750px] max-h-[90vh] overflow-y-auto p-0">
         <EcoDetailed />
       </DialogContent>
     </Dialog>

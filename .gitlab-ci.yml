@@ -35,7 +35,6 @@ build:
   artifacts:
     paths:
       - apps/web/out/
-    expire_in: 20 mins
   # environment:
   #   name: development
   # only:
@@ -53,8 +52,9 @@ deploy_staging:
     - export DISTRIBUTION_ID=$DISTRIBUTION_ID
     - pip install awscli --upgrade --user
     - export PATH=~/.local/bin:$PATH
-    - aws s3 sync --acl public-read --delete apps/web/out $S3_BUCKET_NAME_STAGING
+    - sh apps/web/scripts/s3-deploy.sh upload apps/web/out $S3_BUCKET_NAME_STAGING
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
+    - sh apps/web/scripts/s3-deploy.sh prune apps/web/out $S3_BUCKET_NAME_STAGING
     - echo "DEPLOYED SUCCESSFULLY TO STAGING"
   environment:
     name: development
@@ -74,10 +74,11 @@ deploy_master:
     - pip install awscli --upgrade --user
     - export PATH=~/.local/bin:$PATH
     - python apps/web/scripts/indexnow.py snapshot /tmp/live-sitemap.xml
-    - aws s3 sync --acl public-read --cache-control "max-age=2592000, public" --delete apps/web/out $S3_BUCKET_NAME_PRODUCTION
+    - sh apps/web/scripts/s3-deploy.sh upload apps/web/out $S3_BUCKET_NAME_PRODUCTION
     - INVALIDATION_ID=$(aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*' --query Invalidation.Id --output text)
     # Bing fetches the submitted URLs right away: let the edge serve fresh HTML first
     - aws cloudfront wait invalidation-completed --distribution-id $DISTRIBUTION_ID --id $INVALIDATION_ID || echo "Invalidation wait failed, submitting anyway"
+    - sh apps/web/scripts/s3-deploy.sh prune apps/web/out $S3_BUCKET_NAME_PRODUCTION
     - python apps/web/scripts/indexnow.py submit apps/web/out/sitemap.xml /tmp/live-sitemap.xml
     - echo "DEPLOYED SUCCESSFULLY TO PRODUCTION"
   environment:

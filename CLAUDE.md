@@ -14,9 +14,9 @@ The site is built as a static export for CDN hosting with multi-language support
 ## Tech Stack
 
 **Frontend:**
-- Next.js 16.0.7 with React 19.2.0
+- Next.js 16 with React 19 (`catalog:react-toolset`)
 - TypeScript 5 (strict mode)
-- Tailwind CSS 4.1.17
+- Tailwind CSS 4 (`catalog:tailwind-toolset`)
 - Radix UI + shadcn/ui (New York style)
 - Zustand 5.0.8 (state management)
 - next-intl 4.5.1 (internationalization)
@@ -25,10 +25,20 @@ The site is built as a static export for CDN hosting with multi-language support
 **Hive Libraries:**
 - @hiveio/hive-lib (custom blockchain interaction library)
 - @hiveio/auth-components (authentication UI)
-- @hiveio/wax, @hiveio/wax-signers-keychain, @hiveio/wax-api-jsonrpc
+- @hiveio/wax, @hiveio/wax-signers-keychain (`catalog:hiveio-toolset`, the 1.28.x
+  `-stable` builds from the hive GitLab registry, see `.npmrc`), @hiveio/wax-api-jsonrpc
 - @hiveio/dhive
 
 **Package Manager:** pnpm with workspaces
+
+**Dependency versions:** React/Next, Tailwind, TypeScript and the @hiveio wax
+packages come from common-ci-configuration's pnpm catalogs (submodule
+`npm-common-config`, tracking `develop`). package.json files reference them as
+`catalog:<name>` and never write a version. To take a ccc bump:
+`git submodule update --remote npm-common-config`, then
+`python3 npm-common-config/scripts/python/pnpm-catalog-sync.py` (rewrites the
+marked region of `pnpm-workspace.yaml`), `pnpm install`, and commit all three.
+CI's `pnpm_catalog_check` job reports a workspace file behind the submodule.
 
 ## Directory Structure
 

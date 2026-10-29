@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import { NavigationItem } from './NavigationItem';
 import {
   NavigationMenu,
@@ -49,10 +49,12 @@ export const Navigation: React.FC<NavigationProps> = ({
   const [hoveredSubmenu, setHoveredSubmenu] = useState<number | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
-  // Reset hoveredSubmenu when dropdown changes
-  useEffect(() => {
-    setHoveredSubmenu(null);
-  }, [openDropdown]);
+  const changeOpenDropdown = (name: string | null) => {
+    if (name !== openDropdown) {
+      setHoveredSubmenu(null);
+    }
+    setOpenDropdown(name);
+  };
 
   // Check if any items have children (dropdown menus)
   const hasDropdowns = useMemo(() => {
@@ -75,7 +77,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                   <NavigationMenuItem key={index} className={isMobileMenu ? 'w-full' : ''}>
                     <NavigationMenuTrigger
                       className={`text-base font-normal bg-transparent border-none py-[5px] px-2.5 cursor-pointer transition-colors duration-100 ease-in hover:text-[#e31337] data-[state=open]:text-[#e31337] ${isMobileMenu ? 'w-full justify-center' : ''}`}
-                      onPointerEnter={() => setOpenDropdown(item.name || null)}
+                      onPointerEnter={() => changeOpenDropdown(item.name || null)}
                       onPointerLeave={() => setHoveredSubmenu(null)}
                     >
                       {item.name}

@@ -3,6 +3,14 @@ include:
     ref: develop
     file:
       - '/templates/base.gitlab-ci.yml'
+      - '/templates/npm_projects.gitlab-ci.yml'
+
+variables:
+  # npm-common-config is ccc, tracked from its develop branch: its pnpm
+  # catalogs pin React/Next, Tailwind, TypeScript and the @hiveio libraries
+  GIT_SUBMODULE_STRATEGY: recursive
+  GIT_SUBMODULE_UPDATE_FLAGS: --remote
+  CCC_SUBMODULE_DIR: 'npm-common-config'
 
 stages:
   - build
@@ -30,7 +38,8 @@ build:
     - pnpm config set store-dir .pnpm-store
   script:
     - ls -l
-    - pnpm install --frozen-lockfile
+    - git submodule status --recursive
+    - !reference [.pnpm_install_with_catalog_fallback, script]
     - if [ -n "$CI_COMMIT_BRANCH" ] && [ "$CI_COMMIT_BRANCH" != "master" ]; then export SITE_NOINDEX=1; unset NEXT_PUBLIC_GA_ID NEXT_PUBLIC_GTM_ID; fi
     - pnpm build
     - echo "BUILD SUCCESSFULLY"
@@ -40,10 +49,15 @@ build:
   artifacts:
     paths:
       - apps/web/out/
+      - pnpm-lock.catalog-refreshed.yaml
   # environment:
   #   name: development
   # only:
   #   - develop
+
+pnpm_catalog_check:
+  extends: .pnpm_catalog_check
+  stage: build
 
 deploy_staging:
   stage: deploy_staging

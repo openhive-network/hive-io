@@ -39,6 +39,53 @@ interface BalanceTrackerTVL {
   savings_hbd: string
 }
 
+async function fetchTVL(): Promise<TVLData> {
+  const [response, chain] = await Promise.all([
+    fetch(TVL_API),
+    fetchChainSnapshot(),
+  ])
+
+  if (!response.ok) {
+    throw new Error(`Balance Tracker HTTP ${response.status}`)
+  }
+
+  const locked: BalanceTrackerTVL = await response.json()
+
+  const hiveSavings = Number(locked.savings_hive) / 1000
+  const hbdSavings = Number(locked.savings_hbd) / 1000
+  const vests = Number(locked.total_vests) / 1e6
+  // VESTS to HIVE at the current vesting fund ratio
+  const hpAmount =
+    (vests * chain.totalVestingFundHive) / chain.totalVestingShares
+
+  if (![hiveSavings, hbdSavings, hpAmount].every(Number.isFinite)) {
+    throw new Error('Invalid Balance Tracker response')
+  }
+
+  // Witness median feed gives HBD per HIVE, and the chain treats HBD as $1
+  const hivePrice = chain.hbdPerHive
+  const hbdPrice = 1
+
+  const hiveSavingsUSD = hiveSavings * hivePrice
+  const hbdSavingsUSD = hbdSavings * hbdPrice
+  const hpUSD = hpAmount * hivePrice // HP uses HIVE price
+
+  const totalUSD = hiveSavingsUSD + hbdSavingsUSD + hpUSD;
+
+  return {
+    totalUSD,
+    hiveSavingsUSD,
+    hbdSavingsUSD,
+    hpUSD,
+    hivePrice,
+    hbdPrice,
+    // Raw token amounts
+    hiveSavings,
+    hbdSavings,
+    hpAmount,
+  }
+}
+
 /**
  * Hook to fetch Total Value Locked (TVL) data
  * Locked amounts come from the Balance Tracker, prices from the witness
@@ -54,77 +101,37 @@ export function useTVL(options: UseTVLOptions = {}): UseTVLResult {
   const [error, setError] = useState<string | null>(null);
   const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
 
-  const fetchTVL = useCallback(async () => {
+  const loadTVL = useCallback(() => {
     if (!enabled) return;
 
-    try {
-      const [response, chain] = await Promise.all([
-        fetch(TVL_API),
-        fetchChainSnapshot(),
-      ])
-
-      if (!response.ok) {
-        throw new Error(`Balance Tracker HTTP ${response.status}`)
+    fetchTVL().then(
+      (data) => {
+        setTVL(data);
+        setIsLoading(false);
+        setError(null);
+      },
+      (err) => {
+        console.error('Failed to fetch TVL data:', err)
+        trackOnce('data_fallback', { fallback_source: 'tvl' })
+        setError(err instanceof Error ? err.message : 'Unknown error')
+        setIsLoading(false);
       }
-
-      const locked: BalanceTrackerTVL = await response.json()
-
-      const hiveSavings = Number(locked.savings_hive) / 1000
-      const hbdSavings = Number(locked.savings_hbd) / 1000
-      const vests = Number(locked.total_vests) / 1e6
-      // VESTS to HIVE at the current vesting fund ratio
-      const hpAmount =
-        (vests * chain.totalVestingFundHive) / chain.totalVestingShares
-
-      if (![hiveSavings, hbdSavings, hpAmount].every(Number.isFinite)) {
-        throw new Error('Invalid Balance Tracker response')
-      }
-
-      // Witness median feed gives HBD per HIVE, and the chain treats HBD as $1
-      const hivePrice = chain.hbdPerHive
-      const hbdPrice = 1
-
-      const hiveSavingsUSD = hiveSavings * hivePrice
-      const hbdSavingsUSD = hbdSavings * hbdPrice
-      const hpUSD = hpAmount * hivePrice // HP uses HIVE price
-
-      const totalUSD = hiveSavingsUSD + hbdSavingsUSD + hpUSD;
-
-      setTVL({
-        totalUSD,
-        hiveSavingsUSD,
-        hbdSavingsUSD,
-        hpUSD,
-        hivePrice,
-        hbdPrice,
-        // Raw token amounts
-        hiveSavings,
-        hbdSavings,
-        hpAmount,
-      });
-      setIsLoading(false);
-      setError(null);
-    } catch (err) {
-      console.error('Failed to fetch TVL data:', err)
-      trackOnce('data_fallback', { fallback_source: 'tvl' })
-      setError(err instanceof Error ? err.message : 'Unknown error')
-      setIsLoading(false);
-    }
+    );
   }, [enabled]);
 
   // Fetch immediately on mount
   useEffect(() => {
     if (!enabled) return;
 
-    void fetchTVL();
-  }, [enabled, fetchTVL]);
+    loadTVL();
+  }, [enabled, loadTVL]);
 
   // Set up polling interval
   useEffect(() => {
     if (!enabled) return;
 
     intervalIdRef.current = setInterval(() => {
-      void fetchTVL();
+      loadTVL();
     }, updateInterval);
 
     return () => {
@@ -133,12 +140,12 @@ export function useTVL(options: UseTVLOptions = {}): UseTVLResult {
         intervalIdRef.current = null;
       }
     };
-  }, [enabled, updateInterval, fetchTVL]);
+  }, [enabled, updateInterval, loadTVL]);
 
   return {
     tvl,
     isLoading,
     error,
-    refetch: fetchTVL,
+    refetch: loadTVL,
   };
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense, useState, useEffect, useMemo } from 'react';
+import React, { Suspense, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
@@ -17,7 +17,6 @@ function EcoContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const t = useTranslations();
-  const [filteredEco, setFilteredEco] = useState<IEcoItem[]>([]);
 
   const filterParam = searchParams.get('t');
 
@@ -35,19 +34,10 @@ function EcoContent() {
     []
   );
 
-  const getFilteredEco = (key: string | null) => {
-    setFilteredEco(ECOSYSTEM.filter((e) => !key || e.types.includes(key as EcoType)));
-  };
-
-  // Initialize on mount
-  useEffect(() => {
-    getFilteredEco(filterParam);
-  }, []);
-
-  // Update when filter changes
-  useEffect(() => {
-    getFilteredEco(filterParam);
-  }, [filterParam]);
+  const filteredEco = useMemo<IEcoItem[]>(
+    () => ECOSYSTEM.filter((e) => !filterParam || e.types.includes(filterParam as EcoType)),
+    [filterParam]
+  );
 
   const filterEco = (key: string) => {
     track('eco_filter', { filter_name: key, toggle_state: filterParam === key ? 'off' : 'on' });

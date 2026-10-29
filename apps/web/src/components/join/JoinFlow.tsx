@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -13,34 +13,44 @@ import { LoginModal } from '@/components/join/LoginModal'
 import { decodeAccountData, type ShareableAccountData } from '@/lib/share-link'
 import { createHiveAccount, type PrivateKeys } from '@hiveio/hive-lib'
 import { useTranslations } from 'next-intl'
+import { useRouter } from '@/i18n/routing'
 import { track } from '@/lib/analytics'
 
 interface JoinFlowProps {
   encodedData: string
 }
 
+const InfoField = ({ label, value }: { label: string; value: string }) => (
+  <div className="space-y-2">
+    <Label className="text-sm font-medium text-white">{label}</Label>
+    <div className="p-3 bg-gray-800/50 rounded-md font-mono text-sm break-all text-gray-300">
+      {value}
+    </div>
+  </div>
+)
+
 export default function JoinFlow({ encodedData }: JoinFlowProps) {
   const { user, isAuthenticated, pendingClaimedAccounts, refreshAccountInfo } = useAuth()
+  const router = useRouter()
   const t = useTranslations('join.joinFlow')
   const tErrors = useTranslations('join.errors')
   const tSuccess = useTranslations('join.success')
-  const [accountData, setAccountData] = useState<ShareableAccountData | null>(null)
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [showLoginModal, setShowLoginModal] = useState(false)
   const [transactionId, setTransactionId] = useState<string | null>(null)
 
   // Decode the account data from URL
+  const accountData = useMemo<ShareableAccountData | null>(
+    () => (encodedData ? decodeAccountData(encodedData) : null),
+    [encodedData]
+  )
+
   useEffect(() => {
-    if (encodedData) {
-      const decoded = decodeAccountData(encodedData)
-      if (decoded) {
-        setAccountData(decoded)
-      } else {
-        toast.error(tErrors('invalidShareLink'))
-      }
+    if (encodedData && !accountData) {
+      toast.error(tErrors('invalidShareLink'))
     }
-  }, [encodedData, tErrors])
+  }, [encodedData, accountData, tErrors])
 
   const createAccount = async () => {
     if (!user?.username || !accountData) {
@@ -100,15 +110,6 @@ export default function JoinFlow({ encodedData }: JoinFlowProps) {
       setLoading(false)
     }
   }
-
-  const InfoField = ({ label, value }: { label: string; value: string }) => (
-    <div className="space-y-2">
-      <Label className="text-sm font-medium text-white">{label}</Label>
-      <div className="p-3 bg-gray-800/50 rounded-md font-mono text-sm break-all text-gray-300">
-        {value}
-      </div>
-    </div>
-  )
 
   if (!accountData) {
     return (
@@ -210,7 +211,7 @@ export default function JoinFlow({ encodedData }: JoinFlowProps) {
               </div>
 
               <Button
-                onClick={() => window.location.href = '/'}
+                onClick={() => router.push('/')}
                 className="w-full"
                 size="lg"
               >

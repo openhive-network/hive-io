@@ -1,7 +1,9 @@
+import type {IStatWebsite} from '@/types/index'
+
 /**
  * Dapp Statistic Websites where Hive is listed on (is randomized each visit)
  */
-export const STATISTIC_WEBSITES = [
+export const STATISTIC_WEBSITES: IStatWebsite[] = [
  // {
  //   id: 'dapp-com',
  //   name: 'Dappt.com',
@@ -35,7 +37,7 @@ export const STATISTIC_WEBSITES = [
   },
 ]
 
-export const HIVE_PROJECTS = {
+export const HIVE_PROJECTS: IStatWebsite = {
   id: 'hiveprojects',
   name: 'HiveProjects.io',
   website: 'https://hiveprojects.io',

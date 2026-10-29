@@ -12,29 +12,10 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Link } from '@/i18n/routing';
 import { ChevronRight } from 'lucide-react';
-
-interface SubmenuItem {
-  to?: string;
-  name?: string;
-  description?: string;
-}
-
-interface NavigationChild {
-  to?: string;
-  name?: string;
-  description?: string;
-  submenu?: SubmenuItem[];
-}
-
-interface NavigationItemType {
-  to?: string;
-  name?: string;
-  isButton?: boolean;
-  children?: NavigationChild[];
-}
+import type { INavigationItem } from '@/types';
 
 interface NavigationProps extends React.HTMLAttributes<HTMLDivElement> {
-  items?: NavigationItemType[];
+  items?: INavigationItem[];
   dark?: boolean;
   onClicked?: () => void;
 }
@@ -89,7 +70,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                       <div className="flex gap-0">
                         {/* Main menu items */}
                         <ul className="list-none p-0 m-0 flex flex-col gap-2 flex-1 shrink-0 w-[280px]">
-                          {item.children && item.children.map((child: any, childIndex) => (
+                          {item.children && item.children.map((child, childIndex) => (
                             <li
                               key={childIndex}
                               onMouseEnter={() => child.submenu ? setHoveredSubmenu(childIndex) : setHoveredSubmenu(null)}
@@ -117,7 +98,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                               ) : child.to ? (
                                 <NavigationMenuLink asChild>
                                   <Link
-                                    href={`/${child.to}` as any}
+                                    href={`/${child.to}`}
                                     onClick={onClicked}
                                     className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
                                   >
@@ -151,10 +132,10 @@ export const Navigation: React.FC<NavigationProps> = ({
                         </ul>
 
                         {/* Right column - Submenu items (only visible when hovering submenu item) */}
-                        {hoveredSubmenu !== null && item.children && (item.children[hoveredSubmenu] as any)?.submenu && (
+                        {hoveredSubmenu !== null && item.children && item.children[hoveredSubmenu]?.submenu && (
                           <div className="border-l border-gray-200 pl-6 min-w-[300px] shrink-0">
                             <ul className="list-none p-0 m-0 flex flex-col gap-2">
-                              {(item.children[hoveredSubmenu] as any).submenu.map((subItem: any, subIndex: number) => (
+                              {item.children[hoveredSubmenu].submenu.map((subItem, subIndex) => (
                                 <li key={subIndex}>
                                   {subItem.to && (subItem.to.includes('https://') || subItem.to.includes('mailto')) ? (
                                     <NavigationMenuLink
@@ -179,7 +160,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                                   ) : subItem.to ? (
                                     <NavigationMenuLink asChild>
                                       <Link
-                                        href={`/${subItem.to}` as any}
+                                        href={`/${subItem.to}`}
                                         onClick={onClicked}
                                         className="block no-underline rounded-md py-3 px-4 transition-colors duration-100 ease-in hover:bg-[#f5f5f5] focus:outline-none focus:bg-[#f5f5f5]"
                                       >

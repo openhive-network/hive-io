@@ -1,11 +1,18 @@
+import type {IconName, IconPrefix} from '@fortawesome/fontawesome-svg-core'
+
 export interface IBaseApp {
   id: string
   name: string
   image: string
 }
 
+export interface IPlatform {
+  icon: [IconPrefix, IconName]
+  name: string
+}
+
 export interface IWallet extends IBaseApp {
-  os: any[]
+  os: IPlatform[]
   website: {firefox?: string; chrome?: string; safari?: string} | string
   github?: string
   gitlab?: string
@@ -20,6 +27,40 @@ export interface IEcoItem extends IBaseApp {
   description: string
   featured?: boolean // Is the app one of the top 50/100 performing web3 apps worldwide?
   types: EcoType[]
+}
+
+export interface IStatWebsite extends IBaseApp {
+  website: string
+  github?: string
+  gitlab?: string
+}
+
+export interface IAppStats {
+  name: string
+  dau?: {last_month: number}
+}
+
+export interface INavigationLink {
+  to?: string
+  name?: string
+  description?: string
+}
+
+export interface INavigationChild extends INavigationLink {
+  submenu?: INavigationLink[]
+}
+
+export interface INavigationItem {
+  to?: string
+  name?: string
+  isButton?: boolean
+  children?: INavigationChild[]
+}
+
+export interface ISocialMedia {
+  icon: IconName
+  name: string
+  link: string
 }
 
 export interface IContributor {

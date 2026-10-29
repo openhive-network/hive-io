@@ -233,7 +233,7 @@ export default function RoadmapPage() {
             Hive Roadmap<span className="text-[#e31337]">.</span>
           </h1>
           <p className="text-xl max-w-[800px] text-[#555] leading-relaxed mb-8">
-            Our journey from inception to the future. Track major hardforks, updates, and planned developments in Hive's evolution as a community-driven blockchain.
+            Our journey from inception to the future. Track major hardforks, updates, and planned developments in Hive&apos;s evolution as a community-driven blockchain.
           </p>
           <p className="text-lg max-w-[700px] text-[#666]">
             For the latest development updates, follow{' '}

@@ -25,6 +25,16 @@ import {
   type PrivateKeys
 } from '@hiveio/hive-lib'
 
+type KeychainWindow = Window & {
+  hive_keychain?: {
+    requestAddAccount: (
+      username: string,
+      keys: {active: string; posting: string; memo: string},
+      callback: (response: {success: boolean; message?: string}) => void
+    ) => void
+  }
+}
+
 export default function CreateHiveAccount() {
   const { user, isAuthenticated, pendingClaimedAccounts, refreshAccountInfo } = useAuth()
   const t = useTranslations('join.accountForm')
@@ -265,7 +275,7 @@ export default function CreateHiveAccount() {
 
         if (result.success) {
           setSuccess(true)
-          setTransactionId((result as any).transactionId || null)
+          setTransactionId('transactionId' in result && typeof result.transactionId === 'string' ? result.transactionId : null)
           toast.success(`${tSuccess('welcome')} @${account}!`)
 
           // Refresh account info to update claimed accounts count
@@ -392,8 +402,8 @@ export default function CreateHiveAccount() {
   const addToKeychain = () => {
     if (!privateKeys || !account) return
 
-    if (typeof window !== 'undefined' && (window as any).hive_keychain) {
-      const keychain = (window as any).hive_keychain
+    const keychain = typeof window !== 'undefined' ? (window as KeychainWindow).hive_keychain : undefined
+    if (keychain) {
 
       setAddingToKeychain(true)
       keychain.requestAddAccount(
@@ -403,7 +413,7 @@ export default function CreateHiveAccount() {
           posting: privateKeys.posting,
           memo: privateKeys.memo
         },
-        (response: any) => {
+        (response) => {
           setAddingToKeychain(false)
           if (response.success) {
             setAddedToKeychain(true)

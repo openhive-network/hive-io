@@ -35,7 +35,7 @@ config.autoAddCss = false
 // Custom Brave icon
 const fabBrave: IconDefinition = {
   prefix: 'fab',
-  iconName: 'brave' as any,
+  iconName: 'brave',
   icon: [
     26,
     28,

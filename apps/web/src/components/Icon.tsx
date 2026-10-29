@@ -23,7 +23,7 @@ export const Icon: React.FC<IconProps> = ({
   style,
   ...props
 }) => {
-  const anchorRef = useRef<HTMLAnchorElement>(null);
+  const anchorRef = useRef<HTMLElement>(null);
   const tippyInstanceRef = useRef<Instance | null>(null);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export const Icon: React.FC<IconProps> = ({
   if (!link) {
     return (
       <span
-        ref={anchorRef as any}
+        ref={anchorRef as React.RefObject<HTMLSpanElement | null>}
         style={{ height: `${height}px`, display: 'inline-block', ...style }}
         title={tooltip}
         className={className}
@@ -66,7 +66,7 @@ export const Icon: React.FC<IconProps> = ({
 
   return (
     <a
-      ref={anchorRef}
+      ref={anchorRef as React.RefObject<HTMLAnchorElement | null>}
       href={link}
       target="_blank"
       rel="noopener noreferrer"

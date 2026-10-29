@@ -4,9 +4,10 @@ import { Logo } from '@/components/logo/Logo';
 import { FooterNavigation } from './FooterNavigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SOCIAL_MEDIAS } from '@/lib/data/socialmedias';
+import type { INavigationItem } from '@/types';
 
 interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
-  items?: any[][];
+  items?: INavigationItem[][];
 }
 
 export const Footer: React.FC<FooterProps> = ({ items = [], className, ...props }) => {
@@ -32,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({ items = [], className, ...props 
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <FontAwesomeIcon
-                    icon={['fab', social.icon as any]}
+                    icon={['fab', social.icon]}
                     style={{ height: `20px`, width: `20px` }}
                   />
                 </a>

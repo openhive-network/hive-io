@@ -72,7 +72,7 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
   if (isButton && to && !to.includes('https://') && !to.includes('http://')) {
     return (
       <div className={`py-[5px] px-[5px] ${className || ''}`} {...props}>
-        <Link href={`/${to}` as any} onClick={handleClick}>
+        <Link href={`/${to}`} onClick={handleClick}>
           <Button
             size="lg"
             className="min-w-[110px] bg-gray-800 hover:bg-[#e31337] text-white font-semibold text-base rounded-full transition-colors duration-200"
@@ -106,7 +106,7 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
     return (
       <div className={`py-[5px] px-[5px] ${className || ''}`} {...props}>
         <Link
-          href={`/${to}` as any}
+          href={`/${to}`}
           className={`transition-all ease-in duration-100 hover:text-[#e31337] ${dark ? 'text-white' : ''} ${isActive ? 'text-[#e31337]' : ''}`}
           onClick={handleClick}
         >

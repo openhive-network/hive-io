@@ -474,7 +474,8 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.game, EcoType.social],
     featured: false,
   },
-].concat(BLOCKEXPLORERS as any)
+  ...BLOCKEXPLORERS,
+]
 
 export const TYPE_COLORS = {
   game: {

@@ -13,6 +13,10 @@ interface TransactionStatsResult {
   isAnimating: boolean;
 }
 
+interface YearlyTransactionStats {
+  trx_count: number;
+}
+
 async function fetchTransactionTotal(): Promise<number> {
   const response = await fetch(
     'https://api.hive.blog/hafbe-api/transaction-statistics?granularity=yearly'
@@ -22,10 +26,10 @@ async function fetchTransactionTotal(): Promise<number> {
     throw new Error('Failed to fetch transaction statistics');
   }
 
-  const data = await response.json();
+  const data: YearlyTransactionStats[] = await response.json();
 
   // Sum up all transaction counts from all years
-  return data.reduce((sum: number, year: any) => sum + year.trx_count, 0);
+  return data.reduce((sum, year) => sum + year.trx_count, 0);
 }
 
 /**

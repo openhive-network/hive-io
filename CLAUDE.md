@@ -59,7 +59,7 @@ hive-io/
 │       │   ├── types/            # TypeScript interfaces
 │       │   └── i18n/             # Internationalization config
 │       ├── public/               # Static assets (images, favicons, messages)
-│       └── scripts/post-build.js # Static export setup
+│       └── scripts/post-build.mjs # Static export setup
 ├── packages/
 │   ├── hive-lib/                 # Blockchain interaction library
 │   │   └── src/engine/           # Hive Engine modules

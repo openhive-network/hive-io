@@ -23,12 +23,12 @@ function EcoContent() {
   const appTypes = useMemo(() =>
     Object.keys(TYPE_COLORS)
       .filter((c) => {
-        return ECOSYSTEM.find((e) => e.types.includes(c as any));
+        return ECOSYSTEM.find((e) => e.types.includes(c as EcoType));
       })
       .map((c) => {
         return {
           value: c,
-          count: ECOSYSTEM.filter((e) => e.types.includes(c as any)).length,
+          count: ECOSYSTEM.filter((e) => e.types.includes(c as EcoType)).length,
         };
       }),
     []
@@ -102,10 +102,10 @@ function EcoContent() {
         {/* More Projects Section */}
         <div className="flex flex-col items-center text-center mt-12 mb-16">
           <h2 className="text-[2.8rem] font-bold leading-tight mb-4">
-            But wait, there's more<span className="text-[#e31337]">...</span>
+            But wait, there&apos;s more<span className="text-[#e31337]">...</span>
           </h2>
           <p className="text-xl text-[#555] leading-relaxed mb-6">
-            Over <span className="font-bold text-black">190 projects</span> have been BUIDL'd by the Hive community. You
+            Over <span className="font-bold text-black">190 projects</span> have been BUIDL&apos;d by the Hive community. You
             can view all of them via HiveProjects.io
           </p>
           <StatWebsite item={HIVE_PROJECTS} transparent={true} />

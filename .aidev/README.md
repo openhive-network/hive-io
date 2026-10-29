@@ -39,7 +39,7 @@ installs `node_modules` offline from the image's pnpm store (`install`). Steps: 
 is `tsc --noEmit` of `packages/hive-lib` and `packages/auth-components` (their `type-check`
 scripts), `lint` is `pnpm lint` (eslint of `apps/web`; CI does not run it), `build` is
 `pnpm build` with `SITE_NOINDEX=1` (the workspace packages, `next build`'s static export
-into `apps/web/out/` and `scripts/post-build.js`), what CI's `build` job runs on a
+into `apps/web/out/` and `scripts/post-build.mjs`), what CI's `build` job runs on a
 non-master branch.
 
 ## Test runtime

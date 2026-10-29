@@ -65,7 +65,7 @@ export const ContributorsContributor: React.FC<ContributorsContributorProps> = (
           >
             <FontAwesomeIcon
               className="h-3.5 w-3.5"
-              icon={['fab', platform] as any}
+              icon={['fab', platform as keyof IContributor['social']]}
             />
           </a>
         ))}

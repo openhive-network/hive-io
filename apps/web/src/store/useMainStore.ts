@@ -1,5 +1,10 @@
 import {create} from 'zustand'
-import type {IContributor, IEcoItem} from '@/types'
+import type {
+  ContributorLabel,
+  IAppStats,
+  IContributor,
+  IEcoItem,
+} from '@/types'
 import {ECOSYSTEM} from '@/lib/data/ecosystem'
 import {shuffleArray} from '@/lib/data/util'
 import {CONTRIBUTORS} from '@/lib/data/var'
@@ -10,11 +15,11 @@ interface MainStore {
   preventScroll: boolean
   isMobileActive: boolean
   activeEco: IEcoItem
-  globalAppsData: any
-  statsAppsData: any[]
+  globalAppsData: unknown
+  statsAppsData: IAppStats[]
   shuffledContributors: IContributor[]
   contributors: IContributor[]
-  contributorLabels: any[]
+  contributorLabels: ContributorLabel[]
 
   // Actions
   setIsMobileActive: (isMobileActive: boolean) => void
@@ -23,7 +28,7 @@ interface MainStore {
   resetActiveEco: () => void
   setShuffledContributors: (shuffledContributors: IContributor[]) => void
   setContributors: (contributors: IContributor[]) => void
-  setContributorLabels: (labels: any[]) => void
+  setContributorLabels: (labels: ContributorLabel[]) => void
   shuffleContributors: () => void
   initializeApp: () => Promise<void>
 
@@ -61,11 +66,11 @@ export const useMainStore = create<MainStore>((set, get) => ({
     set({activeEco: {} as IEcoItem})
   },
 
-  setGlobalAppsData: (data: any) => {
+  setGlobalAppsData: (data: unknown) => {
     set({globalAppsData: data})
   },
 
-  setStatsAppsData: (data: any[]) => {
+  setStatsAppsData: (data: IAppStats[]) => {
     set({statsAppsData: data})
   },
 
@@ -77,7 +82,7 @@ export const useMainStore = create<MainStore>((set, get) => ({
     set({contributors})
   },
 
-  setContributorLabels: (labels: any[]) => {
+  setContributorLabels: (labels: ContributorLabel[]) => {
     set({contributorLabels: labels})
   },
 

@@ -4,14 +4,15 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { useAssets } from '@/hooks/useAssets';
+import type { IStatWebsite } from '@/types';
 
 interface StatWebsiteProps {
-  item?: any;
+  item: IStatWebsite;
   transparent?: boolean;
 }
 
 export const StatWebsite: React.FC<StatWebsiteProps> = ({
-  item = {},
+  item,
   transparent = false
 }) => {
   const { getImage: getAssetImage } = useAssets();

@@ -4,29 +4,10 @@ import React, { useState } from 'react';
 import { Link, useRouter } from '@/i18n/routing';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-interface SubmenuItem {
-  to?: string;
-  name?: string;
-  description?: string;
-}
-
-interface NavigationChild {
-  to?: string;
-  name?: string;
-  description?: string;
-  submenu?: SubmenuItem[];
-}
-
-interface NavigationItemType {
-  to?: string;
-  name?: string;
-  isButton?: boolean;
-  children?: NavigationChild[];
-}
+import type { INavigationItem } from '@/types';
 
 interface MobileNavigationProps {
-  items: NavigationItemType[];
+  items: INavigationItem[];
   onClicked?: () => void;
 }
 
@@ -132,7 +113,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ items, onCli
                                     </a>
                                   ) : subItem.to ? (
                                     <Link
-                                      href={`/${subItem.to}` as any}
+                                      href={`/${subItem.to}`}
                                       onClick={handleLinkClick}
                                       className="block no-underline"
                                     >
@@ -176,7 +157,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ items, onCli
                           </a>
                         ) : child.to ? (
                           <Link
-                            href={`/${child.to}` as any}
+                            href={`/${child.to}`}
                             onClick={handleLinkClick}
                             className="block no-underline"
                           >
@@ -210,7 +191,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ items, onCli
                   if (isExternal) {
                     go(item.to!);
                   } else {
-                    router.push(`/${item.to}` as any);
+                    router.push(`/${item.to}`);
                     if (onClicked) onClicked();
                   }
                 }}
@@ -242,7 +223,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ items, onCli
           return (
             <div key={index} className="border-b border-gray-200">
               <Link
-                href={`/${item.to}` as any}
+                href={`/${item.to}`}
                 onClick={handleLinkClick}
                 className="block py-4 text-lg font-medium text-black no-underline hover:text-[#e31337] transition-colors"
               >

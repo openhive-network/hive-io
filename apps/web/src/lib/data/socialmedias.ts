@@ -1,7 +1,9 @@
+import type {ISocialMedia} from '@/types/index'
+
 /**
  * Social Media Profiles of Hive
  */
-export const SOCIAL_MEDIAS = [
+export const SOCIAL_MEDIAS: ISocialMedia[] = [
   {
     icon: 'hive',
     name: 'Hive blog',

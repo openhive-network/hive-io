@@ -93,7 +93,7 @@ export default function JoinFlow({ encodedData }: JoinFlowProps) {
       if (result.success) {
         setSuccess(true)
         track('sign_up', { method: 'sponsored', auth_method: user.authMethod })
-        setTransactionId((result as any).txId || null)
+        setTransactionId('txId' in result && typeof result.txId === 'string' ? result.txId : null)
         toast.success(`${tSuccess('accountCreated')} @${accountData.username}!`)
 
         // Refresh account info to update claimed accounts count

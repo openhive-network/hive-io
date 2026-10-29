@@ -29,13 +29,16 @@ cache:
     - packages/auth-components/node_modules/
     - packages/auth-components/dist/
 
-build:
-  stage: build
+.pnpm_job:
   image: ${NODE_TEST_TOOLS_IMAGE}
   before_script:
     - corepack enable
     - corepack prepare pnpm@11.6.0 --activate
     - pnpm config set store-dir .pnpm-store
+
+build:
+  extends: .pnpm_job
+  stage: build
   script:
     - ls -l
     - git submodule status --recursive
@@ -54,6 +57,14 @@ build:
   #   name: development
   # only:
   #   - develop
+
+# ESLint exits non-zero on errors only; warnings are reported but do not fail
+lint:
+  extends: .pnpm_job
+  stage: build
+  script:
+    - !reference [.pnpm_install_with_catalog_fallback, script]
+    - pnpm lint
 
 pnpm_catalog_check:
   extends: .pnpm_catalog_check

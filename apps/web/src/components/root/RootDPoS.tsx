@@ -5,7 +5,7 @@ import { useBlockProducers } from '@/hooks/useBlockProducers';
 
 const WITNESS_COUNT = 10;
 
-interface RootDPoSProps extends React.HTMLAttributes<HTMLDivElement> { }
+type RootDPoSProps = React.HTMLAttributes<HTMLDivElement>;
 
 export interface RootDPoSHandle {
   addBlock: (blockNum: number, producer: string) => void;

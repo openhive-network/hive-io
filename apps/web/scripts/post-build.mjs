@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
 
-const outDir = path.join(__dirname, '..', 'out');
+const outDir = path.join(import.meta.dirname, '..', 'out');
 const enDir = path.join(outDir, 'en');
 
 console.log('📦 Post-build: Moving English content to root...');

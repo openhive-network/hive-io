@@ -1,8 +1,9 @@
 import React from 'react';
 import { Navigation } from '@/components/navigation/Navigation';
+import type { INavigationItem } from '@/types';
 
 interface FooterNavigationProps extends React.HTMLAttributes<HTMLDivElement> {
-  items?: any[];
+  items?: INavigationItem[];
 }
 
 export const FooterNavigation: React.FC<FooterNavigationProps> = ({ items = [], className, ...props }) => {

@@ -12,7 +12,7 @@
 #              (their `type-check` scripts)
 #   lint       `pnpm lint`: eslint of apps/web (eslint.config.mjs)
 #   build      `pnpm build`: the workspace packages, then `next build` (static
-#              export into apps/web/out/) and scripts/post-build.js; what CI's
+#              export into apps/web/out/) and scripts/post-build.mjs; what CI's
 #              build job runs, with SITE_NOINDEX=1 as on a non-master branch
 #
 # Runs offline in the image of .aidev/runtime/Dockerfile (Node from

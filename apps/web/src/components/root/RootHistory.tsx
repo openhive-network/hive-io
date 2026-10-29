@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-interface RootHistoryProps extends React.HTMLAttributes<HTMLDivElement> { }
+type RootHistoryProps = React.HTMLAttributes<HTMLDivElement>;
 
 export const RootHistory: React.FC<RootHistoryProps> = ({ className, ...props }) => {
   return (

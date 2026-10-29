@@ -1,13 +1,14 @@
 import React from 'react';
+import type { IUpdate } from '@/lib/data/updates';
 
 interface UpdatesUpdateProps {
-  item?: any;
+  item: IUpdate;
   big?: boolean;
   className?: string;
 }
 
 export const UpdatesUpdate: React.FC<UpdatesUpdateProps> = ({
-  item = {},
+  item,
   big = false,
   className = ''
 }) => {

@@ -7,10 +7,11 @@ import { usePathname } from '@/i18n/routing';
 import { useAuth } from '@/lib/auth';
 import { LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import type { INavigationItem } from '@/types';
 // import { LanguageSelector } from '@/components/LanguageSelector';
 
 interface MobileMenuProps extends React.HTMLAttributes<HTMLDivElement> {
-  items?: any[];
+  items?: INavigationItem[];
   dark?: boolean;
 }
 

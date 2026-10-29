@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && node scripts/post-build.js && node scripts/sitemap.mjs",
+    "build": "next build && node scripts/post-build.mjs && node scripts/sitemap.mjs",
     "start": "next start",
     "lint": "eslint"
   },

@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useRouter } from '@/i18n/routing';
 import { useMainStore } from '@/store/useMainStore';
 import { CONTRIBUTORS, CONTRIBUTOR_LABELS } from '@/lib/data/var';
-import type { IContributor } from '@/types';
+import type { ContributorLabel as ContributorLabelValue, IContributor } from '@/types';
 import { ContributorLabel } from './ContributorLabel';
 import { ContributorsContributor } from './ContributorsContributor';
 
@@ -25,17 +25,17 @@ export const Contributors: React.FC<ContributorsProps> = ({ full = true }) => {
   const filterParam = searchParams.get('t');
 
   const contributorLabels = useMemo(() => {
-    return Object.keys(CONTRIBUTOR_LABELS)
-      .filter((l: string) => {
+    return (Object.keys(CONTRIBUTOR_LABELS) as ContributorLabelValue[])
+      .filter((l) => {
         return shuffledContributors.find(
-          (c: IContributor) => !c.inactive && c.labels.includes(l as any)
+          (c: IContributor) => !c.inactive && c.labels.includes(l)
         );
       })
-      .map((l: string) => {
+      .map((l) => {
         return {
           value: l,
           count: shuffledContributors.filter(
-            (c: IContributor) => !c.inactive && c.labels.includes(l as any)
+            (c: IContributor) => !c.inactive && c.labels.includes(l)
           ).length,
         };
       });
@@ -44,7 +44,7 @@ export const Contributors: React.FC<ContributorsProps> = ({ full = true }) => {
   const getFilteredContributors = (key: string | null | undefined) => {
     setContributors(
       shuffledContributors.filter(
-        (e: IContributor) => !e.inactive && (!key || e.labels.includes(key as any))
+        (e: IContributor) => !e.inactive && (!key || e.labels.some((l) => l === key))
       )
     );
   };
@@ -75,7 +75,7 @@ export const Contributors: React.FC<ContributorsProps> = ({ full = true }) => {
           Our Builders<span className="text-[#e31337]">.</span>
         </h1>
         <p className="text-xl max-w-[700px] text-[#555] leading-relaxed mb-4">
-          We're a decentralized project, running on more than{' '}
+          We&apos;re a decentralized project, running on more than{' '}
           {CONTRIBUTORS.length} people contributing regularly to the Hive
           Ecosystem.
         </p>

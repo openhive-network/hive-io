@@ -10,9 +10,10 @@ import { InfobarCompact } from '@/components/infobar/InfobarCompact';
 import { useAuth } from '@/lib/auth';
 import { LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import type { INavigationItem } from '@/types';
 
 interface HeaderProps {
-  items?: any[];
+  items?: INavigationItem[];
 }
 
 export const Header: React.FC<HeaderProps> = ({ items = [] }) => {

@@ -48,7 +48,7 @@ export const App: React.FC<AppProps> = ({
 
   const stats = useMemo(() => {
     return statsAppsData.find(
-      (d: any) => d.name === (dict[item.id] || item.id)
+      (d) => d.name === (dict[item.id] || item.id)
     );
   }, [statsAppsData, item.id]);
 

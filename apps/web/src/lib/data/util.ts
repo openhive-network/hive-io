@@ -13,11 +13,6 @@ export const catchRouteError = (err: Error) => {
   return err.name !== 'NavigationDuplicated' && console.error(err)
 }
 
-// Catch route errors
-export const routerPush = async (_this: any, q: any): Promise<void> => {
-  return await _this.$router.push(q).catch(catchRouteError)
-}
-
 export const formatToUnits = (number: number, precision = 2): string => {
   const abbrev = ['', 'k', 'm', 'b', 't']
   const unrangifiedOrder = Math.floor(Math.log10(Math.abs(number)) / 3)

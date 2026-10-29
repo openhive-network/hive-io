@@ -1,9 +1,9 @@
-import type { IWallet } from '@/types/index'
+import type { IPlatform, IWallet } from '@/types/index'
 
 /**
  * Different OS Platforms
  */
-const os = {
+const os: Record<string, IPlatform> = {
   web: {
     icon: ['fas', 'globe'],
     name: 'Web',

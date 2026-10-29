@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { trackOnce } from '@/lib/analytics';
 
 interface TransactionStatsOptions {
   updateInterval: number;
@@ -54,6 +55,7 @@ export function useTransactionStats(
       },
       (err) => {
         console.error('Failed to fetch transaction statistics:', err);
+        trackOnce('data_fallback', { fallback_source: 'transaction_stats' });
       }
     );
   };

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import {fetchChainSnapshot} from '@/lib/hive-rates'
+import { trackOnce } from '@/lib/analytics'
 
 interface TVLData {
   totalUSD: number;
@@ -111,6 +112,7 @@ export function useTVL(options: UseTVLOptions = {}): UseTVLResult {
       },
       (err) => {
         console.error('Failed to fetch TVL data:', err)
+        trackOnce('data_fallback', { fallback_source: 'tvl' })
         setError(err instanceof Error ? err.message : 'Unknown error')
         setIsLoading(false);
       }

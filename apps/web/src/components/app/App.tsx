@@ -102,7 +102,12 @@ export const App: React.FC<AppProps> = ({
   );
 
   return (
-    <div className={baseClasses} style={style}>
+    <div
+      className={baseClasses}
+      style={style}
+      data-track-app-name={item.name}
+      data-track-app-category={item.types.join(',')}
+    >
       {!openModal && !detailed && !openDetailed ? (
         <a
           href={getWebsiteUrl()}

@@ -12,6 +12,9 @@ variables:
   GIT_SUBMODULE_UPDATE_FLAGS: --remote
   CCC_SUBMODULE_DIR: 'npm-common-config'
 
+default:
+  tags: [public-runner-docker]
+
 stages:
   - build
   - deploy_staging

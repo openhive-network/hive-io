@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,17 @@ import { App } from '@/components/app/App';
 import { ModalEco } from '@/components/modal/ModalEco';
 import { ECOSYSTEM } from '@/lib/data/var';
 import { shuffleArray } from '@/lib/data/util';
+import { useClientRandom } from '@/hooks/useClientRandom';
 import type { IEcoItem } from '@/types';
+
+// The first featured app is always shown first; the rest rotate per visit.
+const MAX_FEATURED = 8;
+const FEATURED = ECOSYSTEM.filter((e) => e.featured);
+const FEATURED_STATIC = FEATURED.slice(0, MAX_FEATURED);
+const pickFeatured = (): IEcoItem[] =>
+  FEATURED.slice(0, 1).concat(
+    shuffleArray(FEATURED.slice(1)).slice(0, MAX_FEATURED - 1)
+  );
 
 interface RootEcoProps extends React.HTMLAttributes<HTMLDivElement> {
   full?: boolean;
@@ -18,16 +28,7 @@ export const RootEco: React.FC<RootEcoProps> = ({ full = true, className, ...pro
   const router = useRouter();
   const t = useTranslations();
 
-  const favs = useMemo(() => {
-    const maxFeatured = 8;
-    const fixed = ECOSYSTEM.filter((e) => e.featured).slice(0, 1);
-    const random = fixed.concat(
-      shuffleArray(
-        ECOSYSTEM.filter((e) => e.featured).slice(1, ECOSYSTEM.length - 2)
-      ).slice(0, maxFeatured - 1)
-    );
-    return random as IEcoItem[];
-  }, []);
+  const favs = useClientRandom('home-featured', FEATURED_STATIC, pickFeatured);
 
   return (
     <div className={`w-full py-24 px-6 sm:px-10 ${className || ''}`} {...props}>

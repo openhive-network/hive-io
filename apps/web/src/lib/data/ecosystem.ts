@@ -60,6 +60,10 @@ export const ECOSYSTEM: IEcoItem[] = [
       'Hot topics on a social network owned and operated by its users.',
     image: 'ecency.svg',
     website: 'https://ecency.com',
+    stores: {
+      googlePlay: 'https://android.ecency.com/',
+      appStore: 'https://ios.ecency.com/',
+    },
     types: [EcoType.social],
     featured: true,
   },
@@ -69,7 +73,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     description:
       'Next generation L2 smart contracts and wrapping technology on the Hive Blockchain.',
     image: 'magi.png',
-    website: 'https://magi.eco/',
+    website: 'https://magiprotocol.com/',
     types: [EcoType.tools, EcoType.defi, EcoType.nft],
     featured: true,
   },
@@ -98,7 +102,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     name: 'Liketu',
     description: 'A visual social network for the web of tomorrow.',
     image: 'liketu.png',
-    website: 'https://www.liketu.org',
+    website: 'https://liketu.social/',
     types: [EcoType.social],
     featured: true,
   },
@@ -138,6 +142,11 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'TravelFeed makes travel blogging easy and fun.',
     image: 'travelfeed.svg',
     website: 'https://travelfeed.com',
+    stores: {
+      googlePlay:
+        'https://play.google.com/store/apps/details?id=io.travelfeed.pwa',
+      appStore: 'https://apps.apple.com/app/travelfeed/id6472209919',
+    },
     types: [EcoType.social],
     featured: false,
   },
@@ -148,6 +157,11 @@ export const ECOSYSTEM: IEcoItem[] = [
       'With truvvl stories, swiping through your favorite travel blogs is fun.',
     image: 'truvvl.svg',
     website: 'https://truvvl.com',
+    stores: {
+      googlePlay:
+        'https://play.google.com/store/apps/details?id=io.travelfeed.truvvl',
+      appStore: 'https://apps.apple.com/app/truvvl/id1552253482',
+    },
     types: [EcoType.social],
     featured: false,
   },
@@ -157,6 +171,10 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'An innovative dapp that rewards your everyday activity.',
     image: 'actifit.png',
     website: 'https://actifit.io',
+    stores: {
+      googlePlay: 'https://links.actifit.io/android',
+      appStore: 'https://links.actifit.io/ios',
+    },
     types: [EcoType.social, EcoType.sport],
     featured: false,
   },
@@ -181,15 +199,6 @@ export const ECOSYSTEM: IEcoItem[] = [
   //   featured: false,
   // },
   {
-    id: 'nfttunz',
-    name: 'NFTTunz',
-    description: 'Music NFTs on Hive.',
-    image: 'nfttunz.png',
-    website: 'https://nfttunz.io',
-    types: [EcoType.nft],
-    featured: false,
-  },
-  {
     id: 'dcrops',
     name: 'dCrops',
     description: 'A decentralized farm simulator.',
@@ -203,7 +212,12 @@ export const ECOSYSTEM: IEcoItem[] = [
     name: 'Snapie',
     description: 'Snapie brings social media to the blockchain.',
     image: 'snapie.png',
-    website: 'https://snapie.xyz/',
+    website: 'https://www.snapie.io/',
+    stores: {
+      googlePlay:
+        'https://play.google.com/store/apps/details?id=com.menobass.hivesnaps',
+      appStore: 'https://apps.apple.com/us/app/hive-snaps/id6748106413',
+    },
     types: [EcoType.social],
   },
   {
@@ -253,15 +267,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     featured: false,
   },
   {
-    id: 'apeminingclub',
-    name: 'Ape Mining Club',
-    description: 'An idle simulation game that incorporates its own APE token.',
-    image: 'apeminingclub.png',
-    website: 'https://apemining.club',
-    types: [EcoType.game],
-    featured: false,
-  },
-  {
     id: 'tribaldex',
     name: 'Tribaldex',
     description: 'Create Tokens + Smart Contracts on the Hive blockchain.',
@@ -277,6 +282,16 @@ export const ECOSYSTEM: IEcoItem[] = [
       'Dedicated skateboarding platform for video, photo, and sequence sharing.',
     image: 'SkateHype.png',
     website: 'https://www.skatehype.com',
+    types: [EcoType.social, EcoType.video, EcoType.sport],
+    featured: false,
+  },
+  {
+    id: 'skatehive',
+    name: 'Skatehive',
+    description:
+      'A skateboarding community and magazine: share videos, find skate spots and earn post rewards.',
+    image: 'skatehive.png',
+    website: 'https://skatehive.app/',
     types: [EcoType.social, EcoType.video, EcoType.sport],
     featured: false,
   },
@@ -376,7 +391,7 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'genesisleaguesports.png',
     website: 'https://genesisleaguesports.com/',
     types: [EcoType.game, EcoType.nft],
-    featured: true,
+    featured: false,
   },
   {
     id: 'riseofthepixels',
@@ -394,6 +409,10 @@ export const ECOSYSTEM: IEcoItem[] = [
     description: 'All in one - blogs, videos, shorts, polls, snaps & games',
     image: 'hive-suite-logo.png',
     website: 'https://hivesuite.app',
+    stores: {
+      googlePlay:
+        'https://play.google.com/store/apps/details?id=app.hivesuite.mobile_app',
+    },
     types: [EcoType.social],
     featured: false,
   },
@@ -403,7 +422,11 @@ export const ECOSYSTEM: IEcoItem[] = [
     description:
       'Astral Wars is a fast-paced digital trading card game where players use programs, units, deterrents and structures to outsmart opponents in epic duels set in the Astranian universe.',
     image: 'AstralWars.webp',
-    website: 'https://surgent-gaming-marketplace.vercel.app/',
+    website: 'https://www.surgentgaming.com/',
+    stores: {
+      googlePlay:
+        'https://play.google.com/store/apps/details?id=com.SurgentGaming.AstralWars',
+    },
     types: [EcoType.game],
     featured: false,
   },
@@ -435,22 +458,12 @@ export const ECOSYSTEM: IEcoItem[] = [
     featured: false,
   },
   {
-    id: 'kod',
-    name: 'King Of Duels',
-    description:
-      'King of Duels brings players a complete PvP gaming experience from day one.',
-    image: 'king-of-duels.svg',
-    website: 'https://www.kingofduels.online/',
-    types: [EcoType.game],
-    featured: false,
-  },
-  {
     id: 'pevo',
     name: 'Pevo',
     description:
       'Publish, review, and evaluate research on a transparent, open platform.',
     image: 'pevo.webp',
-    website: 'https://pevo.science/',
+    website: 'https://beta.pevo.science/',
     types: [EcoType.social],
     featured: true,
   },
@@ -472,6 +485,117 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'hivegrove.png',
     website: 'https://playhivegrove.com/',
     types: [EcoType.game, EcoType.social],
+    featured: false,
+  },
+  {
+    id: 'everwitnessed',
+    name: 'EverWitnessed',
+    description:
+      'Timestamp any file on Hive. Only its SHA-256 fingerprint goes on chain; the file stays on your device.',
+    image: 'everwitnessed.png',
+    website: 'https://everwitnessed.net/',
+    types: [EcoType.tools],
+    featured: false,
+  },
+  {
+    id: 'hivepizza',
+    name: 'Hive Pizza',
+    description:
+      'The PIZZA Guild: a community for games, art and music, with its own PIZZA token.',
+    image: 'hivepizza.png',
+    website: 'https://hive.pizza/',
+    types: [EcoType.social],
+    featured: false,
+  },
+  {
+    id: 'moon',
+    name: 'Moon',
+    description:
+      'A browser space strategy game from Hive Pizza: build fleets and grow your empire.',
+    image: 'moon.webp',
+    website: 'https://moonsiege.com/',
+    types: [EcoType.game],
+    featured: false,
+  },
+  {
+    id: 'hivedappmenu',
+    name: 'Hive dApp Menu',
+    description:
+      'A browser extension with a menu of Hive apps, made for new users.',
+    image: 'hivedappmenu.jpg',
+    website:
+      'https://chromewebstore.google.com/detail/hive-dapp-menu/dbikjmkkbcjpcnjbhihmlbjdcjcaoaad',
+    types: [EcoType.tools],
+    featured: false,
+  },
+  {
+    id: 'scrobblelife',
+    name: 'scrobble.life',
+    description:
+      'A browser scrobbler that writes what you listen to and watch to Hive.',
+    image: 'scrobblelife.png',
+    website: 'https://scrobble.life/',
+    types: [EcoType.social],
+    featured: false,
+  },
+  {
+    id: 'syndicateprotocol',
+    name: 'Syndicate Protocol',
+    description:
+      'A browser territory-control strategy game: deploy crews, run operations and take the map.',
+    image: 'syndicateprotocol.png',
+    website: 'https://syndicate-protocol.com/',
+    types: [EcoType.game],
+    featured: false,
+  },
+  {
+    id: 'hivetown',
+    name: 'Hive Town',
+    description:
+      'A small town where you meet Hive creators, discover posts and play minigames.',
+    image: 'hivetown.webp',
+    website: 'https://rozioogames.com/',
+    types: [EcoType.game, EcoType.social],
+    featured: false,
+  },
+  {
+    id: 'hiveraven',
+    name: 'HiveRaven',
+    description:
+      'Public Hive analytics: account health, new user discovery, DHF watch and downvote dashboards.',
+    image: 'hiveraven.svg',
+    website: 'https://hiveraven.vercel.app/',
+    types: [EcoType.tools],
+    featured: false,
+  },
+  {
+    id: 'beetris',
+    name: 'BeeTris',
+    description:
+      'A Hive-themed browser block puzzle: stack transactions, survive hardforks and dodge downvotes.',
+    image: 'beetris.svg',
+    website: 'https://hiveb3.github.io/beetris/',
+    types: [EcoType.game],
+    featured: false,
+  },
+  {
+    id: 'limitless',
+    name: 'Limitless',
+    description:
+      'An NFT mining game: collect miners and mine Hive Engine tokens, with Hive Keychain login.',
+    image: 'limitless.svg',
+    website: 'https://www.hivereward.co.uk/limitless/',
+    types: [EcoType.game, EcoType.nft],
+    featured: false,
+  },
+  {
+    id: 'splinterlanes',
+    name: 'Splinterlanes',
+    description:
+      'A three-lane Splinterlands variant: 1v1 battles with the cards you own, for card prizes.',
+    image: 'splinterlanes.svg',
+    website: 'https://splinterlanes.com/',
+    types: [EcoType.game],
     featured: false,
   },
   ...BLOCKEXPLORERS,

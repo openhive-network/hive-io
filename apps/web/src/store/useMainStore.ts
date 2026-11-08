@@ -33,8 +33,8 @@ interface MainStore {
   initializeApp: () => Promise<void>
 
   // Computed / Getters
-  getSimilarEco: () => IEcoItem[]
-  getOtherEco: () => IEcoItem[]
+  getSimilarEco: (eco?: IEcoItem) => IEcoItem[]
+  getOtherEco: (eco?: IEcoItem) => IEcoItem[]
 }
 
 export const useMainStore = create<MainStore>((set, get) => ({
@@ -97,16 +97,14 @@ export const useMainStore = create<MainStore>((set, get) => ({
   },
 
   // Computed / Getters
-  getSimilarEco: () => {
-    const {activeEco} = get()
+  getSimilarEco: (activeEco = get().activeEco) => {
     if (!activeEco.id) return ECOSYSTEM
     return ECOSYSTEM.filter((e) => {
       return e.types.filter((t) => activeEco.types.includes(t))[0]
     })
   },
 
-  getOtherEco: () => {
-    const {activeEco} = get()
+  getOtherEco: (activeEco = get().activeEco) => {
     if (!activeEco.id) return ECOSYSTEM
     return ECOSYSTEM.filter((e) => {
       return !e.types.filter((t) => activeEco.types.includes(t))[0]

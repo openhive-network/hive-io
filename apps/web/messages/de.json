@@ -136,12 +136,6 @@
     "hbdText": "HBD is a USD-pegged algorithmic stablecoin backed by HIVE. We currently provide one of the highest interest rates in the crypto space for holding HBD in savings.",
     "hbdAPR": "The interest rate is variable and is voted by the Witnesses.",
     "hbdButton": "Learn more",
-    "fastTitle": "Fast",
-    "fastText": "Transactions are processed and confirmed in 3 seconds. Hive is using OBI (one-block irreversibility) meaning that transactions become irreversible in less than 3 seconds. No need to wait for confirmations.",
-    "fastButton": "Learn more",
-    "feeTitle": "Fast with No Fees",
-    "feeText": "Experience lightning-fast 3-second transactions with zero gas fees. Our Delegated Proof of Stake technology empowers users and communities, not intermediaries.",
-    "feeText2": "",
     "decTitle": "Decentralized",
     "decText": "Hive is one of the most decentralized blockchains. There is no single entity or organization that controlls the network. Everything is run by the community members.",
     "decText2": "",
@@ -150,13 +144,13 @@
   },
   "about": {
     "title": "Built for Web",
-    "text": "Hive is an innovative and forward-looking decentralized blockchain and ecosystem, designed to scale with widespread adoption of the currency and platforms in mind. By combining the lightning-fast processing times and fee-less transactions, Hive is one of the leading Web3 blockchains used by people around the world.",
+    "text": "Hive is a feeless, community-owned blockchain and a public social and identity layer for the open web. Build on Hive's open-source full stack, or extend cross-chain and web apps with Hive accounts, posts and payments that confirm in less than 3 seconds.",
     "featureFast": "Fast",
-    "featureFastText": "Hive has 3 second block times with transactions confirmed within milliseconds due to one-block irreversibility, allowing for a seamless experience.",
+    "featureFastText": "Hive produces a block every 3 seconds. With one-block irreversibility, a transaction becomes final in under a second after being included in a block.",
     "featureScalable": "Scalable",
     "featureScalableText": "Efficiency is key. Hive is optimized for sustainability and flexibility with layered solutions.",
     "featurePowerful": "Powerful",
-    "featurePowerfulText": "Hive is a global decentralized network. It is battle-tested by hundreds of apps, communities & projects around the world."
+    "featurePowerfulText": "Block producers elected by Hive's stakeholders run the network from around the world, with no downtime. No company, server or country can switch it off, and stakeholders can vote out any producer at any time."
   },
   "eco": {
     "title": "Hive Ecosystem",

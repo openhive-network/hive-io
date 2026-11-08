@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import CreateHiveAccount from '@/components/join/CreateHiveAccount'
 import JoinFlow from '@/components/join/JoinFlow'
@@ -28,6 +28,60 @@ const FAQ_ITEMS = [
   },
 ]
 
+// Answers stay mounted (forceMount) so the static HTML carries them; closed
+// items are hidden instead of removed.
+function JoinFaq() {
+  const [open, setOpen] = useState('')
+
+  return (
+    <div className="w-full bg-black md:pt-5 pt-16 px-5">
+      <div className="max-w-[800px] mx-auto">
+
+        <Accordion
+          type="single"
+          collapsible
+          value={open}
+          onValueChange={setOpen}
+          className="w-full"
+        >
+          {FAQ_ITEMS.map((item, index) => (
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="border-gray-800"
+            >
+              <AccordionTrigger className="text-white hover:no-underline hover:text-gray-300 text-left">
+                {item.question}
+              </AccordionTrigger>
+              <AccordionContent
+                forceMount
+                hidden={open !== `item-${index}`}
+                className="text-gray-400"
+              >
+                {item.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </div>
+  )
+}
+
+// Top of the default view. It reads no search params, so it is also the
+// Suspense fallback and its heading and FAQ are in the static HTML.
+function JoinIntro() {
+  return (
+    <>
+      {/* Community Providers - Primary option */}
+      <RegistrationProviders className="pt-10 md:pt-20 pb-10 md:pb-0" showTitle />
+
+      {/* FAQ Section */}
+      <JoinFaq />
+    </>
+  )
+}
+
 function JoinContent() {
   const searchParams = useSearchParams()
   const joinData = searchParams.get('code')
@@ -47,31 +101,7 @@ function JoinContent() {
       ) : (
         // Default view - providers first, then self-service
         <>
-          {/* Community Providers - Primary option */}
-          <RegistrationProviders className="pt-10 md:pt-20 pb-10 md:pb-0" showTitle />
-
-          {/* FAQ Section */}
-          <div className="w-full bg-black md:pt-5 pt-16 px-5">
-            <div className="max-w-[800px] mx-auto">
-
-              <Accordion type="single" collapsible className="w-full">
-                {FAQ_ITEMS.map((item, index) => (
-                  <AccordionItem
-                    key={index}
-                    value={`item-${index}`}
-                    className="border-gray-800"
-                  >
-                    <AccordionTrigger className="text-white hover:no-underline hover:text-gray-300 text-left">
-                      {item.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-gray-400">
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
+          <JoinIntro />
 
           {/* Divider */}
           <div className="w-full bg-black pt-16 pb-8 px-5">
@@ -108,9 +138,16 @@ function JoinContent() {
 
 export default function JoinPage() {
   return (
-    // Reserve the page height until the client renders, so the footer does not
-    // start next to the header and jump down (layout shift)
-    <Suspense fallback={<div className="min-h-screen" />}>
+    // The fallback is the default view's top half: crawlers get the heading and
+    // FAQ, and the page keeps its height until the client renders
+    <Suspense
+      fallback={
+        <div className="flex flex-col min-h-screen">
+          <LogoMarquee compact showTitle={false} />
+          <JoinIntro />
+        </div>
+      }
+    >
       <JoinContent />
     </Suspense>
   )

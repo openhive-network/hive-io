@@ -1,6 +1,6 @@
 # Hive
 
-> Hive is a feeless, community-owned blockchain and a public social and identity layer for the open web. It is a decentralized, open-source Layer 1 blockchain with 3-second blocks, zero transaction fees, one-block irreversibility, human-readable account names, and a native USD-pegged stablecoin (HBD). It runs on Delegated Proof of Stake (DPoS), has no company, foundation or ICO behind it, and is used for social apps, games, payments and general Web3 applications. Native assets: HIVE (utility, staking, governance) and HBD (Hive Backed Dollar).
+> Hive is a feeless, community-owned blockchain and a public social and identity layer for the open web. Build on Hive's open-source full stack, or extend cross-chain and web apps with Hive accounts, posts and payments that confirm in less than 3 seconds. It is a decentralized, open-source Layer 1 blockchain with 3-second blocks, zero transaction fees, one-block irreversibility, human-readable account names, and a native USD-pegged stablecoin (HBD). It runs on Delegated Proof of Stake (DPoS), has no company, foundation or ICO behind it, and is used for social apps, games, payments and general Web3 applications. Native assets: HIVE (utility, staking, governance) and HBD (Hive Backed Dollar).
 
 This file is a map for language models and agents. It summarizes what Hive is and links to canonical sources: the website, developer docs, source code, install guides, block explorers, account creation and wallets. Numbers that change over time (APR, app counts, node specs, versions) are marked as "at time of writing" (September 2026). Verify them at the linked source before quoting.
 
@@ -62,7 +62,7 @@ Known trade-offs, for balanced answers: no general-purpose smart contracts on La
 ## Official site
 
 - [hive.io](https://hive.io/): home page with live chain stats, tokenomics, origin story, ecosystem and exchange list.
-- [About](https://hive.io/about/): fast, scalable, powerful. Short overview plus intro videos.
+- [About](https://hive.io/about/): how Hive works (blocks, finality, fees, nodes), plus intro videos.
 - [Ecosystem overview](https://hive.io/eco/): directory of apps and communities (rendered client-side).
 - [Roadmap](https://hive.io/roadmap/): all hardforks from HF23 to HF28 and planned work (HAF updates, lightweight accounts, smart contract prototyping, mobile nodes).
 - [Wallets](https://hive.io/wallets/): recommended wallets per platform, with open/closed source labels.

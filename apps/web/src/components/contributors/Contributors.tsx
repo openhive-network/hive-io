@@ -9,6 +9,32 @@ import type { ContributorLabel as ContributorLabelValue, IContributor } from '@/
 import { ContributorLabel } from './ContributorLabel';
 import { ContributorsContributor } from './ContributorsContributor';
 
+// Heading and intro. It reads no search params, so the page renders it outside
+// the Suspense boundary and the heading is in the static HTML.
+export const ContributorsHero: React.FC = () => {
+  const shuffleContributors = useMainStore(state => state.shuffleContributors);
+
+  return (
+    <div className="flex flex-col items-center text-center mb-16">
+      <h1 className="text-[4rem] font-bold leading-tight mb-6 max-[600px]:text-[3rem]">
+        Our Builders<span className="text-[#e31337]">.</span>
+      </h1>
+      <p className="text-xl max-w-[700px] text-[#555] leading-relaxed mb-4">
+        We&apos;re a decentralized project, running on more than{' '}
+        {CONTRIBUTORS.length} people contributing regularly to the Hive
+        Ecosystem.
+      </p>
+      <p className="text-lg text-[#555]">
+        The list of contributors below is{' '}
+        <span className="text-[#e31337] cursor-pointer hover:underline font-medium" onClick={() => shuffleContributors()}>
+          randomized
+        </span>
+        .
+      </p>
+    </div>
+  );
+};
+
 interface ContributorsProps {
   full?: boolean;
 }
@@ -20,7 +46,6 @@ export const Contributors: React.FC<ContributorsProps> = ({ full = true }) => {
   const shuffledContributors = useMainStore(state => state.shuffledContributors);
   const contributors = useMainStore(state => state.contributors);
   const setContributors = useMainStore(state => state.setContributors);
-  const shuffleContributors = useMainStore(state => state.shuffleContributors);
 
   const filterParam = searchParams.get('t');
 
@@ -69,25 +94,6 @@ export const Contributors: React.FC<ContributorsProps> = ({ full = true }) => {
 
   return (
     <div className="flex flex-col flex-nowrap items-center w-full min-h-[500px]">
-      {/* Hero Section */}
-      <div className="flex flex-col items-center text-center mb-16">
-        <h1 className="text-[4rem] font-bold leading-tight mb-6 max-[600px]:text-[3rem]">
-          Our Builders<span className="text-[#e31337]">.</span>
-        </h1>
-        <p className="text-xl max-w-[700px] text-[#555] leading-relaxed mb-4">
-          We&apos;re a decentralized project, running on more than{' '}
-          {CONTRIBUTORS.length} people contributing regularly to the Hive
-          Ecosystem.
-        </p>
-        <p className="text-lg text-[#555]">
-          The list of contributors below is{' '}
-          <span className="text-[#e31337] cursor-pointer hover:underline font-medium" onClick={() => shuffleContributors()}>
-            randomized
-          </span>
-          .
-        </p>
-      </div>
-
       {/* Filter Labels */}
       <div className="flex flex-row flex-wrap justify-center gap-3 mb-12">
         {contributorLabels.map((label) => (

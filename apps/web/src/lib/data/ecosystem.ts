@@ -168,7 +168,7 @@ export const ECOSYSTEM: IEcoItem[] = [
   {
     id: 'actifit',
     name: 'Actifit',
-    description: 'An innovative dapp that rewards your everyday activity.',
+    description: 'A fitness and lifestyle app that rewards your daily activity.',
     image: 'actifit.png',
     website: 'https://actifit.io',
     stores: {

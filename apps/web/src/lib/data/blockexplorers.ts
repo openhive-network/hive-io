@@ -6,6 +6,15 @@ import { EcoType } from '@/types'
  */
 export const BLOCKEXPLORERS: IEcoItem[] = [
   {
+    id: 'openhiveexplorer',
+    name: 'OpenHive Explorer',
+    website: 'https://explore.openhive.network/',
+    description:
+      'Block explorer for Hive: blocks, accounts, witnesses and chain parameters.',
+    image: 'redhive.png',
+    types: [EcoType.tools],
+  },
+  {
     id: 'hivescan',
     name: 'HiveScan',
     website: 'https://hivescan.info',

@@ -79,6 +79,12 @@ export const App: React.FC<AppProps> = ({
     }
   };
 
+  const stores = 'stores' in item ? item.stores : undefined;
+  const storeLinks = [
+    { label: 'App Store', href: stores?.appStore },
+    { label: 'Google Play', href: stores?.googlePlay },
+  ].filter((link): link is { label: string; href: string } => !!link.href);
+
   const isEngrave = item.name === 'Engrave';
   const isDLease = item.name === 'DLease';
 
@@ -96,6 +102,8 @@ export const App: React.FC<AppProps> = ({
       <img
         src={getAppImage(item.image)}
         alt={item.name}
+        loading="lazy"
+        decoding="async"
         className={`h-full w-full ${isEngrave ? '' : 'rounded-[15%]'} ${isDLease ? 'w-auto' : ''}`}
       />
     </div>
@@ -119,15 +127,19 @@ export const App: React.FC<AppProps> = ({
         >
           {innerContent}
         </a>
+      ) : detailed ? (
+        <div className={innerClasses}>{innerContent}</div>
       ) : (
-        <div
-          className={innerClasses}
+        <button
+          type="button"
+          aria-haspopup="dialog"
+          className={`${innerClasses} cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e31337]`}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           onClick={onClick}
         >
           {innerContent}
-        </div>
+        </button>
       )}
 
       <div className={`flex flex-col items-center ${detailed ? 'items-start mt-2.5 ml-5 flex-1' : ''}`}>
@@ -211,15 +223,28 @@ export const App: React.FC<AppProps> = ({
         )}
 
         {detailed && (
-          <div className="py-2 px-5 cursor-pointer rounded-[5px] bg-[#757575] w-fit text-white mt-[14px] hover:bg-[#5f5f5f]">
-            <a
-              href={getWebsiteUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white"
-            >
-              Website
-            </a>
+          <div className="flex flex-wrap gap-2.5 mt-[14px]">
+            <div className="py-2 px-5 cursor-pointer rounded-[5px] bg-[#757575] w-fit text-white hover:bg-[#5f5f5f]">
+              <a
+                href={getWebsiteUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white"
+              >
+                Website
+              </a>
+            </div>
+            {storeLinks.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2 px-5 rounded-[5px] bg-[#757575] w-fit text-white hover:bg-[#5f5f5f]"
+              >
+                {label}
+              </a>
+            ))}
           </div>
         )}
       </div>

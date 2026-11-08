@@ -27,6 +27,11 @@ export interface IEcoItem extends IBaseApp {
   description: string
   featured?: boolean // Is the app one of the top 50/100 performing web3 apps worldwide?
   types: EcoType[]
+  // Store listings, shown as extra buttons in the app popup
+  stores?: {
+    googlePlay?: string
+    appStore?: string
+  }
 }
 
 export interface IStatWebsite extends IBaseApp {

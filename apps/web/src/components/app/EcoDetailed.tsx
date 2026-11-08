@@ -4,18 +4,18 @@ import React from 'react';
 import { useRouter, usePathname } from '@/i18n/routing';
 import { useMainStore } from '@/store/useMainStore';
 import { Button } from '@/components/ui/button';
+import type { IEcoItem } from '@/types';
 import { App } from './App';
 
-export const EcoDetailed: React.FC = () => {
+export const EcoDetailed: React.FC<{ item: IEcoItem }> = ({ item: activeEco }) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const activeEco = useMainStore(state => state.activeEco);
   const getSimilarEco = useMainStore(state => state.getSimilarEco);
   const getOtherEco = useMainStore(state => state.getOtherEco);
 
-  const similarEco = getSimilarEco();
-  const otherEco = getOtherEco();
+  const similarEco = getSimilarEco(activeEco);
+  const otherEco = getOtherEco(activeEco);
 
   const exploreEco = () => {
     router.push('/eco');

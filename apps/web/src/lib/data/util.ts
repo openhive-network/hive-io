@@ -8,6 +8,19 @@ export const shuffleArray = <T>(array: T[]): T[] => {
   return array
 }
 
+/**
+ * Random order in which items with a higher weight tend to come first
+ * (Efraimidis-Spirakis: sort by random^(1/weight)). Returns a new array.
+ */
+export const weightedShuffle = <T>(
+  array: T[],
+  weight: (item: T) => number,
+): T[] =>
+  array
+    .map((item) => ({item, key: Math.random() ** (1 / weight(item))}))
+    .sort((a, b) => b.key - a.key)
+    .map(({item}) => item)
+
 export const catchRouteError = (err: Error) => {
   // eslint-disable-next-line no-console
   return err.name !== 'NavigationDuplicated' && console.error(err)

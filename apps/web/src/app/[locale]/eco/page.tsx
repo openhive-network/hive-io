@@ -6,6 +6,9 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
 import { useMainStore } from '@/store/useMainStore';
 import { ECOSYSTEM, STATISTIC_WEBSITES, TYPE_COLORS, HIVE_PROJECTS } from '@/lib/data/var';
+import { BLOCKEXPLORERS } from '@/lib/data/blockexplorers';
+import { weightedShuffle } from '@/lib/data/util';
+import { useClientRandom } from '@/hooks/useClientRandom';
 import { EcoType, IEcoItem } from '@/types';
 import { App } from '@/components/app/App';
 import { AppType } from '@/components/app/AppType';
@@ -13,10 +16,22 @@ import { StatWebsite } from '@/components/statWebsite/StatWebsite';
 import { ModalEco } from '@/components/modal/ModalEco';
 import { track } from '@/lib/analytics';
 
+// Featured apps are this many times more likely to be drawn ahead of any one
+// other app, so they usually sit in the top half; explorers stay at the end.
+const FEATURED_WEIGHT = 4;
+const EXPLORER_IDS = new Set(BLOCKEXPLORERS.map((e) => e.id));
+
+const shuffleEco = (): IEcoItem[] =>
+  weightedShuffle(
+    ECOSYSTEM.filter((e) => !EXPLORER_IDS.has(e.id)),
+    (e) => (e.featured ? FEATURED_WEIGHT : 1)
+  ).concat(ECOSYSTEM.filter((e) => EXPLORER_IDS.has(e.id)));
+
 function EcoContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const t = useTranslations();
+  const ecosystem = useClientRandom('eco-order', ECOSYSTEM, shuffleEco);
 
   const filterParam = searchParams.get('t');
 
@@ -35,8 +50,8 @@ function EcoContent() {
   );
 
   const filteredEco = useMemo<IEcoItem[]>(
-    () => ECOSYSTEM.filter((e) => !filterParam || e.types.includes(filterParam as EcoType)),
-    [filterParam]
+    () => ecosystem.filter((e) => !filterParam || e.types.includes(filterParam as EcoType)),
+    [ecosystem, filterParam]
   );
 
   const filterEco = (key: string) => {

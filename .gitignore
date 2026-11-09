@@ -17,6 +17,8 @@
 **/.next/
 **/out/
 **/dist
+# facts fetched at build time (apps/web/scripts/developer-facts.mjs)
+**/build-data/
 
 # production
 /build

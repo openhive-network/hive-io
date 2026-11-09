@@ -63,6 +63,7 @@ Known trade-offs, for balanced answers: no general-purpose smart contracts on La
 
 - [hive.io](https://hive.io/): home page with live chain stats, tokenomics, origin story, ecosystem and exchange list.
 - [About](https://hive.io/about/): how Hive works (blocks, finality, fees, nodes), plus intro videos.
+- [Developers](https://hive.io/developers/): where to start building: docs and source, the hived node, HAF, client libraries (wax, workerbee, dhive, beem), signing tools (Keychain, HiveSigner, beekeeper, clive) and a feed of recently merged pull requests across Hive repos.
 - [Ecosystem overview](https://hive.io/eco/): directory of apps and communities (rendered client-side).
 - [Roadmap](https://hive.io/roadmap/): all hardforks from HF23 to HF28 and planned work (HAF updates, lightweight accounts, smart contract prototyping, mobile nodes).
 - [Wallets](https://hive.io/wallets/): recommended wallets per platform, with open/closed source labels.

@@ -7,8 +7,9 @@
 #   3. HTML, .xml, .txt, .json, .webmanifest, sw.js: always revalidated, edge
 #      copies kept a day (the deploy invalidates /* afterwards)
 # --delete only removes files inside a pass's own filters, so no pass deletes
-# another's files. Old _next/static files are removed by "prune", which runs
-# after the invalidation so a cached page never points at a deleted chunk.
+# another's files. Old _next/static files are kept: HTML cached in browsers or
+# at the edge from an earlier build still loads its own chunks. "prune" is a
+# no-op kept so the CI steps that call it still pass.
 #
 #   s3-deploy.sh upload SRC DEST [--dryrun]
 #   s3-deploy.sh prune  SRC DEST [--dryrun]
@@ -54,8 +55,7 @@ case "$MODE" in
       'public, max-age=0, s-maxage=86400, must-revalidate' --delete
     ;;
   prune)
-    aws s3 sync --acl public-read --delete --exclude '*' --include "$STATIC" \
-      --cache-control 'public, max-age=31536000, immutable' $EXTRA "$SRC" "$DEST"
+    echo "prune: skipped, old $STATIC files stay for cached pages"
     ;;
   *)
     echo "usage: s3-deploy.sh upload|prune SRC DEST [--dryrun]" >&2

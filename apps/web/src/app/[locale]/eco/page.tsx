@@ -64,18 +64,7 @@ function EcoContent() {
   };
 
   return (
-    <div className="flex justify-center w-full min-h-[calc(100vh-80px)] py-20 px-5">
-      <div className="flex flex-col items-center w-full max-w-[1000px]">
-        {/* Hero Section */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <h1 className="text-[4rem] font-bold leading-tight mb-6 max-[600px]:text-[3rem]">
-            {t('eco.title')}<span className="text-[#e31337]">.</span>
-          </h1>
-          <p className="text-xl max-w-[700px] text-[#555] leading-relaxed">
-            {t('eco.text')}
-          </p>
-        </div>
-
+    <>
         {/* Filter Types */}
         <div className="flex flex-row flex-wrap justify-center gap-3 mb-12">
           {appTypes.map((appType) => (
@@ -138,20 +127,33 @@ function EcoContent() {
             ))}
           </div>
         </div>
-      </div>
-    </div>
+    </>
   );
 }
 
 export default function EcoPage() {
+  const t = useTranslations();
+
   return (
-    // Reserve the page height until the client renders, as on /join, so the
-    // footer does not start next to the header and jump down (layout shift)
-    <Suspense
-      fallback={
-        <div className="text-center py-20 min-h-screen">Loading...</div>
-      }>
-      <EcoContent />
-    </Suspense>
+    <div className="flex justify-center w-full min-h-[calc(100vh-80px)] py-20 px-5">
+      <div className="flex flex-col items-center w-full max-w-[1000px]">
+        {/* Hero Section: outside Suspense so the heading is in the static HTML */}
+        <div className="flex flex-col items-center text-center mb-16">
+          <h1 className="text-[4rem] font-bold leading-tight mb-6 max-[600px]:text-[3rem]">
+            {t('eco.title')}<span className="text-[#e31337]">.</span>
+          </h1>
+          <p className="text-xl max-w-[700px] text-[#555] leading-relaxed">
+            {t('eco.text')}
+          </p>
+        </div>
+
+        {/* Reserve the page height until the client renders, as on /join, so
+            the footer does not start next to the header and jump down */}
+        <Suspense
+          fallback={<div className="text-center min-h-screen">Loading...</div>}>
+          <EcoContent />
+        </Suspense>
+      </div>
+    </div>
   );
 }

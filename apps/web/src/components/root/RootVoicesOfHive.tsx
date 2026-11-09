@@ -187,7 +187,7 @@ export function RootVoicesOfHive({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 mt-4 text-sm text-gray-600 hover:text-gray-600 transition-colors"
                 >
-                  Read more <ChevronRight className="w-4 h-4" />
+                  Read @{currentVoice.author}&apos;s post <ChevronRight className="w-4 h-4" />
                 </a>
               )}
             </div>

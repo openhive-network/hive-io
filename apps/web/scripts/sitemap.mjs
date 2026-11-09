@@ -52,7 +52,14 @@ const PAGES = [
   {
     path: '/developers/',
     priority: '0.80',
-    sources: ['app/[locale]/developers'],
+    sources: [
+      'app/[locale]/developers',
+      'components/developers',
+      'lib/developer-facts.ts',
+      'lib/developer-facts-fetch.mjs',
+      'lib/dev-activity-fetch.mjs',
+      'lib/dev-tracker-repos.mjs',
+    ],
   },
   {path: '/hbd/', priority: '0.80', sources: ['app/[locale]/hbd']},
   {

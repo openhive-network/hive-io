@@ -1,7 +1,10 @@
-'use client';
+import {Developers} from '@/components/developers/Developers'
+import {getDevActivity, getDeveloperFacts} from '@/lib/developer-facts'
 
-import React from 'react';
-
-export default function DevelopersPage() {
-  return <div></div>;
+export default async function DevelopersPage() {
+  const [facts, activity] = await Promise.all([
+    getDeveloperFacts(),
+    getDevActivity(),
+  ])
+  return <Developers facts={facts} activity={activity} />
 }

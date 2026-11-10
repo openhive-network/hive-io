@@ -87,10 +87,7 @@ function JoinContent() {
   const joinData = searchParams.get('code')
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Community Bar */}
-      <LogoMarquee compact showTitle={false} />
-
+    <>
       {joinData ? (
         // JoinFlow view - when someone is completing an account creation request
         <div className="flex justify-center w-full py-12 pt-16 px-5 bg-linear-to-b from-gray-900 to-black text-white flex-1">
@@ -132,23 +129,22 @@ function JoinContent() {
       )}
 
       <Toaster position="top-center" richColors theme="dark" />
-    </div>
+    </>
   )
 }
 
 export default function JoinPage() {
   return (
-    // The fallback is the default view's top half: crawlers get the heading and
-    // FAQ, and the page keeps its height until the client renders
-    <Suspense
-      fallback={
-        <div className="flex flex-col min-h-screen">
-          <LogoMarquee compact showTitle={false} />
-          <JoinIntro />
-        </div>
-      }
-    >
-      <JoinContent />
-    </Suspense>
+    <div className="flex flex-col min-h-screen">
+      {/* Community Bar. Outside Suspense so its images (the LCP element) are
+          not replaced when the client swaps the fallback for JoinContent */}
+      <LogoMarquee compact showTitle={false} />
+
+      {/* The fallback is the default view's top half: crawlers get the heading
+          and FAQ, and the page keeps its height until the client renders */}
+      <Suspense fallback={<JoinIntro />}>
+        <JoinContent />
+      </Suspense>
+    </div>
   )
 }

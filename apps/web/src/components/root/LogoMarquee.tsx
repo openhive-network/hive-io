@@ -16,6 +16,7 @@ interface MarqueeImageItem {
   src: string;
   size: 4 | 2 | 'wide' | 1;
   credit?: string;
+  priority?: boolean; // LCP candidate: eager, high fetch priority
 }
 
 interface MarqueeTextItem {
@@ -52,9 +53,9 @@ const COMPACT_ITEMS: MarqueeImageItem[] = [
   { type: 'image', src: '/images/community/hivefest10_2.jpeg', size: 1, credit: 'louis88' },
   { type: 'image', src: '/images/community/hivefest_mexico2.webp', size: 4, credit: 'manuphotos' },
   { type: 'image', src: '/images/community/latinevent_1.jpeg', size: 1, credit: 'hivecreators' },
-  { type: 'image', src: '/images/community/hivefest9_1.webp', size: 4, credit: 'bil.prag' },
+  { type: 'image', src: '/images/community/hivefest9_1.webp', size: 4, credit: 'bil.prag', priority: true },
   { type: 'image', src: '/images/community/hive_car1.jpeg', size: 1, credit: 'rubencress' },
-  { type: 'image', src: '/images/community/african_community.webp', size: 'wide', credit: 'hivecreators' },
+  { type: 'image', src: '/images/community/african_community.webp', size: 'wide', credit: 'hivecreators', priority: true },
   { type: 'image', src: '/images/community/blockchainsummit_1.webp', size: 1, credit: 'hivecreators' },
   { type: 'image', src: '/images/community/hivefest_crimsonclad.webp', size: 1, credit: 'crimsonclad' },
   { type: 'image', src: '/images/community/hivefest6_2.webp', size: 2, credit: 'celestal' },
@@ -79,9 +80,10 @@ interface MarqueeImageProps {
   size: 4 | 2 | 'wide' | 1;
   credit?: string;
   compact?: boolean;
+  priority?: boolean;
 }
 
-const MarqueeImage: React.FC<MarqueeImageProps> = ({ src, size, credit, compact = false }) => {
+const MarqueeImage: React.FC<MarqueeImageProps> = ({ src, size, credit, compact = false, priority = false }) => {
   const unitW = compact ? COMPACT_UNIT_WIDTH : UNIT_WIDTH;
   const unitH = compact ? COMPACT_UNIT_HEIGHT : UNIT_HEIGHT;
   const gap = compact ? COMPACT_GAP : GAP;
@@ -105,7 +107,8 @@ const MarqueeImage: React.FC<MarqueeImageProps> = ({ src, size, credit, compact 
         width={width}
         height={height}
         className="w-full h-full object-cover object-center"
-        loading="eager"
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : undefined}
       />
       {credit && !compact && (
         <span className="absolute bottom-2 right-2 text-[10px] text-white/60">
@@ -169,7 +172,7 @@ export const LogoMarquee: React.FC<LogoMarqueeProps> = ({ className, compact = f
       if (compact) return null;
       return <MarqueeTextCard value={item.value} label={item.label} compact={compact} />;
     }
-    return <MarqueeImage src={item.src} size={item.size} credit={item.credit} compact={compact} />;
+    return <MarqueeImage src={item.src} size={item.size} credit={item.credit} compact={compact} priority={item.priority} />;
   };
 
   const getItems = () => {

@@ -130,8 +130,11 @@
     "dafText": "The development of Hive and its ecosystem is made possible by the community. To incentivize crucial work, the same community can engage in stake-weighted voting to fund proposals via the Decentralised Hive Fund (DHF).",
     "dafButton": "Learn more",
     "exchanges": {
-      "title": "Listed Exchanges",
-      "subtitle": "Trade HIVE on 40+ exchanges worldwide. Maximum liquidity, maximum accessibility."
+      "title": "Where to buy HIVE",
+      "subtitle": "HIVE trades on exchanges and swap services worldwide. Buy it anywhere, then withdraw to your account name for secure self-custody, governance, and potential APR. On Hive, your wallet address is human readable: no long or confusing strings.",
+      "disclaimer": "Services listed here are not an endorsement, so check the market before you trade.",
+      "futuresTitle": "Futures & Perpetuals",
+      "futuresSubtitle": "HIVE perpetual contracts. These venues do not sell spot HIVE you can withdraw. Leveraged trading carries high risk."
     },
     "hbdTitle": "Hive Backed Dollar",
     "hbdText": "HBD is a USD-pegged algorithmic stablecoin backed by HIVE. We currently provide one of the highest interest rates in the crypto space for holding HBD in savings.",

@@ -15,7 +15,7 @@ Naming notes for disambiguation:
 - Graphene-based chain written in C++. The same codebase has been producing blocks since 2016. hive.io shows a live uptime counter above 3,750 days at time of writing.
 - Consensus: Delegated Proof of Stake. Stakeholders vote for witnesses. The top 20 plus rotating backup witnesses produce a block every 3 seconds. More than 100 active witnesses exist.
 - Core development is done by a decentralized group of 30+ open-source developers, coordinated on a community-hosted GitLab and mirrored to GitHub.
-- Ecosystem at time of writing per hive.io: 158 apps, 248 communities, HIVE listed on 40+ exchanges. Well-known apps: Splinterlands, PeakD, Ecency, 3Speak, InLeo, Actifit, Holozing, NFTShowroom.
+- Ecosystem at time of writing per hive.io: 158 apps, 248 communities, HIVE listed on 30+ exchanges. Well-known apps: Splinterlands, PeakD, Ecency, 3Speak, InLeo, Actifit, Holozing, NFTShowroom.
 - Community: 10 years of annual HiveFest conferences with about 1,200 participants in total, plus regional events.
 
 ## Key features

@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { useRouter } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo/Logo';
@@ -17,7 +18,7 @@ import {useStakingApr} from '@/hooks/useStakingApr'
 import {formatPercent} from '@/lib/hive-rates'
 import {ExplorerLink} from '@/components/ui/explorer-link'
 import {Skeleton} from '@/components/ui/skeleton'
-import { EXCHANGES } from '@/lib/data/var';
+import { EXCHANGES, FUTURES_EXCHANGES } from '@/lib/data/var';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import type { DynamicGlobalProperties } from '@hiveio/hive-lib';
 
@@ -380,6 +381,9 @@ export default function HomePage() {
             <p className="text-l text-gray-400 max-w-[700px] mx-auto leading-relaxed">
               {t('root.exchanges.subtitle')}
             </p>
+            <p className="text-sm text-gray-500 max-w-[700px] mx-auto mt-3">
+              {t('root.exchanges.disclaimer')}
+            </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-4">
@@ -392,12 +396,60 @@ export default function HomePage() {
                 rel="nofollow noopener noreferrer"
                 title={exchange.name}
               >
-                <img
+                {exchange.icon ? (
+                  <span className="flex items-center gap-2.5 opacity-70">
+                    <Image
+                      src={getExchangeImage(exchange.image)}
+                      alt=""
+                      width={28}
+                      height={28}
+                      className="h-7 w-7 rounded-md object-contain"
+                    />
+                    <span className="text-base sm:text-lg font-semibold text-white">
+                      {exchange.name}
+                    </span>
+                  </span>
+                ) : (
+                  <img
+                    src={getExchangeImage(exchange.image)}
+                    alt={exchange.name}
+                    className="max-h-8 max-w-[65%] object-contain opacity-70"
+                    loading="lazy"
+                  />
+                )}
+              </a>
+            ))}
+          </div>
+
+          <div className="mt-20 text-center mb-8">
+            <h3 className="text-2xl font-semibold text-white mb-3">
+              {t('root.exchanges.futuresTitle')}
+            </h3>
+            <p className="text-sm text-gray-400 max-w-[600px] mx-auto">
+              {t('root.exchanges.futuresSubtitle')}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+            {FUTURES_EXCHANGES.map((exchange) => (
+              <a
+                key={exchange.id}
+                className="flex items-center gap-2 h-11 px-4 bg-white/5 border border-white/10 rounded-lg transition-colors duration-200 hover:bg-white/10 hover:border-white/20"
+                href={exchange.website}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                title={`${exchange.name} futures`}
+              >
+                <Image
                   src={getExchangeImage(exchange.image)}
-                  alt={exchange.name}
-                  className="max-h-8 max-w-[65%] object-contain opacity-70"
-                  loading="lazy"
+                  alt=""
+                  width={20}
+                  height={20}
+                  className="h-5 w-5 rounded object-contain opacity-70"
                 />
+                <span className="text-sm font-medium text-gray-300">
+                  {exchange.name}
+                </span>
               </a>
             ))}
           </div>

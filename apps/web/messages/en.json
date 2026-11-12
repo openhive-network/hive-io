@@ -130,8 +130,11 @@
     "dafText": "The development of Hive and its ecosystem is made possible by the community. To incentivize crucial work, the same community can engage in stake-weighted voting to fund proposals via the Decentralised Hive Fund (DHF).",
     "dafButton": "Learn more",
     "exchanges": {
-      "title": "Listed Exchanges",
-      "subtitle": "Trade HIVE on 40+ exchanges worldwide. Maximum liquidity, maximum accessibility."
+      "title": "Where to buy HIVE",
+      "subtitle": "HIVE trades on exchanges and swap services worldwide. Buy it anywhere, then withdraw to your account name for secure self-custody, governance, and potential APR. On Hive, your wallet address is human readable: no long or confusing strings.",
+      "disclaimer": "Services listed here are not an endorsement, so check the market before you trade.",
+      "futuresTitle": "Futures & Perpetuals",
+      "futuresSubtitle": "HIVE perpetual contracts. These venues do not sell spot HIVE you can withdraw. Leveraged trading carries high risk."
     },
     "hbdTitle": "Hive Backed Dollar",
     "hbdText": "HBD is a USD-pegged algorithmic stablecoin backed by HIVE. We currently provide one of the highest interest rates in the crypto space for holding HBD in savings.",
@@ -154,10 +157,34 @@
     "featurePowerfulText": "Block producers elected by Hive's stakeholders run the network from around the world, with no downtime. No company, server or country can switch it off, and stakeholders can vote out any producer at any time."
   },
   "eco": {
-    "title": "Hive Ecosystem",
-    "text": "Below is a selection of dapps, games and tools built on Hive.",
-    "subTitle": "Interested in statistics?",
-    "subText": "Thousands of people across numerous dapps are using Hive every day."
+    "title": "Apps Built on Hive",
+    "punch": "Hive’s community are Hive’s builders.",
+    "text": "The people who use the Hive blockchain are the ones expanding what it can do. Writers run social forums, gamers ship TCGs and RPGs, traders build markets and interfaces, and developers create wallets, analytics and explorers.",
+    "text2": "Connect your site or service to Hive and your apps and tools all share one open graph, so an account made for any one works across them all.",
+    "ctaJoin": "Create a Hive account",
+    "ctaBuild": "Build on Hive",
+    "searchLabel": "Search apps",
+    "searchPlaceholder": "Search apps by name or what they do",
+    "noResults": "No app matches that search. Try another word or clear the filter.",
+    "projectsTitle": "Project directory",
+    "projectsText": "Hive Projects is a self-submitted directory of apps, sites and tools built on Hive over the years. Some are no longer running, and newer apps may not be listed yet.",
+    "projectsAdd": "Add your project",
+    "buildTitle": "Build Your Own Hive App",
+    "buildText": "Every site and service on this page reads the same open graph via Hive. <accounts>Accounts</accounts>, <posts>posts</posts>, <votes>votes</votes>, <json>custom json</json>, <transfers>transfers</transfers> and <other>more</other> confirm in a new block every 3 seconds with no transaction fees, and any app can stream them live or pull them with custom queries and APIs. Build something new on Hive's shared public data, and it's automatically connected to everything already in the ecosystem.",
+    "accountsLabel": "Hive accounts",
+    "buildSummary": "Hive summary for AI agents",
+    "buildCta": "Start on the developer page",
+    "faqTitle": "One Account, Every App",
+    "faq": {
+      "q1": "Do I need a new account for each Hive app?",
+      "a1": "No, your Hive account is a wallet address that works on every app connected to the Hive blockchain. Your data, content, relationships and assets belong to you, not to any platform.",
+      "q2": "How do I log in to a Hive app safely?",
+      "a2": "Use Hive Keychain, HiveAuth, or another signing service, which allow you to make transactions without handing your keys to an app. Never paste your owner key or master password into a website.",
+      "q3": "How do I get my Hive app listed here?",
+      "a3": "Add it to <projects>Hive Projects</projects>, then open an issue on the <repo>hive.io repository</repo>. Listed apps connect with a signing service and do not ask for wallet keys directly. A listing is not an endorsement."
+    },
+    "subTitle": "App analytics",
+    "subText": "Charts and rankings of Hive apps from an independent aggregator."
   },
   "wallets": {
     "title": "Choose Your Wallet",

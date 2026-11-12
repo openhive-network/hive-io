@@ -221,15 +221,6 @@ export const ECOSYSTEM: IEcoItem[] = [
     types: [EcoType.social],
   },
   {
-    id: 'stemgeeks',
-    name: 'STEMGeeks',
-    description: 'A Science, Technology, Engineering, and Math community.',
-    image: 'stemgeeks.png',
-    website: 'https://stemgeeks.net',
-    types: [EcoType.social],
-    featured: false,
-  },
-  {
     id: 'risingstar',
     name: 'Rising Star',
     description:
@@ -564,17 +555,17 @@ export const ECOSYSTEM: IEcoItem[] = [
     description:
       'Public Hive analytics: account health, new user discovery, DHF watch and downvote dashboards.',
     image: 'hiveraven.svg',
-    website: 'https://hiveraven.vercel.app/',
+    website: 'https://hiveraven.quest/',
     types: [EcoType.tools],
     featured: false,
   },
   {
-    id: 'beetris',
-    name: 'BeeTris',
+    id: 'hive-block-producer',
+    name: 'Hive Block Producer',
     description:
       'A Hive-themed browser block puzzle: stack transactions, survive hardforks and dodge downvotes.',
-    image: 'beetris.svg',
-    website: 'https://hiveb3.github.io/beetris/',
+    image: 'hive-block-producer.svg',
+    website: 'https://d-bot-2026.github.io/hive-block-producer/',
     types: [EcoType.game],
     featured: false,
   },
@@ -596,6 +587,119 @@ export const ECOSYSTEM: IEcoItem[] = [
     image: 'splinterlanes.svg',
     website: 'https://splinterlanes.com/',
     types: [EcoType.game],
+    featured: false,
+  },
+  {
+    id: 'lumen',
+    name: 'Lumen',
+    description:
+      'A Hive social app with lite accounts and Magi Network tokens for offering and hiring freelance work.',
+    image: 'lumen.svg',
+    website: 'https://lumensocial.net/',
+    types: [EcoType.social],
+    featured: false,
+  },
+  {
+    id: 'cyberspace77',
+    name: 'CyberSpace77',
+    description:
+      'A decentralized social media front end for Hive, with Keychain login.',
+    image: 'cyberspace77.svg',
+    website: 'https://cyberspace77.com/',
+    types: [EcoType.social],
+    featured: false,
+  },
+  {
+    id: 'hivetools',
+    name: 'HiveTools',
+    description:
+      'Browser tools for Hive and Hive Engine: Diesel Pool swaps, scripts and a project builder for developers.',
+    image: 'hivetools.svg',
+    website: 'https://tools.crypto-dreamr.com/',
+    types: [EcoType.tools],
+    featured: false,
+  },
+  {
+    id: 'hivemicro',
+    name: 'Hive Micro',
+    description: 'Microblogging on Hive: short posts, signed with your Hive account.',
+    image: 'hivemicro.svg',
+    website: 'https://micro.crypto-dreamr.com/',
+    types: [EcoType.social],
+    featured: false,
+  },
+  {
+    id: 'hiverss',
+    name: 'HiveRSS',
+    description:
+      'RSS feeds for any Hive author, tag or community, for Feedly, NetNewsWire or any RSS reader.',
+    image: 'hiverss.svg',
+    website: 'https://hiverss.com/',
+    types: [EcoType.tools, EcoType.social],
+    featured: false,
+  },
+  {
+    id: 'hivepredict',
+    name: 'HivePredict',
+    description:
+      'Prediction markets on Hive: pick a side, and the winners split the pool.',
+    image: 'hivepredict.svg',
+    website: 'https://hivepredict.app/',
+    types: [EcoType.defi],
+    featured: false,
+  },
+  {
+    id: 'cutehive',
+    name: 'CuteHIVE',
+    description:
+      'A live dashboard of Hive chain data: supply, HBD stability, inflation and block production.',
+    image: 'cutehive.svg',
+    website: 'https://cutehive.com/',
+    types: [EcoType.tools],
+    featured: false,
+  },
+  {
+    id: 'hivepulse',
+    name: 'HivePulse',
+    description: 'An explorer for the operations of any Hive account.',
+    image: 'hivepulse.webp',
+    website: 'https://hivepulse.app/',
+    types: [EcoType.tools],
+    featured: false,
+  },
+  {
+    id: 'mydempire',
+    name: 'MydEmpire',
+    description:
+      'A building game: develop land and factories in an economy that pays rewards in HIVE.',
+    image: 'mydempire.webp',
+    website: 'https://www.mydempire.com/',
+    types: [EcoType.game, EcoType.nft],
+    featured: false,
+  },
+  {
+    id: 'sportsblock',
+    name: 'SportsBlock',
+    description:
+      'A sports community on Hive: post takes, call predictions and enter contests to earn MEDALS.',
+    image: 'sportsblock.svg',
+    website: 'https://sportsblock.app/',
+    types: [EcoType.sport, EcoType.social],
+    featured: false,
+  },
+  {
+    id: 'hivekeychain',
+    name: 'Hive Keychain',
+    description:
+      'The browser extension and mobile wallet most Hive apps use to sign transactions, so your keys stay on your device.',
+    image: 'keychain.svg',
+    website: 'https://hive-keychain.com/',
+    stores: {
+      googlePlay:
+        'https://play.google.com/store/apps/details?id=com.mobilekeychain',
+      appStore: 'https://apps.apple.com/us/app/hive-keychain/id1552190010',
+    },
+    types: [EcoType.tools],
     featured: false,
   },
   ...BLOCKEXPLORERS,

@@ -11,7 +11,7 @@ export const BLOCKEXPLORERS: IEcoItem[] = [
     website: 'https://explore.openhive.network/',
     description:
       'Block explorer for Hive: blocks, accounts, witnesses and chain parameters.',
-    image: 'redhive.png',
+    image: 'openhive.svg',
     types: [EcoType.tools],
   },
   {
@@ -19,7 +19,7 @@ export const BLOCKEXPLORERS: IEcoItem[] = [
     name: 'HiveScan',
     website: 'https://hivescan.info',
     description: 'Block explorer for Hive.',
-    image: 'redhive.png',
+    image: 'hivescan.svg',
     types: [EcoType.tools],
   },
   {
@@ -35,7 +35,7 @@ export const BLOCKEXPLORERS: IEcoItem[] = [
     name: 'Hivexplorer',
     website: 'https://hivexplorer.com',
     description: 'Explorer for Hive',
-    image: 'redhive.png',
+    image: 'hivexplorer.svg',
     types: [EcoType.tools],
   },
   {
@@ -43,7 +43,7 @@ export const BLOCKEXPLORERS: IEcoItem[] = [
     name: 'Hive Blockexplorer',
     website: 'https://hiveblockexplorer.com',
     description: 'Block explorer for Hive.',
-    image: 'blackhive.png',
+    image: 'hiveblockexplorer.svg',
     types: [EcoType.tools],
   },
     {
@@ -51,7 +51,7 @@ export const BLOCKEXPLORERS: IEcoItem[] = [
     name: 'Hive at Ausbit',
     website: 'https://hive.ausbit.dev',
     description: 'Block explorer for Hive.',
-    image: 'redhive.png',
+    image: 'ausbit.svg',
     types: [EcoType.tools],
   },
 ]

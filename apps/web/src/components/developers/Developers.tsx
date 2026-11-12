@@ -162,17 +162,52 @@ function useSeen<T extends Element>() {
   return [ref, seen] as const
 }
 
-function LiveFigures({
+function useAccountCount(enabled: boolean) {
+  const [count, setCount] = useState<number>()
+  useEffect(() => {
+    if (!enabled) return
+    let active = true
+    const tick = () => {
+      if (document.visibilityState !== 'visible') return
+      fetch(LIVE_APIS_URL, {
+        method: 'POST',
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          method: 'condenser_api.get_account_count',
+          params: [],
+          id: 1,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (active && typeof data?.result === 'number') setCount(data.result)
+        })
+        .catch(() => {})
+    }
+    tick()
+    const timer = setInterval(tick, 60_000)
+    return () => {
+      active = false
+      clearInterval(timer)
+    }
+  }, [enabled])
+  return count
+}
+
+export function LiveFigures({
   headLabel,
+  accountsLabel,
   transactionsLabel,
   number,
 }: {
   headLabel: string
+  accountsLabel?: string
   transactionsLabel: string
   number: (n: number) => string
 }) {
   const [ref, seen] = useSeen<HTMLDivElement>()
-  const head = useHeadBlock(seen)
+  const head = useHeadBlock(seen && !accountsLabel)
+  const accounts = useAccountCount(seen && !!accountsLabel)
   const {displayedTransactions: transactions} = useTransactionStats({
     updateInterval: BLOCK_MS,
     enabled: seen,
@@ -184,7 +219,20 @@ function LiveFigures({
         className="grid grid-cols-1 sm:grid-cols-2 gap-10 w-full max-w-[720px] min-h-[96px] mb-12"
       >
         <div className="flex flex-col items-center">
-          {head !== undefined && (
+          {accountsLabel && accounts !== undefined && (
+            <>
+              <span className="flex items-center gap-2 mb-3">
+                <LiveDot />
+                <span className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
+                  {accountsLabel}
+                </span>
+              </span>
+              <span className="text-[2.75rem] max-[600px]:text-[2.25rem] font-bold font-mono tabular-nums leading-none">
+                {number(accounts)}
+              </span>
+            </>
+          )}
+          {!accountsLabel && head !== undefined && (
             <>
               <span className="flex items-center gap-2 mb-3">
                 <LiveDot />

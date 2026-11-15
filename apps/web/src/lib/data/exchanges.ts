@@ -60,13 +60,6 @@ export const EXCHANGES: IExchange[] = [
     icon: true,
   },
   {
-    id: 'bydfi',
-    name: 'Bydfi',
-    website: 'https://www.bydfi.com/en/spot/hive_usdt',
-    image: 'bydfi-icon.webp',
-    icon: true,
-  },
-  {
     id: 'changelly',
     name: 'Changelly',
     website: 'https://changelly.com',
@@ -83,7 +76,7 @@ export const EXCHANGES: IExchange[] = [
   {
     id: 'coindcx',
     name: 'CoinDCX',
-    website: 'https://coindcx.com/trade/HIVEINR',
+    website: 'https://coindcx.com/trade/HIVEUSDT',
     image: 'coindcx-icon.webp',
     icon: true,
   },
@@ -258,10 +251,31 @@ export const EXCHANGES: IExchange[] = [
 
 export const FUTURES_EXCHANGES: IExchange[] = [
   {
+    id: 'binance-futures',
+    name: 'Binance',
+    website: 'https://www.binance.com/en/futures/HIVEUSDT',
+    image: 'binance-icon.webp',
+    icon: true,
+  },
+  {
     id: 'bingx',
     name: 'BingX',
     website: 'https://swap.bingx.com/en-us/HIVE-USDT',
     image: 'bingx-icon.webp',
+    icon: true,
+  },
+  {
+    id: 'bitget-futures',
+    name: 'Bitget',
+    website: 'https://www.bitget.com/futures/usdt/HIVEUSDT',
+    image: 'bitget-icon.webp',
+    icon: true,
+  },
+  {
+    id: 'bitkan-futures',
+    name: 'BitKan',
+    website: 'https://bitkan.com/futures/HIVE-USDT',
+    image: 'bitkan-icon.webp',
     icon: true,
   },
   {
@@ -288,7 +302,7 @@ export const FUTURES_EXCHANGES: IExchange[] = [
   {
     id: 'bydfi-futures',
     name: 'BYDFi',
-    website: 'https://www.bydfi.com/en/swap/hive-usdt',
+    website: 'https://www.bydfi.com/en/futures/HIVE_USDT',
     image: 'bydfi-icon.webp',
     icon: true,
   },
@@ -321,6 +335,13 @@ export const FUTURES_EXCHANGES: IExchange[] = [
     icon: true,
   },
   {
+    id: 'mexc-futures',
+    name: 'MEXC',
+    website: 'https://www.mexc.com/futures/HIVE_USDT',
+    image: 'mexc-icon.webp',
+    icon: true,
+  },
+  {
     id: 'orangex',
     name: 'OrangeX',
     website: 'https://www.orangex.com/perpetual/HIVE-USDT-PERPETUAL',
@@ -332,6 +353,20 @@ export const FUTURES_EXCHANGES: IExchange[] = [
     name: 'Ourbit',
     website: 'https://futures.ourbit.com/exchange/HIVE_USDT?type=linear_swap',
     image: 'ourbit-icon.webp',
+    icon: true,
+  },
+  {
+    id: 'weex-futures',
+    name: 'WEEX',
+    website: 'https://www.weex.com/futures/HIVE-USDT',
+    image: 'weex-icon.webp',
+    icon: true,
+  },
+  {
+    id: 'xt-futures',
+    name: 'XT',
+    website: 'https://www.xt.com/en/futures/trade/hive_usdt',
+    image: 'xt-icon.webp',
     icon: true,
   },
   {

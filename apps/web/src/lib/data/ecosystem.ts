@@ -17,7 +17,7 @@ export const ECOSYSTEM: IEcoItem[] = [
   },
   {
     id: 'peakd',
-    name: 'Peakd',
+    name: 'PeakD',
     description: 'Decentralized social media with true ownership.',
     image: 'peakd.svg',
     website: 'https://peakd.com',
@@ -26,7 +26,7 @@ export const ECOSYSTEM: IEcoItem[] = [
   },
   {
     id: 'hiveblog',
-    name: 'Hive.Blog',
+    name: 'Hive.blog',
     description:
       'Communities without borders. A social network owned and operated by its users.',
     image: 'blackhive.png',

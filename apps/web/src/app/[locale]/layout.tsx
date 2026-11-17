@@ -54,6 +54,8 @@ const STRUCTURED_DATA = {
       name: "Hive",
       description:
         "Hive is a feeless, community-owned blockchain and a public social and identity layer for the open web. Build on Hive's open-source full stack, or extend cross-chain and web apps with Hive accounts, posts and payments that confirm in less than 3 seconds.",
+      disambiguatingDescription:
+        "Hive, the blockchain at hive.io, is not affiliated with HIVE Digital Technologies (formerly HIVE Blockchain Technologies), hive.com, hiveio.com, HIVE Network (hivenetwork.finance), Apache Hive or Hive Social.",
       url: "https://hive.io/",
       logo: "https://hive.io/icon.png",
       sameAs: [

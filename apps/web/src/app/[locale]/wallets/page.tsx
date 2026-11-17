@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import { App } from '@/components/app/App';
 import { WALLETS } from '@/lib/data/var';
 
@@ -27,6 +28,12 @@ export default function WalletsPage() {
             <App key={wallet.id} item={wallet} showName={true} />
           ))}
         </div>
+
+        <Link
+          href="/#exchanges"
+          className="mt-16 text-lg font-semibold text-gray-900 underline decoration-[#e31337] decoration-2 underline-offset-4 hover:text-[#e31337]">
+          {t('root.exchanges.title')}
+        </Link>
       </div>
     </div>
   );

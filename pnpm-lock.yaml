@@ -44,7 +44,7 @@ catalogs:
       version: 6.0.3
 
 overrides:
-  '@hiveio/beekeeper': 1.28.9-rc0-stable.261028200530
+  '@hiveio/beekeeper': 1.28.9-rc0-stable.261107004332
 
 importers:
 

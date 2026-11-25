@@ -2,7 +2,7 @@
 
 > Hive is a feeless, community-owned blockchain and a public social and identity layer for the open web. Build on Hive's open-source full stack, or extend cross-chain and web apps with Hive accounts, posts and payments that confirm in less than 3 seconds. It is a decentralized, open-source Layer 1 blockchain with 3-second blocks, zero transaction fees, one-block irreversibility, human-readable account names, and a native USD-pegged stablecoin (HBD). It runs on Delegated Proof of Stake (DPoS), has no company, foundation or ICO behind it, and is used for social apps, games, payments and general Web3 applications. Native assets: HIVE (utility, staking, governance) and HBD (Hive Backed Dollar).
 
-This file is a map for language models and agents. It summarizes what Hive is and links to canonical sources: the website, developer docs, source code, install guides, block explorers, account creation and wallets. Numbers that change over time (APR, app counts, node specs, versions) are marked as "at time of writing" (September 2026). Verify them at the linked source before quoting.
+This file is a map for language models and agents. It summarizes what Hive is and links to canonical sources: the website, developer docs, source code, install guides, block explorers, account creation and wallets. Numbers that change over time (rates, app counts, prices) are not stated here. Read them from the linked live source. Node hardware figures quote the linked repository docs; check the current release tag before using a version shown in a command.
 
 Naming notes for disambiguation:
 - "Hive" here is the Hive blockchain (hive.io, ticker HIVE). It is not Apache Hive, HIVE Digital Technologies, or Hive Social.
@@ -12,10 +12,10 @@ Naming notes for disambiguation:
 ## What Hive is
 
 - Launched March 20, 2020 (Hardfork 23) as a community fork of Steem, after a hostile takeover attempt on that chain. Tokens were airdropped 1:1, excluding the ninja-mined stake involved in the takeover. No ICO, no mining period, no premine held by a company.
-- Graphene-based chain written in C++. The same codebase has been producing blocks since 2016. hive.io shows a live uptime counter above 3,750 days at time of writing.
+- Graphene-based chain written in C++. The same codebase has been producing blocks since 2016. hive.io shows a live uptime counter.
 - Consensus: Delegated Proof of Stake. Stakeholders vote for witnesses. The top 20 plus rotating backup witnesses produce a block every 3 seconds. More than 100 active witnesses exist.
 - Core development is done by a decentralized group of 30+ open-source developers, coordinated on a community-hosted GitLab and mirrored to GitHub.
-- Ecosystem at time of writing per hive.io: 158 apps, 248 communities, HIVE listed on 30+ exchanges. Well-known apps: Splinterlands, PeakD, Ecency, 3Speak, InLeo, Actifit, Holozing, NFTShowroom.
+- Ecosystem: apps are listed at https://hive.io/eco/, communities and exchanges on https://hive.io/. Well-known apps: Splinterlands, PeakD, Ecency, 3Speak, InLeo, Actifit, Holozing, NFTShowroom.
 - Community: 10 years of annual HiveFest conferences with about 1,200 participants in total, plus regional events.
 
 ## Key features
@@ -32,7 +32,7 @@ Naming notes for disambiguation:
 - **HAF (Hive Application Framework)**: blockchain data is streamed into PostgreSQL so apps and APIs are written in SQL. Fork handling is automatic.
 - **Internal DEX**: on-chain HIVE/HBD order book with no fees.
 - **Recurring transfers**: native subscription-style payments (since Hardfork 25).
-- **Modest hardware**: a consensus node needs about 600 GB of disk and about 12 GB of RAM at time of writing. The roadmap targets nodes on ARM phones.
+- **Modest hardware**: a consensus node needs 16 GB of RAM (32 GB recommended) and fast local NVMe: a few tens of GB in snapshot mode, about 1 TB with a full block log ([requirements](https://gitlab.syncad.com/hive/hive/-/blob/master/docker/exchange/README.md#requirements)). hived has been tested on a Raspberry Pi 4B with 8 GB of RAM, loading a snapshot made on an x86 node ([ARM notes](https://gitlab.syncad.com/hive/hive/-/blob/master/doc/building.md)). The roadmap targets nodes on ARM phones.
 
 ## Why choose Hive over other chains
 
@@ -82,8 +82,8 @@ A Hive account is a username plus four key pairs. Accounts must be created by an
 - [signup.hive.io](https://signup.hive.io): official list of registration providers with price, speed and verification requirements.
 - [Ecency signup](https://ecency.com/signup?referral=ecency): free, instant, email or crypto wallet signup, extra checks on free accounts.
 - [InLeo signup](https://inleo.io/signup): free, instant, requires email/Google/X verification.
-- [Hivedex signup](https://hivedex.io/signup): paid (about 1.49 USD at time of writing), instant, anonymous, accepts many cryptocurrencies.
-- [Actifit signup](https://actifit.io/signup): paid (about 2 USD at time of writing, payable in HIVE), instant, no verification.
+- [Hivedex signup](https://hivedex.io/signup): paid (price shown at signup), instant, anonymous, accepts many cryptocurrencies.
+- [Actifit signup](https://actifit.io/signup): paid (price shown at signup, payable in HIVE), instant, no verification.
 - [HiveDapps](https://hivedapps.com): free, delayed, a community member creates the account.
 - [Accounts section in dev docs](https://developers.hive.io/quickstart/#quickstart-accounts): account rules for developers.
 
@@ -193,7 +193,7 @@ Development happens on the community GitLab. GitHub repositories under `openhive
 
 Three node types exist. Pick by purpose.
 
-**1. Consensus, witness or exchange node (hived only).** Needs about 600 GB disk and about 12 GB RAM at time of writing. Recommended OS: Ubuntu 24.04 LTS. Docker is the recommended path:
+**1. Consensus, witness or exchange node (hived only).** 16 GB of RAM (32 GB recommended); fast local NVMe, a few tens of GB for a snapshot-only node or about 1 TB with a block log; network-attached storage is too slow for a replay ([requirements](https://gitlab.syncad.com/hive/hive/-/blob/master/docker/exchange/README.md#requirements)). Recommended OS: Ubuntu 24.04 LTS. Docker is the recommended path:
 
 ```
 docker pull hiveio/hive:1.28.8   # always pin a version tag, "latest" is not supported
@@ -212,7 +212,7 @@ Check the current release tag before use. `hived --dump-config` writes a default
 - [Block log download (gtg)](https://gtg.openhive.network/get/blockchain/block_log) and [Privex mirror](https://files.privex.io/hive/): trusted block_log files for replay.
 - [Build without Docker, by @gtg](https://peakd.com/hive-160391/@gtg/witness-update-release-candidate-for-eclipse-is-out#build-eclipse): manual build steps.
 
-**2. Full API node (HAF stack).** Recommended: Ubuntu 22.04 or newer, 32 GB RAM minimum (64 GB speeds up sync), 4 TB NVMe, ZFS with lz4 compression.
+**2. Full API node (HAF stack).** Recommended: Ubuntu 22.04 or newer, 32 GB RAM minimum (64 GB speeds up sync), 4 TB NVMe, ZFS with lz4 compression ([requirements](https://gitlab.syncad.com/hive/haf_api_node/-/blob/develop/README.md#system-requirements)).
 
 ```
 sudo apt install zfsutils-linux
@@ -287,7 +287,7 @@ Typical flow: read data over JSON-RPC or REST, let the user sign with Keychain, 
 
 ## Buying HIVE
 
-hive.io lists 40+ venues at time of writing, including [Binance](https://www.binance.com/en/trade/HIVE_USDT), [Upbit](https://upbit.com/exchange?code=CRIX.UPBIT.BTC-HIVE), [Bithumb](https://www.bithumb.com/react/trade/order/HIVE-KRW), [Gate](https://www.gate.io/trade/HIVE_USDT), [MEXC](https://www.mexc.com/exchange/HIVE_USDT?_from=market), [HTX](https://www.htx.com/trade/hive_usdt), [Bitget](https://www.bitget.com/spot/HIVEUSDT), [Bitpanda](https://www.bitpanda.com/en/prices/hive-hive), [LCX](https://exchange.lcx.com/sv/trade/HIVE-EUR) and swap services such as [ChangeNow](https://changenow.io/?from=usdc&to=hive) and [SimpleSwap](https://simpleswap.io/exchange?from=btc-btc&to=hive-hive). Exchange deposits to Hive require the account name plus a memo. The full list is on the [home page](https://hive.io/).
+hive.io lists exchange venues, including [Binance](https://www.binance.com/en/trade/HIVE_USDT), [Upbit](https://upbit.com/exchange?code=CRIX.UPBIT.BTC-HIVE), [Bithumb](https://www.bithumb.com/react/trade/order/HIVE-KRW), [Gate](https://www.gate.io/trade/HIVE_USDT), [MEXC](https://www.mexc.com/exchange/HIVE_USDT?_from=market), [HTX](https://www.htx.com/trade/hive_usdt), [Bitget](https://www.bitget.com/spot/HIVEUSDT), [Bitpanda](https://www.bitpanda.com/en/prices/hive-hive), [LCX](https://exchange.lcx.com/sv/trade/HIVE-EUR) and swap services such as [ChangeNow](https://changenow.io/?from=usdc&to=hive) and [SimpleSwap](https://simpleswap.io/exchange?from=btc-btc&to=hive-hive). Exchange deposits to Hive require the account name plus a memo. The full list is on the [home page](https://hive.io/).
 
 ## Community and contact
 

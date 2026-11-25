@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { hiveApiFetch } from '@hiveio/hive-lib';
 import { trackOnce } from '@/lib/analytics';
 
 interface TransactionStatsOptions {
@@ -18,13 +19,9 @@ interface YearlyTransactionStats {
 }
 
 async function fetchTransactionTotal(): Promise<number> {
-  const response = await fetch(
-    'https://api.hive.blog/hafbe-api/transaction-statistics?granularity=yearly'
+  const response = await hiveApiFetch(
+    '/hafbe-api/transaction-statistics?granularity=yearly'
   );
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch transaction statistics');
-  }
 
   const data: YearlyTransactionStats[] = await response.json();
 

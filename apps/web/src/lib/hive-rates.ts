@@ -1,9 +1,4 @@
-/**
- * Live chain figures for rate-like numbers on the site.
- * Nothing here is hardcoded: every value is read from api.hive.blog.
- */
-
-const HIVE_API = 'https://api.hive.blog'
+import {hiveApiFetch} from '@hiveio/hive-lib'
 
 export interface BaseStakingAprInput {
   /** head_block_number from get_dynamic_global_properties */
@@ -64,16 +59,13 @@ export function parseAsset(asset: string): number {
 async function hiveBatch(
   calls: {method: string; params: unknown}[],
 ): Promise<unknown[]> {
-  const response = await fetch(HIVE_API, {
+  const response = await hiveApiFetch('', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(
       calls.map((call, id) => ({jsonrpc: '2.0', id, ...call})),
     ),
   })
-  if (!response.ok) {
-    throw new Error(`Hive API HTTP ${response.status}`)
-  }
   const payload = (await response.json()) as {id: number; result?: unknown}[]
   return calls.map((_, id) => {
     const item = payload.find((entry) => entry.id === id)

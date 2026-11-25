@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import {hiveApiFetch} from '@hiveio/hive-lib'
 import {fetchChainSnapshot} from '@/lib/hive-rates'
 import { trackOnce } from '@/lib/analytics'
 
@@ -31,7 +32,7 @@ interface UseTVLResult {
 
 // Balance Tracker on the Hive API node (CORS open). Integer strings:
 // savings_hive and savings_hbd carry 3 decimals, total_vests carries 6.
-const TVL_API = 'https://api.hive.blog/balance-api/total-value-locked'
+const TVL_API = '/balance-api/total-value-locked'
 
 interface BalanceTrackerTVL {
   total_vests: string
@@ -41,13 +42,9 @@ interface BalanceTrackerTVL {
 
 async function fetchTVL(): Promise<TVLData> {
   const [response, chain] = await Promise.all([
-    fetch(TVL_API),
+    hiveApiFetch(TVL_API),
     fetchChainSnapshot(),
   ])
-
-  if (!response.ok) {
-    throw new Error(`Balance Tracker HTTP ${response.status}`)
-  }
 
   const locked: BalanceTrackerTVL = await response.json()
 

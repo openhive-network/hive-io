@@ -1,6 +1,7 @@
 'use client'
 
 import {useState, useEffect, useCallback, useRef} from 'react'
+import {hiveApiFetch} from '@hiveio/hive-lib'
 import {trackOnce} from '@/lib/analytics'
 
 export interface BlockProducer {
@@ -47,13 +48,9 @@ export function useBlockProducers(
    */
   const fetchInitialProducers = useCallback(async () => {
     try {
-      const response = await fetch(
-        `https://api.hive.blog/hafbe-api/operation-type-counts?result-limit=${initialCountRef.current}`,
+      const response = await hiveApiFetch(
+        `/hafbe-api/operation-type-counts?result-limit=${initialCountRef.current}`,
       )
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch block producers')
-      }
 
       const data = await response.json()
 

@@ -1,7 +1,28 @@
 // Plain JSON-RPC helpers for read-only chain data. Nothing here imports wax,
 // so pages that only read from the chain do not download the wax wasm.
 
-const API_ENDPOINT = 'https://api.hive.blog'
+const API_NODES = ['https://api.hive.blog', 'https://api.openhive.network']
+const REQUEST_TIMEOUT_MS = 8000
+
+export async function hiveApiFetch(
+  path: string,
+  init?: RequestInit,
+): Promise<Response> {
+  let lastError: unknown = new Error('No Hive API node available')
+  for (const node of API_NODES) {
+    try {
+      const response = await fetch(`${node}${path}`, {
+        ...init,
+        signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+      })
+      if (response.ok) return response
+      lastError = new Error(`Hive API request failed: ${response.status}`)
+    } catch (err) {
+      lastError = err
+    }
+  }
+  throw lastError
+}
 
 export interface NaiAmount {
   amount: string
@@ -22,15 +43,11 @@ export async function hiveRpc<T = any>(
   method: string,
   params: unknown = {},
 ): Promise<T> {
-  const response = await fetch(API_ENDPOINT, {
+  const response = await hiveApiFetch('', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({jsonrpc: '2.0', id: 1, method, params}),
   })
-
-  if (!response.ok) {
-    throw new Error(`Hive API request failed: ${response.status}`)
-  }
 
   const data = await response.json()
   if (data.error) {

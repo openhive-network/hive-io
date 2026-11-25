@@ -20,7 +20,7 @@ const FAQ_ITEMS = [
   },
   {
     question: "What's the difference between the signup options?",
-    answer: "Community providers (InLeo, Ecency, etc.) offer instant signup through their platforms - just create an account and start using Hive immediately. The sponsored option lets you generate your own secure keys and have an existing Hive user create your account, giving you more control over your credentials."
+    answer: "Community providers (Ecency, etc.) offer instant signup through their platforms - just create an account and start using Hive immediately. The sponsored option lets you generate your own secure keys and have an existing Hive user create your account, giving you more control over your credentials."
   },
   {
     question: "What are Hive keys and why are they important?",

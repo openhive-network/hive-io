@@ -8,7 +8,7 @@ const TITLE = 'Hive Apps: Decentralized Social Media, Games and Tools'
 export const metadata = pageMetadata(
   '/eco/',
   TITLE,
-  'Browse apps built on the Hive blockchain: decentralized social media apps, games, NFTs, finance and developer tools, all used with one Hive account.',
+  'Find apps built on the Hive blockchain: Hive.blog, PeakD, Ecency and other decentralized social media, games, NFTs, finance and developer tools.',
 )
 
 const ecoJsonLd = JSON.stringify({

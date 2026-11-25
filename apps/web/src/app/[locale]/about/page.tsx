@@ -22,8 +22,11 @@ export default function AboutPage() {
         {/* Hero Section */}
         <div className="flex flex-col items-center text-center mb-16">
           <h1 className="text-[4rem] font-bold leading-tight mb-6 max-[600px]:text-[3rem]">
-            {t('about.title')}<span className="text-[#e31337]">3</span>
+            {t('about.title')}<span className="text-[#e31337]">?</span>
           </h1>
+          <p className="text-2xl max-w-[700px] font-medium leading-snug mb-4">
+            {t('about.subline')}
+          </p>
           <p className="text-xl max-w-[700px] text-[#555] leading-relaxed">
             {t('about.text')}
           </p>

@@ -3,8 +3,8 @@ import {pageMetadata} from '@/lib/page-metadata'
 
 export const metadata = pageMetadata(
   '/about/',
-  'About the Hive Blockchain: How Hive Works',
-  'Hive has 3-second blocks, one-block irreversibility and no transaction fees, and its nodes run on modest hardware. Overview and intro videos.',
+  'What Is Hive? How the Hive Blockchain Works',
+  'Hive is a blockchain with 3-second blocks, one-block irreversibility and no transaction fees, and its nodes run on modest hardware.',
 )
 
 export default function Layout({children}: {children: ReactNode}) {

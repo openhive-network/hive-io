@@ -26,5 +26,3 @@ pnpm lint
 ```
 
 For detailed explanation on how things work, check out [Next.js docs](https://nextjs.org)
-
-<!-- docs: typo pass -->
